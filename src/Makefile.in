@@ -917,59 +917,19 @@ bench_bench_weycoin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(bench_bench_weycoin_CXXFLAGS) $(CXXFLAGS) \
 	$(bench_bench_weycoin_LDFLAGS) $(LDFLAGS) -o $@
-am__weycoin_cli_SOURCES_DIST = bitcoin-cli.cpp bitcoin-cli-res.rc
-@TARGET_WINDOWS_TRUE@am__objects_22 = bitcoin-cli-res.$(OBJEXT)
-am_weycoin_cli_OBJECTS = weycoin_cli-bitcoin-cli.$(OBJEXT) \
-	$(am__objects_22)
-weycoin_cli_OBJECTS = $(am_weycoin_cli_OBJECTS)
-weycoin_cli_DEPENDENCIES = $(LIBBITCOIN_CLI) $(am__DEPENDENCIES_4) \
-	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
-weycoin_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(weycoin_cli_CXXFLAGS) \
-	$(CXXFLAGS) $(weycoin_cli_LDFLAGS) $(LDFLAGS) -o $@
-am__weycoin_tx_SOURCES_DIST = bitcoin-tx.cpp bitcoin-tx-res.rc
-@TARGET_WINDOWS_TRUE@am__objects_23 = bitcoin-tx-res.$(OBJEXT)
-am_weycoin_tx_OBJECTS = weycoin_tx-bitcoin-tx.$(OBJEXT) \
-	$(am__objects_23)
-weycoin_tx_OBJECTS = $(am_weycoin_tx_OBJECTS)
-weycoin_tx_DEPENDENCIES = $(am__DEPENDENCIES_4) $(LIBBITCOIN_COMMON) \
-	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) \
-	$(LIBBITCOIN_CRYPTO) $(LIBSECP256K1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
-weycoin_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(weycoin_tx_CXXFLAGS) \
-	$(CXXFLAGS) $(weycoin_tx_LDFLAGS) $(LDFLAGS) -o $@
-am__weycoind_SOURCES_DIST = bitcoind.cpp bitcoind-res.rc
-@TARGET_WINDOWS_TRUE@am__objects_24 = bitcoind-res.$(OBJEXT)
-am_weycoind_OBJECTS = weycoind-bitcoind.$(OBJEXT) $(am__objects_24)
-weycoind_OBJECTS = $(am_weycoind_OBJECTS)
-weycoind_DEPENDENCIES = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
-	$(am__DEPENDENCIES_4) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET) \
-	$(LIBBITCOIN_ZMQ) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) \
-	$(am__DEPENDENCIES_2) $(LIBLEVELDB_SSE42) \
-	$(am__DEPENDENCIES_3) $(LIBSECP256K1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
-weycoind_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(weycoind_CXXFLAGS) \
-	$(CXXFLAGS) $(weycoind_LDFLAGS) $(LDFLAGS) -o $@
 am__qt_weycoin_qt_SOURCES_DIST = qt/bitcoin.cpp \
 	qt/macdockiconhandler.mm qt/macnotificationhandler.mm \
 	qt/res/bitcoin-qt-res.rc
-@ENABLE_QT_TRUE@am__objects_25 = qt/qt_weycoin_qt-macdockiconhandler.$(OBJEXT) \
+@ENABLE_QT_TRUE@am__objects_22 = qt/qt_weycoin_qt-macdockiconhandler.$(OBJEXT) \
 @ENABLE_QT_TRUE@	qt/qt_weycoin_qt-macnotificationhandler.$(OBJEXT)
-@ENABLE_QT_TRUE@@TARGET_DARWIN_TRUE@am__objects_26 =  \
-@ENABLE_QT_TRUE@@TARGET_DARWIN_TRUE@	$(am__objects_25)
-@ENABLE_QT_TRUE@am__objects_27 = qt/res/bitcoin-qt-res.$(OBJEXT)
-@ENABLE_QT_TRUE@@TARGET_WINDOWS_TRUE@am__objects_28 =  \
-@ENABLE_QT_TRUE@@TARGET_WINDOWS_TRUE@	$(am__objects_27)
+@ENABLE_QT_TRUE@@TARGET_DARWIN_TRUE@am__objects_23 =  \
+@ENABLE_QT_TRUE@@TARGET_DARWIN_TRUE@	$(am__objects_22)
+@ENABLE_QT_TRUE@am__objects_24 = qt/res/bitcoin-qt-res.$(OBJEXT)
+@ENABLE_QT_TRUE@@TARGET_WINDOWS_TRUE@am__objects_25 =  \
+@ENABLE_QT_TRUE@@TARGET_WINDOWS_TRUE@	$(am__objects_24)
 @ENABLE_QT_TRUE@am_qt_weycoin_qt_OBJECTS =  \
 @ENABLE_QT_TRUE@	qt/qt_weycoin_qt-bitcoin.$(OBJEXT) \
-@ENABLE_QT_TRUE@	$(am__objects_26) $(am__objects_28)
+@ENABLE_QT_TRUE@	$(am__objects_23) $(am__objects_25)
 qt_weycoin_qt_OBJECTS = $(am_qt_weycoin_qt_OBJECTS)
 @ENABLE_QT_TRUE@@ENABLE_ZMQ_TRUE@am__DEPENDENCIES_6 =  \
 @ENABLE_QT_TRUE@@ENABLE_ZMQ_TRUE@	$(LIBBITCOIN_ZMQ) \
@@ -1000,25 +960,25 @@ am__qt_test_test_weycoin_qt_SOURCES_DIST = qt/test/compattests.cpp \
 	test/test_bitcoin.h test/testutil.h \
 	qt/test/paymentservertests.cpp qt/test/wallettests.cpp \
 	wallet/test/wallet_test_fixture.cpp
-@ENABLE_QT_TESTS_TRUE@am__objects_29 = test/qt_test_test_weycoin_qt-test_bitcoin.$(OBJEXT) \
+@ENABLE_QT_TESTS_TRUE@am__objects_26 = test/qt_test_test_weycoin_qt-test_bitcoin.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@	test/qt_test_test_weycoin_qt-testutil.$(OBJEXT)
-@ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@am__objects_30 = qt/test/qt_test_test_weycoin_qt-paymentservertests.$(OBJEXT) \
+@ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@am__objects_27 = qt/test/qt_test_test_weycoin_qt-paymentservertests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@	qt/test/qt_test_test_weycoin_qt-wallettests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@	wallet/test/qt_test_test_weycoin_qt-wallet_test_fixture.$(OBJEXT)
 @ENABLE_QT_TESTS_TRUE@am_qt_test_test_weycoin_qt_OBJECTS = qt/test/qt_test_test_weycoin_qt-compattests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@	qt/test/qt_test_test_weycoin_qt-rpcnestedtests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@	qt/test/qt_test_test_weycoin_qt-test_main.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@	qt/test/qt_test_test_weycoin_qt-uritests.$(OBJEXT) \
-@ENABLE_QT_TESTS_TRUE@	$(am__objects_4) $(am__objects_29) \
-@ENABLE_QT_TESTS_TRUE@	$(am__objects_4) $(am__objects_30)
-@ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@am__objects_31 = qt/test/qt_test_test_weycoin_qt-moc_paymentservertests.$(OBJEXT) \
+@ENABLE_QT_TESTS_TRUE@	$(am__objects_4) $(am__objects_26) \
+@ENABLE_QT_TESTS_TRUE@	$(am__objects_4) $(am__objects_27)
+@ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@am__objects_28 = qt/test/qt_test_test_weycoin_qt-moc_paymentservertests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@@ENABLE_WALLET_TRUE@	qt/test/qt_test_test_weycoin_qt-moc_wallettests.$(OBJEXT)
-@ENABLE_QT_TESTS_TRUE@am__objects_32 = qt/test/qt_test_test_weycoin_qt-moc_compattests.$(OBJEXT) \
+@ENABLE_QT_TESTS_TRUE@am__objects_29 = qt/test/qt_test_test_weycoin_qt-moc_compattests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@	qt/test/qt_test_test_weycoin_qt-moc_rpcnestedtests.$(OBJEXT) \
 @ENABLE_QT_TESTS_TRUE@	qt/test/qt_test_test_weycoin_qt-moc_uritests.$(OBJEXT) \
-@ENABLE_QT_TESTS_TRUE@	$(am__objects_31)
+@ENABLE_QT_TESTS_TRUE@	$(am__objects_28)
 @ENABLE_QT_TESTS_TRUE@nodist_qt_test_test_weycoin_qt_OBJECTS =  \
-@ENABLE_QT_TESTS_TRUE@	$(am__objects_32)
+@ENABLE_QT_TESTS_TRUE@	$(am__objects_29)
 qt_test_test_weycoin_qt_OBJECTS =  \
 	$(am_qt_test_test_weycoin_qt_OBJECTS) \
 	$(nodist_qt_test_test_weycoin_qt_OBJECTS)
@@ -1091,11 +1051,11 @@ am__test_test_weycoin_SOURCES_DIST = test/arith_uint256_tests.cpp \
 	test/data/base58_keys_invalid.json test/data/tx_invalid.json \
 	test/data/tx_valid.json test/data/sighash.json \
 	bench/data/block413567.raw
-@ENABLE_TESTS_TRUE@@ENABLE_WALLET_TRUE@am__objects_33 = wallet/test/test_test_weycoin-wallet_test_fixture.$(OBJEXT) \
+@ENABLE_TESTS_TRUE@@ENABLE_WALLET_TRUE@am__objects_30 = wallet/test/test_test_weycoin-wallet_test_fixture.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@@ENABLE_WALLET_TRUE@	wallet/test/test_test_weycoin-accounting_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@@ENABLE_WALLET_TRUE@	wallet/test/test_test_weycoin-wallet_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@@ENABLE_WALLET_TRUE@	wallet/test/test_test_weycoin-crypto_tests.$(OBJEXT)
-@ENABLE_TESTS_TRUE@am__objects_34 = test/test_test_weycoin-arith_uint256_tests.$(OBJEXT) \
+@ENABLE_TESTS_TRUE@am__objects_31 = test/test_test_weycoin-arith_uint256_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@	test/test_test_weycoin-addrman_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@	test/test_test_weycoin-amount_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@	test/test_test_weycoin-allocator_tests.$(OBJEXT) \
@@ -1153,8 +1113,8 @@ am__test_test_weycoin_SOURCES_DIST = test/arith_uint256_tests.cpp \
 @ENABLE_TESTS_TRUE@	test/test_test_weycoin-uint256_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@	test/test_test_weycoin-univalue_tests.$(OBJEXT) \
 @ENABLE_TESTS_TRUE@	test/test_test_weycoin-util_tests.$(OBJEXT) \
-@ENABLE_TESTS_TRUE@	$(am__objects_33)
-@ENABLE_TESTS_TRUE@am_test_test_weycoin_OBJECTS = $(am__objects_34) \
+@ENABLE_TESTS_TRUE@	$(am__objects_30)
+@ENABLE_TESTS_TRUE@am_test_test_weycoin_OBJECTS = $(am__objects_31) \
 @ENABLE_TESTS_TRUE@	$(am__objects_4) $(am__objects_4)
 @ENABLE_TESTS_TRUE@nodist_test_test_weycoin_OBJECTS =  \
 @ENABLE_TESTS_TRUE@	$(am__objects_21)
@@ -1194,6 +1154,46 @@ test_test_weycoin_fuzzy_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(test_test_weycoin_fuzzy_CXXFLAGS) $(CXXFLAGS) \
 	$(test_test_weycoin_fuzzy_LDFLAGS) $(LDFLAGS) -o $@
+am__weycoin_cli_SOURCES_DIST = bitcoin-cli.cpp bitcoin-cli-res.rc
+@TARGET_WINDOWS_TRUE@am__objects_32 = bitcoin-cli-res.$(OBJEXT)
+am_weycoin_cli_OBJECTS = weycoin_cli-bitcoin-cli.$(OBJEXT) \
+	$(am__objects_32)
+weycoin_cli_OBJECTS = $(am_weycoin_cli_OBJECTS)
+weycoin_cli_DEPENDENCIES = $(LIBBITCOIN_CLI) $(am__DEPENDENCIES_4) \
+	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
+weycoin_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(weycoin_cli_CXXFLAGS) \
+	$(CXXFLAGS) $(weycoin_cli_LDFLAGS) $(LDFLAGS) -o $@
+am__weycoin_tx_SOURCES_DIST = bitcoin-tx.cpp bitcoin-tx-res.rc
+@TARGET_WINDOWS_TRUE@am__objects_33 = bitcoin-tx-res.$(OBJEXT)
+am_weycoin_tx_OBJECTS = weycoin_tx-bitcoin-tx.$(OBJEXT) \
+	$(am__objects_33)
+weycoin_tx_OBJECTS = $(am_weycoin_tx_OBJECTS)
+weycoin_tx_DEPENDENCIES = $(am__DEPENDENCIES_4) $(LIBBITCOIN_COMMON) \
+	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) \
+	$(LIBBITCOIN_CRYPTO) $(LIBSECP256K1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
+weycoin_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(weycoin_tx_CXXFLAGS) \
+	$(CXXFLAGS) $(weycoin_tx_LDFLAGS) $(LDFLAGS) -o $@
+am__weycoind_SOURCES_DIST = bitcoind.cpp bitcoind-res.rc
+@TARGET_WINDOWS_TRUE@am__objects_34 = bitcoind-res.$(OBJEXT)
+am_weycoind_OBJECTS = weycoind-bitcoind.$(OBJEXT) $(am__objects_34)
+weycoind_OBJECTS = $(am_weycoind_OBJECTS)
+weycoind_DEPENDENCIES = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
+	$(am__DEPENDENCIES_4) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET) \
+	$(LIBBITCOIN_ZMQ) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) \
+	$(am__DEPENDENCIES_2) $(LIBLEVELDB_SSE42) \
+	$(am__DEPENDENCIES_3) $(LIBSECP256K1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
+weycoind_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(weycoind_CXXFLAGS) \
+	$(CXXFLAGS) $(weycoind_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -1277,13 +1277,13 @@ SOURCES = $(crypto_libbitcoin_crypto_a_SOURCES) \
 	$(nodist_qt_libbitcoinqt_a_SOURCES) \
 	$(libbitcoinconsensus_la_SOURCES) \
 	$(bench_bench_weycoin_SOURCES) \
-	$(nodist_bench_bench_weycoin_SOURCES) $(weycoin_cli_SOURCES) \
-	$(weycoin_tx_SOURCES) $(weycoind_SOURCES) \
+	$(nodist_bench_bench_weycoin_SOURCES) \
 	$(qt_weycoin_qt_SOURCES) $(qt_test_test_weycoin_qt_SOURCES) \
 	$(nodist_qt_test_test_weycoin_qt_SOURCES) \
 	$(test_test_weycoin_SOURCES) \
 	$(nodist_test_test_weycoin_SOURCES) \
-	$(test_test_weycoin_fuzzy_SOURCES)
+	$(test_test_weycoin_fuzzy_SOURCES) $(weycoin_cli_SOURCES) \
+	$(weycoin_tx_SOURCES) $(weycoind_SOURCES)
 DIST_SOURCES = $(am__crypto_libbitcoin_crypto_a_SOURCES_DIST) \
 	$(am__leveldb_libleveldb_a_SOURCES_DIST) \
 	$(am__leveldb_libleveldb_sse42_a_SOURCES_DIST) \
@@ -1297,12 +1297,12 @@ DIST_SOURCES = $(am__crypto_libbitcoin_crypto_a_SOURCES_DIST) \
 	$(am__qt_libbitcoinqt_a_SOURCES_DIST) \
 	$(am__libbitcoinconsensus_la_SOURCES_DIST) \
 	$(am__bench_bench_weycoin_SOURCES_DIST) \
-	$(am__weycoin_cli_SOURCES_DIST) \
-	$(am__weycoin_tx_SOURCES_DIST) $(am__weycoind_SOURCES_DIST) \
 	$(am__qt_weycoin_qt_SOURCES_DIST) \
 	$(am__qt_test_test_weycoin_qt_SOURCES_DIST) \
 	$(am__test_test_weycoin_SOURCES_DIST) \
-	$(am__test_test_weycoin_fuzzy_SOURCES_DIST)
+	$(am__test_test_weycoin_fuzzy_SOURCES_DIST) \
+	$(am__weycoin_cli_SOURCES_DIST) $(am__weycoin_tx_SOURCES_DIST) \
+	$(am__weycoind_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -3644,18 +3644,6 @@ bench/bench_bench_weycoin-coin_selection.$(OBJEXT):  \
 bench/bench_weycoin$(EXEEXT): $(bench_bench_weycoin_OBJECTS) $(bench_bench_weycoin_DEPENDENCIES) $(EXTRA_bench_bench_weycoin_DEPENDENCIES) bench/$(am__dirstamp)
 	@rm -f bench/bench_weycoin$(EXEEXT)
 	$(AM_V_CXXLD)$(bench_bench_weycoin_LINK) $(bench_bench_weycoin_OBJECTS) $(bench_bench_weycoin_LDADD) $(LIBS)
-
-weycoin-cli$(EXEEXT): $(weycoin_cli_OBJECTS) $(weycoin_cli_DEPENDENCIES) $(EXTRA_weycoin_cli_DEPENDENCIES)
-	@rm -f weycoin-cli$(EXEEXT)
-	$(AM_V_CXXLD)$(weycoin_cli_LINK) $(weycoin_cli_OBJECTS) $(weycoin_cli_LDADD) $(LIBS)
-
-weycoin-tx$(EXEEXT): $(weycoin_tx_OBJECTS) $(weycoin_tx_DEPENDENCIES) $(EXTRA_weycoin_tx_DEPENDENCIES)
-	@rm -f weycoin-tx$(EXEEXT)
-	$(AM_V_CXXLD)$(weycoin_tx_LINK) $(weycoin_tx_OBJECTS) $(weycoin_tx_LDADD) $(LIBS)
-
-weycoind$(EXEEXT): $(weycoind_OBJECTS) $(weycoind_DEPENDENCIES) $(EXTRA_weycoind_DEPENDENCIES)
-	@rm -f weycoind$(EXEEXT)
-	$(AM_V_CXXLD)$(weycoind_LINK) $(weycoind_OBJECTS) $(weycoind_LDADD) $(LIBS)
 qt/qt_weycoin_qt-bitcoin.$(OBJEXT): qt/$(am__dirstamp) \
 	qt/$(DEPDIR)/$(am__dirstamp)
 qt/qt_weycoin_qt-macdockiconhandler.$(OBJEXT): qt/$(am__dirstamp) \
@@ -3863,6 +3851,18 @@ test/test_test_weycoin_fuzzy-test_bitcoin_fuzzy.$(OBJEXT):  \
 test/test_weycoin_fuzzy$(EXEEXT): $(test_test_weycoin_fuzzy_OBJECTS) $(test_test_weycoin_fuzzy_DEPENDENCIES) $(EXTRA_test_test_weycoin_fuzzy_DEPENDENCIES) test/$(am__dirstamp)
 	@rm -f test/test_weycoin_fuzzy$(EXEEXT)
 	$(AM_V_CXXLD)$(test_test_weycoin_fuzzy_LINK) $(test_test_weycoin_fuzzy_OBJECTS) $(test_test_weycoin_fuzzy_LDADD) $(LIBS)
+
+weycoin-cli$(EXEEXT): $(weycoin_cli_OBJECTS) $(weycoin_cli_DEPENDENCIES) $(EXTRA_weycoin_cli_DEPENDENCIES)
+	@rm -f weycoin-cli$(EXEEXT)
+	$(AM_V_CXXLD)$(weycoin_cli_LINK) $(weycoin_cli_OBJECTS) $(weycoin_cli_LDADD) $(LIBS)
+
+weycoin-tx$(EXEEXT): $(weycoin_tx_OBJECTS) $(weycoin_tx_DEPENDENCIES) $(EXTRA_weycoin_tx_DEPENDENCIES)
+	@rm -f weycoin-tx$(EXEEXT)
+	$(AM_V_CXXLD)$(weycoin_tx_LINK) $(weycoin_tx_OBJECTS) $(weycoin_tx_LDADD) $(LIBS)
+
+weycoind$(EXEEXT): $(weycoind_OBJECTS) $(weycoind_DEPENDENCIES) $(EXTRA_weycoind_DEPENDENCIES)
+	@rm -f weycoind$(EXEEXT)
+	$(AM_V_CXXLD)$(weycoind_LINK) $(weycoind_OBJECTS) $(weycoind_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -8096,48 +8096,6 @@ bench/bench_bench_weycoin-coin_selection.obj: bench/coin_selection.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(bench_bench_weycoin_CPPFLAGS) $(CPPFLAGS) $(bench_bench_weycoin_CXXFLAGS) $(CXXFLAGS) -c -o bench/bench_bench_weycoin-coin_selection.obj `if test -f 'bench/coin_selection.cpp'; then $(CYGPATH_W) 'bench/coin_selection.cpp'; else $(CYGPATH_W) '$(srcdir)/bench/coin_selection.cpp'; fi`
 
-weycoin_cli-bitcoin-cli.o: bitcoin-cli.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -MT weycoin_cli-bitcoin-cli.o -MD -MP -MF $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo -c -o weycoin_cli-bitcoin-cli.o `test -f 'bitcoin-cli.cpp' || echo '$(srcdir)/'`bitcoin-cli.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo $(DEPDIR)/weycoin_cli-bitcoin-cli.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-cli.cpp' object='weycoin_cli-bitcoin-cli.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_cli-bitcoin-cli.o `test -f 'bitcoin-cli.cpp' || echo '$(srcdir)/'`bitcoin-cli.cpp
-
-weycoin_cli-bitcoin-cli.obj: bitcoin-cli.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -MT weycoin_cli-bitcoin-cli.obj -MD -MP -MF $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo -c -o weycoin_cli-bitcoin-cli.obj `if test -f 'bitcoin-cli.cpp'; then $(CYGPATH_W) 'bitcoin-cli.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-cli.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo $(DEPDIR)/weycoin_cli-bitcoin-cli.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-cli.cpp' object='weycoin_cli-bitcoin-cli.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_cli-bitcoin-cli.obj `if test -f 'bitcoin-cli.cpp'; then $(CYGPATH_W) 'bitcoin-cli.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-cli.cpp'; fi`
-
-weycoin_tx-bitcoin-tx.o: bitcoin-tx.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -MT weycoin_tx-bitcoin-tx.o -MD -MP -MF $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo -c -o weycoin_tx-bitcoin-tx.o `test -f 'bitcoin-tx.cpp' || echo '$(srcdir)/'`bitcoin-tx.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo $(DEPDIR)/weycoin_tx-bitcoin-tx.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-tx.cpp' object='weycoin_tx-bitcoin-tx.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_tx-bitcoin-tx.o `test -f 'bitcoin-tx.cpp' || echo '$(srcdir)/'`bitcoin-tx.cpp
-
-weycoin_tx-bitcoin-tx.obj: bitcoin-tx.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -MT weycoin_tx-bitcoin-tx.obj -MD -MP -MF $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo -c -o weycoin_tx-bitcoin-tx.obj `if test -f 'bitcoin-tx.cpp'; then $(CYGPATH_W) 'bitcoin-tx.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-tx.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo $(DEPDIR)/weycoin_tx-bitcoin-tx.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-tx.cpp' object='weycoin_tx-bitcoin-tx.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_tx-bitcoin-tx.obj `if test -f 'bitcoin-tx.cpp'; then $(CYGPATH_W) 'bitcoin-tx.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-tx.cpp'; fi`
-
-weycoind-bitcoind.o: bitcoind.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -MT weycoind-bitcoind.o -MD -MP -MF $(DEPDIR)/weycoind-bitcoind.Tpo -c -o weycoind-bitcoind.o `test -f 'bitcoind.cpp' || echo '$(srcdir)/'`bitcoind.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoind-bitcoind.Tpo $(DEPDIR)/weycoind-bitcoind.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoind.cpp' object='weycoind-bitcoind.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -c -o weycoind-bitcoind.o `test -f 'bitcoind.cpp' || echo '$(srcdir)/'`bitcoind.cpp
-
-weycoind-bitcoind.obj: bitcoind.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -MT weycoind-bitcoind.obj -MD -MP -MF $(DEPDIR)/weycoind-bitcoind.Tpo -c -o weycoind-bitcoind.obj `if test -f 'bitcoind.cpp'; then $(CYGPATH_W) 'bitcoind.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoind.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoind-bitcoind.Tpo $(DEPDIR)/weycoind-bitcoind.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoind.cpp' object='weycoind-bitcoind.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -c -o weycoind-bitcoind.obj `if test -f 'bitcoind.cpp'; then $(CYGPATH_W) 'bitcoind.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoind.cpp'; fi`
-
 qt/qt_weycoin_qt-bitcoin.o: qt/bitcoin.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qt_weycoin_qt_CPPFLAGS) $(CPPFLAGS) $(qt_weycoin_qt_CXXFLAGS) $(CXXFLAGS) -MT qt/qt_weycoin_qt-bitcoin.o -MD -MP -MF qt/$(DEPDIR)/qt_weycoin_qt-bitcoin.Tpo -c -o qt/qt_weycoin_qt-bitcoin.o `test -f 'qt/bitcoin.cpp' || echo '$(srcdir)/'`qt/bitcoin.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) qt/$(DEPDIR)/qt_weycoin_qt-bitcoin.Tpo qt/$(DEPDIR)/qt_weycoin_qt-bitcoin.Po
@@ -9229,6 +9187,48 @@ test/test_test_weycoin_fuzzy-test_bitcoin_fuzzy.obj: test/test_bitcoin_fuzzy.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='test/test_bitcoin_fuzzy.cpp' object='test/test_test_weycoin_fuzzy-test_bitcoin_fuzzy.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_test_weycoin_fuzzy_CPPFLAGS) $(CPPFLAGS) $(test_test_weycoin_fuzzy_CXXFLAGS) $(CXXFLAGS) -c -o test/test_test_weycoin_fuzzy-test_bitcoin_fuzzy.obj `if test -f 'test/test_bitcoin_fuzzy.cpp'; then $(CYGPATH_W) 'test/test_bitcoin_fuzzy.cpp'; else $(CYGPATH_W) '$(srcdir)/test/test_bitcoin_fuzzy.cpp'; fi`
+
+weycoin_cli-bitcoin-cli.o: bitcoin-cli.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -MT weycoin_cli-bitcoin-cli.o -MD -MP -MF $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo -c -o weycoin_cli-bitcoin-cli.o `test -f 'bitcoin-cli.cpp' || echo '$(srcdir)/'`bitcoin-cli.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo $(DEPDIR)/weycoin_cli-bitcoin-cli.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-cli.cpp' object='weycoin_cli-bitcoin-cli.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_cli-bitcoin-cli.o `test -f 'bitcoin-cli.cpp' || echo '$(srcdir)/'`bitcoin-cli.cpp
+
+weycoin_cli-bitcoin-cli.obj: bitcoin-cli.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -MT weycoin_cli-bitcoin-cli.obj -MD -MP -MF $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo -c -o weycoin_cli-bitcoin-cli.obj `if test -f 'bitcoin-cli.cpp'; then $(CYGPATH_W) 'bitcoin-cli.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-cli.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_cli-bitcoin-cli.Tpo $(DEPDIR)/weycoin_cli-bitcoin-cli.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-cli.cpp' object='weycoin_cli-bitcoin-cli.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_cli_CPPFLAGS) $(CPPFLAGS) $(weycoin_cli_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_cli-bitcoin-cli.obj `if test -f 'bitcoin-cli.cpp'; then $(CYGPATH_W) 'bitcoin-cli.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-cli.cpp'; fi`
+
+weycoin_tx-bitcoin-tx.o: bitcoin-tx.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -MT weycoin_tx-bitcoin-tx.o -MD -MP -MF $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo -c -o weycoin_tx-bitcoin-tx.o `test -f 'bitcoin-tx.cpp' || echo '$(srcdir)/'`bitcoin-tx.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo $(DEPDIR)/weycoin_tx-bitcoin-tx.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-tx.cpp' object='weycoin_tx-bitcoin-tx.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_tx-bitcoin-tx.o `test -f 'bitcoin-tx.cpp' || echo '$(srcdir)/'`bitcoin-tx.cpp
+
+weycoin_tx-bitcoin-tx.obj: bitcoin-tx.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -MT weycoin_tx-bitcoin-tx.obj -MD -MP -MF $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo -c -o weycoin_tx-bitcoin-tx.obj `if test -f 'bitcoin-tx.cpp'; then $(CYGPATH_W) 'bitcoin-tx.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-tx.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoin_tx-bitcoin-tx.Tpo $(DEPDIR)/weycoin_tx-bitcoin-tx.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoin-tx.cpp' object='weycoin_tx-bitcoin-tx.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoin_tx_CPPFLAGS) $(CPPFLAGS) $(weycoin_tx_CXXFLAGS) $(CXXFLAGS) -c -o weycoin_tx-bitcoin-tx.obj `if test -f 'bitcoin-tx.cpp'; then $(CYGPATH_W) 'bitcoin-tx.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoin-tx.cpp'; fi`
+
+weycoind-bitcoind.o: bitcoind.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -MT weycoind-bitcoind.o -MD -MP -MF $(DEPDIR)/weycoind-bitcoind.Tpo -c -o weycoind-bitcoind.o `test -f 'bitcoind.cpp' || echo '$(srcdir)/'`bitcoind.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoind-bitcoind.Tpo $(DEPDIR)/weycoind-bitcoind.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoind.cpp' object='weycoind-bitcoind.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -c -o weycoind-bitcoind.o `test -f 'bitcoind.cpp' || echo '$(srcdir)/'`bitcoind.cpp
+
+weycoind-bitcoind.obj: bitcoind.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -MT weycoind-bitcoind.obj -MD -MP -MF $(DEPDIR)/weycoind-bitcoind.Tpo -c -o weycoind-bitcoind.obj `if test -f 'bitcoind.cpp'; then $(CYGPATH_W) 'bitcoind.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoind.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/weycoind-bitcoind.Tpo $(DEPDIR)/weycoind-bitcoind.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='bitcoind.cpp' object='weycoind-bitcoind.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(weycoind_CPPFLAGS) $(CPPFLAGS) $(weycoind_CXXFLAGS) $(CXXFLAGS) -c -o weycoind-bitcoind.obj `if test -f 'bitcoind.cpp'; then $(CYGPATH_W) 'bitcoind.cpp'; else $(CYGPATH_W) '$(srcdir)/bitcoind.cpp'; fi`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
