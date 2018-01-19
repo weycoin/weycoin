@@ -73,8 +73,9 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
+
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 840000;
+        consensus.nSubsidyHalvingInterval = 200000;
         consensus.BIP34Height = 710000;
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
         consensus.BIP65Height = 918684; // bab3041e8977e0dc3eeff63fe707b92bde1dd449d8efafb248c27c8264cc311a
@@ -112,27 +113,26 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xfb;
-        pchMessageStart[1] = 0xc0;
-        pchMessageStart[2] = 0xb6;
-        pchMessageStart[3] = 0xdb;
-        nDefaultPort = 10526;
+        pchMessageStart[0] = 0xac;
+        pchMessageStart[1] = 0x5d;
+        pchMessageStart[2] = 0xee;
+        pchMessageStart[3] = 0x9b;
+
+        nDefaultPort = 11527;
         nPruneAfterHeight = 100000;
 
         //                           nTime,   nNonce, nBits, nVersion,  genesisReward
         genesis = CreateGenesisBlock(1516232388, 557849, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        printf("genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-
         assert(consensus.hashGenesisBlock == uint256S("0x8c076a1aee77c561456751d3a0a0692e4cbd59e1eb42a532cff950067fd81aa0"));
         assert(genesis.hashMerkleRoot == uint256S("0x8ccf4934bd66179e098e654c28bc7b42a8ce31269f999f21b8453db89369a8f4"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("weycoin.com", true);
+        vSeeds.emplace_back("172.93.238.155", false);
+        vSeeds.emplace_back("107.173.65.136", false);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
