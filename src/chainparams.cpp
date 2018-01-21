@@ -104,7 +104,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018*/
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000ffffffffffffff");
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x4df35ebb156ddf60a6b5848b78189bc77b68c3bc5844682535c864ae4f7d0807"); //1259849
@@ -129,12 +129,27 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x9ad1e91faf1d7a4e0cf8d943686d3147ac71d08d2174ae469a85b293eef81e2d"));
         assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
 
-        vSeeds.emplace_back("107.173.65.136", true);
-        vSeeds.emplace_back("172.93.238.155", true);
+        // Why do loops when you can hardcode shit.
+
+        vSeeds.emplace_back("seed.weycoin.org", true);
+        vSeeds.emplace_back("seed2.weycoin.org", true);
+        vSeeds.emplace_back("seed3.weycoin.org", true);
+        vSeeds.emplace_back("seed4.weycoin.org", true);
+        vSeeds.emplace_back("seed5.weycoin.org", true);
+        vSeeds.emplace_back("seed6.weycoin.org", true);
+        vSeeds.emplace_back("seed7.weycoin.org", true);
+        vSeeds.emplace_back("seed8.weycoin.org", true);
+        vSeeds.emplace_back("seed9.weycoin.org", true);
+        vSeeds.emplace_back("seed10.weycoin.org", true);
+        vSeeds.emplace_back("seed11.weycoin.org", true);
+        vSeeds.emplace_back("seed12.weycoin.org", true);
+        vSeeds.emplace_back("seed13.weycoin.org", true);
+        vSeeds.emplace_back("seed14.weycoin.org", true);
+        vSeeds.emplace_back("seed15.weycoin.org", true);
 
         // Note that of those with the service bits flag, most only support a subset of possible options
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,44);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
