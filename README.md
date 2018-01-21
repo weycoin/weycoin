@@ -1,79 +1,43 @@
-Litecoin Core integration/staging tree
-=====================================
+WeyCoin Development Network
+===========================
 
-[![Build Status](https://travis-ci.org/litecoin-project/litecoin.svg?branch=master)](https://travis-ci.org/litecoin-project/litecoin)
+https://weycoin.org
 
-https://litecoin.org
-
-What is Litecoin?
+What is WeyCoin?
 ----------------
 
-Litecoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. Litecoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Litecoin Core is the name of open source
-software which enables the use of this currency.
-
-For more information, as well as an immediately useable, binary version of
-the Litecoin Core software, see [https://litecoin.org](https://litecoin.org).
+WeyCoin is a crypto like many others, but it serves as primary purpose
+the expansion and wellbeing of the Ugandanese. It is the one and only
+cryptocurrency of Uganda and the wey community. It uses Scrypt algorithm
+and entrenches its roots (for the majority of the code) within Litecoin
+and Bitcoin. For more information, visit [https://weycoin.org](https://weycoin.org).
 
 License
 -------
 
-Litecoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/licenses/MIT.
+WeyCoin is released under the MIT license, for more information
+see the following: https://opensource.org/licenses/MIT.
 
-Development Process
--------------------
+Development
+-----------
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/litecoin-project/litecoin/tags) are created
-regularly to indicate new official, stable release versions of Litecoin Core.
-
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
-
-The developer [mailing list](https://groups.google.com/forum/#!forum/litecoin-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
-Developer IRC can be found on Freenode at #litecoin-dev.
-
-Testing
--------
-
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
-
-### Automated Testing
-
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
-
-There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
-These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
-
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+To be updated.
 
 Translations
 ------------
 
-We only accept translation fixes that are submitted through [Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).
-Translations are converted to Litecoin periodically.
+To be updated.
 
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
+Donations
+----------
 
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
+Feel free to donate at any of the following addresses:
+
+BTC - 19pRcCehJbpNud6hDxbXUiBdPLgtMZsKci
+BCH - 1Lvsz4CxvBdqXZF3QYzNL1hUxyfB7fuC6G
+ETH - 0xdb193ca8b9b62f4dd12b6d4aacc03f8f14e12b43
+ETC - 0x310ad887f2cdc1cb12b20d5ace32f7d5ff05e1d5
+ETN - etnjzKFU6ogESSKRZZbdqraPdcKVxEC17Cm1Xvbyy76PARQMmgrgceH4krAH6xmjKwJ3HtSAKuyFm1BBWYqtchtq9tBap8Qr4M
+LTC -
+SIA - 01e5d06530bf247a2fe3b326958edc5f83d49f1e8c56f7012d5e735131709f66cc45c4a5a0ec
+WAE - K2twB77jM6W4QkFi74mawcvJ6gcNnWAst3
