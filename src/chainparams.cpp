@@ -48,7 +48,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "At 1/Jan/2018, 11:59PM, Ugandan Knuckles showed us da wae to our queen.";
+    const char* pszTimestamp = "At 20/Jan/2018, 11:59PM, our bruddas found da wey toda queen.";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -75,6 +75,7 @@ public:
     CMainParams() {
 
         strNetworkID = "main";
+
         consensus.nSubsidyHalvingInterval = 200000;
         consensus.BIP34Height = 710000;
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
@@ -88,7 +89,7 @@ public:
         consensus.nRuleChangeActivationThreshold = 6048; // 75% of 8064
         consensus.nMinerConfirmationWindow = 8064; // nPowTargetTimespan / nPowTargetSpacing * 4
 
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
+        /*consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
@@ -100,39 +101,40 @@ public:
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1485561600; // January 28, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018*/
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000ba50a60f8b56c7fe0");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000ffffffffffffff");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x29c8c00e1a5f446a6364a29633d3f1ee16428d87c8d3851a1c570be8170b04c2"); //1259849
+        consensus.defaultAssumeValid = uint256S("0x4df35ebb156ddf60a6b5848b78189bc77b68c3bc5844682535c864ae4f7d0807"); //1259849
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xac;
-        pchMessageStart[1] = 0x5d;
-        pchMessageStart[2] = 0xee;
-        pchMessageStart[3] = 0x9b;
+        pchMessageStart[0] = 0xda;
+        pchMessageStart[1] = 0x8e;
+        pchMessageStart[2] = 0xf1;
+        pchMessageStart[3] = 0x2d;
 
-        nDefaultPort = 11527;
+        nDefaultPort = 11526;
         nPruneAfterHeight = 100000;
 
         //                           nTime,   nNonce, nBits, nVersion,  genesisReward
-        genesis = CreateGenesisBlock(1516232388, 557849, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1516483599, 221681, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0x8c076a1aee77c561456751d3a0a0692e4cbd59e1eb42a532cff950067fd81aa0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x8ccf4934bd66179e098e654c28bc7b42a8ce31269f999f21b8453db89369a8f4"));
+        assert(consensus.hashGenesisBlock == uint256S("0x9ad1e91faf1d7a4e0cf8d943686d3147ac71d08d2174ae469a85b293eef81e2d"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
+
+        vSeeds.emplace_back("107.173.65.136", true);
+        vSeeds.emplace_back("172.93.238.155", true);
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("172.93.238.155", false);
-        vSeeds.emplace_back("107.173.65.136", false);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,44);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,176);
@@ -147,16 +149,14 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {  0, uint256S("0x8c076a1aee77c561456751d3a0a0692e4cbd59e1eb42a532cff950067fd81aa0")}
+                {  0, uint256S("0x9ad1e91faf1d7a4e0cf8d943686d3147ac71d08d2174ae469a85b293eef81e2d")}
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block db42d00d824950a125f9b08b6b6c282c484781562fa8b3bd29d6ce4a2627c348 (height 1259851).
-            1516232388, // * UNIX timestamp of last known number of transactions
-            0,  // * total number of transactions between genesis and that timestamp
-                    //   (the tx=... number in the SetBestChain debug.log lines)
-            0.06     // * estimated number of transactions per second after that timestamp
+            1516483599,
+            0,
+            1.0
         };
     }
 };
@@ -200,10 +200,10 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xad8ff6c2f5580d2b50bd881e11312425ea84fa99f322bf132beb722f97971bba"); //153490
 
-        pchMessageStart[0] = 0xfd;
-        pchMessageStart[1] = 0xd2;
-        pchMessageStart[2] = 0xc8;
-        pchMessageStart[3] = 0xf1;
+        pchMessageStart[0] = 0xab;
+        pchMessageStart[1] = 0x2c;
+        pchMessageStart[2] = 0xfa;
+        pchMessageStart[3] = 0x19;
         nDefaultPort = 19335;
         nPruneAfterHeight = 1000;
 
