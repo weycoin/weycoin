@@ -2018,14 +2018,14 @@ void static UpdateTip(CBlockIndex *pindexNew, const CChainParams& chainParams) {
         for (int bit = 0; bit < VERSIONBITS_NUM_BITS; bit++) {
             WarningBitsConditionChecker checker(bit);
             ThresholdState state = checker.GetStateFor(pindex, chainParams.GetConsensus(), warningcache[bit]);
-            if (state == THRESHOLD_ACTIVE || state == THRESHOLD_LOCKED_IN) {
+            /*if (state == THRESHOLD_ACTIVE || state == THRESHOLD_LOCKED_IN) {
                 const std::string strWarning = strprintf(_("Warning: unknown new rules activated (versionbit %i)"), bit);
                 if (state == THRESHOLD_ACTIVE) {
                     DoWarning(strWarning);
                 } else {
                     warningMessages.push_back(strWarning);
                 }
-            }
+            }*/
         }
 
         // Check the version of the last 100 blocks to see if we need to upgrade:

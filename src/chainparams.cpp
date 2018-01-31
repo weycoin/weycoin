@@ -89,25 +89,12 @@ public:
         consensus.nRuleChangeActivationThreshold = 6048; // 75% of 8064
         consensus.nMinerConfirmationWindow = 8064; // nPowTargetTimespan / nPowTargetSpacing * 4
 
-        /*consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-
-        // Deployment of BIP68, BIP112, and BIP113.
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1485561600; // January 28, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1517356801; // January 31st, 2018
-
-        // Deployment of SegWit (BIP141, BIP143, and BIP147)
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1485561600; // January 28, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018*/
-
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
+        // 0000000000000000000000000000000000000000000000000000000000200020 <- Block 1
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000899fa7dc3461"); // Block 22000
 
-        // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x4df35ebb156ddf60a6b5848b78189bc77b68c3bc5844682535c864ae4f7d0807"); //1259849
+        // Blocks prior to 9999 are determined to be valid.
+        consensus.defaultAssumeValid = uint256S("0x7bb96c2989ddf9f18793c11e4b4e0362cf6e08956adf9e2e913e9e9f006e6175");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -164,7 +151,9 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {  5000, uint256S("0x1ef019d920f58e5cce5cb57848fa019ba600e76434767004b5470858f706b94e")}
+                {  5000, uint256S("0x1ef019d920f58e5cce5cb57848fa019ba600e76434767004b5470858f706b94e")},
+                {  10000, uint256S("0x4fc0938972da92076f37e31cdab49170ac0f33457be48a50b66f18af8f8b10a0")},
+                {  22000, uint256S("0x76eb2a537bd4f3128e17933b624a17f4d9a7d5922d840d718dd385ebea190aa1")}
             }
         };
 
@@ -189,43 +178,31 @@ public:
         consensus.BIP65Height = 76; // 8075c771ed8b495ffd943980a95f702ab34fce3c8c54e379548bda33cc8c0573
         consensus.BIP66Height = 76; // 8075c771ed8b495ffd943980a95f702ab34fce3c8c54e379548bda33cc8c0573
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetTimespan = 5 * 60; // 3.5 days
+        consensus.nPowTargetSpacing = 30;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-
-        // Deployment of BIP68, BIP112, and BIP113.
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1483228800; // January 1, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1517356801; // January 31st, 2018
-
-        // Deployment of SegWit (BIP141, BIP143, and BIP147)
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 1483228800; // January 1, 2017
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000364b0cbc3568");
+        consensus.nMinimumChainWork = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xad8ff6c2f5580d2b50bd881e11312425ea84fa99f322bf132beb722f97971bba"); //153490
+        consensus.defaultAssumeValid = uint256S("0x0"); //153490
 
         pchMessageStart[0] = 0xab;
         pchMessageStart[1] = 0x2c;
         pchMessageStart[2] = 0xfa;
         pchMessageStart[3] = 0x19;
-        nDefaultPort = 19335;
+
+        nDefaultPort = 21526;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1517418340, 958138, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x4966625a4b2851d9fdee139e56211a0d88575f59ed816ff5e6a63deb4e3e29a0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
+        assert(consensus.hashGenesisBlock == uint256S("0x55bfd2a0ace49d0c8fb2213a5d4189cc47ac445f6ad2668de7823c8f3954c094"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -245,15 +222,14 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {2056, uint256S("17748a31ba97afdc9a4f86837a39d287e3e7c7290a08a1d816c5969c78a83289")},
+                { 0, uint256S("0x55bfd2a0ace49d0c8fb2213a5d4189cc47ac445f6ad2668de7823c8f3954c094")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 3351b6229da00b47ad7a8d7e1323b0e2874744b5296e3d6448293463ab758624 (height 153489)
-            1502953751,
-            382986,
-            0.01
+            0,
+            0,
+            0
         };
 
     }
@@ -272,8 +248,8 @@ public:
         consensus.BIP65Height = 1351; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 1251; // BIP66 activated on regtest (Used in rpc activation tests)
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetTimespan = 5 * 60; // two weeks
+        consensus.nPowTargetSpacing = 30;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.nRuleChangeActivationThreshold = 108; // 75% for testchains
