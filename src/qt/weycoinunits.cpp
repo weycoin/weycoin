@@ -17,9 +17,9 @@ WeyCoinUnits::WeyCoinUnits(QObject *parent):
 QList<WeyCoinUnits::Unit> WeyCoinUnits::availableUnits()
 {
     QList<WeyCoinUnits::Unit> unitlist;
-    unitlist.append(STAK);
-    unitlist.append(mSTAK);
-    unitlist.append(uSTAK);
+    unitlist.append(WAE);
+    unitlist.append(mWAE);
+    unitlist.append(uWAE);
     return unitlist;
 }
 
@@ -27,9 +27,9 @@ bool WeyCoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case STAK:
-    case mSTAK:
-    case uSTAK:
+    case WAE:
+    case mWAE:
+    case uWAE:
         return true;
     default:
         return false;
@@ -40,9 +40,9 @@ QString WeyCoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case STAK: return QString("STAK");
-    case mSTAK: return QString("mSTAK");
-    case uSTAK: return QString::fromUtf8("μSTAK");
+    case WAE: return QString("WAE");
+    case mWAE: return QString("Knookles");
+    case uWAE: return QString::fromUtf8("Spits");
     default: return QString("???");
     }
 }
@@ -51,9 +51,9 @@ QString WeyCoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case STAK: return QString("WeyCoins");
-    case mSTAK: return QString("Milli-WeyCoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uSTAK: return QString("Micro-WeyCoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case WAE: return QString("WeyCoins");
+    case mWAE: return QString("Knookles (1 / 1" THIN_SP_UTF8 "000)");
+    case uWAE: return QString("Spits (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -62,9 +62,9 @@ qint64 WeyCoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case STAK:  return 100000000;
-    case mSTAK: return 100000;
-    case uSTAK: return 100;
+    case WAE:  return 100000000;
+    case mWAE: return 100000;
+    case uWAE: return 100;
     default:   return 100000000;
     }
 }
@@ -73,9 +73,9 @@ int WeyCoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case STAK: return 8;
-    case mSTAK: return 5;
-    case uSTAK: return 2;
+    case WAE: return 8;
+    case mWAE: return 5;
+    case uWAE: return 2;
     default: return 0;
     }
 }

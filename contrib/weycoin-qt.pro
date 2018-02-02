@@ -174,7 +174,7 @@ SOURCES += \
 	../src/hash/bmw.c \
 	../src/hash/cubehash.c \
 	../src/hash/luffa.c \
-	../src/hash/hash.cpp \ 
+	../src/hash/hash.cpp \
     ../src/hash/jh.c \
     ../src/hash/keccak.c \
 	../src/hash/echo.c \
