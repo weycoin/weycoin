@@ -283,7 +283,12 @@ bool CWeyCoinAddress::GetKeyID(CKeyID& keyID) const
 
 bool CWeyCoinAddress::IsScript() const
 {
-    return IsValid() && vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS);
+
+    printf("%d\n", (vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS) ||
+                         vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS2)));
+
+    return IsValid() && (vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS) ||
+                         vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS2));
 }
 
 void CWeyCoinSecret::SetKey(const CKey& vchSecret)

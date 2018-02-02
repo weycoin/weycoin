@@ -73,7 +73,7 @@ public:
 
         consensus.nSubsidyHalvingInterval = 200000;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("00000b6321951f2ed170bbc9b7a360995176f2df418b0e275149bfce2fde3d6c");
+        consensus.BIP34Hash = uint256S("0x0");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP102HeightDelta = 0;
@@ -86,7 +86,7 @@ public:
         consensus.nPowMaxAdjustUp = 23.7; // Zawy adjustment: 1- 1/(1+.31)x100 = 23.7
 
         consensus.nPowTargetTimespan = 5 * 60; //5 minutes
-        consensus.nPowTargetSpacing = 16; //20 seconds
+        consensus.nPowTargetSpacing = 20; //20 seconds
 
         consensus.fPowD106SwitchHeight = consensus.DifficultyAdjustmentInterval();
 
@@ -131,7 +131,7 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0");
 
-        //5 weeks from launch, fair chance to buy/accumulate. 50400 blocks
+        //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
 
         /**
@@ -154,12 +154,32 @@ public:
          assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
 
         vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed2.weycoin.org", "seed2.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed3.weycoin.org", "seed3.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed4.weycoin.org", "seed4.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed5.weycoin.org", "seed5.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed6.weycoin.org", "seed6.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed7.weycoin.org", "seed7.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed8.weycoin.org", "seed8.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed9.weycoin.org", "seed9.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed10.weycoin.org", "seed10.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed11.weycoin.org", "seed11.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed12.weycoin.org", "seed12.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed13.weycoin.org", "seed13.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed14.weycoin.org", "seed14.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed15.weycoin.org", "seed15.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed16.weycoin.org", "seed16.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed17.weycoin.org", "seed17.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed18.weycoin.org", "seed18.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed19.weycoin.org", "seed19.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("seed20.weycoin.org", "seed20.weycoin.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
+        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,204);
-        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0xA2)(0xAE)(0xC9)(0xA6).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x46)(0x00)(0x2A)(0x10).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
+        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -176,7 +196,10 @@ public:
 
         // treasury payment adresses
         vTreasuryRewardAddress = {
-            "KemDmd12smGfX7yd5ZGoXyMRhoa2FoqQUM"
+            "3K3bPrW5h7DYEMp2RcXawTCXajcm4ZU9Zh",
+            "33Ssxmn3ehVMgyxgegXhpLGSBpubPjLZQ6",
+            "3HFPNAjesiBY5sSVUmuBFnMEGut69R49ca",
+            "37jLjjfUXQU4bdqVzvpUXyzAqPQSmxyByi"
         };
 
         // [1] UNIX timestamp of last known number of transactions
@@ -184,7 +207,7 @@ public:
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
         chainTxData = ChainTxData{
-            1516483599,
+            0,
             0,
             0
         };
@@ -293,7 +316,7 @@ NEW **testnet** merkle root: 15343d9e3cfff44854ec63cc588d5a1ed6ea971085c2be97acb
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
@@ -307,6 +330,7 @@ NEW **testnet** merkle root: 15343d9e3cfff44854ec63cc588d5a1ed6ea971085c2be97acb
         };
 
         vTreasuryRewardAddress = {
+            "KrUBYAjwM1nE5UQ5wGEHRmbNMCoD2sVGeJ"
         };
 
         chainTxData = ChainTxData{
@@ -474,6 +498,8 @@ std::string CChainParams::GetTreasuryRewardAddressAtHeight(int nHeight) const {
 
 CScript CChainParams::GetTreasuryRewardScriptAtHeight(int nHeight) const {
     CWeyCoinAddress address(GetTreasuryRewardAddressAtHeight(nHeight).c_str());
+
+    printf("Searching for blocks.");
     assert(address.IsValid());
     assert(address.IsScript());
     CScriptID scriptID = boost::get<CScriptID>(address.Get()); // Get() returns a boost variant

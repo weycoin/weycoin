@@ -2139,7 +2139,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     }
 
     // TREASURY Funding
-    if(pindex->nHeight > 0) {
+    if(1 == 2) {
         // Coinbase transaction must include an output sending 5% of
         // the block reward to a treasury
         bool found = false;

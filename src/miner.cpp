@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers 
-// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2017 The Dash developers
 // Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -142,7 +142,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if(!pblocktemplate.get())
         return nullptr;
     pblock = &pblocktemplate->block; // pointer for convenience
-	
+
     LOCK2(cs_main, mempool.cs);
     CBlockIndex* pindexPrev = chainActive.Tip();
     nHeight = pindexPrev->nHeight + 1;
@@ -155,7 +155,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     pblock->nTime = GetAdjustedTime();
     const int64_t nMedianTimePast = pindexPrev->GetMedianTimePast();
-	
+
 	pblock->vtx.emplace_back();
     pblocktemplate->vTxFees.push_back(-1); // updated at end
     pblocktemplate->vTxSigOpsCost.push_back(-1);
@@ -179,7 +179,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     addPackageTxs(nPackagesSelected, nDescendantsUpdated);
 
     int64_t nTime1 = GetTimeMicros();
-	
+
     nLastBlockTx = nBlockTx;
     nLastBlockSize = nBlockSize;
     nLastBlockWeight = nBlockWeight;
@@ -194,7 +194,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
 
     // start masternode payments
-    bool bMasterNodePayment = 
+    bool bMasterNodePayment =
         pindexPrev->nHeight >= chainparams.GetConsensus().MasternodePaymentStartHeight;
 
 	if(bMasterNodePayment) {
@@ -247,12 +247,12 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if(payments > 2){
         coinbaseTx.vout[payments-1].nValue = masternodePayment;
         blockValue -= masternodePayment;
-        //LogPrintf("[squbs] masternode payment %u\n", masternodePayment); 
+        //LogPrintf("[squbs] masternode payment %u\n", masternodePayment);
     }
 
-    coinbaseTx.vout[0].nValue = blockValue; // else if payments either equal to 1, 
+    coinbaseTx.vout[0].nValue = blockValue; // else if payments either equal to 1,
     //LogPrintf("[squbs] miner payment %u\n", blockValue);
-	
+
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
