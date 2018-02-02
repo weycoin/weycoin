@@ -2052,7 +2052,7 @@ bool CConnman::BindListenPort(const CService &addrBind, std::string& strError, b
 
 #ifndef WIN32
 #ifdef SO_NOSIGPIPE
-    // Different way of disabling SIGPIPE on STAK
+    // Different way of disabling SIGPIPE on WAE
     setsockopt(hListenSocket, SOL_SOCKET, SO_NOSIGPIPE, (void*)&nOne, sizeof(int));
 #endif
     // Allow binding if the port is still in TIME_WAIT state after

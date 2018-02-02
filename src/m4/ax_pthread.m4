@@ -132,9 +132,9 @@ ax_pthread_flags="pthreads none -Kthread -kthread lthread -pthread -pthreads -mt
 # none: in case threads are in libc; should be tried before -Kthread and
 #       other compiler flags to prevent continual compiler warnings
 # -Kthread: Sequent (threads in libc, but -Kthread needed for pthread.h)
-# -kthread: FreeSTAK kernel threads (preferred to -pthread since SMP-able)
-# lthread: LinuxThreads port on FreeSTAK (also preferred to -pthread)
-# -pthread: Linux/gcc (kernel threads), STAK/gcc (userland threads)
+# -kthread: FreeWAE kernel threads (preferred to -pthread since SMP-able)
+# lthread: LinuxThreads port on FreeWAE (also preferred to -pthread)
+# -pthread: Linux/gcc (kernel threads), WAE/gcc (userland threads)
 # -pthreads: Solaris/gcc
 # -mthreads: Mingw32/gcc, Lynx/gcc
 # -mt: Sun Workshop C (may only link SunOS threads [-lthread], but it

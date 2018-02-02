@@ -416,7 +416,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
 
     int set = 1;
 #ifdef SO_NOSIGPIPE
-    // Different way of disabling SIGPIPE on STAK
+    // Different way of disabling SIGPIPE on WAE
     setsockopt(hSocket, SOL_SOCKET, SO_NOSIGPIPE, (void*)&set, sizeof(int));
 #endif
 

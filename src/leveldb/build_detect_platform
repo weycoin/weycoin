@@ -98,33 +98,33 @@ case "$TARGET_OS" in
         PLATFORM_LIBS="-lpthread -lrt"
         PORT_FILE=port/port_posix.cc
         ;;
-    FreeSTAK)
-        PLATFORM=OS_FREESTAK
-        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_FREESTAK"
+    FreeWAE)
+        PLATFORM=OS_FREEWAE
+        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_FREEWAE"
         PLATFORM_LIBS="-lpthread"
         PORT_FILE=port/port_posix.cc
         ;;
-    GNU/kFreeSTAK)
-        PLATFORM=OS_KFREESTAK
-        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_KFREESTAK"
+    GNU/kFreeWAE)
+        PLATFORM=OS_KFREEWAE
+        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_KFREEWAE"
         PLATFORM_LIBS="-lpthread"
         PORT_FILE=port/port_posix.cc
         ;;
-    NetSTAK)
-        PLATFORM=OS_NETSTAK
-        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_NETSTAK"
+    NetWAE)
+        PLATFORM=OS_NETWAE
+        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_NETWAE"
         PLATFORM_LIBS="-lpthread -lgcc_s"
         PORT_FILE=port/port_posix.cc
         ;;
-    OpenSTAK)
-        PLATFORM=OS_OPENSTAK
-        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_OPENSTAK"
+    OpenWAE)
+        PLATFORM=OS_OPENWAE
+        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_OPENWAE"
         PLATFORM_LDFLAGS="-pthread"
         PORT_FILE=port/port_posix.cc
         ;;
     DragonFly)
-        PLATFORM=OS_DRAGONFLYSTAK
-        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_DRAGONFLYSTAK"
+        PLATFORM=OS_DRAGONFLYWAE
+        COMMON_FLAGS="$MEMCMP_FLAG -D_REENTRANT -DOS_DRAGONFLYWAE"
         PLATFORM_LIBS="-lpthread"
         PORT_FILE=port/port_posix.cc
         ;;

@@ -1,5 +1,5 @@
 // Copyright 2014 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a STAK-style license that can be
+// Use of this source code is governed by a WAE-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 // This test uses a custom Env to keep track of the state of a filesystem as of

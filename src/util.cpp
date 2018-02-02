@@ -22,7 +22,7 @@
 
 #include <stdarg.h>
 
-#if (defined(__FreeSTAK__) || defined(__OpenSTAK__) || defined(__DragonFly__))
+#if (defined(__FreeWAE__) || defined(__OpenWAE__) || defined(__DragonFly__))
 #include <pthread.h>
 #include <pthread_np.h>
 #endif
@@ -693,7 +693,7 @@ void FileCommit(FILE *file)
     HANDLE hFile = (HANDLE)_get_osfhandle(_fileno(file));
     FlushFileBuffers(hFile);
 #else
-    #if defined(__linux__) || defined(__NetSTAK__)
+    #if defined(__linux__) || defined(__NetWAE__)
     fdatasync(fileno(file));
     #elif defined(__APPLE__) && defined(F_FULLFSYNC)
     fcntl(fileno(file), F_FULLFSYNC, 0);
@@ -837,7 +837,7 @@ void RenameThread(const char* name)
 #if defined(PR_SET_NAME)
     // Only the first 15 characters are used (16 - NUL terminator)
     ::prctl(PR_SET_NAME, name, 0, 0, 0);
-#elif (defined(__FreeSTAK__) || defined(__OpenSTAK__) || defined(__DragonFly__))
+#elif (defined(__FreeWAE__) || defined(__OpenWAE__) || defined(__DragonFly__))
     pthread_set_name_np(pthread_self(), name);
 
 #elif defined(MAC_OSX)
@@ -860,9 +860,9 @@ void SetupEnvironment()
         mallopt(M_ARENA_MAX, 1);
     }
 #endif
-    // On most POSIX systems (e.g. Linux, but not STAK) the environment's locale
+    // On most POSIX systems (e.g. Linux, but not WAE) the environment's locale
     // may be invalid, in which case the "C" locale is used as fallback.
-#if !defined(WIN32) && !defined(MAC_OSX) && !defined(__FreeSTAK__) && !defined(__OpenSTAK__)
+#if !defined(WIN32) && !defined(MAC_OSX) && !defined(__FreeWAE__) && !defined(__OpenWAE__)
     try {
         std::locale(""); // Raises a runtime error if current locale is invalid
     } catch (const std::runtime_error&) {

@@ -570,7 +570,7 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog* dialog)
     }
 
     // actually update labels
-    int nDisplayUnit = WeyCoinUnits::STAK;
+    int nDisplayUnit = WeyCoinUnits::WAE;
     if (model && model->getOptionsModel())
         nDisplayUnit = model->getOptionsModel()->getDisplayUnit();
 

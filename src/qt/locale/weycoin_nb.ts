@@ -275,8 +275,8 @@ Dette produktet inneholder programvare utviklet av OpenSSL Projektet for bruk i 
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR STAK&lt;/b&gt;!</source>
-        <translation>Advarsel: Hvis du krypterer lommeboka og mister adgangsfrasen vil du &lt;b&gt;MISTE ALLE DINE STAK&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WAE&lt;/b&gt;!</source>
+        <translation>Advarsel: Hvis du krypterer lommeboka og mister adgangsfrasen vil du &lt;b&gt;MISTE ALLE DINE WAE&lt;/b&gt;!</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
@@ -1135,13 +1135,13 @@ Adresse: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="78"/>
-        <source>Use 2 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Bruk 2 separate Xnoder for å mikse verdier opp til 1000 STAK</translation>
+        <source>Use 2 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Bruk 2 separate Xnoder for å mikse verdier opp til 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="91"/>
-        <source>Use 8 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Bruk 8 separate Xnoder for å mikse verdier opp til 1000 STAK</translation>
+        <source>Use 8 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Bruk 8 separate Xnoder for å mikse verdier opp til 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="104"/>
@@ -1150,18 +1150,18 @@ Adresse: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="117"/>
-        <source>This option is the quickest and will cost about ~0.025 STAK to anonymize 1000 STAK</source>
-        <translation>Dette alternativet er det raskeste og vil koste omtrent ~0.025 STAK for å anonymisere 1000 STAK</translation>
+        <source>This option is the quickest and will cost about ~0.025 WAE to anonymize 1000 WAE</source>
+        <translation>Dette alternativet er det raskeste og vil koste omtrent ~0.025 WAE for å anonymisere 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="130"/>
-        <source>This option is moderately fast and will cost about 0.05 STAK to anonymize 1000 STAK</source>
-        <translation>Dette alternativet er moderat raskt og vil koste omtrent 0.05 STAK for å anonymisere 1000 STAK</translation>
+        <source>This option is moderately fast and will cost about 0.05 WAE to anonymize 1000 WAE</source>
+        <translation>Dette alternativet er moderat raskt og vil koste omtrent 0.05 WAE for å anonymisere 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="156"/>
-        <source>0.1 STAK per 1000 STAK you anonymize.</source>
-        <translation>0.1 STAK per 1000 STAK du anonymiserer</translation>
+        <source>0.1 WAE per 1000 WAE you anonymize.</source>
+        <translation>0.1 WAE per 1000 WAE du anonymiserer</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="143"/>
@@ -1809,8 +1809,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="349"/>
-        <source>0 STAK</source>
-        <translation>0 STAK</translation>
+        <source>0 WAE</source>
+        <translation>0 WAE</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="356"/>
@@ -1819,8 +1819,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="363"/>
-        <source>0 STAK / 0 Rounds</source>
-        <translation>0 STAK / 0 Runder</translation>
+        <source>0 WAE / 0 Rounds</source>
+        <translation>0 WAE / 0 Runder</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="370"/>
@@ -3870,7 +3870,7 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message numerus="yes">
         <location filename="../walletmodel.cpp" line="271"/>
-        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n STAK.</source>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n WAE.</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
@@ -4131,7 +4131,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WEYCOIN Alert&quot; admin@foo.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="138"/>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 STAK.</source>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 WAE.</source>
         <translation type="unfinished"/>
     </message>
     <message>

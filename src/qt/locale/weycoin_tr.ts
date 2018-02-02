@@ -275,8 +275,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR STAK&lt;/b&gt;!</source>
-        <translation>Uyarı: Eğer cüzdanınızı şifreler ve şifrenizi kaybederseniz,&lt;b&gt;TÜM STAKLERİNİZİ&quot; kaybedersiniz.</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WAE&lt;/b&gt;!</source>
+        <translation>Uyarı: Eğer cüzdanınızı şifreler ve şifrenizi kaybederseniz,&lt;b&gt;TÜM WAELERİNİZİ&quot; kaybedersiniz.</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
@@ -1135,12 +1135,12 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="78"/>
-        <source>Use 2 separate Xnodes to mix funds up to 1000 STAK</source>
+        <source>Use 2 separate Xnodes to mix funds up to 1000 WAE</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="91"/>
-        <source>Use 8 separate Xnodes to mix funds up to 1000 STAK</source>
+        <source>Use 8 separate Xnodes to mix funds up to 1000 WAE</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1150,17 +1150,17 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="117"/>
-        <source>This option is the quickest and will cost about ~0.025 STAK to anonymize 1000 STAK</source>
+        <source>This option is the quickest and will cost about ~0.025 WAE to anonymize 1000 WAE</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="130"/>
-        <source>This option is moderately fast and will cost about 0.05 STAK to anonymize 1000 STAK</source>
+        <source>This option is moderately fast and will cost about 0.05 WAE to anonymize 1000 WAE</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="156"/>
-        <source>0.1 STAK per 1000 STAK you anonymize.</source>
+        <source>0.1 WAE per 1000 WAE you anonymize.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1808,7 +1808,7 @@ https://www.transifex.com/projects/p/weycoin/</source>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="349"/>
-        <source>0 STAK</source>
+        <source>0 WAE</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1818,7 +1818,7 @@ https://www.transifex.com/projects/p/weycoin/</source>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="363"/>
-        <source>0 STAK / 0 Rounds</source>
+        <source>0 WAE / 0 Rounds</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3868,7 +3868,7 @@ https://www.transifex.com/projects/p/weycoin/</source>
     </message>
     <message numerus="yes">
         <location filename="../walletmodel.cpp" line="271"/>
-        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n STAK.</source>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n WAE.</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
@@ -4129,7 +4129,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WEYCOIN Alert&quot; admin@foo.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="138"/>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 STAK.</source>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 WAE.</source>
         <translation type="unfinished"/>
     </message>
     <message>

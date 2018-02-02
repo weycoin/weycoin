@@ -129,7 +129,7 @@ function WaitMemPools {
 
 echo "Generating initial blockchain..."
 
-# 1 block, 50 XBT each == 50 STAK
+# 1 block, 50 XBT each == 50 WAE
 $CLI $B1ARGS setgenerate true 1
 WaitBlocks
 $CLI $B2ARGS setgenerate true 1

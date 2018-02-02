@@ -121,7 +121,7 @@ case $CC_FOR_BUILD,$HOST_CC,$CC in
  ,*,*)  CC_FOR_BUILD=$HOST_CC ;;
 esac ; set_cc_for_build= ;'
 
-# This is needed to find uname on a Pyramid OSx when run in the STAK universe.
+# This is needed to find uname on a Pyramid OSx when run in the WAE universe.
 # (ghazi@noc.rutgers.edu 1994-08-24)
 if (test -f /.attbin/uname) >/dev/null 2>&1 ; then
 	PATH=$PATH:/.attbin ; export PATH
@@ -156,8 +156,8 @@ esac
 # Note: order is significant - the case branches are not exclusive.
 
 case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
-    *:NetSTAK:*:*)
-	# NetSTAK (nbsd) targets should (where applicable) match one or
+    *:NetWAE:*:*)
+	# NetWAE (nbsd) targets should (where applicable) match one or
 	# more of the tuples: *-*-netbsdelf*, *-*-netbsdaout*,
 	# *-*-netbsdecoff* and *-*-netbsd*.  For targets that recently
 	# switched to ELF, *-*-netbsd* would select the old
@@ -165,7 +165,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	# compatibility and a consistent mechanism for selecting the
 	# object file format.
 	#
-	# Note: NetSTAK doesn't particularly care about the vendor
+	# Note: NetWAE doesn't particularly care about the vendor
 	# portion of the name.  We always set it to "unknown".
 	sysctl="sysctl -n hw.machine_arch"
 	UNAME_MACHINE_ARCH=`(/sbin/$sysctl 2>/dev/null || \
@@ -198,7 +198,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 		;;
 	esac
 	# The OS release
-	# Debian GNU/NetSTAK machines have a different userland, and
+	# Debian GNU/NetWAE machines have a different userland, and
 	# thus, need a distinct triplet. However, they do not need
 	# kernel version information, so it can be replaced with a
 	# suitable tag, in the style of linux-gnu.
@@ -219,20 +219,20 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	UNAME_MACHINE_ARCH=`arch | sed 's/Bitrig.//'`
 	echo ${UNAME_MACHINE_ARCH}-unknown-bitrig${UNAME_RELEASE}
 	exit ;;
-    *:OpenSTAK:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/OpenSTAK.//'`
+    *:OpenWAE:*:*)
+	UNAME_MACHINE_ARCH=`arch | sed 's/OpenWAE.//'`
 	echo ${UNAME_MACHINE_ARCH}-unknown-openbsd${UNAME_RELEASE}
 	exit ;;
-    *:ekkoSTAK:*:*)
+    *:ekkoWAE:*:*)
 	echo ${UNAME_MACHINE}-unknown-ekkobsd${UNAME_RELEASE}
 	exit ;;
-    *:SolidSTAK:*:*)
+    *:SolidWAE:*:*)
 	echo ${UNAME_MACHINE}-unknown-solidbsd${UNAME_RELEASE}
 	exit ;;
-    macppc:MirSTAK:*:*)
+    macppc:MirWAE:*:*)
 	echo powerpc-unknown-mirbsd${UNAME_RELEASE}
 	exit ;;
-    *:MirSTAK:*:*)
+    *:MirWAE:*:*)
 	echo ${UNAME_MACHINE}-unknown-mirbsd${UNAME_RELEASE}
 	exit ;;
     alpha:OSF1:*:*)
@@ -391,7 +391,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
     sun3*:SunOS:*:*)
 	echo m68k-sun-sunos${UNAME_RELEASE}
 	exit ;;
-    sun*:*:4.2STAK:*)
+    sun*:*:4.2WAE:*)
 	UNAME_RELEASE=`(sed 1q /etc/motd | awk '{print substr($5,1,3)}') 2>/dev/null`
 	test "x${UNAME_RELEASE}" = "x" && UNAME_RELEASE=3
 	case "`/bin/arch`" in
@@ -466,7 +466,7 @@ case "${UNAME_MACHINE}:${UNAME_SYSTEM}:${UNAME_RELEASE}:${UNAME_VERSION}" in
 	#if defined (SYSTYPE_SVR4)
 	  printf ("mips-mips-riscos%ssvr4\n", argv[1]); exit (0);
 	#endif
-	#if defined (SYSTYPE_STAK43) || defined(SYSTYPE_STAK)
+	#if defined (SYSTYPE_WAE43) || defined(SYSTYPE_WAE)
 	  printf ("mips-mips-riscos%sbsd\n", argv[1]); exit (0);
 	#endif
 	#endif
@@ -526,7 +526,7 @@ EOF
     XD88*:*:*:*) # Tektronix XD88 system running UTekV (SVR3)
 	echo m88k-tektronix-sysv3
 	exit ;;
-    Tek43[0-9][0-9]:UTek:*:*) # Tektronix 4300 system running UTek (STAK)
+    Tek43[0-9][0-9]:UTek:*:*) # Tektronix 4300 system running UTek (WAE)
 	echo m68k-tektronix-bsd
 	exit ;;
     *:IRIX*:*:*)
@@ -589,12 +589,12 @@ EOF
     *:AIX:*:*)
 	echo rs6000-ibm-aix
 	exit ;;
-    ibmrt:4.4STAK:*|romp-ibm:STAK:*)
+    ibmrt:4.4WAE:*|romp-ibm:WAE:*)
 	echo romp-ibm-bsd4.4
 	exit ;;
-    ibmrt:*STAK:*|romp-ibm:STAK:*)            # covers RT/PC STAK and
+    ibmrt:*WAE:*|romp-ibm:WAE:*)            # covers RT/PC WAE and
 	echo romp-ibm-bsd${UNAME_RELEASE}   # 4.3 with uname added to
-	exit ;;                             # report: romp-ibm STAK 4.3
+	exit ;;                             # report: romp-ibm WAE 4.3
     *:BOSX:*:*)
 	echo rs6000-bull-bosx
 	exit ;;
@@ -604,7 +604,7 @@ EOF
     9000/[34]??:4.3bsd:1.*:*)
 	echo m68k-hp-bsd
 	exit ;;
-    hp300:4.4STAK:*:* | 9000/[34]??:4.3bsd:2.*:*)
+    hp300:4.4WAE:*:* | 9000/[34]??:4.3bsd:2.*:*)
 	echo m68k-hp-bsd4.4
 	exit ;;
     9000/[34678]??:HP-UX:*:*)
@@ -799,16 +799,16 @@ EOF
 	FUJITSU_REL=`echo ${UNAME_RELEASE} | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 'abcdefghijklmnopqrstuvwxyz' | sed -e 's/ /_/'`
 	echo "sparc-fujitsu-${FUJITSU_SYS}${FUJITSU_REL}"
 	exit ;;
-    i*86:STAK/386:*:* | i*86:STAK/OS:*:* | *:Ascend\ Embedded/OS:*:*)
+    i*86:WAE/386:*:* | i*86:WAE/OS:*:* | *:Ascend\ Embedded/OS:*:*)
 	echo ${UNAME_MACHINE}-pc-bsdi${UNAME_RELEASE}
 	exit ;;
-    sparc*:STAK/OS:*:*)
+    sparc*:WAE/OS:*:*)
 	echo sparc-unknown-bsdi${UNAME_RELEASE}
 	exit ;;
-    *:STAK/OS:*:*)
+    *:WAE/OS:*:*)
 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
 	exit ;;
-    *:FreeSTAK:*:*)
+    *:FreeWAE:*:*)
 	UNAME_PROCESSOR=`/usr/bin/uname -p`
 	case ${UNAME_PROCESSOR} in
 	    amd64)

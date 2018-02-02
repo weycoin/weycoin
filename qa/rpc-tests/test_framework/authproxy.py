@@ -133,7 +133,7 @@ class AuthServiceProxy(object):
                 raise
         except (BrokenPipeError,ConnectionResetError):
             # Python 3.5+ raises BrokenPipeError instead of BadStatusLine when the connection was reset
-            # ConnectionResetError happens on FreeSTAK with Python 3.4
+            # ConnectionResetError happens on FreeWAE with Python 3.4
             self.__conn.close()
             self.__conn.request(method, path, postdata, headers)
             return self._get_response()

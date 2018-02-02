@@ -9,7 +9,7 @@
 
 #include "tinyformat.h"
 
-const std::string CURRENCY_UNIT = "STAK";
+const std::string CURRENCY_UNIT = "WAE";
 
 CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nBytes_)
 {

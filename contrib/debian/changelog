@@ -261,7 +261,7 @@ weycoin (0.4.0-1) unstable; urgency=low
     + Add irc URL to Upstream-Contact.
     + Add comment on WeyCoin Developers to catch-all Files section.
     + Add Files sections for newly readded src/cryptopp/* (new custom
-      STAK-like license), and newly added doc/build-osx.txt and
+      WAE-like license), and newly added doc/build-osx.txt and
       src/makefile.osx (Expat).
   * Bump debhelper compatibility level to 7.
   * Suppress binary icns and gpg files.

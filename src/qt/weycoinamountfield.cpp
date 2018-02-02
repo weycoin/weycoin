@@ -24,7 +24,7 @@ class AmountSpinBox: public QAbstractSpinBox
 public:
     explicit AmountSpinBox(QWidget *parent):
         QAbstractSpinBox(parent),
-        currentUnit(WeyCoinUnits::STAK),
+        currentUnit(WeyCoinUnits::WAE),
         singleStep(100000) // satoshis
     {
         setAlignment(Qt::AlignRight);
@@ -99,7 +99,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = fm.width(WeyCoinUnits::format(WeyCoinUnits::STAK, WeyCoinUnits::maxMoney(), false, WeyCoinUnits::separatorAlways));
+            int w = fm.width(WeyCoinUnits::format(WeyCoinUnits::WAE, WeyCoinUnits::maxMoney(), false, WeyCoinUnits::separatorAlways));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;

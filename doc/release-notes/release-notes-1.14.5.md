@@ -34,13 +34,13 @@ WEYCOIN blockchain has been set to issue a 0 block subsidy up to **block 10080**
 
 #### Maximum Coin Supply and Block Reward
 
-WEYCOIN will be capped at a maxium supply of **150 million coins**.  This target supports a managed inflation rate that allows for a constant block reward of **10 STAKs**.
+WEYCOIN will be capped at a maxium supply of **150 million coins**.  This target supports a managed inflation rate that allows for a constant block reward of **10 WAEs**.
 
 The constant block reward prevents event cliffs related to expected "halvings" and will support a more consistent and stable participation rate over a long time horizon.
 
 More information will be available on the WEYCOIN [website](http://weycoin.io)
 
-##### The Monetary Curve Based on a 10 STAK Block Reward
+##### The Monetary Curve Based on a 10 WAE Block Reward
 ![Alt text](mcurve.png)
 
 
@@ -79,7 +79,7 @@ More information can be found here:
 
 In order to support continued development, exchange lisiting fees, web/node hosting costs, and various other operational costs related to running a successful blockchain, the WEYCOIN development team have decided to introduce a 5% treasury fee in perpetuity. We intend to ensure that the new currency is competitive and successful. To be able to deliver on that vision, we need to ensure that the currency is well-funded throughout its lifecycle.
 
-At 5%, approximately 72 blocks per day are mined for treasury (720 STAK).  In the spirit
+At 5%, approximately 72 blocks per day are mined for treasury (720 WAE).  In the spirit
 of transparency, the following 2-of-3 multisig addresses are the official
 treasury addresses:
 
@@ -93,7 +93,7 @@ treasury addresses:
 
 #### Masternodes
 
-Masternodes will be supported with a collateral requirement of **15,000 STAK**.  This
+Masternodes will be supported with a collateral requirement of **15,000 WAE**.  This
 is a dynamic target value and will be updated in future releases based on the
 market price of WEYCOIN and return on investment relative to its peer group.
 

@@ -276,8 +276,8 @@ Ce produit comprend des logiciels développés par le projet OpenSSL afin d&apos
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR STAK&lt;/b&gt;!</source>
-        <translation>Attention : Si vous chiffrez votre portefeuille et perdez votre phrase de passe, vous &lt;b&gt;PERDREZ TOUS VOS STAK&lt;/b&gt; !</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WAE&lt;/b&gt;!</source>
+        <translation>Attention : Si vous chiffrez votre portefeuille et perdez votre phrase de passe, vous &lt;b&gt;PERDREZ TOUS VOS WAE&lt;/b&gt; !</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
@@ -1136,13 +1136,13 @@ Adresse : %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="78"/>
-        <source>Use 2 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Utiliser 2 Xnodes pour mélanger jusqu&apos;à 1000 STAK</translation>
+        <source>Use 2 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Utiliser 2 Xnodes pour mélanger jusqu&apos;à 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="91"/>
-        <source>Use 8 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Utiliser 8 Xnodes pour mélanger jusqu&apos;à 1000 STAK</translation>
+        <source>Use 8 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Utiliser 8 Xnodes pour mélanger jusqu&apos;à 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="104"/>
@@ -1151,18 +1151,18 @@ Adresse : %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="117"/>
-        <source>This option is the quickest and will cost about ~0.025 STAK to anonymize 1000 STAK</source>
-        <translation>Cette option est la plus rapide et coûtera environ 0,025 STAK pour anonymiser 1000 STAK</translation>
+        <source>This option is the quickest and will cost about ~0.025 WAE to anonymize 1000 WAE</source>
+        <translation>Cette option est la plus rapide et coûtera environ 0,025 WAE pour anonymiser 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="130"/>
-        <source>This option is moderately fast and will cost about 0.05 STAK to anonymize 1000 STAK</source>
-        <translation>Cette option est un peu moins rapide et coûtera environ 0,05 STAK pour anonymiser 1000 STAK</translation>
+        <source>This option is moderately fast and will cost about 0.05 WAE to anonymize 1000 WAE</source>
+        <translation>Cette option est un peu moins rapide et coûtera environ 0,05 WAE pour anonymiser 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="156"/>
-        <source>0.1 STAK per 1000 STAK you anonymize.</source>
-        <translation>0,1 STAK par 1000 STAK anonymisés.</translation>
+        <source>0.1 WAE per 1000 WAE you anonymize.</source>
+        <translation>0,1 WAE par 1000 WAE anonymisés.</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="143"/>
@@ -1810,8 +1810,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="349"/>
-        <source>0 STAK</source>
-        <translation>0 STAK</translation>
+        <source>0 WAE</source>
+        <translation>0 WAE</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="356"/>
@@ -1820,8 +1820,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="363"/>
-        <source>0 STAK / 0 Rounds</source>
-        <translation>0 STAK / 0 Cycles</translation>
+        <source>0 WAE / 0 Rounds</source>
+        <translation>0 WAE / 0 Cycles</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="370"/>
@@ -3871,8 +3871,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message numerus="yes">
         <location filename="../walletmodel.cpp" line="271"/>
-        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n STAK.</source>
-        <translation><numerusform>InstantX ne supporte pas des transferts aussi élevés. Les transactions sont pour le moment limitées à %n STAK.</numerusform><numerusform>InstantX ne supporte pas des transferts aussi élevés. Les transactions sont pour le moment limitées à %n STAK.</numerusform></translation>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n WAE.</source>
+        <translation><numerusform>InstantX ne supporte pas des transferts aussi élevés. Les transactions sont pour le moment limitées à %n WAE.</numerusform><numerusform>InstantX ne supporte pas des transferts aussi élevés. Les transactions sont pour le moment limitées à %n WAE.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4142,8 +4142,8 @@ Pour exemple: alertnotify=echo %%s | mail -s &quot;Alerte WEYCOIN&quot; admin@fo
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="138"/>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 STAK.</source>
-        <translation>Impossible de localiser suffisamment de fonds non-dénominés Darksend pour cette transaction qui ne sont pas égaux à 1000 STAK.</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 WAE.</source>
+        <translation>Impossible de localiser suffisamment de fonds non-dénominés Darksend pour cette transaction qui ne sont pas égaux à 1000 WAE.</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="141"/>

@@ -7,7 +7,7 @@
 #include <boost/lexical_cast.hpp>
 //CConnman connman1; // def as extern in header of same
 //
-// Bootup the Masternode, look for a 5000 STAK input and register on the network
+// Bootup the Masternode, look for a 5000 WAE input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {	

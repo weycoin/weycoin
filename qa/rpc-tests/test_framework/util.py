@@ -103,7 +103,7 @@ def rpc_port(n):
     return PORT_MIN + PORT_RANGE + n + (MAX_NODES * PortSeed.n) % (PORT_RANGE - 1 - MAX_NODES)
 
 def check_json_precision():
-    """Make sure json library being used does not lose precision converting STAK values"""
+    """Make sure json library being used does not lose precision converting WAE values"""
     n = Decimal("20000000.00000003")
     satoshis = int(json.loads(json.dumps(float(n)))*1.0e8)
     if satoshis != 2000000000000003:
@@ -510,10 +510,10 @@ def assert_fee_amount(fee, tx_size, fee_per_kB):
     """Assert the fee was in range"""
     target_fee = tx_size * fee_per_kB / 1000
     if fee < target_fee:
-        raise AssertionError("Fee of %s STAK too low! (Should be %s STAK)"%(str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s WAE too low! (Should be %s WAE)"%(str(fee), str(target_fee)))
     # allow the wallet's estimation to be at most 2 bytes off
     if fee > (tx_size + 2) * fee_per_kB / 1000:
-        raise AssertionError("Fee of %s STAK too high! (Should be %s STAK)"%(str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s WAE too high! (Should be %s WAE)"%(str(fee), str(target_fee)))
 
 def assert_equal(thing1, thing2, *args):
     if thing1 != thing2 or any(thing1 != arg for arg in args):

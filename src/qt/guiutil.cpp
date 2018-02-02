@@ -192,7 +192,7 @@ bool parseWeyCoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!WeyCoinUnits::parse(WeyCoinUnits::STAK, i->second, &rv.amount))
+                if(!WeyCoinUnits::parse(WeyCoinUnits::WAE, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -231,7 +231,7 @@ QString formatWeyCoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(WeyCoinUnits::format(WeyCoinUnits::STAK, info.amount, false, WeyCoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(WeyCoinUnits::format(WeyCoinUnits::WAE, info.amount, false, WeyCoinUnits::separatorNever));
         paramCount++;
     }
 

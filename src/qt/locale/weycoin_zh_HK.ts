@@ -1137,12 +1137,12 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="78"/>
-        <source>Use 2 separate Xnodes to mix funds up to 1000 STAK</source>
+        <source>Use 2 separate Xnodes to mix funds up to 1000 WAE</source>
         <translation>使用2個獨立的主節點混合資金最多1000DRK</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="91"/>
-        <source>Use 8 separate Xnodes to mix funds up to 1000 STAK</source>
+        <source>Use 8 separate Xnodes to mix funds up to 1000 WAE</source>
         <translation>使用8個獨立的主節點混合資金最多1000DRK</translation>
     </message>
     <message>
@@ -1152,17 +1152,17 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="117"/>
-        <source>This option is the quickest and will cost about ~0.025 STAK to anonymize 1000 STAK</source>
+        <source>This option is the quickest and will cost about ~0.025 WAE to anonymize 1000 WAE</source>
         <translation>此選項為最快速度，需要支付0.025D​​RK/1000DRK的匿名處理費用。</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="130"/>
-        <source>This option is moderately fast and will cost about 0.05 STAK to anonymize 1000 STAK</source>
+        <source>This option is moderately fast and will cost about 0.05 WAE to anonymize 1000 WAE</source>
         <translation>此選項為一般速度，需要支付0.05DRK/1000DRK的匿名處理費用。</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="156"/>
-        <source>0.1 STAK per 1000 STAK you anonymize.</source>
+        <source>0.1 WAE per 1000 WAE you anonymize.</source>
         <translation>0.1DRK/1000DRK的匿名處理費用。</translation>
     </message>
     <message>
@@ -1811,7 +1811,7 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="349"/>
-        <source>0 STAK</source>
+        <source>0 WAE</source>
         <translation>0 暗黑幣</translation>
     </message>
     <message>
@@ -1821,7 +1821,7 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="363"/>
-        <source>0 STAK / 0 Rounds</source>
+        <source>0 WAE / 0 Rounds</source>
         <translation>0 暗黑幣 / 0 循環數</translation>
     </message>
     <message>
@@ -3874,8 +3874,8 @@ XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg)</translation>
     </message>
     <message numerus="yes">
         <location filename="../walletmodel.cpp" line="271"/>
-        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n STAK.</source>
-        <translation><numerusform>即時到帳系統暫時不支援發送這麼多的幣。目前交易額只限於%n STAK。</numerusform></translation>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n WAE.</source>
+        <translation><numerusform>即時到帳系統暫時不支援發送這麼多的幣。目前交易額只限於%n WAE。</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4144,8 +4144,8 @@ rpcpassword=%s
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="138"/>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 STAK.</source>
-        <translation>無法找到足夠的匿名發送未除名資金(不等於1000 STAK)用於本次交易。</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 WAE.</source>
+        <translation>無法找到足夠的匿名發送未除名資金(不等於1000 WAE)用於本次交易。</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="141"/>

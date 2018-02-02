@@ -276,8 +276,8 @@ Sản phẩm này bao gồm phần mềm được phát triển bởi dự án O
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR STAK&lt;/b&gt;!</source>
-        <translation>Chú ý: Nếu bạn mã hoá ví và mất mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ STAK CỦA BẠN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WAE&lt;/b&gt;!</source>
+        <translation>Chú ý: Nếu bạn mã hoá ví và mất mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ WAE CỦA BẠN&lt;/b&gt;!</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
@@ -1136,13 +1136,13 @@ Kiểu: %3
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="78"/>
-        <source>Use 2 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Sử dụng 2 Xnode khác nhau để trộn số tiền lên đến 1000 STAK</translation>
+        <source>Use 2 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Sử dụng 2 Xnode khác nhau để trộn số tiền lên đến 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="91"/>
-        <source>Use 8 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Sử dụng 8 Xnode khác nhau để trộn số tiền lên đến 1000 STAK</translation>
+        <source>Use 8 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Sử dụng 8 Xnode khác nhau để trộn số tiền lên đến 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="104"/>
@@ -1151,18 +1151,18 @@ Kiểu: %3
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="117"/>
-        <source>This option is the quickest and will cost about ~0.025 STAK to anonymize 1000 STAK</source>
-        <translation>Tuỳ chọn này là nhanh nhất và sẽ mất chi phí khoảng ~0.025 STAK để ẩn danh 1000 STAK</translation>
+        <source>This option is the quickest and will cost about ~0.025 WAE to anonymize 1000 WAE</source>
+        <translation>Tuỳ chọn này là nhanh nhất và sẽ mất chi phí khoảng ~0.025 WAE để ẩn danh 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="130"/>
-        <source>This option is moderately fast and will cost about 0.05 STAK to anonymize 1000 STAK</source>
-        <translation>Tuỳ chọn này là tương đối nhanh và sẽ mất chi phí khoảng ~0.05 STAK để ẩn danh 1000 STAK</translation>
+        <source>This option is moderately fast and will cost about 0.05 WAE to anonymize 1000 WAE</source>
+        <translation>Tuỳ chọn này là tương đối nhanh và sẽ mất chi phí khoảng ~0.05 WAE để ẩn danh 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="156"/>
-        <source>0.1 STAK per 1000 STAK you anonymize.</source>
-        <translation>0.1 STAK cho mỗi 1000 STAK bạn muốn ẩn danh.</translation>
+        <source>0.1 WAE per 1000 WAE you anonymize.</source>
+        <translation>0.1 WAE cho mỗi 1000 WAE bạn muốn ẩn danh.</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="143"/>
@@ -1810,8 +1810,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="349"/>
-        <source>0 STAK</source>
-        <translation>0 STAK</translation>
+        <source>0 WAE</source>
+        <translation>0 WAE</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="356"/>
@@ -1820,8 +1820,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="363"/>
-        <source>0 STAK / 0 Rounds</source>
-        <translation>0 STAK / 0 Vòng</translation>
+        <source>0 WAE / 0 Rounds</source>
+        <translation>0 WAE / 0 Vòng</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="370"/>
@@ -3871,8 +3871,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message numerus="yes">
         <location filename="../walletmodel.cpp" line="271"/>
-        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n STAK.</source>
-        <translation><numerusform>InstantX không hỗ trợ để gửi giá trị lớn đến như vậy. Giới hạn giao dịch hiện tại đến %n STAK.</numerusform></translation>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n WAE.</source>
+        <translation><numerusform>InstantX không hỗ trợ để gửi giá trị lớn đến như vậy. Giới hạn giao dịch hiện tại đến %n WAE.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4142,8 +4142,8 @@ ví dụ: alertnotify=echo %%s | mail -s &quot;Cảnh báo WEYCOIN&quot; admin@f
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="138"/>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 STAK.</source>
-        <translation>Không tìm đủ ngân sách Darksend denominated cho giao dịch mà nó không bằng 1000 STAK</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 WAE.</source>
+        <translation>Không tìm đủ ngân sách Darksend denominated cho giao dịch mà nó không bằng 1000 WAE</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="141"/>

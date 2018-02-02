@@ -275,8 +275,8 @@ Denna produkt innehåller mjukvara utvecklad av OpenSSL Projekt för användning
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR STAK&lt;/b&gt;!</source>
-        <translation>Varning: Om du krypterar din plånbok och tappar bort din lösenfras kommer du att &lt;b&gt;FÖRLORA ALLA DINA STAK&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WAE&lt;/b&gt;!</source>
+        <translation>Varning: Om du krypterar din plånbok och tappar bort din lösenfras kommer du att &lt;b&gt;FÖRLORA ALLA DINA WAE&lt;/b&gt;!</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="113"/>
@@ -1137,13 +1137,13 @@ Adress: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="78"/>
-        <source>Use 2 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Använd 2 enskilda Xnoder för att mixa medel upp till 1000 STAK</translation>
+        <source>Use 2 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Använd 2 enskilda Xnoder för att mixa medel upp till 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="91"/>
-        <source>Use 8 separate Xnodes to mix funds up to 1000 STAK</source>
-        <translation>Använd 8 enskilda Xnoder för att mixa medel upp till 1000 STAK.</translation>
+        <source>Use 8 separate Xnodes to mix funds up to 1000 WAE</source>
+        <translation>Använd 8 enskilda Xnoder för att mixa medel upp till 1000 WAE.</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="104"/>
@@ -1152,18 +1152,18 @@ Adress: %4
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="117"/>
-        <source>This option is the quickest and will cost about ~0.025 STAK to anonymize 1000 STAK</source>
-        <translation>Detta alternativ är det snabbaste och kommer att kosta ~0,025 DRk för att anonymisera 1000 STAK</translation>
+        <source>This option is the quickest and will cost about ~0.025 WAE to anonymize 1000 WAE</source>
+        <translation>Detta alternativ är det snabbaste och kommer att kosta ~0,025 DRk för att anonymisera 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="130"/>
-        <source>This option is moderately fast and will cost about 0.05 STAK to anonymize 1000 STAK</source>
-        <translation>Detta alternativ är relativt snabbt och kommer att kosta 0,05 DRk för att anonymisera 1000 STAK</translation>
+        <source>This option is moderately fast and will cost about 0.05 WAE to anonymize 1000 WAE</source>
+        <translation>Detta alternativ är relativt snabbt och kommer att kosta 0,05 DRk för att anonymisera 1000 WAE</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="156"/>
-        <source>0.1 STAK per 1000 STAK you anonymize.</source>
-        <translation>0,1 STAK per 1000 STAK du anonymiserar.</translation>
+        <source>0.1 WAE per 1000 WAE you anonymize.</source>
+        <translation>0,1 WAE per 1000 WAE du anonymiserar.</translation>
     </message>
     <message>
         <location filename="../forms/Darksendconfig.ui" line="143"/>
@@ -1812,8 +1812,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="349"/>
-        <source>0 STAK</source>
-        <translation>0 STAK</translation>
+        <source>0 WAE</source>
+        <translation>0 WAE</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="356"/>
@@ -1822,8 +1822,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="363"/>
-        <source>0 STAK / 0 Rounds</source>
-        <translation>0 STAK/0 omgångar</translation>
+        <source>0 WAE / 0 Rounds</source>
+        <translation>0 WAE/0 omgångar</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="370"/>
@@ -3875,8 +3875,8 @@ https://www.transifex.com/projects/p/weycoin/</translation>
     </message>
     <message numerus="yes">
         <location filename="../walletmodel.cpp" line="271"/>
-        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n STAK.</source>
-        <translation><numerusform>InstantX stöder inte så höga sändningsvärden än. Transaktioner begränsas till &amp;n STAK.</numerusform><numerusform>InstantX stöder inte så höga sändningsvärden än. Transaktioner begränsas till &amp;n STAK.</numerusform></translation>
+        <source>InstantX doesn&apos;t support sending values that high yet. Transactions are currently limited to %n WAE.</source>
+        <translation><numerusform>InstantX stöder inte så höga sändningsvärden än. Transaktioner begränsas till &amp;n WAE.</numerusform><numerusform>InstantX stöder inte så höga sändningsvärden än. Transaktioner begränsas till &amp;n WAE.</numerusform></translation>
     </message>
 </context>
 <context>
@@ -4145,8 +4145,8 @@ admin@foo.com
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="138"/>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 STAK.</source>
-        <translation>Kunde inte hitta tillräckliga Darksend-icke-denominationsmedel för transaktionen som inte är likvärdigt med 1000 STAK.</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 WAE.</source>
+        <translation>Kunde inte hitta tillräckliga Darksend-icke-denominationsmedel för transaktionen som inte är likvärdigt med 1000 WAE.</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="141"/>

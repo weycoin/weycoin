@@ -317,7 +317,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard res/movies/spinner-*.png)
 
-STAK_RC = res/weycoin-qt-res.rc
+WAE_RC = res/weycoin-qt-res.rc
 
 libweycoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(QT_INCLUDES) \
   -I$(top_srcdir)/src/qt/forms $(QT_DBUS_INCLUDES)
@@ -342,7 +342,7 @@ if TARGET_DARWIN
   weycoin_qt_SOURCES += $(WEYCOIN_MM)
 endif
 if TARGET_WINDOWS
-  weycoin_qt_SOURCES += $(STAK_RC)
+  weycoin_qt_SOURCES += $(WAE_RC)
 endif
 weycoin_qt_LDADD = libweycoinqt.a $(LIBWEYCOIN_SERVER)
 if ENABLE_WALLET

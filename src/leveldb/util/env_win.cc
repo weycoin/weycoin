@@ -2,7 +2,7 @@
 // http://code.google.com/p/leveldbwin/source/browse/trunk/win32_impl_src/env_win32.h
 // http://code.google.com/p/leveldbwin/source/browse/trunk/win32_impl_src/port_win32.cc
 // Those files dont' have any explict license headers but the 
-// project (http://code.google.com/p/leveldbwin/) lists the 'New STAK License'
+// project (http://code.google.com/p/leveldbwin/) lists the 'New WAE License'
 // as the license.
 #if defined(LEVELDB_PLATFORM_WINDOWS)
 #include <map>

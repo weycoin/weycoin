@@ -45,9 +45,9 @@ listen=1
 5.  In the console enter: `masternode genkey`
     Copy the generated private key to a text file.
 
-5.  Send exactly 15,000 STAK in a single transaction to the address generated from Step 4
+5.  Send exactly 15,000 WAE in a single transaction to the address generated from Step 4
 
-6.  After you have received the STAK from Step 5, go to Help --> Debug Window --> Console and enter: `masternode outputs`
+6.  After you have received the WAE from Step 5, go to Help --> Debug Window --> Console and enter: `masternode outputs`
     
     You should see output similar to below indicating that the node has recognised coins as eligible to be used
     as collateral for a Masternode.

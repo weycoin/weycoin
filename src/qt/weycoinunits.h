@@ -56,9 +56,9 @@ public:
      */
     enum Unit
     {
-        STAK,
-        mSTAK,
-        uSTAK
+        WAE,
+        mWAE,
+        uWAE
     };
 
     enum SeparatorStyle

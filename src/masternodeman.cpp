@@ -704,14 +704,14 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
             }
 
             // verify that sig time is legit in past
-            // should be at least not earlier than block when 1000 STAK tx got MASTERNODE_MIN_CONFIRMATIONS
+            // should be at least not earlier than block when 1000 WAE tx got MASTERNODE_MIN_CONFIRMATIONS
             uint256 hashBlock = uint256();
             GetTransaction(vin.prevout.hash, txref,Params().GetConsensus(), hashBlock, true);
 			//vin.prevout.hash, txVin, Params().GetConsensus(),hash, true
             BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
             if (mi != mapBlockIndex.end() && (*mi).second)
             {
-                CBlockIndex* pMNIndex = (*mi).second; // block for 5000 STAK tx -> 1 confirmation
+                CBlockIndex* pMNIndex = (*mi).second; // block for 5000 WAE tx -> 1 confirmation
                 CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
                 if(pConfIndex->GetBlockTime() > sigTime)
                 {
