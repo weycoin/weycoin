@@ -1,14 +1,17 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers 
+// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SYNC_H
-#define BITCOIN_SYNC_H
+#ifndef WEYCOIN_SYNC_H
+#define WEYCOIN_SYNC_H
 
 #include "threadsafety.h"
 
 #include <boost/thread/condition_variable.hpp>
+#include <boost/thread/locks.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/recursive_mutex.hpp>
 
@@ -96,6 +99,7 @@ public:
     }
 };
 
+typedef CCriticalSection CDynamicCriticalSection;
 /** Wrapped boost mutex: supports waiting but not recursive locking */
 typedef AnnotatedMixin<boost::mutex> CWaitableCriticalSection;
 
@@ -265,7 +269,7 @@ public:
         fHaveGrant = false;
     }
 
-    CSemaphoreGrant() : sem(nullptr), fHaveGrant(false) {}
+    CSemaphoreGrant() : sem(NULL), fHaveGrant(false) {}
 
     CSemaphoreGrant(CSemaphore& sema, bool fTry = false) : sem(&sema), fHaveGrant(false)
     {
@@ -286,4 +290,4 @@ public:
     }
 };
 
-#endif // BITCOIN_SYNC_H
+#endif // WEYCOIN_SYNC_H

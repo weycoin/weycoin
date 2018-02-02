@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 // A Status encapsulates the result of an operation.  It may indicate success,

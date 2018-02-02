@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2016 The Bitcoin Core developers
+# Copyright (c) 2017 WEYCOIN developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,19 +20,19 @@ EXCLUDE = [
     'src/secp256k1/include/secp256k1_ecdh.h',
     'src/secp256k1/include/secp256k1_recovery.h',
     'src/secp256k1/include/secp256k1_schnorr.h',
-    'src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c',
-    'src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h',
-    'src/secp256k1/src/java/org_bitcoin_Secp256k1Context.c',
-    'src/secp256k1/src/java/org_bitcoin_Secp256k1Context.h',
+    'src/secp256k1/src/java/org_weycoin_NativeSecp256k1.c',
+    'src/secp256k1/src/java/org_weycoin_NativeSecp256k1.h',
+    'src/secp256k1/src/java/org_weycoin_Secp256k1Context.c',
+    'src/secp256k1/src/java/org_weycoin_Secp256k1Context.h',
     # auto generated:
     'src/univalue/lib/univalue_escapes.h',
-    'src/qt/bitcoinstrings.cpp',
+    'src/qt/weycoinstrings.cpp',
     'src/chainparamsseeds.h',
     # other external copyrights:
     'src/tinyformat.h',
     'src/leveldb/util/env_win.cc',
     'src/crypto/ctaes/bench.c',
-    'test/functional/test_framework/bignum.py',
+    'qa/rpc-tests/test_framework/bignum.py',
     # python init:
     '*__init__.py',
 ]
@@ -83,11 +83,14 @@ def compile_copyright_regex(copyright_style, year_style, name):
 
 EXPECTED_HOLDER_NAMES = [
     "Satoshi Nakamoto\n",
-    "The Bitcoin Core developers\n",
-    "The Bitcoin Core developers \n",
-    "Bitcoin Core Developers\n",
-    "the Bitcoin Core developers\n",
-    "The Bitcoin developers\n",
+    "The WeyCoin Core developers\n",
+    "WEYCOIN developers\n",
+    "The WeyCoin Core developers \n",
+    "WEYCOIN developers \n",
+    "WeyCoin Core Developers\n",
+    "WEYCOIN Core Developers\n",
+    "the WeyCoin Core developers\n",
+    "The WeyCoin developers\n",
     "The LevelDB Authors\. All rights reserved\.\n",
     "BitPay Inc\.\n",
     "BitPay, Inc\.\n",
@@ -277,7 +280,7 @@ Usage:
     $ ./copyright_header.py report <base_directory> [verbose]
 
 Arguments:
-    <base_directory> - The base directory of a bitcoin source code repository.
+    <base_directory> - The base directory of a weycoin source code repository.
     [verbose] - Includes a list of every file of each subcategory in the report.
 """
 
@@ -340,7 +343,7 @@ def write_file_lines(filename, file_lines):
 COPYRIGHT = 'Copyright \(c\)'
 YEAR = "20[0-9][0-9]"
 YEAR_RANGE = '(%s)(-%s)?' % (YEAR, YEAR)
-HOLDER = 'The Bitcoin Core developers'
+HOLDER = 'WEYCOIN developers'
 UPDATEABLE_LINE_COMPILED = re.compile(' '.join([COPYRIGHT, YEAR_RANGE, HOLDER]))
 
 def get_updatable_copyright_line(file_lines):
@@ -408,24 +411,24 @@ def exec_update_header_year(base_directory):
 ################################################################################
 
 UPDATE_USAGE = """
-Updates all the copyright headers of "The Bitcoin Core developers" which were
+Updates all the copyright headers of "WEYCOIN developers" which were
 changed in a year more recent than is listed. For example:
 
-// Copyright (c) <firstYear>-<lastYear> The Bitcoin Core developers
+// Copyright (c) <firstYear>-<lastYear> WEYCOIN developers
 
 will be updated to:
 
-// Copyright (c) <firstYear>-<lastModifiedYear> The Bitcoin Core developers
+// Copyright (c) <firstYear>-<lastModifiedYear> WEYCOIN developers
 
 where <lastModifiedYear> is obtained from the 'git log' history.
 
 This subcommand also handles copyright headers that have only a single year. In those cases:
 
-// Copyright (c) <year> The Bitcoin Core developers
+// Copyright (c) <year> WEYCOIN developers
 
 will be updated to:
 
-// Copyright (c) <year>-<lastModifiedYear> The Bitcoin Core developers
+// Copyright (c) <year>-<lastModifiedYear> WEYCOIN developers
 
 where the update is appropriate.
 
@@ -433,7 +436,7 @@ Usage:
     $ ./copyright_header.py update <base_directory>
 
 Arguments:
-    <base_directory> - The base directory of a bitcoin source code repository.
+    <base_directory> - The base directory of a weycoin source code repository.
 """
 
 def print_file_action_message(filename, action):
@@ -458,7 +461,7 @@ def get_header_lines(header, start_year, end_year):
     return [line + '\n' for line in lines]
 
 CPP_HEADER = '''
-// Copyright (c) %s The Bitcoin Core developers
+// Copyright (c) %s WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
@@ -467,7 +470,7 @@ def get_cpp_header_lines_to_insert(start_year, end_year):
     return reversed(get_header_lines(CPP_HEADER, start_year, end_year))
 
 PYTHON_HEADER = '''
-# Copyright (c) %s The Bitcoin Core developers
+# Copyright (c) %s WEYCOIN developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
@@ -521,7 +524,7 @@ def insert_cpp_header(filename, file_lines, start_year, end_year):
 def exec_insert_header(filename, style):
     file_lines = read_file_lines(filename)
     if file_already_has_core_copyright(file_lines):
-        sys.exit('*** %s already has a copyright by The Bitcoin Core developers'
+        sys.exit('*** %s already has a copyright by WEYCOIN developers'
                  % (filename))
     start_year, end_year = get_git_change_year_range(filename)
     if style == 'python':
@@ -534,7 +537,7 @@ def exec_insert_header(filename, style):
 ################################################################################
 
 INSERT_USAGE = """
-Inserts a copyright header for "The Bitcoin Core developers" at the top of the
+Inserts a copyright header for "WEYCOIN developers" at the top of the
 file in either Python or C++ style as determined by the file extension. If the
 file is a Python file and it has a '#!' starting the first line, the header is
 inserted in the line below it.
@@ -548,14 +551,14 @@ where <year_introduced> is according to the 'git log' history. If
 
 "<current_year>"
 
-If the file already has a copyright for "The Bitcoin Core developers", the
+If the file already has a copyright for "WEYCOIN developers", the
 script will exit.
 
 Usage:
     $ ./copyright_header.py insert <file>
 
 Arguments:
-    <file> - A source file in the bitcoin repository.
+    <file> - A source file in the weycoin repository.
 """
 
 def insert_cmd(argv):
@@ -580,7 +583,7 @@ def insert_cmd(argv):
 ################################################################################
 
 USAGE = """
-copyright_header.py - utilities for managing copyright headers of 'The Bitcoin
+copyright_header.py - utilities for managing copyright headers of 'The WEYCOIN 
 Core developers' in repository source files.
 
 Usage:

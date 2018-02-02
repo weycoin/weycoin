@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,13 +12,20 @@
 
 #include <stdint.h>
 
+#include <boost/foreach.hpp>
 
 /* Return positive answer if transaction should be shown in list.
  */
 bool TransactionRecord::showTransaction(const CWalletTx &wtx)
 {
-    // There are currently no cases where we hide transactions, but
-    // we may want to use this in the future for things like RBF.
+    if (wtx.IsCoinBase())
+    {
+        // Ensures we show generated coins / mined transactions at depth 1
+        if (!wtx.IsInMainChain())
+        {
+            return false;
+        }
+    }
     return true;
 }
 
@@ -53,9 +60,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address))
                 {
-                    // Received by Bitcoin Address
+                    // Received by WeyCoin Address
                     sub.type = TransactionRecord::RecvWithAddress;
-                    sub.address = CBitcoinAddress(address).ToString();
+                    sub.address = CWeyCoinAddress(address).ToString();
                 }
                 else
                 {
@@ -77,7 +84,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
     {
         bool involvesWatchAddress = false;
         isminetype fAllFromMe = ISMINE_SPENDABLE;
-        for (const CTxIn& txin : wtx.tx->vin)
+        BOOST_FOREACH(const CTxIn& txin, wtx.tx->vin)
         {
             isminetype mine = wallet->IsMine(txin);
             if(mine & ISMINE_WATCH_ONLY) involvesWatchAddress = true;
@@ -85,7 +92,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
         }
 
         isminetype fAllToMe = ISMINE_SPENDABLE;
-        for (const CTxOut& txout : wtx.tx->vout)
+        BOOST_FOREACH(const CTxOut& txout, wtx.tx->vout)
         {
             isminetype mine = wallet->IsMine(txout);
             if(mine & ISMINE_WATCH_ONLY) involvesWatchAddress = true;
@@ -125,9 +132,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address))
                 {
-                    // Sent to Bitcoin Address
+                    // Sent to WeyCoin Address
                     sub.type = TransactionRecord::SendToAddress;
-                    sub.address = CBitcoinAddress(address).ToString();
+                    sub.address = CWeyCoinAddress(address).ToString();
                 }
                 else
                 {
@@ -167,7 +174,7 @@ void TransactionRecord::updateStatus(const CWalletTx &wtx)
     // Determine transaction status
 
     // Find the block the tx is in
-    CBlockIndex* pindex = nullptr;
+    CBlockIndex* pindex = NULL;
     BlockMap::iterator mi = mapBlockIndex.find(wtx.hashBlock);
     if (mi != mapBlockIndex.end())
         pindex = (*mi).second;
@@ -245,13 +252,13 @@ void TransactionRecord::updateStatus(const CWalletTx &wtx)
             status.status = TransactionStatus::Confirmed;
         }
     }
-    status.needsUpdate = false;
+
 }
 
 bool TransactionRecord::statusUpdateNeeded()
 {
     AssertLockHeld(cs_main);
-    return status.cur_num_blocks != chainActive.Height() || status.needsUpdate;
+    return status.cur_num_blocks != chainActive.Height();
 }
 
 QString TransactionRecord::getTxID() const

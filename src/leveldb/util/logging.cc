@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 #include "util/logging.h"
@@ -49,7 +49,7 @@ bool ConsumeDecimalNumber(Slice* in, uint64_t* val) {
   uint64_t v = 0;
   int digits = 0;
   while (!in->empty()) {
-    unsigned char c = (*in)[0];
+    char c = (*in)[0];
     if (c >= '0' && c <= '9') {
       ++digits;
       const int delta = (c - '0');

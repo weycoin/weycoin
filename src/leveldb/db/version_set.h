@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 // The representation of a DBImpl consists of a set of Versions.  The
@@ -366,7 +366,7 @@ class Compaction {
   friend class Version;
   friend class VersionSet;
 
-  Compaction(const Options* options, int level);
+  explicit Compaction(int level);
 
   int level_;
   uint64_t max_output_file_size_;
@@ -376,7 +376,7 @@ class Compaction {
   // Each compaction reads inputs from "level_" and "level_+1"
   std::vector<FileMetaData*> inputs_[2];      // The two sets of inputs
 
-  // State used to check for number of overlapping grandparent files
+  // State used to check for number of of overlapping grandparent files
   // (parent == level_ + 1, grandparent == level_ + 2)
   std::vector<FileMetaData*> grandparents_;
   size_t grandparent_index_;  // Index in grandparent_starts_

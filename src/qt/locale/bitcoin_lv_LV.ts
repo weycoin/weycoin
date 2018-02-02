@@ -37,46 +37,10 @@
         <source>&amp;Delete</source>
         <translation>&amp;Dzēst</translation>
     </message>
-    <message>
-        <source>Choose the address to send coins to</source>
-        <translation>Izvēlies adresi uz kuru sūtīt weycoins</translation>
-    </message>
-    <message>
-        <source>Choose the address to receive coins with</source>
-        <translation>Izvēlies adresi ar kuru saņemt weycoins</translation>
-    </message>
-    <message>
-        <source>&amp;Copy Address</source>
-        <translation>&amp;Kopēt adresi</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation>&amp;Rediģēt</translation>
-    </message>
-    <message>
-        <source>Export Address List</source>
-        <translation>Eksportēt Adrešu Sarakstu</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>Eksportēšana Neizdevās</translation>
-    </message>
     </context>
 <context>
     <name>AddressTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Nosaukums</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adrese</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(bez nosaukuma)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -95,36 +59,12 @@
         <source>Repeat new passphrase</source>
         <translation>Jaunā parole vēlreiz</translation>
     </message>
-    <message>
-        <source>Encrypt wallet</source>
-        <translation>Šifrēt maciņu</translation>
-    </message>
-    <message>
-        <source>Unlock wallet</source>
-        <translation>Atslēgt maciņu</translation>
-    </message>
-    <message>
-        <source>Decrypt wallet</source>
-        <translation>Atšifrēt maciņu</translation>
-    </message>
-    <message>
-        <source>Confirm wallet encryption</source>
-        <translation>Apstiprināt maciņa šifrēšanu</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>Vai tu tiešām vēlies šifrēt savu maciņu?</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed</source>
-        <translation>Maciņa šifrēšana neizdevās</translation>
-    </message>
     </context>
 <context>
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>WEYCOINGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Parakstīt &amp;ziņojumu...</translation>
@@ -202,8 +142,8 @@
         <translation>Bloku reindeksēšana no diska...</translation>
     </message>
     <message>
-        <source>Send coins to a WeyCoin address</source>
-        <translation>Nosūtīt bitkoinus uz WeyCoin adresi</translation>
+        <source>Send coins to a WEYCOIN address</source>
+        <translation>Nosūtīt bitkoinus uz WEYCOIN adresi</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -226,8 +166,8 @@
         <translation>&amp;Pārbaudīt ziņojumu...</translation>
     </message>
     <message>
-        <source>WeyCoin</source>
-        <translation>WeyCoin</translation>
+        <source>WEYCOIN</source>
+        <translation>WEYCOIN</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -254,12 +194,12 @@
         <translation>Šifrēt privātās atslēgas kuras pieder tavam maciņam</translation>
     </message>
     <message>
-        <source>Sign messages with your WeyCoin addresses to prove you own them</source>
-        <translation>Parakstīt ziņojumus ar savām WeyCoin adresēm lai pierādītu ka tās pieder tev</translation>
+        <source>Sign messages with your WEYCOIN addresses to prove you own them</source>
+        <translation>Parakstīt ziņojumus ar savām WEYCOIN adresēm lai pierādītu ka tās pieder tev</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified WeyCoin addresses</source>
-        <translation>Pārbaudīt ziņojumus lai pārliecinātos, ka tie tika parakstīti ar norādītajām WeyCoin adresēm</translation>
+        <source>Verify messages to ensure they were signed with specified WEYCOIN addresses</source>
+        <translation>Pārbaudīt ziņojumus lai pārliecinātos, ka tie tika parakstīti ar norādītajām WEYCOIN adresēm</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -387,10 +327,6 @@
     <message>
         <source>Confirmed</source>
         <translation>Apstiprināts</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(bez nosaukuma)</translation>
     </message>
     </context>
 <context>
@@ -570,8 +506,8 @@
         <translation>&amp;Tērēt neapstiprinātu atlikumu</translation>
     </message>
     <message>
-        <source>Automatically open the WeyCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Uz rūtera automātiski atvērt WeyCoin klienta portu. Tas strādā tikai tad, ja rūteris atbalsta UPnP un tas ir ieslēgts.</translation>
+        <source>Automatically open the WEYCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Uz rūtera automātiski atvērt WEYCOIN klienta portu. Tas strādā tikai tad, ja rūteris atbalsta UPnP un tas ir ieslēgts.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -623,7 +559,7 @@
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
-        <translation>Vai rādīt WeyCoin kontroles funkcijas vai nē.</translation>
+        <translation>Vai rādīt WEYCOIN kontroles funkcijas vai nē.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -657,8 +593,8 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WeyCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Attēlotā informācija var būt novecojusi. Jūsu maciņš pēc savienojuma izveides automātiski sinhronizējas ar WeyCoin tīklu, taču šis process vēl nav beidzies.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WEYCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>Attēlotā informācija var būt novecojusi. Jūsu maciņš pēc savienojuma izveides automātiski sinhronizējas ar WEYCOIN tīklu, taču šis process vēl nav beidzies.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -904,25 +840,9 @@
         <source>&amp;Save Image...</source>
         <translation>&amp;Saglabāt Attēlu...</translation>
     </message>
-    <message>
-        <source>Address</source>
-        <translation>Adrese</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Nosaukums</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Nosaukums</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(bez nosaukuma)</translation>
-    </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
@@ -932,7 +852,7 @@
     </message>
     <message>
         <source>Coin Control Features</source>
-        <translation>WeyCoin Kontroles Funkcijas</translation>
+        <translation>WEYCOIN Kontroles Funkcijas</translation>
     </message>
     <message>
         <source>Inputs...</source>
@@ -1006,11 +926,7 @@
         <source>S&amp;end</source>
         <translation>&amp;Sūtīt</translation>
     </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(bez nosaukuma)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -1111,8 +1027,8 @@
         <translation>Kopēt parakstu uz sistēmas starpliktuvi</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this WeyCoin address</source>
-        <translation>Parakstīt ziņojumu lai pierādītu, ka esi šīs WeyCoin adreses īpašnieks.</translation>
+        <source>Sign the message to prove you own this WEYCOIN address</source>
+        <translation>Parakstīt ziņojumu lai pierādītu, ka esi šīs WEYCOIN adreses īpašnieks.</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1165,29 +1081,9 @@
     </context>
 <context>
     <name>TransactionTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Nosaukums</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(bez nosaukuma)</translation>
-    </message>
     </context>
 <context>
     <name>TransactionView</name>
-    <message>
-        <source>Label</source>
-        <translation>Nosaukums</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adrese</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>Eksportēšana Neizdevās</translation>
-    </message>
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
@@ -1202,7 +1098,7 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>weycoin-core</name>
     <message>
         <source>Options:</source>
         <translation>Iespējas:</translation>
@@ -1228,8 +1124,8 @@
         <translation>Darbināt fonā kā servisu un pieņemt komandas</translation>
     </message>
     <message>
-        <source>WeyCoin Core</source>
-        <translation>WeyCoin Core</translation>
+        <source>WEYCOIN Core</source>
+        <translation>WEYCOIN Core</translation>
     </message>
     <message>
         <source>&lt;category&gt; can be:</source>

@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Rechtermuisklik om het adres of label te wijzigen</translation>
+        <translation>Klik met de rechtermuisknop om het adres of label te wijzigen</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -62,12 +62,12 @@
         <translation>Ontvangstadressen</translation>
     </message>
     <message>
-        <source>These are your Litecoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dit zijn uw Litecoinadressen om betalingen mee te verzenden. Controleer altijd het bedrag en het ontvangstadres voordat u uw weycoins verzendt.</translation>
+        <source>These are your WEYCOIN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Dit zijn uw WEYCOINadressen om betalingen mee te verzenden. Controleer altijd het bedrag en het ontvangstadres voordat u uw WEYCOIN verzendt.</translation>
     </message>
     <message>
-        <source>These are your Litecoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dit zijn uw Litecoin-adressen waarmee u betalingen kunt ontvangen. We raden u aan om een nieuw ontvangstadres voor elke transactie te gebruiken.</translation>
+        <source>These are your WEYCOIN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Dit zijn uw WEYCOIN-adressen waarmee u betalingen kunt ontvangen. We raden u aan om een nieuw ontvangstadres voor elke transactie te gebruiken.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -168,8 +168,8 @@
         <translation>Bevestig versleuteling van de portemonnee</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LITECOINS&lt;/b&gt;!</source>
-        <translation>Waarschuwing: Als u uw portemonnee versleutelt en uw wachtwoord vergeet, zult u &lt;b&gt;AL UW LITECOINS VERLIEZEN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WEYCOINS&lt;/b&gt;!</source>
+        <translation>Waarschuwing: Als u uw portemonnee versleutelt en uw wachtwoord vergeet, zult u &lt;b&gt;AL UW WEYCOINS VERLIEZEN&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -180,8 +180,8 @@
         <translation>Portemonnee versleuteld</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your weycoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 zal nu afsluiten om het versleutelingsproces te voltooien. Onthoud dat het versleutelen van uw portemonnee u niet volledig kan beschermen: Malware kan uw computer infecteren en uw weycoins stelen.</translation>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your WEYCOIN from being stolen by malware infecting your computer.</source>
+        <translation>%1 zal nu afsluiten om het versleutelingsproces te voltooien. Onthoud dat het versleutelen van uw portemonnee u niet volledig kan beschermen: Malware kan uw computer infecteren en uw WEYCOIN stelen.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -232,7 +232,7 @@
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>WEYCOINGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>&amp;Onderteken bericht...</translation>
@@ -311,35 +311,19 @@
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Ontvangstadressen...</translation>
+        <translation>&amp;Ontvang adressen...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
         <translation>Open &amp;URI...</translation>
     </message>
     <message>
-        <source>Click to disable network activity.</source>
-        <translation>Klik om de netwerkactiviteit te stoppen.</translation>
-    </message>
-    <message>
-        <source>Network activity disabled.</source>
-        <translation>Netwerkactiviteit gestopt.</translation>
-    </message>
-    <message>
-        <source>Click to enable network activity again.</source>
-        <translation>Klik om de netwerkactiviteit opnieuw te starten.</translation>
-    </message>
-    <message>
-        <source>Syncing Headers (%1%)...</source>
-        <translation>Kopteksten synchroniseren (%1%)...</translation>
-    </message>
-    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Bezig met herindexeren van blokken op harde schijf...</translation>
     </message>
     <message>
-        <source>Send coins to a Litecoin address</source>
-        <translation>Verstuur munten naar een Litecoinadres</translation>
+        <source>Send coins to a WEYCOIN address</source>
+        <translation>Verstuur munten naar een WEYCOINadres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -362,8 +346,8 @@
         <translation>&amp;Verifiëer bericht...</translation>
     </message>
     <message>
-        <source>Litecoin</source>
-        <translation>Litecoin</translation>
+        <source>WEYCOIN</source>
+        <translation>WEYCOIN</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -390,12 +374,12 @@
         <translation>Versleutel de geheime sleutels die bij uw portemonnee horen</translation>
     </message>
     <message>
-        <source>Sign messages with your Litecoin addresses to prove you own them</source>
-        <translation>Onderteken berichten met uw Litecoinadressen om te bewijzen dat u deze adressen bezit</translation>
+        <source>Sign messages with your WEYCOIN addresses to prove you own them</source>
+        <translation>Onderteken berichten met uw WEYCOINadressen om te bewijzen dat u deze adressen bezit</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Litecoin addresses</source>
-        <translation>Verifiëer handtekeningen om zeker te zijn dat de berichten zijn ondertekend met de gespecificeerde Litecoinadressen</translation>
+        <source>Verify messages to ensure they were signed with specified WEYCOIN addresses</source>
+        <translation>Verifiëer handtekeningen om zeker te zijn dat de berichten zijn ondertekend met de gespecificeerde WEYCOINadressen</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -423,7 +407,7 @@
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>Toon de lijst met gebruikte ontvangstadressen en labels</translation>
+        <translation>Toon de lijst met gebruikte ontvangst adressen en labels</translation>
     </message>
     <message>
         <source>Open a weycoin: URI or payment request</source>
@@ -434,8 +418,8 @@
         <translation>&amp;Opdrachtregelopties</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Litecoin network</source>
-        <translation><numerusform>%n actieve verbinding met Litecoinnetwerk</numerusform><numerusform>%n actieve verbindingen met Litecoinnetwerk</numerusform></translation>
+        <source>%n active connection(s) to WEYCOIN network</source>
+        <translation><numerusform>%n actieve verbinding met WEYCOINnetwerk</numerusform><numerusform>%n actieve verbindingen met WEYCOINnetwerk</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -478,16 +462,12 @@
         <translation>Bijgewerkt</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Litecoin command-line options</source>
-        <translation>Toon het %1 hulpbericht om een lijst te krijgen met mogelijke Litecoin commandoregelopties</translation>
+        <source>Show the %1 help message to get a list with possible WEYCOIN command-line options</source>
+        <translation>Toon het %1 hulpbericht om een lijst te krijgen met mogelijke WEYCOIN commandoregelopties</translation>
     </message>
     <message>
         <source>%1 client</source>
         <translation>%1 client</translation>
-    </message>
-    <message>
-        <source>Connecting to peers...</source>
-        <translation>Gelijke worden verbonden...</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -532,14 +512,6 @@
         <translation>Binnenkomende transactie</translation>
     </message>
     <message>
-        <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
-        <translation>HD sleutel voortbrenging is &lt;b&gt;ingeschakeld&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>HD sleutel voortbrenging is &lt;b&gt;uitgeschakeld&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Portemonnee is &lt;b&gt;versleuteld&lt;/b&gt; en momenteel &lt;b&gt;geopend&lt;/b&gt;</translation>
     </message>
@@ -547,11 +519,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Portemonnee is &lt;b&gt;versleuteld&lt;/b&gt; en momenteel &lt;b&gt;gesloten&lt;/b&gt;</translation>
     </message>
-    <message>
-        <source>A fatal error occurred. Litecoin can no longer continue safely and will quit.</source>
-        <translation>Een fatale fout heeft zich voorgedaan. Litecoin kan niet veilig worden verdergezet en wordt afgesloten.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -742,8 +710,8 @@
         <translation>Bewerk verzendadres</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Litecoin address.</source>
-        <translation>Het opgegeven adres "%1" is een ongeldig Litecoinadres.</translation>
+        <source>The entered address "%1" is not a valid WEYCOIN address.</source>
+        <translation>Het opgegeven adres "%1" is een ongeldig WEYCOINadres.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -851,8 +819,8 @@
         <translation>Omdat dit de eerste keer is dat het programma gestart is, kunt u nu kiezen waar %1 de data moet opslaan.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Litecoin block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>%1 zal een kopie van de Litecoin blokketen downloaden en opslaan. Tenminste %2 GB aan data wordt opgeslagen in deze map en het zal groeien in de tijd. De portemonnee wordt ook in deze map opgeslagen.</translation>
+        <source>%1 will download and store a copy of the WEYCOIN block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>%1 zal een kopie van de WEYCOIN blokketen downloaden en opslaan. Tenminste %2 GB aan data wordt opgeslagen in deze map en het zal groeien in de tijd. De portemonnee wordt ook in deze map opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -886,50 +854,14 @@
         <translation>Vorm</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the weycoin network, as detailed below.</source>
-        <translation>Recente transacties zijn mogelijk nog niet zichtbaar. De balans van de geldbeugel is daarom mogelijk niet correct. Deze informatie is correct van zodra de synchronisatie met het Litecoin-netwerk werd voltooid, zoals onderaan beschreven.</translation>
-    </message>
-    <message>
-        <source>Attempting to spend weycoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Poging om weycoins te besteden die door "nog niet weergegeven" transacties worden beïnvloed, worden niet door het netwerk geaccepteerd.</translation>
-    </message>
-    <message>
-        <source>Number of blocks left</source>
-        <translation>Aantal blokken resterend.</translation>
-    </message>
-    <message>
-        <source>Unknown...</source>
-        <translation>Onbekend...</translation>
-    </message>
-    <message>
         <source>Last block time</source>
         <translation>Tijd laatste blok</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation>Vooruitgang</translation>
-    </message>
-    <message>
-        <source>Progress increase per hour</source>
-        <translation>Vooruitgang per uur</translation>
-    </message>
-    <message>
-        <source>calculating...</source>
-        <translation>Berekenen...</translation>
-    </message>
-    <message>
-        <source>Estimated time left until synced</source>
-        <translation>Geschatte tijd tot volledig synchroon</translation>
     </message>
     <message>
         <source>Hide</source>
         <translation>Verbergen</translation>
     </message>
-    <message>
-        <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>Onbekend. Kopteksten synchroniseren (%1%)...</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -1048,16 +980,16 @@
         <translation>&amp;Spendeer onbevestigd wisselgeld</translation>
     </message>
     <message>
-        <source>Automatically open the Litecoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Open de Litecoinpoort automatisch op de router. Dit werkt alleen als de router UPnP ondersteunt en het aanstaat.</translation>
+        <source>Automatically open the WEYCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Open de WEYCOINpoort automatisch op de router. Dit werkt alleen als de router UPnP ondersteunt en het aanstaat.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Portmapping via &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Litecoin network through a SOCKS5 proxy.</source>
-        <translation>Verbind met het Litecoinnetwerk via een SOCKS5 proxy.</translation>
+        <source>Connect to the WEYCOIN network through a SOCKS5 proxy.</source>
+        <translation>Verbind met het WEYCOINnetwerk via een SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1096,8 +1028,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Litecoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Maak verbinding met Litecoinnetwerk door een aparte SOCKS5-proxy voor verborgen diensten van Tor.</translation>
+        <source>Connect to the WEYCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Maak verbinding met WEYCOINnetwerk door een aparte SOCKS5-proxy voor verborgen diensten van Tor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
@@ -1195,8 +1127,8 @@
         <translation>Vorm</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Litecoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>De weergegeven informatie kan verouderd zijn. Uw portemonnee synchroniseert automatisch met het Litecoinnetwerk nadat een verbinding is gelegd, maar dit proces is nog niet voltooid.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WEYCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>De weergegeven informatie kan verouderd zijn. Uw portemonnee synchroniseert automatisch met het WEYCOINnetwerk nadat een verbinding is gelegd, maar dit proces is nog niet voltooid.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1286,8 +1218,8 @@
         <translation>Ongeldig betalingsadres %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Litecoin address or malformed URI parameters.</source>
-        <translation>URI kan niet verwerkt worden! Dit kan het gevolg zijn van een ongeldig Litecoin adres of misvormde URI parameters.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid WEYCOIN address or malformed URI parameters.</source>
+        <translation>URI kan niet verwerkt worden! Dit kan het gevolg zijn van een ongeldig WEYCOIN adres of misvormde URI parameters.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1364,15 +1296,7 @@
         <source>Node/Service</source>
         <translation>Node/Dienst</translation>
     </message>
-    <message>
-        <source>NodeId</source>
-        <translation>Node ID</translation>
-    </message>
-    <message>
-        <source>Ping</source>
-        <translation>Ping</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject</name>
     <message>
@@ -1380,8 +1304,8 @@
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>Enter a Litecoin address (e.g. %1)</source>
-        <translation>Voer een Litecoinadres in (bijv. %1)</translation>
+        <source>Enter a WEYCOIN address (e.g. %1)</source>
+        <translation>Voer een WEYCOINadres in (bijv. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1411,54 +1335,14 @@
         <source>%1 ms</source>
         <translation>%1 ms</translation>
     </message>
-    <message numerus="yes">
-        <source>%n second(s)</source>
-        <translation><numerusform>%n seconde</numerusform><numerusform>%n seconden</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n minute(s)</source>
-        <translation><numerusform>%n minuut</numerusform><numerusform>%n minuten</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n uur</numerusform><numerusform>%n uren</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n dag</numerusform><numerusform>%n dagen</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n week</numerusform><numerusform>%n weken</numerusform></translation>
-    </message>
     <message>
         <source>%1 and %2</source>
         <translation>%1 en %2</translation>
     </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n jaar</numerusform><numerusform>%n jaren</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 didn't yet exit safely...</source>
-        <translation>%1 sloot nog niet veilig af...</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject::QObject</name>
-    <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Fout: Opgegeven gegevensmap "%1" bestaat niet.</translation>
-    </message>
-    <message>
-        <source>Error: Cannot parse configuration file: %1. Only use key=value syntax.</source>
-        <translation>Fout: Kan configuratiebestand niet verwerken: %1. Gebruik enkel de key=value syntax.</translation>
-    </message>
-    <message>
-        <source>Error: %1</source>
-        <translation>Fout: %1</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -1637,10 +1521,6 @@
         <translation>Pingwachttijd</translation>
     </message>
     <message>
-        <source>Min Ping</source>
-        <translation>Min Ping</translation>
-    </message>
-    <message>
         <source>Time Offset</source>
         <translation>Tijdcompensatie</translation>
     </message>
@@ -1701,18 +1581,6 @@
         <translation>1 &amp;jaar</translation>
     </message>
     <message>
-        <source>&amp;Disconnect</source>
-        <translation>&amp;Verbreek verbinding</translation>
-    </message>
-    <message>
-        <source>Ban for</source>
-        <translation>Ban Node voor</translation>
-    </message>
-    <message>
-        <source>&amp;Unban</source>
-        <translation>&amp;Maak ban voor Node ongedaan</translation>
-    </message>
-    <message>
         <source>Welcome to the %1 RPC console.</source>
         <translation>Welkom bij de %1 RPC-console.</translation>
     </message>
@@ -1723,14 +1591,6 @@
     <message>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation>Typ &lt;b&gt;help&lt;/b&gt; voor een overzicht van de beschikbare opdrachten.</translation>
-    </message>
-    <message>
-        <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramification of a command.</source>
-        <translation>WAARSCHUWING: Er zijn Scammers actief geweest, die gebruikers vragen om hier commando's te typen, waardoor de inhoud van hun portefeuille werd gestolen. Gebruik deze console niet zonder de toedracht van een opdracht volledig te begrijpen.</translation>
-    </message>
-    <message>
-        <source>Network activity disabled</source>
-        <translation>Netwerkactiviteit uitgeschakeld</translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1804,12 +1664,12 @@
         <translation>H&amp;ergebruik en bestaand ontvangstadres (niet aanbevolen)</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Litecoin network.</source>
-        <translation>Een optioneel bericht om bij te voegen aan het betalingsverzoek, welke zal getoond worden wanneer het verzoek is geopend. Opmerking: Het bericht zal niet worden verzonden met de betaling over het Litecoinnetwerk.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the WEYCOIN network.</source>
+        <translation>Een optioneel bericht om bij te voegen aan het betalingsverzoek, welke zal getoond worden wanneer het verzoek is geopend. Opmerking: Het bericht zal niet worden verzonden met de betaling over het WEYCOINnetwerk.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>Een optioneel label om te associëren met het nieuwe ontvangstadres</translation>
+        <translation>Een optioneel label om te associëren met het nieuwe ontvangende adres</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -1850,10 +1710,6 @@
     <message>
         <source>Remove</source>
         <translation>Verwijder</translation>
-    </message>
-    <message>
-        <source>Copy URI</source>
-        <translation>Kopieer URI</translation>
     </message>
     <message>
         <source>Copy label</source>
@@ -2081,10 +1937,6 @@
         <translation>Stof:</translation>
     </message>
     <message>
-        <source>Confirmation time target:</source>
-        <translation>Bevestigingstijddoel:</translation>
-    </message>
-    <message>
         <source>Clear &amp;All</source>
         <translation>Verwijder &amp;Alles</translation>
     </message>
@@ -2177,10 +2029,6 @@
         <translation>Transactiecreatie mislukt</translation>
     </message>
     <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>De transactie werd afgewezen om de volgende reden: %1</translation>
-    </message>
-    <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
         <translation>Een vergoeding van meer dan %1 wordt beschouwd als een absurd hoge vergoeding.</translation>
     </message>
@@ -2188,33 +2036,17 @@
         <source>Payment request expired.</source>
         <translation>Betalingsverzoek verlopen.</translation>
     </message>
-    <message numerus="yes">
-        <source>%n block(s)</source>
-        <translation><numerusform>%n blok</numerusform><numerusform>%n blokken</numerusform></translation>
-    </message>
     <message>
         <source>Pay only the required fee of %1</source>
         <translation>Betaal alleen de verplichte transactiekosten van %1</translation>
     </message>
-    <message numerus="yes">
-        <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Schatting is dat bevestiging begint over %n blok.</numerusform><numerusform>Schatting is dat bevestiging begint over %n blokken.</numerusform></translation>
-    </message>
     <message>
-        <source>Warning: Invalid Litecoin address</source>
-        <translation>Waarschuwing: Ongeldig Litecoinadres</translation>
+        <source>Warning: Invalid WEYCOIN address</source>
+        <translation>Waarschuwing: Ongeldig WEYCOINadres</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
         <translation>Waarschuwing: Onbekend wisselgeldadres</translation>
-    </message>
-    <message>
-        <source>Confirm custom change address</source>
-        <translation>Bevestig aangepast wisselgeldadres</translation>
-    </message>
-    <message>
-        <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
-        <translation>Het wisselgeldadres dat u heeft geselecteerd maakt geen deel uit van deze portemonnee. Een deel of zelfs alle geld in uw portemonnee kan mogelijk naar dit adres worden verzonden. Weet je het zeker?</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -2244,8 +2076,8 @@
         <translation>Dit is een normale betaling.</translation>
     </message>
     <message>
-        <source>The Litecoin address to send the payment to</source>
-        <translation>Het Litecoinadres om betaling aan te versturen</translation>
+        <source>The WEYCOIN address to send the payment to</source>
+        <translation>Het WEYCOINadres om betaling aan te versturen</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2264,8 +2096,8 @@
         <translation>Verwijder deze toevoeging</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less weycoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>De transactiekosten zal worden afgetrokken van het bedrag dat verstuurd wordt. De ontvangers zullen minder weycoins ontvangen dan ingevoerd is in het hoeveelheidsveld. Als er meerdere ontvangers geselecteerd zijn, dan worden de transactiekosten gelijk verdeeld.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less WEYCOIN than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>De transactiekosten zal worden afgetrokken van het bedrag dat verstuurd wordt. De ontvangers zullen minder WEYCOIN ontvangen dan ingevoerd is in het hoeveelheidsveld. Als er meerdere ontvangers geselecteerd zijn, dan worden de transactiekosten gelijk verdeeld.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2288,8 +2120,8 @@
         <translation>Vul een label voor dit adres in om het aan de lijst met gebruikte adressen toe te voegen</translation>
     </message>
     <message>
-        <source>A message that was attached to the weycoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Litecoin network.</source>
-        <translation>Een bericht dat werd toegevoegd aan de weycoin: URI welke wordt opgeslagen met de transactie ter referentie. Opmerking: Dit bericht zal niet worden verzonden over het Litecoinnetwerk.</translation>
+        <source>A message that was attached to the weycoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the WEYCOIN network.</source>
+        <translation>Een bericht dat werd toegevoegd aan de weycoin: URI welke wordt opgeslagen met de transactie ter referentie. Opmerking: Dit bericht zal niet worden verzonden over het WEYCOINnetwerk.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2333,12 +2165,12 @@
         <translation>&amp;Onderteken Bericht</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive weycoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>U kunt berichten/overeenkomsten ondertekenen met uw adres om te bewijzen dat u Litecoins kunt versturen. Wees voorzichtig met het ondertekenen van iets vaags of willekeurigs, omdat phishingaanvallen u kunnen proberen te misleiden tot het ondertekenen van overeenkomsten om uw identiteit aan hen toe te vertrouwen. Onderteken alleen volledig gedetailleerde verklaringen voordat u akkoord gaat.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive WEYCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>U kunt berichten/overeenkomsten ondertekenen met uw adres om te bewijzen dat u WEYCOINs kunt versturen. Wees voorzichtig met het ondertekenen van iets vaags of willekeurigs, omdat phishingaanvallen u kunnen proberen te misleiden tot het ondertekenen van overeenkomsten om uw identiteit aan hen toe te vertrouwen. Onderteken alleen volledig gedetailleerde verklaringen voordat u akkoord gaat.</translation>
     </message>
     <message>
-        <source>The Litecoin address to sign the message with</source>
-        <translation>Het Litecoinadres om bericht mee te ondertekenen</translation>
+        <source>The WEYCOIN address to sign the message with</source>
+        <translation>Het WEYCOINadres om bericht mee te ondertekenen</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2369,8 +2201,8 @@
         <translation>Kopieer de huidige handtekening naar het systeemklembord</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Litecoin address</source>
-        <translation>Onderteken een bericht om te bewijzen dat u een bepaald Litecoinadres bezit</translation>
+        <source>Sign the message to prove you own this WEYCOIN address</source>
+        <translation>Onderteken een bericht om te bewijzen dat u een bepaald WEYCOINadres bezit</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2393,12 +2225,12 @@
         <translation>Voer het adres van de ontvanger in, bericht (zorg ervoor dat de regeleinden, spaties, tabs etc. precies kloppen) en onderteken onderaan om het bericht te verifiëren. Wees voorzicht om niet meer in de ondertekening te lezen dan in het getekende bericht zelf, om te voorkomen dat je wordt aangevallen met een man-in-the-middle attack. Houd er mee rekening dat dit alleen de ondertekende partij bewijst met het ontvangen adres, er kan niet bewezen worden dat er een transactie heeft plaatsgevonden!</translation>
     </message>
     <message>
-        <source>The Litecoin address the message was signed with</source>
-        <translation>Het Litecoinadres waarmee het bericht ondertekend is</translation>
+        <source>The WEYCOIN address the message was signed with</source>
+        <translation>Het WEYCOINadres waarmee het bericht ondertekend is</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Litecoin address</source>
-        <translation>Controleer een bericht om te verifiëren dat het gespecificeerde Litecoinadres het bericht heeft ondertekend.</translation>
+        <source>Verify the message to ensure it was signed with the specified WEYCOIN address</source>
+        <translation>Controleer een bericht om te verifiëren dat het gespecificeerde WEYCOINadres het bericht heeft ondertekend.</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2477,10 +2309,6 @@
 </context>
 <context>
     <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Open voor nog %n blok</numerusform><numerusform>Open voor nog %n blokken</numerusform></translation>
-    </message>
     <message>
         <source>Open until %1</source>
         <translation>Open tot %1</translation>
@@ -2565,10 +2393,6 @@
         <source>Credit</source>
         <translation>Credit</translation>
     </message>
-    <message numerus="yes">
-        <source>matures in %n more block(s)</source>
-        <translation><numerusform>komt beschikbaar na %n nieuwe blok</numerusform><numerusform>komt beschikbaar na %n nieuwe blokken</numerusform></translation>
-    </message>
     <message>
         <source>not accepted</source>
         <translation>niet geaccepteerd</translation>
@@ -2604,10 +2428,6 @@
     <message>
         <source>Transaction ID</source>
         <translation>Transactie-ID</translation>
-    </message>
-    <message>
-        <source>Transaction total size</source>
-        <translation>Transactie totale grootte</translation>
     </message>
     <message>
         <source>Output index</source>
@@ -2670,10 +2490,6 @@
     <message>
         <source>Label</source>
         <translation>Label</translation>
-    </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Open voor nog %n blok</numerusform><numerusform>Open voor nog %n blokken</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2984,7 +2800,7 @@
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>weycoin-core</name>
     <message>
         <source>Options:</source>
         <translation>Opties:</translation>
@@ -3004,18 +2820,6 @@
     <message>
         <source>Accept command line and JSON-RPC commands</source>
         <translation>Aanvaard opdrachtregel- en JSON-RPC-opdrachten</translation>
-    </message>
-    <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect/-noconnect)</source>
-        <translation>Accepteer verbindingen van buitenaf (standaard: 1 indien geen -proxy of -connect/-noconnect werd opgegeven)</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s); -noconnect or -connect=0 alone to disable automatic connections</source>
-        <translation>Verbind enkel met de opgegeven knooppunt(en); -noconnect of -connect = 0 alleen om automatische verbindingen uit te schakelen</translation>
-    </message>
-    <message>
-        <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
-        <translation>Uitgegeven onder de MIT software licentie, zie het bijgevoegde bestand %s of %s</translation>
     </message>
     <message>
         <source>If &lt;category&gt; is not supplied or if &lt;category&gt; = 1, output all debugging information.</source>
@@ -3054,8 +2858,8 @@
         <translation>Niet mogelijk ok HTTP-server te starten. Zie debuglogboek voor details.</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
-        <translation>Litecoin Core</translation>
+        <source>WEYCOIN Core</source>
+        <translation>WEYCOIN Core</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -3094,14 +2898,6 @@
         <translation>Voer opdracht uit zodra een portemonneetransactie verandert (%s in cmd wordt vervangen door TxID)</translation>
     </message>
     <message>
-        <source>Extra transactions to keep in memory for compact block reconstructions (default: %u)</source>
-        <translation>Extra transacties wordt bijgehouden voor compacte blokreconstructie (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>If this block is in the chain assume that it and its ancestors are valid and potentially skip their script verification (0 to verify all, default: %s, testnet: %s)</source>
-        <translation>Als dit blok in de keten staat, gaat het ervan uit dat dit blok en zijn voorouders geldig zijn en mogelijk hun script verificatie overslaan (0 om alles te verifiëren, standaard:%s, testnet:%s)</translation>
-    </message>
-    <message>
         <source>Maximum allowed median peer time offset adjustment. Local perspective of time may be influenced by peers forward or backward by this amount. (default: %u seconds)</source>
         <translation>Maximum toegestane peer tijd compensatie. Lokaal perspectief van tijd mag worden beinvloed door peers die met deze hoeveelheid voor of achter lopen. (standaard: %u seconden)</translation>
     </message>
@@ -3118,14 +2914,6 @@
         <translation>Gelieve bij te dragen als je %s nuttig vindt. Bezoek %s voor meer informatie over de software.</translation>
     </message>
     <message>
-        <source>Reduce storage requirements by enabling pruning (deleting) of old blocks. This allows the pruneblockchain RPC to be called to delete specific blocks, and enables automatic pruning of old blocks if a target size in MiB is provided. This mode is incompatible with -txindex and -rescan. Warning: Reverting this setting requires re-downloading the entire blockchain. (default: 0 = disable pruning blocks, 1 = allow manual pruning via RPC, &gt;%u = automatically prune block files to stay under the specified target size in MiB)</source>
-        <translation>Beperk benodigde opslag door trimmen (verwijderen) van oude blokken in te schakelen. Dit maakt het mogelijk om de pruneblockchain RPC aan te roepen om specifieke blokken te verwijderen, en maakt het automatische trimmen van oude blokken mogelijk wanneer een doelgrootte in MiB is voorzien. Deze modus is niet compatibele met -txindex en -rescan. Waarschuwing: Terugzetten van deze instellingen vereist het opnieuw downloaden van gehele de blokketen. (standaard:0 = uitzetten trimmodus, 1 = manueel trimmen via RPC toestaan, &gt;%u = automatisch blokbestanden trimmen om beneden de gespecificeerde doelgrootte in MiB te blijven)</translation>
-    </message>
-    <message>
-        <source>Set lowest fee rate (in %s/kB) for transactions to be included in block creation. (default: %s)</source>
-        <translation>Specificeer het laagste tarief (in %s/kB) voor transacties die bij het maken van een blok moeten worden in rekening worden gebracht (standaard: %s)</translation>
-    </message>
-    <message>
         <source>Set the number of script verification threads (%u to %d, 0 = auto, &lt;0 = leave that many cores free, default: %d)</source>
         <translation>Kies het aantal scriptverificatie processen (%u tot %d, 0 = auto, &lt;0 = laat dit aantal kernen vrij, standaard: %d)</translation>
     </message>
@@ -3134,32 +2922,12 @@
         <translation>De blokdatabase bevat een blok dat lijkt uit de toekomst te komen. Dit kan gebeuren omdat de datum en tijd van uw computer niet goed staat. Herbouw de blokdatabase pas nadat u de datum en tijd van uw computer correct heeft ingesteld.</translation>
     </message>
     <message>
-        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>Dit is een pre-release testversie - gebruik op eigen risico! Gebruik deze niet voor het delven van munten of handelsdoeleinden</translation>
-    </message>
-    <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
         <translation>Niet mogelijk om de databank terug te draaien naar een staat voor de vork. Je zal je blokketen opnieuw moeten downloaden</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: 1 when listening and no -proxy)</source>
         <translation>Gebruik UPnP om de luisterende poort te mappen (standaard: 1 als er geluisterd worden en geen -proxy is meegegeven)</translation>
-    </message>
-    <message>
-        <source>Username and hashed password for JSON-RPC connections. The field &lt;userpw&gt; comes in the format: &lt;USERNAME&gt;:&lt;SALT&gt;$&lt;HASH&gt;. A canonical python script is included in share/rpcuser. The client then connects normally using the rpcuser=&lt;USERNAME&gt;/rpcpassword=&lt;PASSWORD&gt; pair of arguments. This option can be specified multiple times</source>
-        <translation>Gebruikersnaam en gehasht wachtwoord voor JSON-RPC-verbindingen. De velden &lt;userpw&gt; is in het formaat: &lt;GEBRUIKERSNAAM&gt;:&lt;SALT&gt;$&lt;HASH&gt;. Een kanoniek Pythonscript is inbegrepen in de share/rpcuser. De klant connecteert dan normaal via de rpcuser=&lt;GEBRUIKERSNAAM&gt;/rpcpassword=&lt;PASWOORD&gt; argumenten. Deze optie kan meerdere keren worden meegegeven</translation>
-    </message>
-    <message>
-        <source>Wallet will not create transactions that violate mempool chain limits (default: %u)</source>
-        <translation>Portemonnee creëert geen transacties die mempool-ketenlimieten schenden (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>Waarschuwing: Het lijkt erop dat het netwerk geen consensus kan vinden! Sommige delvers lijken problemen te ondervinden.</translation>
-    </message>
-    <message>
-        <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>Waarschuwing: Het lijkt erop dat we geen consensus kunnen vinden met onze peers! Mogelijk dient u te upgraden, of andere nodes moeten wellicht upgraden.</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex-chainstate to change -txindex</source>
@@ -3192,10 +2960,6 @@
     <message>
         <source>Cannot resolve -%s address: '%s'</source>
         <translation>Kan -%s adres niet herleiden: '%s'</translation>
-    </message>
-    <message>
-        <source>Chain selection options:</source>
-        <translation>Keten selectie opties:</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3394,10 +3158,6 @@
         <translation>Gebruik UPnP om de luisterende poort te mappen (standaard: %u)</translation>
     </message>
     <message>
-        <source>Use the test chain</source>
-        <translation>Gebruik de test keten</translation>
-    </message>
-    <message>
         <source>User Agent comment (%s) contains unsafe characters.</source>
         <translation>User Agentcommentaar (%s) bevat onveilige karakters.</translation>
     </message>
@@ -3455,7 +3215,7 @@
     </message>
     <message>
         <source>Fees (in %s/kB) smaller than this are considered zero fee for relaying, mining and transaction creation (default: %s)</source>
-        <translation>Transactiekosten (in %s/kB) kleiner dan dit worden beschouw dat geen transactiekosten in rekening worden gebracht voor doorgeven, delven en transactiecreatie (standaard: %s)</translation>
+        <translation>Transactiekosten (in %s/kB) kleiner dan dit worden beschouw dat geen transactiekosten in rekening worden gebracht voor doorgeven, mijnen en transactiecreatie (standaard: %s)</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
@@ -3663,7 +3423,7 @@
     </message>
     <message>
         <source>Equivalent bytes per sigop in transactions for relay and mining (default: %u)</source>
-        <translation>Equivalente bytes per sigop in transacties voor doorsturen en delven (standaard: %u)</translation>
+        <translation>Equivalent byter per sigop in transactions voor doorsturen en mijnen (standaard: %u)</translation>
     </message>
     <message>
         <source>Fees (in %s/kB) smaller than this are considered zero fee for transaction creation (default: %s)</source>
@@ -3690,20 +3450,8 @@
         <translation>Output extra debugginginformatie (standaard: %u, het leveren van &lt;categorie&gt; is optioneel)</translation>
     </message>
     <message>
-        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect/-noconnect)</source>
-        <translation>Query voor peer-adressen via DNS-lookup , indien laag aan adressen  (default: 1 unless -connect/-noconnect)</translation>
-    </message>
-    <message>
         <source>Support filtering of blocks and transaction with bloom filters (default: %u)</source>
         <translation>Ondersteun filtering van blokken en transacties met bloomfilters (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>This is the transaction fee you may pay when fee estimates are not available.</source>
-        <translation>Dit is de transactiekost die je mogelijk betaald indien geschatte tarief niet beschikbaar is</translation>
-    </message>
-    <message>
-        <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>Dit product bevat software dat ontwikkeld is door het OpenSSL Project voor gebruik in de OpenSSL Toolkit %s en cryptografische software geschreven door Eric Young en UPnP software geschreven door Thomas Bernard.</translation>
     </message>
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
@@ -3734,14 +3482,6 @@
         <translation>Waarschuwing: portomonee bestand is corrupt, data is veiliggesteld! Originele %s is opgeslagen als %s in %s; als uw balans of transacties incorrect zijn dient u een backup terug te zetten.</translation>
     </message>
     <message>
-        <source>Whitelist peers connecting from the given IP address (e.g. 1.2.3.4) or CIDR notated network (e.g. 1.2.3.0/24). Can be specified multiple times.</source>
-        <translation>Goedgekeurde peers die verbinden vanaf een bepaald IP adres (vb. 1.2.3.4) of CIDR genoteerd netwerk (vb. 1.2.3.0/24). Kan meerdere keren worden gespecificeerd.</translation>
-    </message>
-    <message>
-        <source>%s is set very high!</source>
-        <translation>%s is zeer hoog ingesteld!</translation>
-    </message>
-    <message>
         <source>(default: %s)</source>
         <translation>(standaard: %s)</translation>
     </message>
@@ -3760,10 +3500,6 @@
     <message>
         <source>Invalid -proxy address: '%s'</source>
         <translation>Ongeldig -proxy adres: '%s'</translation>
-    </message>
-    <message>
-        <source>Keypool ran out, please call keypoolrefill first</source>
-        <translation>Keypool op geraakt, roep alsjeblieft eerst keypoolrefill functie aan</translation>
     </message>
     <message>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: %u or testnet: %u)</source>
@@ -3802,10 +3538,6 @@
         <translation>Geef non-P2SH multisig door (standaard: %u)</translation>
     </message>
     <message>
-        <source>Send transactions with full-RBF opt-in enabled (default: %u)</source>
-        <translation>Verstuur transacties met full-RBF opt-in ingeschakeld (standaard: %u)</translation>
-    </message>
-    <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>
         <translation>Stel sleutelpoelgrootte in op &lt;n&gt; (standaard: %u)</translation>
     </message>
@@ -3838,32 +3570,8 @@
         <translation>Netwerkthread starten...</translation>
     </message>
     <message>
-        <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>De portemonnee vermijdt minder te betalen dan het minimale relay vergoeding.</translation>
-    </message>
-    <message>
-        <source>This is the minimum transaction fee you pay on every transaction.</source>
-        <translation>Dit is het minimum transactietarief dat je betaald op elke transactie.</translation>
-    </message>
-    <message>
-        <source>This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Dit is het transactietarief dat je betaald wanneer je een transactie verstuurt.</translation>
-    </message>
-    <message>
         <source>Threshold for disconnecting misbehaving peers (default: %u)</source>
         <translation>Drempel om verbinding te verbreken naar zich misdragende peers (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Transaction amounts must not be negative</source>
-        <translation>Transactiebedragen moeten positief zijn</translation>
-    </message>
-    <message>
-        <source>Transaction has too long of a mempool chain</source>
-        <translation>Transactie heeft een te lange mempoolketen</translation>
-    </message>
-    <message>
-        <source>Transaction must have at least one recipient</source>
-        <translation>Transactie moet ten minste één ontvanger hebben</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>

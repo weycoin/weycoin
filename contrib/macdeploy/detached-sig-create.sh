@@ -1,16 +1,16 @@
 #!/bin/sh
-# Copyright (c) 2014-2015 The Bitcoin Core developers
+# Copyright (c) 2014-2015 The WeyCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 set -e
 
 ROOTDIR=dist
-BUNDLE="${ROOTDIR}/Litecoin-Qt.app"
+BUNDLE="${ROOTDIR}/WeyCoin-Qt.app"
 CODESIGN=codesign
 TEMPDIR=sign.temp
 TEMPLIST=${TEMPDIR}/signatures.txt
-OUT=signature-osx.tar.gz
+OUT=signature.tar.gz
 OUTROOT=osx
 
 if [ ! -n "$1" ]; then

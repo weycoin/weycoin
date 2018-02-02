@@ -1,16 +1,16 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/weycoin-config.h"
 #endif
 
 #include "addressbookpage.h"
 #include "ui_addressbookpage.h"
 
 #include "addresstablemodel.h"
-#include "bitcoingui.h"
+#include "weycoingui.h"
 #include "csvmodelwriter.h"
 #include "editaddressdialog.h"
 #include "guiutil.h"
@@ -254,7 +254,7 @@ void AddressBookPage::done(int retval)
     // Figure out which address was selected, and return it
     QModelIndexList indexes = table->selectionModel()->selectedRows(AddressTableModel::Address);
 
-    for (const QModelIndex& index : indexes) {
+    Q_FOREACH (const QModelIndex& index, indexes) {
         QVariant address = table->model()->data(index);
         returnValue = address.toString();
     }
@@ -273,7 +273,7 @@ void AddressBookPage::on_exportButton_clicked()
     // CSV is currently the only supported format
     QString filename = GUIUtil::getSaveFileName(this,
         tr("Export Address List"), QString(),
-        tr("Comma separated file (*.csv)"), nullptr);
+        tr("Comma separated file (*.csv)"), NULL);
 
     if (filename.isNull())
         return;

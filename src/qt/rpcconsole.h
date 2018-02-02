@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_RPCCONSOLE_H
-#define BITCOIN_QT_RPCCONSOLE_H
+#ifndef WEYCOIN_QT_RPCCONSOLE_H
+#define WEYCOIN_QT_RPCCONSOLE_H
 
 #include "guiutil.h"
 #include "peertablemodel.h"
@@ -27,7 +27,7 @@ class QMenu;
 class QItemSelection;
 QT_END_NAMESPACE
 
-/** Local Bitcoin RPC console. */
+/** Local WeyCoin RPC console. */
 class RPCConsole: public QWidget
 {
     Q_OBJECT
@@ -36,8 +36,8 @@ public:
     explicit RPCConsole(const PlatformStyle *platformStyle, QWidget *parent);
     ~RPCConsole();
 
-    static bool RPCParseCommandLine(std::string &strResult, const std::string &strCommand, bool fExecute, std::string * const pstrFilteredOut = nullptr);
-    static bool RPCExecuteCommandLine(std::string &strResult, const std::string &strCommand, std::string * const pstrFilteredOut = nullptr) {
+    static bool RPCParseCommandLine(std::string &strResult, const std::string &strCommand, bool fExecute, std::string * const pstrFilteredOut = NULL);
+    static bool RPCExecuteCommandLine(std::string &strResult, const std::string &strCommand, std::string * const pstrFilteredOut = NULL) {
         return RPCParseCommandLine(strResult, strCommand, true, pstrFilteredOut);
     }
 
@@ -55,7 +55,8 @@ public:
         TAB_INFO = 0,
         TAB_CONSOLE = 1,
         TAB_GRAPH = 2,
-        TAB_PEERS = 3
+        TAB_PEERS = 3,
+		TAB_REPAIR=4
     };
 
 protected:
@@ -84,6 +85,14 @@ private Q_SLOTS:
     void clearSelectedNode();
 
 public Q_SLOTS:
+    /** Wallet repair options */
+    void walletSalvage();
+    void walletRescan();
+    void walletZaptxes1();
+    void walletZaptxes2();
+    void walletUpgrade();
+    void walletReindex();
+
     void clear(bool clearHistory = true);
     void fontBigger();
     void fontSmaller();
@@ -92,6 +101,8 @@ public Q_SLOTS:
     void message(int category, const QString &message, bool html = false);
     /** Set number of connections shown in the UI */
     void setNumConnections(int count);
+    /** Switch to wallet-repair tab and show */
+    void showRepair();
     /** Set network state shown in the UI */
     void setNetworkActive(bool networkActive);
     /** Set number of blocks and last block date shown in the UI */
@@ -114,6 +125,10 @@ public Q_SLOTS:
     void banSelectedNode(int bantime);
     /** Unban a selected node on the Bans tab */
     void unbanSelectedNode();
+	/** Show folder with wallet backups in default browser */
+    void showBackups();
+	void showWeyCoinConf();
+	void showConf();
     /** set which tab has the focus (is visible) */
     void setTabFocus(enum TabTypes tabType);
 
@@ -121,6 +136,8 @@ Q_SIGNALS:
     // For RPC command executor
     void stopExecutor();
     void cmdRequest(const QString &command);
+	/** Get restart command-line parameters and handle restart */
+    void handleRestart(QStringList args);
 
 private:
     static QString FormatBytes(quint64 bytes);
@@ -128,6 +145,8 @@ private:
     void setTrafficGraphRange(int mins);
     /** show detailed information on ui about selected node */
     void updateNodeDetail(const CNodeCombinedStats *stats);
+	    /** Build parameter list for restart */
+    void buildParameterlist(QString arg);
 
     enum ColumnWidths
     {
@@ -157,4 +176,4 @@ private:
     void updateNetworkState();
 };
 
-#endif // BITCOIN_QT_RPCCONSOLE_H
+#endif // WEYCOIN_QT_RPCCONSOLE_H

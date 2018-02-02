@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +9,6 @@
 #include "guiutil.h"
 #include "peertablemodel.h"
 
-#include "chain.h"
 #include "chainparams.h"
 #include "checkpoints.h"
 #include "clientversion.h"
@@ -18,8 +17,7 @@
 #include "txmempool.h"
 #include "ui_interface.h"
 #include "util.h"
-#include "warnings.h"
-
+#include "masternodeman.h"
 #include <stdint.h>
 
 #include <QDebug>
@@ -27,6 +25,7 @@
 
 class CBlockIndex;
 
+static const int64_t nClientStartupTime = GetTime();
 static int64_t nLastHeaderTipUpdateNotification = 0;
 static int64_t nLastBlockTipUpdateNotification = 0;
 
@@ -34,6 +33,7 @@ ClientModel::ClientModel(OptionsModel *_optionsModel, QObject *parent) :
     QObject(parent),
     optionsModel(_optionsModel),
     peerTableModel(0),
+	cachedMasternodeCountString(""),
     banTableModel(0),
     pollTimer(0)
 {
@@ -44,6 +44,11 @@ ClientModel::ClientModel(OptionsModel *_optionsModel, QObject *parent) :
     pollTimer = new QTimer(this);
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
     pollTimer->start(MODEL_UPDATE_DELAY);
+	 pollMnTimer = new QTimer(this);
+    connect(pollMnTimer, SIGNAL(timeout()), this, SLOT(updateMnTimer()));
+    // no need to update as frequent as data for balances/txes/blocks
+    pollMnTimer->start(MODEL_UPDATE_DELAY * 4);
+
 
     subscribeToCoreSignals();
 }
@@ -67,6 +72,11 @@ int ClientModel::getNumConnections(unsigned int flags) const
     if(g_connman)
          return g_connman->GetNodeCount(connections);
     return 0;
+}
+
+QString ClientModel::getMasternodeCountString() const
+{
+   return QString::number((int)mnodeman.CountEnabled()) + " / " + QString::number((int)mnodeman.size());
 }
 
 int ClientModel::getNumBlocks() const
@@ -153,6 +163,22 @@ void ClientModel::updateTimer()
     Q_EMIT mempoolSizeChanged(getMempoolSize(), getMempoolDynamicUsage());
     Q_EMIT bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
 }
+void ClientModel::updateMnTimer()
+{
+    // Get required lock upfront. This avoids the GUI from getting stuck on
+    // periodical polls if the core is holding the locks for a longer time -
+    // for example, during a wallet rescan.
+    TRY_LOCK(cs_main, lockMain);
+    if (!lockMain)
+        return;
+    QString newMasternodeCountString = getMasternodeCountString();
+
+    if (cachedMasternodeCountString != newMasternodeCountString) {
+        cachedMasternodeCountString = newMasternodeCountString;
+
+        Q_EMIT strMasternodesChanged(cachedMasternodeCountString);
+    }
+}
 
 void ClientModel::updateNumConnections(int numConnections)
 {
@@ -238,7 +264,7 @@ bool ClientModel::isReleaseVersion() const
 
 QString ClientModel::formatClientStartupTime() const
 {
-    return QDateTime::fromTime_t(GetStartupTime()).toString();
+    return QDateTime::fromTime_t(nClientStartupTime).toString();
 }
 
 QString ClientModel::dataDir() const
@@ -301,9 +327,10 @@ static void BlockTipChanged(ClientModel *clientmodel, bool initialSync, const CB
         clientmodel->cachedBestHeaderHeight = pIndex->nHeight;
         clientmodel->cachedBestHeaderTime = pIndex->GetBlockTime();
     }
+
     // if we are in-sync, update the UI regardless of last update time
     if (!initialSync || now - nLastUpdateNotification > MODEL_UPDATE_DELAY) {
-        //pass an async signal to the UI thread
+        //pass a async signal to the UI thread
         QMetaObject::invokeMethod(clientmodel, "numBlocksChanged", Qt::QueuedConnection,
                                   Q_ARG(int, pIndex->nHeight),
                                   Q_ARG(QDateTime, QDateTime::fromTime_t(pIndex->GetBlockTime())),

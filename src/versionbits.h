@@ -1,9 +1,9 @@
-// Copyright (c) 2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CONSENSUS_VERSIONBITS
-#define BITCOIN_CONSENSUS_VERSIONBITS
+#ifndef WEYCOIN_CONSENSUS_VERSIONBITS
+#define WEYCOIN_CONSENSUS_VERSIONBITS
 
 #include "chain.h"
 #include <map>
@@ -27,25 +27,17 @@ enum ThresholdState {
 
 // A map that gives the state for blocks whose height is a multiple of Period().
 // The map is indexed by the block's parent, however, so all keys in the map
-// will either be nullptr or a block with (height + 1) % Period() == 0.
+// will either be NULL or a block with (height + 1) % Period() == 0.
 typedef std::map<const CBlockIndex*, ThresholdState> ThresholdConditionCache;
 
-struct VBDeploymentInfo {
+struct BIP9DeploymentInfo {
     /** Deployment name */
     const char *name;
     /** Whether GBT clients can safely ignore this rule in simplified usage */
     bool gbt_force;
 };
 
-struct BIP9Stats {
-    int period;
-    int threshold;
-    int elapsed;
-    int count;
-    bool possible;
-};
-
-extern const struct VBDeploymentInfo VersionBitsDeploymentInfo[];
+extern const struct BIP9DeploymentInfo VersionBitsDeploymentInfo[];
 
 /**
  * Abstract class that implements BIP9-style threshold logic, and caches results.
@@ -57,9 +49,9 @@ protected:
     virtual int64_t EndTime(const Consensus::Params& params) const =0;
     virtual int Period(const Consensus::Params& params) const =0;
     virtual int Threshold(const Consensus::Params& params) const =0;
+    virtual bool AuthoritativeDeployment() const =0;
 
 public:
-    BIP9Stats GetStateStatisticsFor(const CBlockIndex* pindex, const Consensus::Params& params) const;
     // Note that the functions below take a pindexPrev as input: they compute information for block B based on its parent.
     ThresholdState GetStateFor(const CBlockIndex* pindexPrev, const Consensus::Params& params, ThresholdConditionCache& cache) const;
     int GetStateSinceHeightFor(const CBlockIndex* pindexPrev, const Consensus::Params& params, ThresholdConditionCache& cache) const;
@@ -73,7 +65,6 @@ struct VersionBitsCache
 };
 
 ThresholdState VersionBitsState(const CBlockIndex* pindexPrev, const Consensus::Params& params, Consensus::DeploymentPos pos, VersionBitsCache& cache);
-BIP9Stats VersionBitsStatistics(const CBlockIndex* pindexPrev, const Consensus::Params& params, Consensus::DeploymentPos pos);
 int VersionBitsStateSinceHeight(const CBlockIndex* pindexPrev, const Consensus::Params& params, Consensus::DeploymentPos pos, VersionBitsCache& cache);
 uint32_t VersionBitsMask(const Consensus::Params& params, Consensus::DeploymentPos pos);
 

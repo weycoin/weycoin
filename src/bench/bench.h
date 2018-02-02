@@ -1,21 +1,20 @@
-// Copyright (c) 2015-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_BENCH_BENCH_H
-#define BITCOIN_BENCH_BENCH_H
+#ifndef WEYCOIN_BENCH_BENCH_H
+#define WEYCOIN_BENCH_BENCH_H
 
-#include <functional>
-#include <limits>
 #include <map>
 #include <string>
 
+#include <boost/function.hpp>
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/stringize.hpp>
 
 // Simple micro-benchmarking framework; API mostly matches a subset of the Google Benchmark
 // framework (see https://github.com/google/benchmark)
-// Why not use the Google Benchmark framework? Because adding Yet Another Dependency
+// Wny not use the Google Benchmark framework? Because adding Yet Another Dependency
 // (that uses cmake as its build system and has lots of features we don't need) isn't
 // worth it.
 
@@ -60,7 +59,7 @@ namespace benchmark {
         bool KeepRunning();
     };
 
-    typedef std::function<void(State&)> BenchFunction;
+    typedef boost::function<void(State&)> BenchFunction;
 
     class BenchRunner
     {
@@ -78,4 +77,4 @@ namespace benchmark {
 #define BENCHMARK(n) \
     benchmark::BenchRunner BOOST_PP_CAT(bench_, BOOST_PP_CAT(__LINE__, n))(BOOST_PP_STRINGIZE(n), n);
 
-#endif // BITCOIN_BENCH_BENCH_H
+#endif // WEYCOIN_BENCH_BENCH_H

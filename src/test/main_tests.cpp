@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +6,7 @@
 #include "validation.h"
 #include "net.h"
 
-#include "test/test_bitcoin.h"
+#include "test/test_weycoin.h"
 
 #include <boost/signals2/signal.hpp>
 #include <boost/test/unit_test.hpp>
@@ -17,6 +17,7 @@ static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
 {
     int maxHalvings = 64;
     CAmount nInitialSubsidy = 50 * COIN;
+	int nBits = 0;
 
     CAmount nPreviousSubsidy = nInitialSubsidy * 2; // for height == 0
     BOOST_CHECK_EQUAL(nPreviousSubsidy, nInitialSubsidy * 2);
@@ -39,23 +40,23 @@ static void TestBlockSubsidyHalvings(int nSubsidyHalvingInterval)
 
 BOOST_AUTO_TEST_CASE(block_subsidy_test)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
-    TestBlockSubsidyHalvings(chainParams->GetConsensus()); // As in main
+    TestBlockSubsidyHalvings(Params(CBaseChainParams::MAIN).GetConsensus()); // As in main
     TestBlockSubsidyHalvings(150); // As in regtest
     TestBlockSubsidyHalvings(1000); // Just another interval
 }
 
 BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
+    const Consensus::Params& consensusParams = Params(CBaseChainParams::MAIN).GetConsensus();
     CAmount nSum = 0;
-    for (int nHeight = 0; nHeight < 56000000; nHeight += 1000) {
-        CAmount nSubsidy = GetBlockSubsidy(nHeight, chainParams->GetConsensus());
+	int nBits = 0;
+    for (int nHeight = 0; nHeight < 14000000; nHeight += 1000) {
+        CAmount nSubsidy = GetBlockSubsidy(nHeight, consensusParams);
         BOOST_CHECK(nSubsidy <= 50 * COIN);
         nSum += nSubsidy * 1000;
         BOOST_CHECK(MoneyRange(nSum));
     }
-    BOOST_CHECK_EQUAL(nSum, 8399999990760000ULL);
+    BOOST_CHECK_EQUAL(nSum, 2099999997690000ULL);
 }
 
 bool ReturnFalse() { return false; }

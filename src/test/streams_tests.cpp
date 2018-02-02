@@ -1,12 +1,13 @@
-// Copyright (c) 2012-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "streams.h"
 #include "support/allocators/zeroafterfree.h"
-#include "test/test_bitcoin.h"
+#include "test/test_weycoin.h"
 
 #include <boost/assign/std/vector.hpp> // for 'operator+=()'
+#include <boost/assert.hpp>
 #include <boost/test/unit_test.hpp>
 
 using namespace boost::assign; // bring 'operator+=()' into scope

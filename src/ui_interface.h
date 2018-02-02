@@ -1,10 +1,10 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2012-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UI_INTERFACE_H
-#define BITCOIN_UI_INTERFACE_H
+#ifndef WEYCOIN_UI_INTERFACE_H
+#define WEYCOIN_UI_INTERFACE_H
 
 #include <stdint.h>
 #include <string>
@@ -12,7 +12,9 @@
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
 
+class CBasicKeyStore;
 class CWallet;
+class uint256;
 class CBlockIndex;
 
 /** General change type (added, updated, removed). */
@@ -97,9 +99,6 @@ public:
     /** Show progress e.g. for verifychain */
     boost::signals2::signal<void (const std::string &title, int nProgress)> ShowProgress;
 
-    /** Set progress break action (possible "cancel button" triggers that action) */
-    boost::signals2::signal<void (std::function<void(void)> action)> SetProgressBreakAction;
-
     /** New block has been accepted */
     boost::signals2::signal<void (bool, const CBlockIndex *)> NotifyBlockTip;
 
@@ -122,4 +121,4 @@ std::string AmountErrMsg(const char* const optname, const std::string& strValue)
 
 extern CClientUIInterface uiInterface;
 
-#endif // BITCOIN_UI_INTERFACE_H
+#endif // WEYCOIN_UI_INTERFACE_H

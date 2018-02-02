@@ -1,19 +1,22 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_CLIENTMODEL_H
-#define BITCOIN_QT_CLIENTMODEL_H
+#ifndef WEYCOIN_QT_CLIENTMODEL_H
+#define WEYCOIN_QT_CLIENTMODEL_H
 
 #include <QObject>
 #include <QDateTime>
 
 #include <atomic>
 
+class AddressTableModel;
 class BanTableModel;
 class OptionsModel;
 class PeerTableModel;
+class TransactionTableModel;
 
+class CWallet;
 class CBlockIndex;
 
 QT_BEGIN_NAMESPACE
@@ -34,7 +37,7 @@ enum NumConnections {
     CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for Bitcoin network client. */
+/** Model for WeyCoin network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -49,14 +52,15 @@ public:
 
     //! Return number of connections, default is in- and outbound (total)
     int getNumConnections(unsigned int flags = CONNECTIONS_ALL) const;
-    int getNumBlocks() const;
+    QString getMasternodeCountString() const;
+	int getNumBlocks() const;
     int getHeaderTipHeight() const;
     int64_t getHeaderTipTime() const;
     //! Return number of transactions in the mempool
     long getMempoolSize() const;
     //! Return the dynamic memory usage of the mempool
     size_t getMempoolDynamicUsage() const;
-    
+
     quint64 getTotalBytesRecv() const;
     quint64 getTotalBytesSent() const;
 
@@ -88,9 +92,9 @@ private:
     OptionsModel *optionsModel;
     PeerTableModel *peerTableModel;
     BanTableModel *banTableModel;
-
+	QString cachedMasternodeCountString;
     QTimer *pollTimer;
-
+	QTimer* pollMnTimer;
     void subscribeToCoreSignals();
     void unsubscribeFromCoreSignals();
 
@@ -101,7 +105,7 @@ Q_SIGNALS:
     void networkActiveChanged(bool networkActive);
     void alertsChanged(const QString &warnings);
     void bytesChanged(quint64 totalBytesIn, quint64 totalBytesOut);
-
+	void strMasternodesChanged(const QString& strMasternodes);
     //! Fired when a message should be reported to the user
     void message(const QString &title, const QString &message, unsigned int style);
 
@@ -110,10 +114,11 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void updateTimer();
+	void updateMnTimer();
     void updateNumConnections(int numConnections);
     void updateNetworkActive(bool networkActive);
     void updateAlert();
     void updateBanlist();
 };
 
-#endif // BITCOIN_QT_CLIENTMODEL_H
+#endif // WEYCOIN_QT_CLIENTMODEL_H

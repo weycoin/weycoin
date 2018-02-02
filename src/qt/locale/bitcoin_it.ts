@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Fare clic con il tasto destro del mouse per modificare l'indirizzo o l'etichetta</translation>
+        <translation>Fare clic con il tasto destro del mouse per modificare l'indirizzo o l'etichettadefault</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -62,12 +62,12 @@
         <translation>Indirizzi di ricezione</translation>
     </message>
     <message>
-        <source>These are your Litecoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questo è un elenco di indirizzi Litecoin a cui puoi inviare pagamenti. Controlla sempre l'importo e l'indirizzo del beneficiario prima di inviare weycoin.</translation>
+        <source>These are your WEYCOIN addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Questo è un elenco di indirizzi WEYCOIN a cui puoi inviare pagamenti. Controlla sempre l'importo e l'indirizzo del beneficiario prima di inviare weycoin.</translation>
     </message>
     <message>
-        <source>These are your Litecoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Questi sono i tuoi indirizzi Litecoin che puoi usare per ricevere pagamenti. Si raccomanda di generare un nuovo indirizzo per ogni transazione.</translation>
+        <source>These are your WEYCOIN addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Questi sono i tuoi indirizzi WEYCOIN che puoi usare per ricevere pagamenti. Si raccomanda di generare un nuovo indirizzo per ogni transazione.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -168,8 +168,8 @@
         <translation>Conferma la cifratura del portamonete</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR LITECOINS&lt;/b&gt;!</source>
-        <translation>Attenzione: perdendo la passphrase di un portamonete cifrato &lt;b&gt;TUTTI I PROPRI LITECOIN ANDRANNO PERSI&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WEYCOINS&lt;/b&gt;!</source>
+        <translation>Attenzione: perdendo la passphrase di un portamonete cifrato &lt;b&gt;TUTTI I PROPRI WEYCOIN ANDRANNO PERSI&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -180,20 +180,8 @@
         <translation>Portamonete cifrato</translation>
     </message>
     <message>
-        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANTE: qualsiasi backup del file portamonete effettuato in precedenza dovrà essere sostituito con il file del portamonete cifrato appena generato. Per ragioni di sicurezza, i precedenti backup del file del portamonete non cifrato diventeranno inservibili non appena si inizierà ad utilizzare il nuovo portamonete cifrato.</translation>
-    </message>
-    <message>
         <source>Wallet encryption failed</source>
         <translation>Il processo di crittografia del tuo portafogli è fallito</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Crittaggio fallito a causa di un errore interno. Il portamonete non è stato crittato.</translation>
-    </message>
-    <message>
-        <source>The supplied passphrases do not match.</source>
-        <translation>Le frasi di accesso non corrispondono.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
@@ -203,19 +191,7 @@
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
         <translation>La frase inserita per decrittografare il tuo portafoglio è incorretta</translation>
     </message>
-    <message>
-        <source>Wallet decryption failed</source>
-        <translation>Decrittazione del portamonete fallita.</translation>
-    </message>
-    <message>
-        <source>Wallet passphrase was successfully changed.</source>
-        <translation>La frase di accesso al portamonete è stata cambiata con successo.</translation>
-    </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>Attenzione: è attivo il tasto blocco maiuscole !</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>BanTableModel</name>
     <message>
@@ -228,7 +204,7 @@
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>WEYCOINGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Firma &amp;messaggio...</translation>
@@ -314,28 +290,12 @@
         <translation>Apri &amp;URI...</translation>
     </message>
     <message>
-        <source>Click to disable network activity.</source>
-        <translation>Clicca per disattivare la rete.</translation>
-    </message>
-    <message>
-        <source>Network activity disabled.</source>
-        <translation>Attività di rete disabilitata</translation>
-    </message>
-    <message>
-        <source>Click to enable network activity again.</source>
-        <translation>Clicca per abilitare nuovamente l'attività di rete</translation>
-    </message>
-    <message>
-        <source>Syncing Headers (%1%)...</source>
-        <translation>Sincronizzazione Headers (%1%)...</translation>
-    </message>
-    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Re-indicizzazione blocchi su disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Litecoin address</source>
-        <translation>Invia fondi ad un indirizzo Litecoin</translation>
+        <source>Send coins to a WEYCOIN address</source>
+        <translation>Invia fondi ad un indirizzo WEYCOIN</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -358,8 +318,8 @@
         <translation>&amp;Verifica messaggio...</translation>
     </message>
     <message>
-        <source>Litecoin</source>
-        <translation>Litecoin</translation>
+        <source>WEYCOIN</source>
+        <translation>WEYCOIN</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -386,12 +346,12 @@
         <translation>Cifra le chiavi private che appartengono al tuo portamonete</translation>
     </message>
     <message>
-        <source>Sign messages with your Litecoin addresses to prove you own them</source>
-        <translation>Firma messaggi con i tuoi indirizzi Litecoin per dimostrarne il possesso</translation>
+        <source>Sign messages with your WEYCOIN addresses to prove you own them</source>
+        <translation>Firma messaggi con i tuoi indirizzi WEYCOIN per dimostrarne il possesso</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Litecoin addresses</source>
-        <translation>Verifica che i messaggi siano stati firmati con gli indirizzi Litecoin specificati</translation>
+        <source>Verify messages to ensure they were signed with specified WEYCOIN addresses</source>
+        <translation>Verifica che i messaggi siano stati firmati con gli indirizzi WEYCOIN specificati</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -430,8 +390,8 @@
         <translation>Opzioni della riga di &amp;comando</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Litecoin network</source>
-        <translation><numerusform>%n connessione attiva alla rete Litecoin</numerusform><numerusform>%n connessioni alla rete Litecoin attive</numerusform></translation>
+        <source>%n active connection(s) to WEYCOIN network</source>
+        <translation><numerusform>%n connessione attiva alla rete WEYCOIN</numerusform><numerusform>%n connessioni alla rete WEYCOIN attive</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -474,16 +434,12 @@
         <translation>Aggiornato</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Litecoin command-line options</source>
-        <translation>Mostra il messaggio di aiuto di %1 per ottenere una lista di opzioni di comando per Litecoin </translation>
+        <source>Show the %1 help message to get a list with possible WEYCOIN command-line options</source>
+        <translation>Mostra il messaggio di aiuto di %1 per ottenere una lista di opzioni di comando per WEYCOIN </translation>
     </message>
     <message>
         <source>%1 client</source>
         <translation>%1 client</translation>
-    </message>
-    <message>
-        <source>Connecting to peers...</source>
-        <translation>Connessione ai peers</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -528,14 +484,6 @@
         <translation>Transazione ricevuta</translation>
     </message>
     <message>
-        <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
-        <translation>La creazione della chiave HD è &lt;b&gt;abilitata&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>La creazione della chiave HD è &lt;b&gt;disabilitata&lt;/b&gt;</translation>
-    </message>
-    <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Il portamonete è &lt;b&gt;cifrato&lt;/b&gt; ed attualmente &lt;b&gt;sbloccato&lt;/b&gt;</translation>
     </message>
@@ -543,11 +491,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Il portamonete è &lt;b&gt;cifrato&lt;/b&gt; ed attualmente &lt;b&gt;bloccato&lt;/b&gt;</translation>
     </message>
-    <message>
-        <source>A fatal error occurred. Litecoin can no longer continue safely and will quit.</source>
-        <translation>Si è verificato un errore critico. Litecoin non può più funzionare in maniera sicura e verrà chiuso.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -679,20 +623,8 @@
         <translation>no</translation>
     </message>
     <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>Questa etichetta diventerà rossa se uno qualsiasi dei destinatari riceverà un importo inferiore alla corrente soglia minima per la movimentazione della valuta.</translation>
-    </message>
-    <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Può variare di +/- %1 satoshi per input.</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation>(nessuna etichetta)</translation>
-    </message>
-    <message>
-        <source>change from %1 (%2)</source>
-        <translation>cambio da %1 (%2)</translation>
     </message>
     <message>
         <source>(change)</source>
@@ -721,39 +653,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Indirizzo</translation>
     </message>
-    <message>
-        <source>New receiving address</source>
-        <translation>Nuovo indirizzo di ricezione</translation>
-    </message>
-    <message>
-        <source>New sending address</source>
-        <translation>Nuovo indirizzo d'invio</translation>
-    </message>
-    <message>
-        <source>Edit receiving address</source>
-        <translation>Modifica indirizzo di ricezione</translation>
-    </message>
-    <message>
-        <source>Edit sending address</source>
-        <translation>Modifica indirizzo d'invio</translation>
-    </message>
-    <message>
-        <source>The entered address "%1" is not a valid Litecoin address.</source>
-        <translation>L'indirizzo inserito "%1" non è un indirizzo weycoin valido.</translation>
-    </message>
-    <message>
-        <source>The entered address "%1" is already in the address book.</source>
-        <translation>L'indirizzo inserito "%1" è già in rubrica.</translation>
-    </message>
-    <message>
-        <source>Could not unlock wallet.</source>
-        <translation>Impossibile sbloccare il portamonete.</translation>
-    </message>
-    <message>
-        <source>New key generation failed.</source>
-        <translation>Generazione della nuova chiave non riuscita.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -847,8 +747,8 @@
         <translation>Dato che questa è la prima volta che il programma viene lanciato, puoi scegliere dove %1 salverà i suoi dati.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Litecoin block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>%1 scaricherà e salverà una copia della Blockchain di Litecoin. Saranno salvati almeno %2GB di dati in questo percorso e continueranno ad aumentare col tempo. Anche il portafoglio verrà salvato in questo percorso.</translation>
+        <source>%1 will download and store a copy of the WEYCOIN block chain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>%1 scaricherà e salverà una copia della Blockchain di WEYCOIN. Saranno salvati almeno %2GB di dati in questo percorso e continueranno ad aumentare col tempo. Anche il portafoglio verrà salvato in questo percorso.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -882,14 +782,6 @@
         <translation>Modulo</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the weycoin network, as detailed below.</source>
-        <translation>Transazioni recenti potrebbero non essere visibili ancora, perciò il saldo del tuo portafoglio potrebbe non essere corretto. Questa informazione risulterà corretta quando il tuo portafoglio avrà terminato la sincronizzazione con la rete weycoin, come indicato in dettaglio più sotto.</translation>
-    </message>
-    <message>
-        <source>Number of blocks left</source>
-        <translation>Numero di blocchi mancanti</translation>
-    </message>
-    <message>
         <source>Unknown...</source>
         <translation>Sconosciuto...</translation>
     </message>
@@ -898,30 +790,10 @@
         <translation>Ora del blocco più recente</translation>
     </message>
     <message>
-        <source>Progress</source>
-        <translation>Progresso</translation>
-    </message>
-    <message>
-        <source>Progress increase per hour</source>
-        <translation>Aumento dei progressi per ogni ora</translation>
-    </message>
-    <message>
-        <source>calculating...</source>
-        <translation>calcolando...</translation>
-    </message>
-    <message>
-        <source>Estimated time left until synced</source>
-        <translation>Tempo stimato al completamento della sincronizzazione.</translation>
-    </message>
-    <message>
         <source>Hide</source>
         <translation>Nascondi</translation>
     </message>
-    <message>
-        <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>Sconosciuto. Sincronizzazione Headers (%1)...</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -940,11 +812,7 @@
         <source>Select payment request file</source>
         <translation>Seleziona il file di richiesta di pagamento</translation>
     </message>
-    <message>
-        <source>Select payment request file to open</source>
-        <translation>Seleziona il file di richiesta di pagamento da aprire</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -1041,16 +909,16 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>&amp;Spendi resti non confermati</translation>
     </message>
     <message>
-        <source>Automatically open the Litecoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Apri automaticamente la porta del client Litecoin sul router. Il protocollo UPnP deve essere supportato da parte del router ed attivo.</translation>
+        <source>Automatically open the WEYCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Apri automaticamente la porta del client WEYCOIN sul router. Il protocollo UPnP deve essere supportato da parte del router ed attivo.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mappa le porte tramite &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Litecoin network through a SOCKS5 proxy.</source>
-        <translation>Connessione alla rete Litecoin attraverso un proxy SOCKS5.</translation>
+        <source>Connect to the WEYCOIN network through a SOCKS5 proxy.</source>
+        <translation>Connessione alla rete WEYCOIN attraverso un proxy SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1089,8 +957,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Litecoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Connette alla rete Litecoin attraverso un proxy SOCKS5 separato per Tor.</translation>
+        <source>Connect to the WEYCOIN network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Connette alla rete WEYCOIN attraverso un proxy SOCKS5 separato per Tor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
@@ -1188,8 +1056,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Modulo</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Litecoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Le informazioni visualizzate potrebbero non essere aggiornate. Il portamonete si sincronizza automaticamente con la rete Litecoin una volta stabilita una connessione, ma questo processo non è ancora stato completato.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WEYCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>Le informazioni visualizzate potrebbero non essere aggiornate. Il portamonete si sincronizza automaticamente con la rete WEYCOIN una volta stabilita una connessione, ma questo processo non è ancora stato completato.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1259,94 +1127,14 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
 <context>
     <name>PaymentServer</name>
     <message>
-        <source>Payment request error</source>
-        <translation>Errore di richiesta di pagamento</translation>
-    </message>
-    <message>
-        <source>Cannot start weycoin: click-to-pay handler</source>
-        <translation>Impossibile avviare weycoin: gestore click-to-pay</translation>
-    </message>
-    <message>
-        <source>URI handling</source>
-        <translation>Gestione URI</translation>
-    </message>
-    <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>URL di recupero della Richiesta di pagamento non valido: %1</translation>
-    </message>
-    <message>
-        <source>Invalid payment address %1</source>
-        <translation>Indirizzo di pagamento non valido %1</translation>
-    </message>
-    <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Litecoin address or malformed URI parameters.</source>
-        <translation>Impossibile interpretare l'URI! I parametri dell'URI o l'indirizzo Litecoin potrebbero non essere corretti.</translation>
-    </message>
-    <message>
-        <source>Payment request file handling</source>
-        <translation>Gestione del file di richiesta del pagamento</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Impossibile leggere il file della richiesta di pagamento! Il file della richiesta di pagamento potrebbe non essere valido</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>Richiesta di pagamento respinta</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>La rete della richiesta di pagamento non corrisponde alla rete del client.</translation>
-    </message>
-    <message>
         <source>Payment request expired.</source>
         <translation>Richiesta di pagamento scaduta.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>La richiesta di pagamento non è stata inizializzata.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Le richieste di pagamento non verificate verso script di pagamento personalizzati non sono supportate.</translation>
     </message>
     <message>
         <source>Invalid payment request.</source>
         <translation>Richiesta di pagamento invalida</translation>
     </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>L'importo di pagamento di %1 richiesto è troppo basso (considerato come trascurabile).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>Rimborso da %1</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>La richiesta di pagamento %1 è troppo grande (%2 bytes, consentiti %3 bytes)</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Errore di comunicazione con %1: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>La richiesta di pagamento non può essere processata!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation> Risposta errata da parte del server %1 </translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation> Errore di richiesta di rete</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Pagamento riconosciuto</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -1369,8 +1157,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Importo</translation>
     </message>
     <message>
-        <source>Enter a Litecoin address (e.g. %1)</source>
-        <translation>Inserisci un indirizzo Litecoin (ad es. %1)</translation>
+        <source>Enter a WEYCOIN address (e.g. %1)</source>
+        <translation>Inserisci un indirizzo WEYCOIN (ad es. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1428,21 +1216,9 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <source>%n year(s)</source>
         <translation><numerusform>%n anno</numerusform><numerusform>%n anni</numerusform></translation>
     </message>
-    <message>
-        <source>%1 didn't yet exit safely...</source>
-        <translation>%1 non è ancora stato chiuso in modo sicuro</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject::QObject</name>
-    <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Errore: La cartella dati "%1" specificata non esiste.</translation>
-    </message>
-    <message>
-        <source>Error: Cannot parse configuration file: %1. Only use key=value syntax.</source>
-        <translation>Errore: impossibile interpretare il file di configurazione: %1. Usare esclusivamente la sintassi chiave=valore.</translation>
-    </message>
     <message>
         <source>Error: %1</source>
         <translation>Errore: %1</translation>
@@ -1450,18 +1226,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
 </context>
 <context>
     <name>QRImageWidget</name>
-    <message>
-        <source>&amp;Save Image...</source>
-        <translation>&amp;Salva immagine</translation>
-    </message>
-    <message>
-        <source>&amp;Copy Image</source>
-        <translation>&amp;Copia immagine</translation>
-    </message>
-    <message>
-        <source>Save QR Code</source>
-        <translation>Salva codice QR</translation>
-    </message>
     <message>
         <source>PNG Image (*.png)</source>
         <translation>Immagine PNG (*.png)</translation>
@@ -1626,10 +1390,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Attesa ping</translation>
     </message>
     <message>
-        <source>Min Ping</source>
-        <translation>Ping Minimo</translation>
-    </message>
-    <message>
         <source>Time Offset</source>
         <translation>Scarto Temporale</translation>
     </message>
@@ -1690,18 +1450,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>1 &amp;anno</translation>
     </message>
     <message>
-        <source>&amp;Disconnect</source>
-        <translation>&amp;Disconnetti</translation>
-    </message>
-    <message>
-        <source>Ban for</source>
-        <translation>Bannato per</translation>
-    </message>
-    <message>
-        <source>&amp;Unban</source>
-        <translation>&amp;Sbanna</translation>
-    </message>
-    <message>
         <source>Welcome to the %1 RPC console.</source>
         <translation>Benvenuto nella console RPC di %1.</translation>
     </message>
@@ -1712,10 +1460,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     <message>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation>Scrivi &lt;b&gt;help&lt;/b&gt; per un riassunto dei comandi disponibili.</translation>
-    </message>
-    <message>
-        <source>Network activity disabled</source>
-        <translation>Attività di rete disabilitata</translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1789,8 +1533,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>R&amp;iusa un indirizzo di ricezione (non raccomandato)</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Litecoin network.</source>
-        <translation>Un messaggio opzionale da allegare e mostrare all'apertura della richiesta di pagamento. Nota: Il messaggio non sarà inviato con il pagamento sulla rete Litecoin.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the WEYCOIN network.</source>
+        <translation>Un messaggio opzionale da allegare e mostrare all'apertura della richiesta di pagamento. Nota: Il messaggio non sarà inviato con il pagamento sulla rete WEYCOIN.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1872,14 +1616,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>&amp;Salva Immagine...</translation>
     </message>
     <message>
-        <source>Request payment to %1</source>
-        <translation>Richiesta di pagamento a %1</translation>
-    </message>
-    <message>
-        <source>Payment information</source>
-        <translation>Informazioni di pagamento</translation>
-    </message>
-    <message>
         <source>URI</source>
         <translation>URI</translation>
     </message>
@@ -1899,15 +1635,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <source>Message</source>
         <translation>Messaggio</translation>
     </message>
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation> L'URI risultante è troppo lungo, prova a ridurre il testo nell'etichetta / messaggio.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation> Errore nella codifica dell'URI nel codice QR.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1943,7 +1671,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Invia Litecoin</translation>
+        <translation>Invia WEYCOIN</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2114,58 +1842,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>%1 a %2</translation>
     </message>
     <message>
-        <source>Are you sure you want to send?</source>
-        <translation> Sei sicuro di voler inviare?</translation>
-    </message>
-    <message>
-        <source>added as transaction fee</source>
-        <translation> Includi il costo della transazione</translation>
-    </message>
-    <message>
-        <source>Total Amount %1</source>
-        <translation>Importo Totale %1</translation>
-    </message>
-    <message>
-        <source>or</source>
-        <translation>o</translation>
-    </message>
-    <message>
-        <source>Confirm send coins</source>
-        <translation>Conferma invio coins</translation>
-    </message>
-    <message>
-        <source>The recipient address is not valid. Please recheck.</source>
-        <translation> L'indirizzo del destinatario non è valido. Si prega di ricontrollare.</translation>
-    </message>
-    <message>
-        <source>The amount to pay must be larger than 0.</source>
-        <translation> L'importo da pagare deve essere maggiore di 0.</translation>
-    </message>
-    <message>
-        <source>The amount exceeds your balance.</source>
-        <translation>Non hai abbastanza fondi</translation>
-    </message>
-    <message>
-        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation> Il totale è superiore al tuo saldo attuale includendo la commissione di %1. </translation>
-    </message>
-    <message>
-        <source>Duplicate address found: addresses should only be used once each.</source>
-        <translation> Rilevato un indirizzo duplicato Ciascun indirizzo dovrebbe essere utilizzato una sola volta.</translation>
-    </message>
-    <message>
-        <source>Transaction creation failed!</source>
-        <translation>Creazione della transazione fallita!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>La transazione è stata respinta per il seguente motivo: %1</translation>
-    </message>
-    <message>
-        <source>A fee higher than %1 is considered an absurdly high fee.</source>
-        <translation> Una commissione maggiore di %1 è considerata irragionevolmente elevata.</translation>
-    </message>
-    <message>
         <source>Payment request expired.</source>
         <translation>Richiesta di pagamento scaduta.</translation>
     </message>
@@ -2174,16 +1850,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation><numerusform>%n blocco</numerusform><numerusform>%n blocchi</numerusform></translation>
     </message>
     <message>
-        <source>Pay only the required fee of %1</source>
-        <translation> Paga solamente la commissione richiesta di %1</translation>
-    </message>
-    <message numerus="yes">
-        <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Inizio delle conferme stimato entro %n blocchi.</numerusform><numerusform>Inizio delle conferme stimato entro %n blocchi.</numerusform></translation>
-    </message>
-    <message>
-        <source>Warning: Invalid Litecoin address</source>
-        <translation>Attenzione: Indirizzo Litecoin non valido</translation>
+        <source>Warning: Invalid WEYCOIN address</source>
+        <translation>Attenzione: Indirizzo WEYCOIN non valido</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2217,8 +1885,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Questo è un normale pagamento.</translation>
     </message>
     <message>
-        <source>The Litecoin address to send the payment to</source>
-        <translation>L'indirizzo Litecoin a cui vuoi inviare il pagamento</translation>
+        <source>The WEYCOIN address to send the payment to</source>
+        <translation>L'indirizzo WEYCOIN a cui vuoi inviare il pagamento</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2237,7 +1905,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Rimuovi questa voce</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less weycoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less WEYCOIN than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>La commissione sarà sottratta dall'importo che si sta inviando. Il beneficiario riceverà un totale di weycoin inferiore al valore digitato. Nel caso in cui siano stati selezionati più beneficiari la commissione sarà suddivisa in parti uguali.</translation>
     </message>
     <message>
@@ -2261,8 +1929,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Inserisci un'etichetta per questo indirizzo per aggiungerlo alla lista degli indirizzi utilizzati</translation>
     </message>
     <message>
-        <source>A message that was attached to the weycoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Litecoin network.</source>
-        <translation>Messaggio incluso nel weycoin URI e che sarà memorizzato con la transazione per vostro riferimento. Nota: Questo messaggio non sarà inviato attraverso la rete Litecoin.</translation>
+        <source>A message that was attached to the weycoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the WEYCOIN network.</source>
+        <translation>Messaggio incluso nel weycoin URI e che sarà memorizzato con la transazione per vostro riferimento. Nota: Questo messaggio non sarà inviato attraverso la rete WEYCOIN.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2302,12 +1970,12 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>&amp;Firma Messaggio</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive weycoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive WEYCOIN sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>È possibile firmare messaggi/accordi con i propri indirizzi in modo da dimostrare di poter ricevere weycoin attraverso di essi. Si consiglia di prestare attenzione a non firmare dichiarazioni vaghe o casuali, attacchi di phishing potrebbero cercare di indurre ad apporre la firma su di esse. Si raccomanda di firmare esclusivamente dichiarazioni completamente dettagliate e delle quali si condivide in pieno il contenuto.</translation>
     </message>
     <message>
-        <source>The Litecoin address to sign the message with</source>
-        <translation>L'indirizzo Litecoin da utilizzare per firmare il messaggio</translation>
+        <source>The WEYCOIN address to sign the message with</source>
+        <translation>L'indirizzo WEYCOIN da utilizzare per firmare il messaggio</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2338,8 +2006,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Copia la firma corrente nella clipboard</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Litecoin address</source>
-        <translation>Firma un messaggio per dimostrare di possedere questo indirizzo Litecoin</translation>
+        <source>Sign the message to prove you own this WEYCOIN address</source>
+        <translation>Firma un messaggio per dimostrare di possedere questo indirizzo WEYCOIN</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2362,11 +2030,11 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Per verificare il messaggio inserire l'indirizzo del firmatario, il messaggio e la firma nei campi sottostanti, assicurandosi di copiare esattamente anche ritorni a capo, spazi, tabulazioni, etc.. Si raccomanda di non lasciarsi fuorviare dalla firma a leggere più di quanto non sia riportato nel testo del messaggio stesso, in modo da evitare di cadere vittima di attacchi di tipo man-in-the-middle. Si ricorda che la verifica della firma dimostra soltanto che il firmatario può ricevere pagamenti con l'indirizzo corrispondente, non prova l'invio di alcuna transazione.</translation>
     </message>
     <message>
-        <source>The Litecoin address the message was signed with</source>
-        <translation>L'indirizzo Litecoin con cui è stato contrassegnato il messaggio</translation>
+        <source>The WEYCOIN address the message was signed with</source>
+        <translation>L'indirizzo WEYCOIN con cui è stato contrassegnato il messaggio</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Litecoin address</source>
+        <source>Verify the message to ensure it was signed with the specified WEYCOIN address</source>
         <translation>Verifica il messaggio per accertare che sia stato firmato con l'indirizzo specificato</translation>
     </message>
     <message>
@@ -2376,10 +2044,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     <message>
         <source>Reset all verify message fields</source>
         <translation>Reimposta tutti i campi della verifica messaggio</translation>
-    </message>
-    <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Clicca "Firma Messaggio" per generare una firma</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2449,22 +2113,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     <message>
         <source>%1/offline</source>
         <translation>%1/offline</translation>
-    </message>
-    <message>
-        <source>0/unconfirmed, %1</source>
-        <translation>0/non confermati, %1</translation>
-    </message>
-    <message>
-        <source>abandoned</source>
-        <translation>abbandonato</translation>
-    </message>
-    <message>
-        <source>%1/unconfirmed</source>
-        <translation>%1/non confermato</translation>
-    </message>
-    <message>
-        <source>%1 confirmations</source>
-        <translation>%1 conferme</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2609,10 +2257,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Non confermata</translation>
     </message>
     <message>
-        <source>Abandoned</source>
-        <translation>Abbandonato</translation>
-    </message>
-    <message>
         <source>Confirmed (%1 confirmations)</source>
         <translation>Confermata (%1 conferme)</translation>
     </message>
@@ -2627,10 +2271,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     <message>
         <source>Received with</source>
         <translation>Ricevuto tramite</translation>
-    </message>
-    <message>
-        <source>Received from</source>
-        <translation>Ricevuto da</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -2740,10 +2380,6 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Importo minimo</translation>
     </message>
     <message>
-        <source>Abandon transaction</source>
-        <translation>Abbandona transazione </translation>
-    </message>
-    <message>
         <source>Copy address</source>
         <translation>Copia indirizzo</translation>
     </message>
@@ -2850,7 +2486,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Invia Litecoin</translation>
+        <translation>Invia WEYCOIN</translation>
     </message>
 </context>
 <context>
@@ -2889,7 +2525,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>weycoin-core</name>
     <message>
         <source>Options:</source>
         <translation>Opzioni:</translation>
@@ -2947,8 +2583,8 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Impossibile avviare il server HTTP. Dettagli nel log di debug.</translation>
     </message>
     <message>
-        <source>Litecoin Core</source>
-        <translation>Litecoin Core</translation>
+        <source>WEYCOIN Core</source>
+        <translation>WEYCOIN Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

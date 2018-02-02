@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_COINCONTROLDIALOG_H
-#define BITCOIN_QT_COINCONTROLDIALOG_H
+#ifndef WEYCOIN_QT_COINCONTROLDIALOG_H
+#define WEYCOIN_QT_COINCONTROLDIALOG_H
 
 #include "amount.h"
 
@@ -20,6 +20,7 @@ class PlatformStyle;
 class WalletModel;
 
 class CCoinControl;
+class CTxMemPool;
 
 namespace Ui {
     class CoinControlDialog;
@@ -109,4 +110,4 @@ private Q_SLOTS:
     void updateLabelLocked();
 };
 
-#endif // BITCOIN_QT_COINCONTROLDIALOG_H
+#endif // WEYCOIN_QT_COINCONTROLDIALOG_H

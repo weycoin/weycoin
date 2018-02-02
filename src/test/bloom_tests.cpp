@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,11 +14,12 @@
 #include "uint256.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_bitcoin.h"
+#include "test/test_weycoin.h"
 
 #include <vector>
 
 #include <boost/test/unit_test.hpp>
+#include <boost/tuple/tuple.hpp>
 
 BOOST_FIXTURE_TEST_SUITE(bloom_tests, BasicTestingSetup)
 
@@ -83,8 +84,8 @@ BOOST_AUTO_TEST_CASE(bloom_create_insert_serialize_with_tweak)
 
 BOOST_AUTO_TEST_CASE(bloom_create_insert_key)
 {
-    std::string strSecret = std::string("6vyk9uiGUm8CCKbYue4PpoSbdWKZnjrxMQYJ1PaDGrQ4bLHTxQJ");
-    CBitcoinSecret vchSecret;
+    std::string strSecret = std::string("5Kg1gnAjaLfKiwhhPpGS3QfRg2m6awQvaj98JCZBZQ5SuS2F15C");
+    CWeyCoinSecret vchSecret;
     BOOST_CHECK(vchSecret.SetString(strSecret));
 
     CKey key = vchSecret.GetKey();
@@ -462,7 +463,7 @@ BOOST_AUTO_TEST_CASE(merkle_block_4_test_update_none)
 
 static std::vector<unsigned char> RandomData()
 {
-    uint256 r = InsecureRand256();
+    uint256 r = GetRandHash();
     return std::vector<unsigned char>(r.begin(), r.end());
 }
 
@@ -492,7 +493,7 @@ BOOST_AUTO_TEST_CASE(rolling_bloom)
         if (rb1.contains(RandomData()))
             ++nHits;
     }
-    // Run test_bitcoin with --log_level=message to see BOOST_TEST_MESSAGEs:
+    // Run test_weycoin with --log_level=message to see BOOST_TEST_MESSAGEs:
     BOOST_TEST_MESSAGE("RollingBloomFilter got " << nHits << " false positives (~100 expected)");
 
     // Insanely unlikely to get a fp count outside this range:

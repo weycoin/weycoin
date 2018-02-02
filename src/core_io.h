@@ -1,11 +1,11 @@
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers 
+// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CORE_IO_H
-#define BITCOIN_CORE_IO_H
-
-#include "amount.h"
+#ifndef WEYCOIN_CORE_IO_H
+#define WEYCOIN_CORE_IO_H
 
 #include <string>
 #include <vector>
@@ -27,10 +27,9 @@ uint256 ParseHashStr(const std::string&, const std::string& strName);
 std::vector<unsigned char> ParseHexUV(const UniValue& v, const std::string& strName);
 
 // core_write.cpp
-UniValue ValueFromAmount(const CAmount& amount);
 std::string FormatScript(const CScript& script);
 std::string EncodeHexTx(const CTransaction& tx, const int serializeFlags = 0);
 void ScriptPubKeyToUniv(const CScript& scriptPubKey, UniValue& out, bool fIncludeHex);
-void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry, bool include_hex = true, int serialize_flags = 0);
+void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry);
 
-#endif // BITCOIN_CORE_IO_H
+#endif // WEYCOIN_CORE_IO_H

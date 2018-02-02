@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,7 +82,7 @@ void WalletModelTransaction::reassignAmounts(int nChangePosRet)
 CAmount WalletModelTransaction::getTotalTransactionAmount()
 {
     CAmount totalTransactionAmount = 0;
-    for (const SendCoinsRecipient &rcp : recipients)
+    Q_FOREACH(const SendCoinsRecipient &rcp, recipients)
     {
         totalTransactionAmount += rcp.amount;
     }

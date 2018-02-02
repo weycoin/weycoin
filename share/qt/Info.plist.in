@@ -3,7 +3,7 @@
 <plist version="0.9">
 <dict>
   <key>LSMinimumSystemVersion</key>
-  <string>10.8.0</string>
+  <string>10.6.0</string>
 
   <key>LSArchitecturePriority</key>
   <array>
@@ -11,13 +11,13 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>bitcoin.icns</string>
+  <string>weycoin.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ @COPYRIGHT_HOLDERS_FINAL@</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The WeyCoin Core developers, 2014-@COPYRIGHT_YEAR@ The WeyCoin Core developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
@@ -31,14 +31,8 @@
   <key>CFBundleExecutable</key>
   <string>WeyCoin-Qt</string>
 
-  <key>CFBundleName</key>
-  <string>WeyCoin-Qt</string>
-
-  <key>LSHasLocalizedDisplayName</key>
-  <true/>
-
   <key>CFBundleIdentifier</key>
-  <string>org.weycoin.WeyCoin-Qt</string>
+  <string>org.weycoinfoundation.WeyCoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,7 +40,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.weycoin.WeyCoinPayment</string>
+      <string>io.weycoin.DarkcoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>weycoin</string>
@@ -58,7 +52,7 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.weycoin.paymentrequest</string>
+      <string>io.weycoin.paymentrequest</string>
       <key>UTTypeDescription</key>
       <string>WeyCoin payment request</string>
       <key>UTTypeConformsTo</key>
@@ -84,7 +78,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.weycoin.paymentrequest</string>
+        <string>io.weycoin.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>
@@ -95,9 +89,6 @@
     <string>NSApplication</string>
 
   <key>NSHighResolutionCapable</key>
-    <string>True</string>
-
-  <key>LSAppNapIsDisabled</key>
     <string>True</string>
 
   <key>LSApplicationCategoryType</key>

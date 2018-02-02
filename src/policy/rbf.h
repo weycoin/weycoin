@@ -1,13 +1,11 @@
-// Copyright (c) 2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_POLICY_RBF_H
-#define BITCOIN_POLICY_RBF_H
+#ifndef WEYCOIN_POLICY_RBF_H
+#define WEYCOIN_POLICY_RBF_H
 
 #include "txmempool.h"
-
-static const uint32_t MAX_BIP125_RBF_SEQUENCE = 0xfffffffd;
 
 enum RBFTransactionState {
     RBF_TRANSACTIONSTATE_UNKNOWN,
@@ -25,4 +23,4 @@ bool SignalsOptInRBF(const CTransaction &tx);
 // as the sequence numbers of all in-mempool ancestors.
 RBFTransactionState IsRBFOptIn(const CTransaction &tx, CTxMemPool &pool);
 
-#endif // BITCOIN_POLICY_RBF_H
+#endif // WEYCOIN_POLICY_RBF_H

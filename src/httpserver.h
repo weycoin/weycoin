@@ -1,9 +1,9 @@
-// Copyright (c) 2015-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_HTTPSERVER_H
-#define BITCOIN_HTTPSERVER_H
+#ifndef WEYCOIN_HTTPSERVER_H
+#define WEYCOIN_HTTPSERVER_H
 
 #include <string>
 #include <stdint.h>
@@ -31,10 +31,6 @@ bool StartHTTPServer();
 void InterruptHTTPServer();
 /** Stop HTTP server */
 void StopHTTPServer();
-
-/** Change logging level for libevent. Removes BCLog::LIBEVENT from logCategories if
- * libevent doesn't support debug logging.*/
-bool UpdateHTTPServerLogging(bool enable);
 
 /** Handler for requests to a certain HTTP path */
 typedef std::function<bool(HTTPRequest* req, const std::string &)> HTTPRequestHandler;
@@ -86,7 +82,7 @@ public:
 
     /**
      * Get the request header specified by hdr, or an empty string.
-     * Return a pair (isPresent,string).
+     * Return an pair (isPresent,string).
      */
     std::pair<bool, std::string> GetHeader(const std::string& hdr);
 
@@ -125,7 +121,7 @@ public:
     virtual ~HTTPClosure() {}
 };
 
-/** Event class. This can be used either as a cross-thread trigger or as a timer.
+/** Event class. This can be used either as an cross-thread trigger or as a timer.
  */
 class HTTPEvent
 {
@@ -148,6 +144,4 @@ private:
     struct event* ev;
 };
 
-std::string urlDecode(const std::string &urlEncoded);
-
-#endif // BITCOIN_HTTPSERVER_H
+#endif // WEYCOIN_HTTPSERVER_H

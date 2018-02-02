@@ -1,5 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2015-2017 The Dash developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,31 +17,26 @@
 #include "validation.h"
 #include "miner.h"
 #include "net.h"
-#include "policy/fees.h"
 #include "pow.h"
-#include "rpc/blockchain.h"
-#include "rpc/mining.h"
 #include "rpc/server.h"
 #include "txmempool.h"
 #include "util.h"
 #include "utilstrencodings.h"
 #include "validationinterface.h"
-#include "warnings.h"
+
+#include "activemasternode.h"
+#include "masternodeman.h"
+#include "masternodeconfig.h"
 
 #include <memory>
 #include <stdint.h>
 
+#include <boost/assign/list_of.hpp>
+#include <boost/shared_ptr.hpp>
+
 #include <univalue.h>
 
-unsigned int ParseConfirmTarget(const UniValue& value)
-{
-    int target = value.get_int();
-    unsigned int max_target = ::feeEstimator.HighestTargetTracked(FeeEstimateHorizon::LONG_HALFLIFE);
-    if (target < 1 || (unsigned int)target > max_target) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Invalid conf_target, must be between %u - %u", 1, max_target));
-    }
-    return (unsigned int)target;
-}
+using namespace std;
 
 /**
  * Return average network hashes per second based on the last 'lookup' blocks,
@@ -52,7 +49,7 @@ UniValue GetNetworkHashPS(int lookup, int height) {
     if (height >= 0 && height < chainActive.Height())
         pb = chainActive[height];
 
-    if (pb == nullptr || !pb->nHeight)
+    if (pb == NULL || !pb->nHeight)
         return 0;
 
     // If lookup is -1, then use blocks since last difficulty change.
@@ -86,7 +83,7 @@ UniValue GetNetworkHashPS(int lookup, int height) {
 UniValue getnetworkhashps(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 2)
-        throw std::runtime_error(
+        throw runtime_error(
             "getnetworkhashps ( nblocks height )\n"
             "\nReturns the estimated network hashes per second based on the last n blocks.\n"
             "Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.\n"
@@ -99,22 +96,24 @@ UniValue getnetworkhashps(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("getnetworkhashps", "")
             + HelpExampleRpc("getnetworkhashps", "")
-       );
+        );
 
     LOCK(cs_main);
-    return GetNetworkHashPS(!request.params[0].isNull() ? request.params[0].get_int() : 120, !request.params[1].isNull() ? request.params[1].get_int() : -1);
+    return GetNetworkHashPS(request.params.size() > 0 ? request.params[0].get_int() : 120, request.params.size() > 1 ? request.params[1].get_int() : -1);
 }
 
-UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGenerate, uint64_t nMaxTries, bool keepScript)
+UniValue generateBlocks(boost::shared_ptr<CReserveScript> coinbaseScript, int nGenerate, uint64_t nMaxTries, bool keepScript)
 {
     static const int nInnerLoopCount = 0x10000;
+    int nHeightStart = 0;
     int nHeightEnd = 0;
     int nHeight = 0;
 
     {   // Don't keep cs_main locked
         LOCK(cs_main);
-        nHeight = chainActive.Height();
-        nHeightEnd = nHeight+nGenerate;
+        nHeightStart = chainActive.Height();
+        nHeight = nHeightStart;
+        nHeightEnd = nHeightStart+nGenerate;
     }
     unsigned int nExtraNonce = 0;
     UniValue blockHashes(UniValue::VARR);
@@ -128,7 +127,7 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
             LOCK(cs_main);
             IncrementExtraNonce(pblock, chainActive.Tip(), nExtraNonce);
         }
-        while (nMaxTries > 0 && pblock->nNonce < nInnerLoopCount && !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, Params().GetConsensus())) {
+        while (nMaxTries > 0 && pblock->nNonce < nInnerLoopCount && !CheckProofOfWork(pblock->GetHash(), pblock->nBits, Params().GetConsensus())) {
             ++pblock->nNonce;
             --nMaxTries;
         }
@@ -139,7 +138,7 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
             continue;
         }
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
-        if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
+        if (!ProcessNewBlock(Params(), shared_pblock, true, NULL))
             throw JSONRPCError(RPC_INTERNAL_ERROR, "ProcessNewBlock, block not accepted");
         ++nHeight;
         blockHashes.push_back(pblock->GetHash().GetHex());
@@ -153,10 +152,57 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
     return blockHashes;
 }
 
+UniValue generate(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
+        throw runtime_error(
+            "generate nblocks ( maxtries )\n"
+            "\nMine up to nblocks blocks immediately (before the RPC call returns)\n"
+            "\nArguments:\n"
+            "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
+            "2. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
+            "\nResult:\n"
+            "[ blockhashes ]     (array) hashes of blocks generated\n"
+            "\nExamples:\n"
+            "\nGenerate 11 blocks\n"
+            + HelpExampleCli("generate", "11")
+        );
+
+    if (GetArg("-mineraddress", "").empty()) {
+#ifdef ENABLE_WALLET
+        if (!pwalletMain) {
+            throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Wallet disabled and -mineraddress not set");
+        }
+#else
+        throw JSONRPCError(RPC_METHOD_NOT_FOUND, "weycoind compiled without wallet and -mineraddress not set");
+#endif
+    }
+
+    int nGenerate = request.params[0].get_int();
+    uint64_t nMaxTries = 1000000;
+    if (request.params.size() > 1) {
+        nMaxTries = request.params[1].get_int();
+    }
+
+    //TODO: if not wallet enabled, empty address?
+    boost::shared_ptr<CReserveScript> coinbaseScript;
+    GetMainSignals().ScriptForMining(coinbaseScript);
+
+    // If the keypool is exhausted, no script is returned at all.  Catch this.
+    if (!coinbaseScript)
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
+
+    //throw an error if no script was provided
+    if (coinbaseScript->reserveScript.empty())
+        throw JSONRPCError(RPC_INTERNAL_ERROR, "No coinbase script available (mining requires a wallet)");
+
+    return generateBlocks(coinbaseScript, nGenerate, nMaxTries, true);
+}
+
 UniValue generatetoaddress(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 3)
-        throw std::runtime_error(
+        throw runtime_error(
             "generatetoaddress nblocks address (maxtries)\n"
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
@@ -172,15 +218,15 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
 
     int nGenerate = request.params[0].get_int();
     uint64_t nMaxTries = 1000000;
-    if (!request.params[2].isNull()) {
+    if (request.params.size() > 2) {
         nMaxTries = request.params[2].get_int();
     }
 
-    CBitcoinAddress address(request.params[1].get_str());
+    CWeyCoinAddress address(request.params[1].get_str());
     if (!address.IsValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Error: Invalid address");
 
-    std::shared_ptr<CReserveScript> coinbaseScript = std::make_shared<CReserveScript>();
+    boost::shared_ptr<CReserveScript> coinbaseScript(new CReserveScript());
     coinbaseScript->reserveScript = GetScriptForDestination(address.Get());
 
     return generateBlocks(coinbaseScript, nGenerate, nMaxTries, false);
@@ -189,7 +235,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
 UniValue getmininginfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
-        throw std::runtime_error(
+        throw runtime_error(
             "getmininginfo\n"
             "\nReturns a json object containing mining-related information."
             "\nResult:\n"
@@ -226,17 +272,18 @@ UniValue getmininginfo(const JSONRPCRequest& request)
 }
 
 
-// NOTE: Unlike wallet RPC (which use BTC values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
+// NOTE: Unlike wallet RPC (which use STAK values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
 UniValue prioritisetransaction(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 3)
-        throw std::runtime_error(
-            "prioritisetransaction <txid> <dummy value> <fee delta>\n"
+        throw runtime_error(
+            "prioritisetransaction <txid> <priority delta> <fee delta>\n"
             "Accepts the transaction into mined blocks at a higher (or lower) priority\n"
             "\nArguments:\n"
             "1. \"txid\"       (string, required) The transaction id.\n"
-            "2. dummy          (numeric, optional) API-Compatibility for previous API. Must be zero or null.\n"
-            "                  DEPRECATED. For forward compatibility use named arguments and omit this parameter.\n"
+            "2. priority_delta (numeric, required) The priority to add or subtract.\n"
+            "                  The transaction selection algorithm considers the tx as it would have a higher priority.\n"
+            "                  (priority of a transaction is calculated: coinage * value_in_satoshis / txsize) \n"
             "3. fee_delta      (numeric, required) The fee value (in satoshis) to add (or subtract, if negative).\n"
             "                  The fee is not actually paid, only the algorithm for selecting transactions into a block\n"
             "                  considers the transaction as it would have paid a higher (or lower) fee.\n"
@@ -252,11 +299,7 @@ UniValue prioritisetransaction(const JSONRPCRequest& request)
     uint256 hash = ParseHashStr(request.params[0].get_str(), "txid");
     CAmount nAmount = request.params[2].get_int64();
 
-    if (!(request.params[1].isNull() || request.params[1].get_real() == 0)) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Priority is no longer supported, dummy argument to prioritisetransaction must be 0.");
-    }
-
-    mempool.PrioritiseTransaction(hash, nAmount);
+    mempool.PrioritiseTransaction(hash, request.params[0].get_str(), request.params[1].get_real(), nAmount);
     return true;
 }
 
@@ -281,7 +324,7 @@ static UniValue BIP22ValidationResult(const CValidationState& state)
 }
 
 std::string gbt_vb_name(const Consensus::DeploymentPos pos) {
-    const struct VBDeploymentInfo& vbinfo = VersionBitsDeploymentInfo[pos];
+    const struct BIP9DeploymentInfo& vbinfo = VersionBitsDeploymentInfo[pos];
     std::string s = vbinfo.name;
     if (!vbinfo.gbt_force) {
         s.insert(s.begin(), '!');
@@ -289,18 +332,19 @@ std::string gbt_vb_name(const Consensus::DeploymentPos pos) {
     return s;
 }
 
+
 UniValue getblocktemplate(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
-        throw std::runtime_error(
+        throw runtime_error(
             "getblocktemplate ( TemplateRequest )\n"
             "\nIf the request parameters include a 'mode' key, that is used to explicitly select between the default 'template' request or a 'proposal'.\n"
             "It returns data needed to construct a block to work on.\n"
             "For full specification, see BIPs 22, 23, 9, and 145:\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0022.mediawiki\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0023.mediawiki\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
-            "    https://github.com/bitcoin/bips/blob/master/bip-0145.mediawiki\n"
+            "    https://github.com/weycoin/bips/blob/master/bip-0022.mediawiki\n"
+            "    https://github.com/weycoin/bips/blob/master/bip-0023.mediawiki\n"
+            "    https://github.com/weycoin/bips/blob/master/bip-0009.mediawiki#getblocktemplate_changes\n"
+            "    https://github.com/weycoin/bips/blob/master/bip-0145.mediawiki\n"
 
             "\nArguments:\n"
             "1. template_request         (json object, optional) A json object in the following spec\n"
@@ -343,9 +387,9 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             "      }\n"
             "      ,...\n"
             "  ],\n"
-            "  \"coinbaseaux\" : {                 (json object) data that should be included in the coinbase's scriptSig content\n"
-            "      \"flags\" : \"xx\"                  (string) key name is to be ignored, and value included in scriptSig\n"
-            "  },\n"
+//            "  \"coinbaseaux\" : {                 (json object) data that should be included in the coinbase's scriptSig content\n"
+//            "      \"flags\" : \"xx\"                  (string) key name is to be ignored, and value included in scriptSig\n"
+//            "  },\n"
             "  \"coinbasevalue\" : n,              (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in Satoshis)\n"
             "  \"coinbasetxn\" : { ... },          (json object) information for coinbase transaction\n"
             "  \"target\" : \"xxxx\",                (string) The hash target\n"
@@ -366,15 +410,25 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("getblocktemplate", "")
             + HelpExampleRpc("getblocktemplate", "")
-         );
+        );
 
     LOCK(cs_main);
+
+    if (GetArg("-mineraddress", "").empty()) {
+#ifdef ENABLE_WALLET
+        if (!pwalletMain) {
+            throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Wallet disabled and -mineraddress not set");
+        }
+#else
+        throw JSONRPCError(RPC_METHOD_NOT_FOUND, "weycoind compiled without wallet and -mineraddress not set");
+#endif
+    }
 
     std::string strMode = "template";
     UniValue lpval = NullUniValue;
     std::set<std::string> setClientRules;
     int64_t nMaxVersionPreVB = -1;
-    if (!request.params[0].isNull())
+    if (request.params.size() > 0)
     {
         const UniValue& oparam = request.params[0].get_obj();
         const UniValue& modeval = find_value(oparam, "mode");
@@ -493,11 +547,16 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         // TODO: Maybe recheck connections/IBD and (if something wrong) send an expires-immediately template to stop miners?
     }
 
-    const struct VBDeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
+    const struct BIP9DeploymentInfo& segwit_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT];
+    const struct BIP9DeploymentInfo& segwit2x_info = VersionBitsDeploymentInfo[Consensus::DEPLOYMENT_SEGWIT2X];
     // If the caller is indicating segwit support, then allow CreateNewBlock()
     // to select witness transactions, after segwit activates (otherwise
     // don't).
-    bool fSupportsSegwit = setClientRules.find(segwit_info.name) != setClientRules.end();
+
+    bool fSupportsSegwit = setClientRules.find(std::string(segwit_info.name)) != setClientRules.end();
+    bool fSupportsSegwit2x = setClientRules.find(std::string(segwit2x_info.name)) != setClientRules.end();
+
+    fSupportsSegwit2x = false;
 
     // Update block
     static CBlockIndex* pindexPrev;
@@ -507,8 +566,8 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     // a segwit-block to a non-segwit caller.
     static bool fLastTemplateSupportsSegwit = true;
     if (pindexPrev != chainActive.Tip() ||
-        (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5) ||
-        fLastTemplateSupportsSegwit != fSupportsSegwit)
+            (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5) ||
+            fLastTemplateSupportsSegwit != fSupportsSegwit)
     {
         // Clear pindexPrev so future calls make a new block, despite any failures from here on
         pindexPrev = nullptr;
@@ -520,8 +579,17 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         fLastTemplateSupportsSegwit = fSupportsSegwit;
 
         // Create new block
-        CScript scriptDummy = CScript() << OP_TRUE;
-        pblocktemplate = BlockAssembler(Params()).CreateNewBlock(scriptDummy, fSupportsSegwit);
+        if (!GetArg("-mineraddress", "").empty()) {
+            boost::shared_ptr<CReserveScript> coinbaseScript;
+            GetMainSignals().ScriptForMining(coinbaseScript);
+            pblocktemplate =
+                BlockAssembler(Params()).CreateNewBlock(coinbaseScript->reserveScript, fSupportsSegwit);
+        }
+        else {
+            CScript scriptDummy = CScript() << OP_TRUE;
+            pblocktemplate = BlockAssembler(Params()).CreateNewBlock(scriptDummy, fSupportsSegwit);
+        }
+
         if (!pblocktemplate)
             throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
 
@@ -538,17 +606,21 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     // NOTE: If at some point we support pre-segwit miners post-segwit-activation, this needs to take segwit support into consideration
     const bool fPreSegWit = (THRESHOLD_ACTIVE != VersionBitsState(pindexPrev, consensusParams, Consensus::DEPLOYMENT_SEGWIT, versionbitscache));
 
-    UniValue aCaps(UniValue::VARR); aCaps.push_back("proposal");
+    UniValue aCaps(UniValue::VARR);
+    aCaps.push_back("proposal");
+
+    bool coinbasetxn = true;
+    UniValue txCoinbase = NullUniValue;
 
     UniValue transactions(UniValue::VARR);
-    std::map<uint256, int64_t> setTxIndex;
+    map<uint256, int64_t> setTxIndex;
     int i = 0;
     for (const auto& it : pblock->vtx) {
         const CTransaction& tx = *it;
         uint256 txHash = tx.GetHash();
         setTxIndex[txHash] = i++;
 
-        if (tx.IsCoinBase())
+        if (tx.IsCoinBase() && !coinbasetxn)
             continue;
 
         UniValue entry(UniValue::VOBJ);
@@ -558,7 +630,7 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         entry.push_back(Pair("hash", tx.GetWitnessHash().GetHex()));
 
         UniValue deps(UniValue::VARR);
-        for (const CTxIn &in : tx.vin)
+        BOOST_FOREACH (const CTxIn &in, tx.vin)
         {
             if (setTxIndex.count(in.prevout.hash))
                 deps.push_back(setTxIndex[in.prevout.hash]);
@@ -566,16 +638,27 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         entry.push_back(Pair("depends", deps));
 
         int index_in_template = i - 1;
+
         entry.push_back(Pair("fee", pblocktemplate->vTxFees[index_in_template]));
+
         int64_t nTxSigOps = pblocktemplate->vTxSigOpsCost[index_in_template];
         if (fPreSegWit) {
             assert(nTxSigOps % WITNESS_SCALE_FACTOR == 0);
             nTxSigOps /= WITNESS_SCALE_FACTOR;
         }
         entry.push_back(Pair("sigops", nTxSigOps));
+
         entry.push_back(Pair("weight", GetTransactionWeight(tx)));
 
-        transactions.push_back(entry);
+        if (tx.IsCoinBase()) {
+            if (tx.vout.size() > 1) {
+                entry.push_back(Pair("treasuryreward", (int64_t)tx.vout[1].nValue));
+            }
+            entry.push_back(Pair("required", true));
+            txCoinbase = entry;
+        } else {
+            transactions.push_back(entry);
+        }
     }
 
     UniValue aux(UniValue::VOBJ);
@@ -588,6 +671,8 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     aMutable.push_back("transactions");
     aMutable.push_back("prevblock");
 
+    UniValue aVotes(UniValue::VARR);
+
     UniValue result(UniValue::VOBJ);
     result.push_back(Pair("capabilities", aCaps));
 
@@ -596,41 +681,42 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     for (int j = 0; j < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j) {
         Consensus::DeploymentPos pos = Consensus::DeploymentPos(j);
         ThresholdState state = VersionBitsState(pindexPrev, consensusParams, pos, versionbitscache);
+
         switch (state) {
-            case THRESHOLD_DEFINED:
-            case THRESHOLD_FAILED:
-                // Not exposed to GBT at all
-                break;
-            case THRESHOLD_LOCKED_IN:
-                // Ensure bit is set in block version
-                pblock->nVersion |= VersionBitsMask(consensusParams, pos);
-                // FALL THROUGH to get vbavailable set...
-            case THRESHOLD_STARTED:
-            {
-                const struct VBDeploymentInfo& vbinfo = VersionBitsDeploymentInfo[pos];
-                vbavailable.push_back(Pair(gbt_vb_name(pos), consensusParams.vDeployments[pos].bit));
-                if (setClientRules.find(vbinfo.name) == setClientRules.end()) {
-                    if (!vbinfo.gbt_force) {
-                        // If the client doesn't support this, don't indicate it in the [default] version
-                        pblock->nVersion &= ~VersionBitsMask(consensusParams, pos);
-                    }
+        case THRESHOLD_DEFINED:
+        case THRESHOLD_FAILED:
+            // Not exposed to GBT at all
+            break;
+        case THRESHOLD_LOCKED_IN:
+            // Ensure bit is set in block version
+            pblock->nVersion |= VersionBitsMask(consensusParams, pos);
+        // FALL THROUGH to get vbavailable set...
+        case THRESHOLD_STARTED:
+        {
+            const struct BIP9DeploymentInfo& vbinfo = VersionBitsDeploymentInfo[pos];
+            vbavailable.push_back(Pair(gbt_vb_name(pos), consensusParams.vDeployments[pos].bit));
+            if (setClientRules.find(vbinfo.name) == setClientRules.end()) {
+                if (!vbinfo.gbt_force) {
+                    // If the client doesn't support this, don't indicate it in the [default] version
+                    pblock->nVersion &= ~VersionBitsMask(consensusParams, pos);
                 }
-                break;
             }
-            case THRESHOLD_ACTIVE:
-            {
-                // Add to rules only
-                const struct VBDeploymentInfo& vbinfo = VersionBitsDeploymentInfo[pos];
-                aRules.push_back(gbt_vb_name(pos));
-                if (setClientRules.find(vbinfo.name) == setClientRules.end()) {
-                    // Not supported by the client; make sure it's safe to proceed
-                    if (!vbinfo.gbt_force) {
-                        // If we do anything other than throw an exception here, be sure version/force isn't sent to old clients
-                        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Support for '%s' rule requires explicit client support", vbinfo.name));
-                    }
+            break;
+        }
+        case THRESHOLD_ACTIVE:
+        {
+            // Add to rules only
+            const struct BIP9DeploymentInfo& vbinfo = VersionBitsDeploymentInfo[pos];
+            aRules.push_back(gbt_vb_name(pos));
+            if (setClientRules.find(vbinfo.name) == setClientRules.end()) {
+                // Not supported by the client; make sure it's safe to proceed
+                if (!vbinfo.gbt_force) {
+                    // If we do anything other than throw an exception here, be sure version/force isn't sent to old clients
+                    throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Support for '%s' rule requires explicit client support", vbinfo.name));
                 }
-                break;
             }
+            break;
+        }
         }
     }
     result.push_back(Pair("version", pblock->nVersion));
@@ -648,26 +734,36 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
 
     result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
     result.push_back(Pair("transactions", transactions));
+
+    if (coinbasetxn) {
+        assert(txCoinbase.isObject());
+        result.push_back(Pair("coinbasetxn", txCoinbase));
+    }
+    //else
+    //return both coinbase -txn, -aux and -value for compatability
+    //but coinbaseaux will fail if used.
     result.push_back(Pair("coinbaseaux", aux));
-    result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0]->vout[0].nValue));
+    result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0]->GetValueOut()));
+
     result.push_back(Pair("longpollid", chainActive.Tip()->GetBlockHash().GetHex() + i64tostr(nTransactionsUpdatedLast)));
     result.push_back(Pair("target", hashTarget.GetHex()));
     result.push_back(Pair("mintime", (int64_t)pindexPrev->GetMedianTimePast()+1));
     result.push_back(Pair("mutable", aMutable));
     result.push_back(Pair("noncerange", "00000000ffffffff"));
-    int64_t nSigOpLimit = MAX_BLOCK_SIGOPS_COST;
-    int64_t nSizeLimit = MAX_BLOCK_SERIALIZED_SIZE;
+
+    int64_t nSigOpLimit = MaxBlockSigOpsCost(fSupportsSegwit2x); // excl bip102 buffer
     if (fPreSegWit) {
         assert(nSigOpLimit % WITNESS_SCALE_FACTOR == 0);
         nSigOpLimit /= WITNESS_SCALE_FACTOR;
-        assert(nSizeLimit % WITNESS_SCALE_FACTOR == 0);
-        nSizeLimit /= WITNESS_SCALE_FACTOR;
     }
     result.push_back(Pair("sigoplimit", nSigOpLimit));
-    result.push_back(Pair("sizelimit", nSizeLimit));
-    if (!fPreSegWit) {
-        result.push_back(Pair("weightlimit", (int64_t)MAX_BLOCK_WEIGHT));
+    if (fPreSegWit) {
+        result.push_back(Pair("sizelimit", (int64_t)MAX_LEGACY_BLOCK_SIZE));
+    } else {
+        result.push_back(Pair("sizelimit", (int64_t)MAX_BLOCK_SERIALIZED_SIZE));
+        result.push_back(Pair("weightlimit", (int64_t)MaxBlockWeight(fSupportsSegwit2x)));
     }
+
     result.push_back(Pair("curtime", pblock->GetBlockTime()));
     result.push_back(Pair("bits", strprintf("%08x", pblock->nBits)));
     result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight+1)));
@@ -675,6 +771,28 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     if (!pblocktemplate->vchCoinbaseCommitment.empty() && fSupportsSegwit) {
         result.push_back(Pair("default_witness_commitment", HexStr(pblocktemplate->vchCoinbaseCommitment.begin(), pblocktemplate->vchCoinbaseCommitment.end())));
     }
+
+    result.push_back(Pair("votes", aVotes));
+
+    // masternode payee exists?
+    if(pblock->payee != CScript()) {
+        CTxDestination address1;
+        ExtractDestination(pblock->payee, address1);
+        CWeyCoinAddress address2(address1);
+        result.push_back(Pair("payee", address2.ToString().c_str()));
+        //TODO: [squbs] dynamic masternode flow will screw with this call - point-in-time variation
+        result.push_back(Pair("payee_amount",
+           (int64_t)GetMasternodePayment(pindexPrev->nHeight+1, pblock->vtx[0]->GetValueOut() * 0.95, consensusParams)));
+    } else {
+        result.push_back(Pair("payee", ""));
+        result.push_back(Pair("payee_amount", ""));
+    }
+
+    bool MasternodePayments =
+        pindexPrev->nHeight >= consensusParams.MasternodePaymentStartHeight;
+
+    result.push_back(Pair("masternode_payments", MasternodePayments));
+    result.push_back(Pair("enforce_masternode_payments", true));
 
     return result;
 }
@@ -689,7 +807,7 @@ public:
     submitblock_StateCatcher(const uint256 &hashIn) : hash(hashIn), found(false), state() {}
 
 protected:
-    void BlockChecked(const CBlock& block, const CValidationState& stateIn) override {
+    virtual void BlockChecked(const CBlock& block, const CValidationState& stateIn) {
         if (block.GetHash() != hash)
             return;
         found = true;
@@ -699,28 +817,29 @@ protected:
 
 UniValue submitblock(const JSONRPCRequest& request)
 {
-    // We allow 2 arguments for compliance with BIP22. Argument 2 is ignored.
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2) {
-        throw std::runtime_error(
-            "submitblock \"hexdata\"  ( \"dummy\" )\n"
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
+        throw runtime_error(
+            "submitblock \"hexdata\" ( \"jsonparametersobject\" )\n"
             "\nAttempts to submit new block to network.\n"
-            "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.\n"
+            "The 'jsonparametersobject' parameter is currently ignored.\n"
+            "See https://en.weycoin.it/wiki/BIP_0022 for full specification.\n"
 
             "\nArguments\n"
             "1. \"hexdata\"        (string, required) the hex-encoded block data to submit\n"
-            "2. \"dummy\"          (optional) dummy value, for compatibility with BIP22. This value is ignored.\n"
+            "2. \"parameters\"     (string, optional) object of optional parameters\n"
+            "    {\n"
+            "      \"workid\" : \"id\"    (string, optional) if the server provided a workid, it MUST be included with submissions\n"
+            "    }\n"
             "\nResult:\n"
             "\nExamples:\n"
             + HelpExampleCli("submitblock", "\"mydata\"")
             + HelpExampleRpc("submitblock", "\"mydata\"")
         );
-    }
 
     std::shared_ptr<CBlock> blockptr = std::make_shared<CBlock>();
     CBlock& block = *blockptr;
-    if (!DecodeHexBlk(block, request.params[0].get_str())) {
+    if (!DecodeHexBlk(block, request.params[0].get_str()))
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block decode failed");
-    }
 
     if (block.vtx.empty() || !block.vtx[0]->IsCoinBase()) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Block does not start with a coinbase");
@@ -733,12 +852,10 @@ UniValue submitblock(const JSONRPCRequest& request)
         BlockMap::iterator mi = mapBlockIndex.find(hash);
         if (mi != mapBlockIndex.end()) {
             CBlockIndex *pindex = mi->second;
-            if (pindex->IsValid(BLOCK_VALID_SCRIPTS)) {
+            if (pindex->IsValid(BLOCK_VALID_SCRIPTS))
                 return "duplicate";
-            }
-            if (pindex->nStatus & BLOCK_FAILED_MASK) {
+            if (pindex->nStatus & BLOCK_FAILED_MASK)
                 return "duplicate-invalid";
-            }
             // Otherwise, we might only have the header - process the block before returning
             fBlockPresent = true;
         }
@@ -754,26 +871,24 @@ UniValue submitblock(const JSONRPCRequest& request)
 
     submitblock_StateCatcher sc(block.GetHash());
     RegisterValidationInterface(&sc);
-    bool fAccepted = ProcessNewBlock(Params(), blockptr, true, nullptr);
+    bool fAccepted = ProcessNewBlock(Params(), blockptr, true, NULL);
     UnregisterValidationInterface(&sc);
-    if (fBlockPresent) {
-        if (fAccepted && !sc.found) {
+    if (fBlockPresent)
+    {
+        if (fAccepted && !sc.found)
             return "duplicate-inconclusive";
-        }
         return "duplicate";
     }
-    if (!sc.found) {
+    if (!sc.found)
         return "inconclusive";
-    }
     return BIP22ValidationResult(sc.state);
 }
 
 UniValue estimatefee(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1)
-        throw std::runtime_error(
+        throw runtime_error(
             "estimatefee nblocks\n"
-            "\nDEPRECATED. Please use estimatesmartfee for more intelligent estimates."
             "\nEstimates the approximate fee per kilobyte needed for a transaction to begin\n"
             "confirmation within nblocks blocks. Uses virtual transaction size of transaction\n"
             "as defined in BIP 141 (witness data is discounted).\n"
@@ -788,199 +903,916 @@ UniValue estimatefee(const JSONRPCRequest& request)
             "a fee that is high enough to get reliably included in the next block.\n"
             "\nExample:\n"
             + HelpExampleCli("estimatefee", "6")
-            );
+        );
 
-    RPCTypeCheck(request.params, {UniValue::VNUM});
+    RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
 
     int nBlocks = request.params[0].get_int();
     if (nBlocks < 1)
         nBlocks = 1;
 
-    CFeeRate feeRate = ::feeEstimator.estimateFee(nBlocks);
+    CFeeRate feeRate = mempool.estimateFee(nBlocks);
     if (feeRate == CFeeRate(0))
         return -1.0;
 
     return ValueFromAmount(feeRate.GetFeePerK());
 }
 
+UniValue estimatepriority(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw runtime_error(
+            "estimatepriority nblocks\n"
+            "\nDEPRECATED. Estimates the approximate priority a zero-fee transaction needs to begin\n"
+            "confirmation within nblocks blocks.\n"
+            "\nArguments:\n"
+            "1. nblocks     (numeric, required)\n"
+            "\nResult:\n"
+            "n              (numeric) estimated priority\n"
+            "\n"
+            "A negative value is returned if not enough transactions and blocks\n"
+            "have been observed to make an estimate.\n"
+            "\nExample:\n"
+            + HelpExampleCli("estimatepriority", "6")
+        );
+
+    RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
+
+    int nBlocks = request.params[0].get_int();
+    if (nBlocks < 1)
+        nBlocks = 1;
+
+    return mempool.estimatePriority(nBlocks);
+}
+
 UniValue estimatesmartfee(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
-        throw std::runtime_error(
-            "estimatesmartfee conf_target (\"estimate_mode\")\n"
+    if (request.fHelp || request.params.size() != 1)
+        throw runtime_error(
+            "estimatesmartfee nblocks\n"
+            "\nWARNING: This interface is unstable and may disappear or change!\n"
             "\nEstimates the approximate fee per kilobyte needed for a transaction to begin\n"
-            "confirmation within conf_target blocks if possible and return the number of blocks\n"
+            "confirmation within nblocks blocks if possible and return the number of blocks\n"
             "for which the estimate is valid. Uses virtual transaction size as defined\n"
             "in BIP 141 (witness data is discounted).\n"
             "\nArguments:\n"
-            "1. conf_target     (numeric) Confirmation target in blocks (1 - 1008)\n"
-            "2. \"estimate_mode\" (string, optional, default=CONSERVATIVE) The fee estimate mode.\n"
-            "                   Whether to return a more conservative estimate which also satisfies\n"
-            "                   a longer history. A conservative estimate potentially returns a\n"
-            "                   higher feerate and is more likely to be sufficient for the desired\n"
-            "                   target, but is not as responsive to short term drops in the\n"
-            "                   prevailing fee market.  Must be one of:\n"
-            "       \"UNSET\" (defaults to CONSERVATIVE)\n"
-            "       \"ECONOMICAL\"\n"
-            "       \"CONSERVATIVE\"\n"
+            "1. nblocks     (numeric)\n"
             "\nResult:\n"
             "{\n"
-            "  \"feerate\" : x.x,     (numeric, optional) estimate fee-per-kilobyte (in LTC)\n"
-            "  \"errors\": [ str... ] (json array of strings, optional) Errors encountered during processing\n"
+            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in STAK)\n"
             "  \"blocks\" : n         (numeric) block number where estimate was found\n"
             "}\n"
             "\n"
-            "The request target will be clamped between 2 and the highest target\n"
-            "fee estimation is able to return based on how long it has been running.\n"
-            "An error is returned if not enough transactions and blocks\n"
+            "A negative value is returned if not enough transactions and blocks\n"
             "have been observed to make an estimate for any number of blocks.\n"
+            "However it will not return a value below the mempool reject fee.\n"
             "\nExample:\n"
             + HelpExampleCli("estimatesmartfee", "6")
-            );
+        );
 
-    RPCTypeCheck(request.params, {UniValue::VNUM, UniValue::VSTR});
-    RPCTypeCheckArgument(request.params[0], UniValue::VNUM);
-    unsigned int conf_target = ParseConfirmTarget(request.params[0]);
-    bool conservative = true;
-    if (request.params.size() > 1 && !request.params[1].isNull()) {
-        FeeEstimateMode fee_mode;
-        if (!FeeModeFromString(request.params[1].get_str(), fee_mode)) {
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid estimate_mode parameter");
-        }
-        if (fee_mode == FeeEstimateMode::ECONOMICAL) conservative = false;
-    }
+    RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
+
+    int nBlocks = request.params[0].get_int();
 
     UniValue result(UniValue::VOBJ);
-    UniValue errors(UniValue::VARR);
-    FeeCalculation feeCalc;
-    CFeeRate feeRate = ::feeEstimator.estimateSmartFee(conf_target, &feeCalc, conservative);
-    if (feeRate != CFeeRate(0)) {
-        result.push_back(Pair("feerate", ValueFromAmount(feeRate.GetFeePerK())));
-    } else {
-        errors.push_back("Insufficient data or no feerate found");
-        result.push_back(Pair("errors", errors));
-    }
-    result.push_back(Pair("blocks", feeCalc.returnedTarget));
+    int answerFound;
+    CFeeRate feeRate = mempool.estimateSmartFee(nBlocks, &answerFound);
+    result.push_back(Pair("feerate", feeRate == CFeeRate(0) ? -1.0 : ValueFromAmount(feeRate.GetFeePerK())));
+    result.push_back(Pair("blocks", answerFound));
     return result;
 }
 
-UniValue estimaterawfee(const JSONRPCRequest& request)
+UniValue estimatesmartpriority(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
-        throw std::runtime_error(
-            "estimaterawfee conf_target (threshold)\n"
-            "\nWARNING: This interface is unstable and may disappear or change!\n"
-            "\nWARNING: This is an advanced API call that is tightly coupled to the specific\n"
-            "         implementation of fee estimation. The parameters it can be called with\n"
-            "         and the results it returns will change if the internal implementation changes.\n"
-            "\nEstimates the approximate fee per kilobyte needed for a transaction to begin\n"
-            "confirmation within conf_target blocks if possible. Uses virtual transaction size as\n"
-            "defined in BIP 141 (witness data is discounted).\n"
+    if (request.fHelp || request.params.size() != 1)
+        throw runtime_error(
+            "estimatesmartpriority nblocks\n"
+            "\nDEPRECATED. WARNING: This interface is unstable and may disappear or change!\n"
+            "\nEstimates the approximate priority a zero-fee transaction needs to begin\n"
+            "confirmation within nblocks blocks if possible and return the number of blocks\n"
+            "for which the estimate is valid.\n"
             "\nArguments:\n"
-            "1. conf_target (numeric) Confirmation target in blocks (1 - 1008)\n"
-            "2. threshold   (numeric, optional) The proportion of transactions in a given feerate range that must have been\n"
-            "               confirmed within conf_target in order to consider those feerates as high enough and proceed to check\n"
-            "               lower buckets.  Default: 0.95\n"
+            "1. nblocks     (numeric, required)\n"
             "\nResult:\n"
             "{\n"
-            "  \"short\" : {            (json object, optional) estimate for short time horizon\n"
-            "      \"feerate\" : x.x,        (numeric, optional) estimate fee-per-kilobyte (in BTC)\n"
-            "      \"decay\" : x.x,          (numeric) exponential decay (per block) for historical moving average of confirmation data\n"
-            "      \"scale\" : x,            (numeric) The resolution of confirmation targets at this time horizon\n"
-            "      \"pass\" : {              (json object, optional) information about the lowest range of feerates to succeed in meeting the threshold\n"
-            "          \"startrange\" : x.x,     (numeric) start of feerate range\n"
-            "          \"endrange\" : x.x,       (numeric) end of feerate range\n"
-            "          \"withintarget\" : x.x,   (numeric) number of txs over history horizon in the feerate range that were confirmed within target\n"
-            "          \"totalconfirmed\" : x.x, (numeric) number of txs over history horizon in the feerate range that were confirmed at any point\n"
-            "          \"inmempool\" : x.x,      (numeric) current number of txs in mempool in the feerate range unconfirmed for at least target blocks\n"
-            "          \"leftmempool\" : x.x,    (numeric) number of txs over history horizon in the feerate range that left mempool unconfirmed after target\n"
-            "      },\n"
-            "      \"fail\" : { ... },       (json object, optional) information about the highest range of feerates to fail to meet the threshold\n"
-            "      \"errors\":  [ str... ]   (json array of strings, optional) Errors encountered during processing\n"
-            "  },\n"
-            "  \"medium\" : { ... },    (json object, optional) estimate for medium time horizon\n"
-            "  \"long\" : { ... }       (json object) estimate for long time horizon\n"
+            "  \"priority\" : x.x,    (numeric) estimated priority\n"
+            "  \"blocks\" : n         (numeric) block number where estimate was found\n"
             "}\n"
             "\n"
-            "Results are returned for any horizon which tracks blocks up to the confirmation target.\n"
+            "A negative value is returned if not enough transactions and blocks\n"
+            "have been observed to make an estimate for any number of blocks.\n"
+            "However if the mempool reject fee is set it will return 1e9 * MAX_MONEY.\n"
             "\nExample:\n"
-            + HelpExampleCli("estimaterawfee", "6 0.9")
-            );
+            + HelpExampleCli("estimatesmartpriority", "6")
+        );
 
-    RPCTypeCheck(request.params, {UniValue::VNUM, UniValue::VNUM}, true);
-    RPCTypeCheckArgument(request.params[0], UniValue::VNUM);
-    unsigned int conf_target = ParseConfirmTarget(request.params[0]);
-    double threshold = 0.95;
-    if (!request.params[1].isNull()) {
-        threshold = request.params[1].get_real();
-    }
-    if (threshold < 0 || threshold > 1) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid threshold");
-    }
+    RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
+
+    int nBlocks = request.params[0].get_int();
 
     UniValue result(UniValue::VOBJ);
-
-    for (FeeEstimateHorizon horizon : {FeeEstimateHorizon::SHORT_HALFLIFE, FeeEstimateHorizon::MED_HALFLIFE, FeeEstimateHorizon::LONG_HALFLIFE}) {
-        CFeeRate feeRate;
-        EstimationResult buckets;
-
-        // Only output results for horizons which track the target
-        if (conf_target > ::feeEstimator.HighestTargetTracked(horizon)) continue;
-
-        feeRate = ::feeEstimator.estimateRawFee(conf_target, threshold, horizon, &buckets);
-        UniValue horizon_result(UniValue::VOBJ);
-        UniValue errors(UniValue::VARR);
-        UniValue passbucket(UniValue::VOBJ);
-        passbucket.push_back(Pair("startrange", round(buckets.pass.start)));
-        passbucket.push_back(Pair("endrange", round(buckets.pass.end)));
-        passbucket.push_back(Pair("withintarget", round(buckets.pass.withinTarget * 100.0) / 100.0));
-        passbucket.push_back(Pair("totalconfirmed", round(buckets.pass.totalConfirmed * 100.0) / 100.0));
-        passbucket.push_back(Pair("inmempool", round(buckets.pass.inMempool * 100.0) / 100.0));
-        passbucket.push_back(Pair("leftmempool", round(buckets.pass.leftMempool * 100.0) / 100.0));
-        UniValue failbucket(UniValue::VOBJ);
-        failbucket.push_back(Pair("startrange", round(buckets.fail.start)));
-        failbucket.push_back(Pair("endrange", round(buckets.fail.end)));
-        failbucket.push_back(Pair("withintarget", round(buckets.fail.withinTarget * 100.0) / 100.0));
-        failbucket.push_back(Pair("totalconfirmed", round(buckets.fail.totalConfirmed * 100.0) / 100.0));
-        failbucket.push_back(Pair("inmempool", round(buckets.fail.inMempool * 100.0) / 100.0));
-        failbucket.push_back(Pair("leftmempool", round(buckets.fail.leftMempool * 100.0) / 100.0));
-
-        // CFeeRate(0) is used to indicate error as a return value from estimateRawFee
-        if (feeRate != CFeeRate(0)) {
-            horizon_result.push_back(Pair("feerate", ValueFromAmount(feeRate.GetFeePerK())));
-            horizon_result.push_back(Pair("decay", buckets.decay));
-            horizon_result.push_back(Pair("scale", (int)buckets.scale));
-            horizon_result.push_back(Pair("pass", passbucket));
-            // buckets.fail.start == -1 indicates that all buckets passed, there is no fail bucket to output
-            if (buckets.fail.start != -1) horizon_result.push_back(Pair("fail", failbucket));
-        } else {
-            // Output only information that is still meaningful in the event of error
-            horizon_result.push_back(Pair("decay", buckets.decay));
-            horizon_result.push_back(Pair("scale", (int)buckets.scale));
-            horizon_result.push_back(Pair("fail", failbucket));
-            errors.push_back("Insufficient data or no feerate found which meets threshold");
-            horizon_result.push_back(Pair("errors",errors));
-        }
-        result.push_back(Pair(StringForFeeEstimateHorizon(horizon), horizon_result));
-    }
+    int answerFound;
+    double priority = mempool.estimateSmartPriority(nBlocks, &answerFound);
+    result.push_back(Pair("priority", priority));
+    result.push_back(Pair("blocks", answerFound));
     return result;
 }
 
+UniValue getblocksubsidy(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 1)
+        throw runtime_error(
+            "getblocksubsidy height\n"
+            "\nReturns block subsidy reward, taking into account the treasury reward of block at index provided.\n"
+            "\nArguments:\n"
+            "1. height         (numeric, optional) The block height.  If not provided, defaults to the current height of the chain.\n"
+            "\nResult:\n"
+            "{\n"
+            "  \"miner\" : x.xxx           (numeric) The mining reward amount in " + CURRENCY_UNIT + ".\n"
+            "  \"treasury\" : x.xxx        (numeric) The treasury reward amount in " + CURRENCY_UNIT + ".\n"
+            "}\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getblocksubsidy", "1000")
+            + HelpExampleRpc("getblockubsidy", "1000")
+        );
+
+    RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VNUM));
+
+    LOCK(cs_main);
+    int nHeight = (request.params.size()==1) ? 
+                    request.params[0].get_int() : chainActive.Height();
+
+    if (nHeight < 0)
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
+
+    CAmount nReward = GetBlockSubsidy(nHeight, Params().GetConsensus());
+    CAmount nTreasuryReward = 0;
+    if (nHeight > 1) {
+        nTreasuryReward = nReward/20;
+        nReward -= nTreasuryReward;
+    }
+
+    UniValue result(UniValue::VOBJ);
+    result.push_back(Pair("miner", ValueFromAmount(nReward)));
+    result.push_back(Pair("treasury", ValueFromAmount(nTreasuryReward)));
+    return result;
+}
+
+UniValue masternodelist(const JSONRPCRequest& request)
+{
+    std::string strMode = "status";
+    std::string strFilter = "";
+
+    if (request.params.size() >= 1) strMode = request.params[0].get_str();
+    if (request.params.size() == 2) strFilter = request.params[1].get_str();
+
+    if (request.fHelp ||
+            (strMode != "status" && strMode != "vin" && strMode != "pubkey" && strMode != "lastseen" && strMode != "activeseconds" && strMode != "rank"
+             && strMode != "protocol" && strMode != "full" && strMode != "votes" && strMode != "donation" && strMode != "pose"))
+    {
+        throw runtime_error(
+            "masternodelist ( \"mode\" \"filter\" )\n"
+            "Get a list of masternodes in different modes\n"
+            "\nArguments:\n"
+            "1. \"mode\"      (string, optional/required to use filter, defaults = status) The mode to run list in\n"
+            "2. \"filter\"    (string, optional) Filter results. Partial match by IP by default in all modes, additional matches in some modes\n"
+            "\nAvailable modes:\n"
+            "  activeseconds  - Print number of seconds masternode recognized by the network as enabled\n"
+            "  donation       - Show donation settings\n"
+            "  full           - Print info in format 'status protocol pubkey vin lastseen activeseconds' (can be additionally filtered, partial match)\n"
+            "  lastseen       - Print timestamp of when a masternode was last seen on the network\n"
+            "  pose           - Print Proof-of-Service score\n"
+            "  protocol       - Print protocol of a masternode (can be additionally filtered, exact match))\n"
+            "  pubkey         - Print public key associated with a masternode (can be additionally filtered, partial match)\n"
+            "  rank           - Print rank of a masternode based on current block\n"
+            "  status         - Print masternode status: ENABLED / EXPIRED / VIN_SPENT / REMOVE / POS_ERROR (can be additionally filtered, partial match)\n"
+            "  vin            - Print vin associated with a masternode (can be additionally filtered, partial match)\n"
+            "  votes          - Print all masternode votes for a WeyCoin initiative (can be additionally filtered, partial match)\n"
+        );
+    }
+
+    //Object obj;
+    UniValue obj(UniValue::VOBJ);
+    if (strMode == "rank") {
+        std::vector<pair<int, CMasternode> > vMasternodeRanks = mnodeman.GetMasternodeRanks(chainActive.Tip()->nHeight);
+        BOOST_FOREACH(PAIRTYPE(int, CMasternode)& s, vMasternodeRanks) {
+            std::string strAddr = s.second.addr.ToString();
+            if(strFilter !="" && strAddr.find(strFilter) == string::npos) continue;
+            obj.push_back(Pair(strAddr,       s.first));
+        }
+    } else {
+        std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
+        BOOST_FOREACH(CMasternode& mn, vMasternodes) {
+            std::string strAddr = mn.addr.ToString();
+            if (strMode == "activeseconds") {
+                if(strFilter !="" && strAddr.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(strAddr,       (int64_t)(mn.lastTimeSeen - mn.sigTime)));
+            } else if (strMode == "donation") {
+                CTxDestination address1;
+                ExtractDestination(mn.donationAddress, address1);
+                CWeyCoinAddress address2(address1);
+
+                if(strFilter !="" && address2.ToString().find(strFilter) == string::npos &&
+                        strAddr.find(strFilter) == string::npos) continue;
+
+                std::string strOut = "";
+
+                if(mn.donationPercentage != 0) {
+                    strOut = address2.ToString().c_str();
+                    strOut += ":";
+                    strOut += boost::lexical_cast<std::string>(mn.donationPercentage);
+                }
+                obj.push_back(Pair(strAddr,       strOut.c_str()));
+            } else if (strMode == "full") {
+                CScript pubkey;
+                pubkey = GetScriptForDestination(mn.pubkey.GetID());
+                CTxDestination address1;
+                ExtractDestination(pubkey, address1);
+                CWeyCoinAddress address2(address1);
+
+                std::ostringstream addrStream;
+                addrStream << setw(21) << strAddr;
+
+                std::ostringstream stringStream;
+                stringStream << setw(10) <<
+                             mn.Status() << " " <<
+                             mn.protocolVersion << " " <<
+                             address2.ToString() << " " <<
+                             mn.vin.prevout.hash.ToString() << " " <<
+                             mn.lastTimeSeen << " " << setw(8) <<
+                             (mn.lastTimeSeen - mn.sigTime);
+                std::string output = stringStream.str();
+                stringStream << " " << strAddr;
+                if(strFilter !="" && stringStream.str().find(strFilter) == string::npos &&
+                        strAddr.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(addrStream.str(), output));
+            } else if (strMode == "lastseen") {
+                if(strFilter !="" && strAddr.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(strAddr,       (int64_t)mn.lastTimeSeen));
+            } else if (strMode == "protocol") {
+                if(strFilter !="" && strFilter != boost::lexical_cast<std::string>(mn.protocolVersion) &&
+                        strAddr.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(strAddr,       (int64_t)mn.protocolVersion));
+            } else if (strMode == "pubkey") {
+                CScript pubkey;
+                pubkey = GetScriptForDestination(mn.pubkey.GetID());
+                CTxDestination address1;
+                ExtractDestination(pubkey, address1);
+                CWeyCoinAddress address2(address1);
+
+                if(strFilter !="" && address2.ToString().find(strFilter) == string::npos &&
+                        strAddr.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(strAddr,       address2.ToString().c_str()));
+            } else if (strMode == "pose") {
+                if(strFilter !="" && strAddr.find(strFilter) == string::npos) continue;
+                std::string strOut = boost::lexical_cast<std::string>(mn.nScanningErrorCount);
+                obj.push_back(Pair(strAddr,       strOut.c_str()));
+            } else if(strMode == "status") {
+                std::string strStatus = mn.Status();
+                if(strFilter !="" && strAddr.find(strFilter) == string::npos && strStatus.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(strAddr,       strStatus.c_str()));
+            } else if (strMode == "vin") {
+                if(strFilter !="" && mn.vin.prevout.hash.ToString().find(strFilter) == string::npos &&
+                        strAddr.find(strFilter) == string::npos) continue;
+                obj.push_back(Pair(strAddr,       mn.vin.prevout.hash.ToString().c_str()));
+            } else if(strMode == "votes") {
+                std::string strStatus = "ABSTAIN";
+
+                //voting lasts 7 days, ignore the last vote if it was older than that
+                if((GetAdjustedTime() - mn.lastVote) < (60*60*8))
+                {
+                    if(mn.nVote == -1) strStatus = "NAY";
+                    if(mn.nVote == 1) strStatus = "YEA";
+                }
+
+                if(strFilter !="" && (strAddr.find(strFilter) == string::npos && strStatus.find(strFilter) == string::npos)) continue;
+                obj.push_back(Pair(strAddr,       strStatus.c_str()));
+            }
+        }
+    }
+    return obj;
+}
+
+UniValue masternode(const JSONRPCRequest& request)
+{
+    string strCommand;
+    if (request.params.size() >= 1)
+        strCommand = request.params[0].get_str();
+
+    if (request.fHelp  ||
+            (strCommand != "start" && strCommand != "start-alias" && strCommand != "start-many" && strCommand != "stop" && strCommand != "stop-alias" && strCommand != "stop-many" && strCommand != "list-conf" && strCommand != "count"  && strCommand != "enforce"
+             && strCommand != "debug" && strCommand != "current" && strCommand != "winners" && strCommand != "genkey" && strCommand != "connect" && strCommand != "outputs" && strCommand != "list" /* && strCommand != "vote-many" && strCommand != "vote" */))
+        throw runtime_error(
+            "masternode \"command\"... ( \"passphrase\" )\n"
+            "Set of commands to execute masternode related actions\n"
+            "\nArguments:\n"
+            "1. \"command\"        (string or set of strings, required) The command to execute\n"
+            "2. \"passphrase\"     (string, optional) The wallet passphrase\n"
+            "\nAvailable commands:\n"
+            "  count        - Print number of all known masternodes (optional: 'enabled', 'both')\n"
+            "  current      - Print info on current masternode winner\n"
+            "  debug        - Print masternode status\n"
+            "  genkey       - Generate new masternodeprivkey\n"
+            "  enforce      - Enforce masternode payments\n"
+            "  outputs      - Print masternode compatible outputs\n"
+            "  start        - Start masternode configured in weycoin.conf\n"
+            "  start-alias  - Start single masternode by assigned alias configured in masternode.conf\n"
+            "  start-many   - Start all masternodes configured in masternode.conf\n"
+            "  stop         - Stop masternode configured in weycoin.conf\n"
+            "  stop-alias   - Stop single masternode by assigned alias configured in masternode.conf\n"
+            "  stop-many    - Stop all masternodes configured in masternode.conf\n"
+            "  list         - proxy for new masternodelist command. use 'masternodelist' directly\n"
+            "  list-conf    - Print masternode.conf in JSON format\n"
+            "  winners      - Print list of masternode winners\n"
+            "  vote-many    - Not implemented\n"
+            "  vote         - Not implemented\n"
+        );
+
+    if (strCommand == "stop")
+    {
+        if(!fMasterNode) return "you must set masternode=1 in the configuration";
+
+        if(pwalletMain->IsLocked()) {
+            SecureString strWalletPass;
+            strWalletPass.reserve(100);
+
+            if (request.params.size() == 2) {
+                strWalletPass = request.params[1].get_str().c_str();
+            } else {
+                throw runtime_error(
+                    "Your wallet is locked, passphrase is required\n");
+            }
+
+            if(!pwalletMain->Unlock(strWalletPass)) {
+                return "incorrect passphrase";
+            }
+        }
+
+        std::string errorMessage;
+        if(!activeMasternode.StopMasterNode(errorMessage)) {
+            return "stop failed: " + errorMessage;
+        }
+        pwalletMain->Lock();
+        CService service;
+        CService service2(LookupNumeric(strMasterNodeAddr.c_str(), 0));
+        service = service2;
+        g_connman->OpenNetworkConnection((CAddress)service, false, NULL, service.ToString().c_str());
+
+        if(activeMasternode.status == MASTERNODE_STOPPED) return "successfully stopped masternode";
+        if(activeMasternode.status == MASTERNODE_NOT_CAPABLE) return "not capable masternode";
+
+        return "unknown";
+    }
+
+    if (strCommand == "stop-alias")
+    {
+        if (request.params.size() < 2) {
+            throw runtime_error(
+                "command needs at least 2 parameters\n");
+        }
+
+        std::string alias = request.params[1].get_str().c_str();
+
+        if(pwalletMain->IsLocked()) {
+            SecureString strWalletPass;
+            strWalletPass.reserve(100);
+
+            if (request.params.size() == 3) {
+                strWalletPass = request.params[2].get_str().c_str();
+            } else {
+                throw runtime_error(
+                    "Your wallet is locked, passphrase is required\n");
+            }
+
+            if(!pwalletMain->Unlock(strWalletPass)) {
+                return "incorrect passphrase";
+            }
+        }
+
+        bool found = false;
+
+        //Object statusObj;
+        UniValue statusObj(UniValue::VOBJ);
+        statusObj.push_back(Pair("alias", alias));
+
+        BOOST_FOREACH(CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
+            if(mne.getAlias() == alias) {
+                found = true;
+                std::string errorMessage;
+                bool result = activeMasternode.StopMasterNode(mne.getIp(), mne.getPrivKey(), errorMessage);
+
+                statusObj.push_back(Pair("result", result ? "successful" : "failed"));
+                if(!result) {
+                    statusObj.push_back(Pair("errorMessage", errorMessage));
+                }
+                break;
+            }
+        }
+
+        if(!found) {
+            statusObj.push_back(Pair("result", "failed"));
+            statusObj.push_back(Pair("errorMessage", "could not find alias in config. Verify with list-conf."));
+        }
+
+        pwalletMain->Lock();
+        return statusObj;
+    }
+
+    if (strCommand == "stop-many")
+    {
+        if(pwalletMain->IsLocked()) {
+            SecureString strWalletPass;
+            strWalletPass.reserve(100);
+
+            if (request.params.size() == 2) {
+                strWalletPass = request.params[1].get_str().c_str();
+            } else {
+                throw runtime_error(
+                    "Your wallet is locked, passphrase is required\n");
+            }
+
+            if(!pwalletMain->Unlock(strWalletPass)) {
+                return "incorrect passphrase";
+            }
+        }
+
+        int total = 0;
+        int successful = 0;
+        int fail = 0;
+
+
+        //Object resultsObj;
+        UniValue resultsObj(UniValue::VOBJ);
+
+        BOOST_FOREACH(CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
+            total++;
+
+            std::string errorMessage;
+            bool result = activeMasternode.StopMasterNode(mne.getIp(), mne.getPrivKey(), errorMessage);
+
+            //Object statusObj;
+            UniValue statusObj(UniValue::VOBJ);
+            statusObj.push_back(Pair("alias", mne.getAlias()));
+            statusObj.push_back(Pair("result", result ? "successful" : "failed"));
+
+            if(result) {
+                successful++;
+            } else {
+                fail++;
+                statusObj.push_back(Pair("errorMessage", errorMessage));
+            }
+
+            resultsObj.push_back(Pair("status", statusObj));
+        }
+        pwalletMain->Lock();
+
+        //Object returnObj;
+        UniValue returnObj(UniValue::VOBJ);
+        returnObj.push_back(Pair("overall", "Successfully stopped " + boost::lexical_cast<std::string>(successful) + " masternodes, failed to stop " +
+                                 boost::lexical_cast<std::string>(fail) + ", total " + boost::lexical_cast<std::string>(total)));
+        returnObj.push_back(Pair("detail", resultsObj));
+
+        return returnObj;
+
+    }
+
+    if (strCommand == "count")
+    {
+        if (request.params.size() > 2) {
+            throw runtime_error(
+                "too many parameters\n");
+        }
+        UniValue rtnStr(UniValue::VSTR);
+        if (request.params.size() == 2)
+        {
+            if (request.params[1].get_str() == "enabled") {
+            	return mnodeman.CountEnabled();
+            } else if (request.params[1].get_str() == "both") {
+            	rtnStr = boost::lexical_cast<std::string>(mnodeman.CountEnabled()) + " / " + boost::lexical_cast<std::string>(mnodeman.size());
+            	return rtnStr;
+            } else {
+            	throw runtime_error(
+                "invalid parameter\n");
+            }
+        }
+        return mnodeman.size();
+    }
+
+    if (strCommand == "start")
+    {
+        if(!fMasterNode) return "you must set masternode=1 in the configuration";
+
+        if(pwalletMain->IsLocked()) {
+            SecureString strWalletPass;
+            strWalletPass.reserve(100);
+
+            if (request.params.size() == 2) {
+                strWalletPass = request.params[1].get_str().c_str();
+            } else {
+                throw runtime_error(
+                    "Your wallet is locked, passphrase is required\n");
+            }
+
+            if(!pwalletMain->Unlock(strWalletPass)) {
+                return "incorrect passphrase";
+            }
+        }
+
+        if(activeMasternode.status != MASTERNODE_REMOTELY_ENABLED && activeMasternode.status != MASTERNODE_IS_CAPABLE) {
+            activeMasternode.status = MASTERNODE_NOT_PROCESSED; // TODO: consider better way
+            std::string errorMessage;
+            activeMasternode.ManageStatus();
+            pwalletMain->Lock();
+        }
+
+        if(activeMasternode.status == MASTERNODE_REMOTELY_ENABLED) return "masternode started remotely";
+        if(activeMasternode.status == MASTERNODE_INPUT_TOO_NEW) return "masternode input must have at least 15 confirmations";
+        if(activeMasternode.status == MASTERNODE_STOPPED) return "masternode is stopped";
+        if(activeMasternode.status == MASTERNODE_IS_CAPABLE) return "successfully started masternode";
+        if(activeMasternode.status == MASTERNODE_NOT_CAPABLE) return "not capable masternode: " + activeMasternode.notCapableReason;
+        if(activeMasternode.status == MASTERNODE_SYNC_IN_PROCESS) return "sync in process. Must wait until client is synced to start.";
+
+        return "unknown";
+    }
+
+    if (strCommand == "start-alias")
+    {
+        if (request.params.size() < 2) {
+            throw runtime_error(
+                "command needs at least 2 parameters\n");
+        }
+
+        std::string alias = request.params[1].get_str().c_str();
+
+        if(pwalletMain->IsLocked()) {
+            SecureString strWalletPass;
+            strWalletPass.reserve(100);
+
+            if (request.params.size() == 3) {
+                strWalletPass = request.params[2].get_str().c_str();
+            } else {
+                throw runtime_error(
+                    "Your wallet is locked, passphrase is required\n");
+            }
+
+            if(!pwalletMain->Unlock(strWalletPass)) {
+                return "incorrect passphrase";
+            }
+        }
+
+        bool found = false;
+
+        //Object statusObj;
+        UniValue statusObj(UniValue::VOBJ);
+        statusObj.push_back(Pair("alias", alias));
+
+        BOOST_FOREACH(CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
+            if(mne.getAlias() == alias) {
+                found = true;
+                std::string errorMessage;
+
+                std::string strDonateAddress = mne.getDonationAddress();
+                std::string strDonationPercentage = mne.getDonationPercentage();
+
+                bool result = activeMasternode.Register(mne.getIp(), mne.getPrivKey(), mne.getTxHash(), mne.getOutputIndex(), strDonateAddress, strDonationPercentage, errorMessage);
+
+                statusObj.push_back(Pair("result", result ? "successful" : "failed"));
+                if(!result) {
+                    statusObj.push_back(Pair("errorMessage", errorMessage));
+                }
+                break;
+            }
+        }
+
+        if(!found) {
+            statusObj.push_back(Pair("result", "failed"));
+            statusObj.push_back(Pair("errorMessage", "could not find alias in config. Verify with list-conf."));
+        }
+
+        pwalletMain->Lock();
+        return statusObj;
+
+    }
+
+    if (strCommand == "start-many")
+    {
+        if(pwalletMain->IsLocked()) {
+            SecureString strWalletPass;
+            strWalletPass.reserve(100);
+
+            if (request.params.size() == 2) {
+                strWalletPass = request.params[1].get_str().c_str();
+            } else {
+                throw runtime_error(
+                    "Your wallet is locked, passphrase is required\n");
+            }
+
+            if(!pwalletMain->Unlock(strWalletPass)) {
+                return "incorrect passphrase";
+            }
+        }
+
+        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
+        mnEntries = masternodeConfig.getEntries();
+
+        int total = 0;
+        int successful = 0;
+        int fail = 0;
+
+        //Object resultsObj;
+        UniValue resultsObj(UniValue::VOBJ);
+
+        BOOST_FOREACH(CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
+            total++;
+
+            std::string errorMessage;
+
+            std::string strDonateAddress = mne.getDonationAddress();
+            std::string strDonationPercentage = mne.getDonationPercentage();
+
+            bool result = activeMasternode.Register(mne.getIp(), mne.getPrivKey(), mne.getTxHash(), mne.getOutputIndex(), strDonateAddress, strDonationPercentage, errorMessage);
+
+            //Object statusObj;
+            UniValue statusObj(UniValue::VOBJ);
+            statusObj.push_back(Pair("alias", mne.getAlias()));
+            statusObj.push_back(Pair("result", result ? "successful" : "failed"));
+
+            if(result) {
+                successful++;
+            } else {
+                fail++;
+                statusObj.push_back(Pair("errorMessage", errorMessage));
+            }
+
+            resultsObj.push_back(Pair("status", statusObj));
+        }
+        pwalletMain->Lock();
+
+        //Object returnObj;
+        UniValue returnObj(UniValue::VOBJ);
+        returnObj.push_back(Pair("overall", "Successfully started " + boost::lexical_cast<std::string>(successful) + " masternodes, failed to start " +
+                                 boost::lexical_cast<std::string>(fail) + ", total " + boost::lexical_cast<std::string>(total)));
+        returnObj.push_back(Pair("detail", resultsObj));
+
+        return returnObj;
+    }
+
+    if (strCommand == "debug")
+    {
+        if(activeMasternode.status == MASTERNODE_REMOTELY_ENABLED) return "masternode started remotely";
+        if(activeMasternode.status == MASTERNODE_INPUT_TOO_NEW) return "masternode input must have at least 15 confirmations";
+        if(activeMasternode.status == MASTERNODE_IS_CAPABLE) return "successfully started masternode";
+        if(activeMasternode.status == MASTERNODE_STOPPED) return "masternode is stopped";
+        if(activeMasternode.status == MASTERNODE_NOT_CAPABLE) return "not capable masternode: " + activeMasternode.notCapableReason;
+        if(activeMasternode.status == MASTERNODE_SYNC_IN_PROCESS) return "sync in process. Must wait until client is synced to start.";
+
+        CTxIn vin = CTxIn();
+        //CPubKey pubkey = CScript();
+        CPubKey pubkey;
+        CKey key;
+        bool found = activeMasternode.GetMasterNodeVin(vin, pubkey, key);
+        if(!found) {
+            return "Missing masternode input, please look at the documentation for instructions on masternode creation";
+        } else {
+            return "No problems were found";
+        }
+    }
+
+    if (strCommand == "create")
+    {
+
+        return "Not implemented yet, please look at the documentation for instructions on masternode creation";
+    }
+
+    if (strCommand == "current")
+    {
+        CMasternode* winner = mnodeman.GetCurrentMasterNode(1);
+        if(winner) {
+            //Object obj;
+            UniValue obj(UniValue::VOBJ);
+            CScript pubkey;
+            pubkey = GetScriptForDestination(winner->pubkey.GetID());
+            CTxDestination address1;
+            ExtractDestination(pubkey, address1);
+            CWeyCoinAddress address2(address1);
+
+            obj.push_back(Pair("IP:port",       winner->addr.ToString().c_str()));
+            obj.push_back(Pair("protocol",      (int64_t)winner->protocolVersion));
+            obj.push_back(Pair("vin",           winner->vin.prevout.hash.ToString().c_str()));
+            obj.push_back(Pair("pubkey",        address2.ToString().c_str()));
+            obj.push_back(Pair("lastseen",      (int64_t)winner->lastTimeSeen));
+            obj.push_back(Pair("activeseconds", (int64_t)(winner->lastTimeSeen - winner->sigTime)));
+            return obj;
+        }
+
+        return "unknown";
+    }
+
+    if (strCommand == "genkey")
+    {
+        CKey secret;
+        secret.MakeNewKey(false);
+
+        return CWeyCoinSecret(secret).ToString();
+    }
+
+    if (strCommand == "winners")
+    {
+        //Object obj;
+        UniValue obj(UniValue::VOBJ);
+
+        for(int nHeight = chainActive.Tip()->nHeight-10; nHeight < chainActive.Tip()->nHeight+20; nHeight++)
+        {
+            CScript payee;
+            if(masternodePayments.GetBlockPayee(nHeight, payee)) {
+                CTxDestination address1;
+                ExtractDestination(payee, address1);
+                CWeyCoinAddress address2(address1);
+                obj.push_back(Pair(boost::lexical_cast<std::string>(nHeight),       address2.ToString().c_str()));
+            } else {
+                obj.push_back(Pair(boost::lexical_cast<std::string>(nHeight),       ""));
+            }
+        }
+
+        return obj;
+    }
+
+    if(strCommand == "enforce")
+    {
+        return (uint64_t)enforceMasternodePaymentsTime;
+    }
+
+    if(strCommand == "connect")
+    {
+        std::string strAddress = "";
+        if (request.params.size() == 2) {
+            strAddress = request.params[1].get_str().c_str();
+        } else {
+            throw runtime_error(
+                "Masternode address required\n");
+        }
+
+        CService addr;
+        CService service2(LookupNumeric(strAddress.c_str(), 0));
+        addr = service2;
+
+        bool pnode1 = g_connman->OpenNetworkConnection((CAddress)addr, false, NULL, addr.ToString().c_str());
+
+        if(pnode1) {
+            return "successfully connected";
+        } else {
+            return "error connecting";
+        }
+    }
+
+    if(strCommand == "list-conf")
+    {
+        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
+        mnEntries = masternodeConfig.getEntries();
+
+        //Object resultObj;
+        UniValue resultObj(UniValue::VOBJ);
+
+        BOOST_FOREACH(CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
+            //Object mnObj;
+            UniValue mnObj(UniValue::VOBJ);
+            mnObj.push_back(Pair("alias", mne.getAlias()));
+            mnObj.push_back(Pair("address", mne.getIp()));
+            mnObj.push_back(Pair("privateKey", mne.getPrivKey()));
+            mnObj.push_back(Pair("txHash", mne.getTxHash()));
+            mnObj.push_back(Pair("outputIndex", mne.getOutputIndex()));
+            mnObj.push_back(Pair("donationAddress", mne.getDonationAddress()));
+            mnObj.push_back(Pair("donationPercent", mne.getDonationPercentage()));
+            resultObj.push_back(Pair("masternode", mnObj));
+        }
+
+        return resultObj;
+    }
+
+    if (strCommand == "outputs") {
+        // Find possible candidates
+        vector<COutput> possibleCoins = activeMasternode.SelectCoinsMasternode();
+
+        //Object obj;
+        UniValue obj(UniValue::VOBJ);
+        BOOST_FOREACH(COutput& out, possibleCoins) {
+            obj.push_back(Pair(out.tx->GetHash().ToString().c_str(), boost::lexical_cast<std::string>(out.i)));
+        }
+
+        return obj;
+
+    }
+
+    /*if(strCommand == "vote-many")
+    {
+        std::vector<CMasternodeConfig::CMasternodeEntry> mnEntries;
+        mnEntries = masternodeConfig.getEntries();
+
+        if (params.size() != 2)
+        throw runtime_error("You can only vote 'yea' or 'nay'");
+
+        std::string vote = params[1].get_str().c_str();
+        if(vote != "yea" && vote != "nay") return "You can only vote 'yea' or 'nay'";
+        int nVote = 0;
+        if(vote == "yea") nVote = 1;
+        if(vote == "nay") nVote = -1;
+
+
+    	int success = 0;
+    	int failed = 0;
+
+        Object resultObj;
+
+        BOOST_FOREACH(CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
+            std::string errorMessage;
+            std::vector<unsigned char> vchMasterNodeSignature;
+            std::string strMasterNodeSignMessage;
+
+            CPubKey pubKeyCollateralAddress;
+            CKey keyCollateralAddress;
+            CPubKey pubKeyMasternode;
+            CKey keyMasternode;
+
+    		if(!darkSendSigner.SetKey(mne.getPrivKey(), errorMessage, keyMasternode, pubKeyMasternode)){
+    			printf(" Error upon calling SetKey for %s\n", mne.getAlias().c_str());
+    			failed++;
+    			continue;
+    		}
+
+    		CMasternode* pmn = mnodeman.Find(pubKeyMasternode);
+    		if(pmn == NULL)
+    		{
+    			printf("Can't find masternode by pubkey for %s\n", mne.getAlias().c_str());
+    			failed++;
+    			continue;
+            }
+
+            std::string strMessage = pmn->vin.ToString() + boost::lexical_cast<std::string>(nVote);
+
+    		if(!darkSendSigner.SignMessage(strMessage, errorMessage, vchMasterNodeSignature, keyMasternode)){
+    			printf(" Error upon calling SignMessage for %s\n", mne.getAlias().c_str());
+    			failed++;
+    			continue;
+    		}
+
+    		if(!darkSendSigner.SignMessage(strMessage, errorMessage, vchMasterNodeSignature, keyMasternode)){
+    			printf(" Error upon calling SignMessage for %s\n", mne.getAlias().c_str());
+    			failed++;
+    			continue;
+    		}
+
+    		success++;
+
+            //send to all peers
+            //LOCK(cs_vNodes);
+            //BOOST_FOREACH(CNode* pnode, vNodes)
+               // pnode->PushMessage("mvote", pmn->vin, vchMasterNodeSignature, nVote);
+
+        }
+    	return("Voted successfully " + boost::lexical_cast<std::string>(success) + " time(s) and failed " + boost::lexical_cast<std::string>(failed) + " time(s).");
+    }*/
+
+    if (strCommand == "list")
+    {
+        JSONRPCRequest xreq(request);
+        UniValue params(UniValue::VARR);
+
+        if(request.params.size() > 0)  {
+            for (unsigned int idx = 1; idx < request.params.size(); ++idx) 
+                params.push_back(request.params[idx]);
+
+            xreq.params = params;
+        } 
+
+        return masternodelist(xreq);
+    }
+
+    return "unknown";
+}
+
+
+
+
 static const CRPCCommand commands[] =
-{ //  category              name                      actor (function)         okSafeMode
-  //  --------------------- ------------------------  -----------------------  ----------
+{   //  category              name                      actor (function)         okSafeMode
+    //  --------------------- ------------------------  -----------------------  ----------
     { "mining",             "getnetworkhashps",       &getnetworkhashps,       true,  {"nblocks","height"} },
     { "mining",             "getmininginfo",          &getmininginfo,          true,  {} },
-    { "mining",             "prioritisetransaction",  &prioritisetransaction,  true,  {"txid","dummy","fee_delta"} },
+    { "mining",             "prioritisetransaction",  &prioritisetransaction,  true,  {"txid","priority_delta","fee_delta"} },
     { "mining",             "getblocktemplate",       &getblocktemplate,       true,  {"template_request"} },
-    { "mining",             "submitblock",            &submitblock,            true,  {"hexdata","dummy"} },
+    { "mining",             "getblocksubsidy",        &getblocksubsidy,        true,  {"height"} },
+    { "mining",             "submitblock",            &submitblock,            true,  {"hexdata","parameters"} },
 
+    { "generating",         "generate",               &generate,               true,  {"nblocks","maxtries"} },
     { "generating",         "generatetoaddress",      &generatetoaddress,      true,  {"nblocks","address","maxtries"} },
 
-    { "util",               "estimatefee",            &estimatefee,            true,  {"nblocks"} },
-    { "util",               "estimatesmartfee",       &estimatesmartfee,       true,  {"conf_target", "estimate_mode"} },
+    { "masternode",         "masternode",             &masternode,               true,  {"strCommand"} },
+    { "masternode",         "masternodelist",         &masternodelist,           true,  {"strMode"} },
 
-    { "hidden",             "estimaterawfee",         &estimaterawfee,         true,  {"conf_target", "threshold"} },
+    { "util",               "estimatefee",            &estimatefee,            true,  {"nblocks"} },
+    { "util",               "estimatepriority",       &estimatepriority,       true,  {"nblocks"} },
+    { "util",               "estimatesmartfee",       &estimatesmartfee,       true,  {"nblocks"} },
+    { "util",               "estimatesmartpriority",  &estimatesmartpriority,  true,  {"nblocks"} },
 };
 
 void RegisterMiningRPCCommands(CRPCTable &t)

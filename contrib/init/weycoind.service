@@ -1,0 +1,22 @@
+[Unit]
+Description=WeyCoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=weycoin
+Group=weycoin
+
+Type=forking
+PIDFile=/var/lib/weycoind/weycoind.pid
+ExecStart=/usr/bin/weycoind -daemon -pid=/var/lib/weycoind/weycoind.pid \
+-conf=/etc/weycoin/weycoin.conf -datadir=/var/lib/weycoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,4 +1,6 @@
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers 
+// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,6 +20,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include <boost/assign/list_of.hpp>
 
 CScript ParseScript(const std::string& s)
 {
@@ -27,7 +30,7 @@ CScript ParseScript(const std::string& s)
 
     if (mapOpNames.empty())
     {
-        for (unsigned int op = 0; op <= MAX_OPCODE; op++)
+        for (int op = 0; op <= OP_NOP10; op++)
         {
             // Allow OP_RESERVED to get into mapOpNames
             if (op < OP_NOP && op != OP_RESERVED)
@@ -87,32 +90,10 @@ CScript ParseScript(const std::string& s)
     return result;
 }
 
-// Check that all of the input and output scripts of a transaction contains valid opcodes
-bool CheckTxScriptsSanity(const CMutableTransaction& tx)
-{
-    // Check input scripts for non-coinbase txs
-    if (!CTransaction(tx).IsCoinBase()) {
-        for (unsigned int i = 0; i < tx.vin.size(); i++) {
-            if (!tx.vin[i].scriptSig.HasValidOps() || tx.vin[i].scriptSig.size() > MAX_SCRIPT_SIZE) {
-                return false;
-            }
-        }
-    }
-    // Check output scripts
-    for (unsigned int i = 0; i < tx.vout.size(); i++) {
-        if (!tx.vout[i].scriptPubKey.HasValidOps() || tx.vout[i].scriptPubKey.size() > MAX_SCRIPT_SIZE) {
-            return false;
-        }
-    }
-    
-    return true;
-}
-
 bool DecodeHexTx(CMutableTransaction& tx, const std::string& strHexTx, bool fTryNoWitness)
 {
-    if (!IsHex(strHexTx)) {
+    if (!IsHex(strHexTx))
         return false;
-    }
 
     std::vector<unsigned char> txData(ParseHex(strHexTx));
 
@@ -120,7 +101,7 @@ bool DecodeHexTx(CMutableTransaction& tx, const std::string& strHexTx, bool fTry
         CDataStream ssData(txData, SER_NETWORK, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS);
         try {
             ssData >> tx;
-            if (ssData.eof() && CheckTxScriptsSanity(tx)) {
+            if (ssData.eof()) {
                 return true;
             }
         }
@@ -132,9 +113,8 @@ bool DecodeHexTx(CMutableTransaction& tx, const std::string& strHexTx, bool fTry
     CDataStream ssData(txData, SER_NETWORK, PROTOCOL_VERSION);
     try {
         ssData >> tx;
-        if (!ssData.empty()) {
+        if (!ssData.empty())
             return false;
-        }
     }
     catch (const std::exception&) {
         return false;

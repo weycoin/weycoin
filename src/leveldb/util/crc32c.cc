@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 // A portable implementation of crc32c, optimized to handle
@@ -8,8 +8,6 @@
 #include "util/crc32c.h"
 
 #include <stdint.h>
-
-#include "port/port.h"
 #include "util/coding.h"
 
 namespace leveldb {
@@ -285,27 +283,7 @@ static inline uint32_t LE_LOAD32(const uint8_t *p) {
   return DecodeFixed32(reinterpret_cast<const char*>(p));
 }
 
-// Determine if the CPU running this program can accelerate the CRC32C
-// calculation.
-static bool CanAccelerateCRC32C() {
-  if (!port::HasAcceleratedCRC32C())
-    return false;
-
-  // Double-check that the accelerated implementation functions correctly.
-  // port::AcceleretedCRC32C returns zero when unable to accelerate.
-  static const char kTestCRCBuffer[] = "TestCRCBuffer";
-  static const char kBufSize = sizeof(kTestCRCBuffer) - 1;
-  static const uint32_t kTestCRCValue = 0xdcbc59fa;
-
-  return port::AcceleratedCRC32C(0, kTestCRCBuffer, kBufSize) == kTestCRCValue;
-}
-
 uint32_t Extend(uint32_t crc, const char* buf, size_t size) {
-  static bool accelerate = CanAccelerateCRC32C();
-  if (accelerate) {
-    return port::AcceleratedCRC32C(crc, buf, size);
-  }
-
   const uint8_t *p = reinterpret_cast<const uint8_t *>(buf);
   const uint8_t *e = p + size;
   uint32_t l = crc ^ 0xffffffffu;

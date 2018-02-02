@@ -1,50 +1,604 @@
-WeyCoin Development Network
-===========================
 
-https://weycoin.org
+![Alt text](doc/weycoin.png)
 
-What is WeyCoin?
-----------------
 
-WeyCoin is a crypto like many others, but it serves as primary purpose
-the expansion and wellbeing of the Ugandanese. It is the one and only
-cryptocurrency of Uganda and the wey community. It uses Scrypt algorithm
-and entrenches its roots (for the majority of the code) within Litecoin
-and Bitcoin. For more information, visit [https://weycoin.org](https://weycoin.org).
+## WEYCOIN
 
-License
--------
+#### SegWit and SegWit2x active, Lightning Network compatible, Atomic Swap compatible and an increased non-SegWit block size of 4MB;  introducing the first Masternode-enabled digital currency based off core Bitcoin version 0.14.2.  WEYCOIN endeavours to eliminate unwanted transaction malleability through SegWit activation from day 0; solves capacity constraints suffered by Bitcoin and its peer group through a larger non-SegWit block size and increased signature operations - effectively introducing SegWit4x; is Lightning Network compatible - supporting instant payments, scalability, low cost and cross blockchain transactions; proposes a fair distribution through a Zero Start Instamine Protection (ZSIP) policy and Zero Start Masternode Reward (ZSMR) policy; introduces a new unique Masternode payment re-balancing algorithm, labelled Reactive Equilibria (REV1); and furthermore, implements a modified version of the new effective D106 difficulty re-targeting algorithm
 
-WeyCoin is released under the MIT license, for more information
-see the following: https://opensource.org/licenses/MIT.
 
-Development
------------
+__________________________________________________________________________
 
-To be updated.
 
-Translations
-------------
+###### Current Version: 1.14.7.1
+###### Block Size: 4 MB
+###### Max Block Size Serialized Size: 16 MB
+###### Proof-of-Work Algorithm: Lyra2rev2
+###### Block Time: ~60 seconds
+###### Coin Maturity: 100 blocks
+###### Transactions Per Second: 133 (Bitcoin: 3, Bitcoin Cash: 27, Dash: 13)
+###### Transactions Per 24 hours: 11,520,000
+###### Difficulty Retargeting: New D106 Algorithm
+###### Maximum Coin Supply: 150 Million
+###### Treasury Funding: 5% Per Block
+###### SegWit: Active
+###### SegWit2x: Active
+###### SegWit4x: Active
+###### Lightning Network: Compatible
+###### Atomic Swaps: Compatible
+###### Masternodes: Enabled
+###### Masternodes Collateral: 15,000 STAK
+###### Masternode Reward: Rebalancing via New Reactive Equilibria (REV1) Algorithm
+###### ZSMR: Explicit Masternode Decentralisation Promotion [Zero Reward to Block 50400]
+###### ZSIP: Zero Start Instamine Protection [7 Days: 10080 Blocks]
 
-To be updated.
 
-Donations
-----------
+__________________________________________________________________________
 
-Feel free to donate at any of the following addresses:
 
-BTC - 19pRcCehJbpNud6hDxbXUiBdPLgtMZsKci
+## Introducing WEYCOIN
 
-BCH - 1Lvsz4CxvBdqXZF3QYzNL1hUxyfB7fuC6G
+Introducing a new decentralised, open source, community driven digital currency, focusing on e-commerce utility.
 
-ETH - 0xdb193ca8b9b62f4dd12b6d4aacc03f8f14e12b43
+The name is a Danish word that has never been used in any cryptocurrency context until now. It means quick/immediate - referring to the focus that we have on ensuring that transactions are as fast as can be and to be the most efficient cryptocurrency for e-commerce utility in the sector.  The currency unit of account is **STAK**, along with its exchange ticker.
 
-ETC - 0x310ad887f2cdc1cb12b20d5ace32f7d5ff05e1d5
 
-ETN - etnjzKFU6ogESSKRZZbdqraPdcKVxEC17Cm1Xvbyy76PARQMmgrgceH4krAH6xmjKwJ3HtSAKuyFm1BBWYqtchtq9tBap8Qr4M
+##### E-Commerce
+Global e-commerce sales are projected to reach $2.2 trillion for 2017 and to increase two-fold by 2021 to $4.4 trillion. WEYCOIN seeks to position itself as a competitive altcoin for e-commerce application. This will be achieved through developing and implementing relevant technology that facilitates e-commerce transactions as smoothly as possible. We will always strive to create partnerships and increase real-world utilisation.
 
-LTC -
 
-SIA - 01e5d06530bf247a2fe3b326958edc5f83d49f1e8c56f7012d5e735131709f66cc45c4a5a0ec
+##### Open Source
+WEYCOIN is open source. Anyone is free to contribute to WEYCOIN’ development and make a pull request through Github. Further details, making community contributions as smooth as possible, will become available in the future on the new website.
 
-WAE - K2twB77jM6W4QkFi74mawcvJ6gcNnWAst3
+
+##### Decentralized Ownership
+Ownership and access rights are decentralized. This ensures that the long-term application and longevity is not dependent on a single individual any longer. This safeguards not only WEYCOIN' future, but also your investment and partnerships.
+
+
+##### Community Orientated
+One of WEYCOIN core values is being community oriented. Rest assured knowing that the WEYCOIN foundation team will always strive to collect feedback and suggestions from the community and evaluate the input.
+
+With the upcoming WEYCOIN-vote you will be able to not only propose ideas publicly to all WEYCOIN holders but also vote on what needs developing or prioritising next. Look out for WEYCOIN-vote on the Roadmap.
+
+
+##### Speed & Privacy
+Speed and privacy are core concerns for users today as well as e-commerce businesses. To ensure that WEYCOIN is as effective as possible for e-commerce application, WEYCOIN will maintain a high focus on increasing anonymity and most important on increasing speed of transactions - to always be at the forefront.
+
+
+### Links
+
+- **[WEYCOIN Website](https://weycoin.io)**
+- **[WEYCOIN Explorer](https://weycoin.info)**
+- **[WEYCOIN Discord](https://discord.gg/5gzvadZ)**
+- **[WEYCOIN Reddit](https://www.reddit.com/r/WEYCOINproject)**
+- **[WEYCOIN Twitter](https://twitter.com/WEYCOINproject)**
+- **[WEYCOIN Telegram](https://t.me/joinchat/AAAAAFNgas-8mT4fmKulFg)**
+- **[WEYCOIN Facebook](https://www.facebook.com/WEYCOINproject)**
+- **[WEYCOIN Community News](https://weycoin.news)**
+
+
+### WEYCOIN Foundation Team
+
+- **Squbs (squbs@weycoin.io) - Lead Developer & Business Development**
+- **Cryptovore (dan@weycoin.io) - Lead Marketing & PR, Business Development**
+- **Ekam (ekam@weycoin.io) - Lead Developer & Business Development**
+- **John Smith (john@weycoin.io) - Marketing & PR, Business Development**
+- **Kasper (kasper@weycoin.io) - Developer, Marketing & PR**
+- **Bruno (bruno@weycoin.io) - Developer**
+- **Andrew (andrew@weycoin.io) - Developer**
+- **Flydancer (flydancer@weycoin.io) - Developer**
+- **Proximus (proximus@weycoin.io) - Marketing & PR**
+
+
+__________________________________________________________________________
+
+
+### WEYCOIN Comparison with Leading Digital Currencies
+
+There is only **one** digital currency on this list that is designed - from the bottom up - to be scalable, fast, low cost, secure, decentralized and provide for instant utility, and that is **WEYCOIN**, the alternative conclusion is simply an escalation of commitment.  As part of WEYCOIN' decentralization manifesto, we fully support a diverse crypto-currency sector - with the caveat that we are **strictly against the concentration of hashing power**, through the use of asic hardware.
+
+> Escalation of commitment refers to a pattern of behavior in which an individual or group will continue to rationalize their decisions, actions, and investments when faced with increasingly negative outcomes rather than alter their course.
+
+![Alt text](doc/weycoin_compare.png)
+
+
+__________________________________________________________________________
+
+
+### Specifications
+
+As above summary, in addition, the following notable items:
+
+
+#### Coinbase Transactions, Pool Mining and Wallet Mining
+
+**IMPORTANT**
+
+Other than 'real world' testing of lightning transactions and cross chain atomic swaps, **all WEYCOIN' features are enabled and work from day 0**; end-users can utilise WEYCOIN' speed, larger chain capacity, SegWit and Masternode functionality right now.
+
+Due to the unique combination of SegWit, treasury reward, miner reward and Masternode payments, as of this writing, some mining software and various pools do not yet fully support WEYCOIN' coinbasetxn configuration.  GPU mining does work, but pool and/or mining software may need further code changes for SegWit blocks.
+
+##### Wallet Mining
+```
+Approach 1 (Local):
+(1) Start weycoind/weycoin-qt locally
+(2) Run: "./weycoin-cli generate 1" (or via debug console in the Qt gui wallet)
+```
+```
+Approach 2 (Remote):
+(1) Start weycoind on remote server and local server
+(2) On your local wallet (server) run: "./weycoin-cli getaccountaddress 0"
+(3) On Your remote server Run: "./weycoin-cli generatetoaddress 1 <address from step2>"
+(4) Shutdown local wallet (server)
+```
+
+More information can be found on [WEYCOIN' Knowledge Base](https://kb.weycoin.info/)
+
+##### GPU Mining
+
+Please follow [WEYCOIN' Knowledge Base GPU mining guide](https://kb.weycoin.info/kb/5a1a52ed48e3b4777551b314)
+
+
+#### Zero Start Instamine Protection (ZSIP)
+
+WEYCOIN blockchain has been set to issue a 0 block subsidy up to **block height 10080**.  At 1440 blocks per day, this is approximately 7 days. During this time, community members will be informed of launch and will be able to configure their setups for mining.  During this period there are no Treasury payments, either.
+
+
+#### Maximum Coin Supply and Block Reward
+
+WEYCOIN will be capped at a maxium supply of **150 million coins**.  This target supports a managed inflation rate that allows for a constant block reward of **10 STAKs**.
+
+The constant block reward prevents event cliffs related to expected "halvings" and will support a more consistent and stable participation rate over a long time horizon.
+
+More information will be available on the WEYCOIN' [website](https://weycoin.io)
+
+##### The Monetary Curve Based on a 10 STAK Block Reward
+![Alt text](doc/mcurve.png)
+
+
+##### The Monetary Curve Underlying Dataset with Zero Start Block Offset
+![Alt text](doc/monetary_curve_table.png)
+
+
+#### POW Algorithm: Lyra2REv2
+
+Fast, power-efficient and asic resistant algorithm.  The WEYCOIN development team will continue to support a decentralized asic resistant blockchain, and will update the POW algorithm if the latter is no longer the case.
+
+Lyra2 is simple tunable password hashing scheme (PHS) based on cryptographic sponges.  Designed to be resistant against parallel attacks from mult-core/gpu systems through its sequential processing.  More specific information about Lyra2 itself can be obtained from: http://lyra-2.net/
+
+Lyra2RE wrapped the Lyra2 PHS with additional cryptographic hash functions, and Lyra2REv2 is another derivative, again, with Lyra2 at its core.  Notably, chaining the hashing algorithms allows for an easy path to fulfil a decentralization ideology and maintain asic resistance.
+
+The difference between Lyra2RE and Lyra2REv2 is as follows;
+
+- Additional 2 rounds of [CubeHash](https://en.wikipedia.org/wiki/CubeHash)
+- Additional 1 round of [Blue Midnight Wish](https://www.mathematik.hu-berlin.de/~schliebn/dl/Blue-Midnight-Wish.pdf)
+- Removal of [Groestl](http://www.groestl.info/)
+
+
+#### **NEW** Difficulty Retargeting Algorithm (D106 - Amaury Sechet)
+
+Recent public discussions on how to address Bitcoin Cash's hash rate oscillation has resulted in an excellent approach that addresses many weaknesses of various other algorithms.  A well developed analsysis was presented by Bitcoin Cash's developer Amaury Sechet and supported by Zawy12 via thorough analysis, with simulated results that demonstate the algorthim's effectiveness.  The proposed implementation was modified specific to WEYCOIN blockchain.
+
+More information can be found here:
+
+- [Bitcoin Mailing List Discussion](https://lists.linuxfoundation.org/pipermail/bitcoin-ml/2017-August/000136.html)
+- [Bitcoin News - Bitcoin Cash Hard Fork](https://news.bitcoin.com/bitcoin-cash-hard-fork-plans-updated-new-difficulty-adjustment-algorithm-chosen/)
+
+##### The Modified D106 Algorithm Targeting a 60 Second Block Time for WEYCOIN Blockchain
+![Alt text](doc/D106_algorithm_test.png)
+
+
+#### Treasury Funding
+
+In order to support continued development, exchange lisiting fees, web/node hosting costs, and various other operational costs related to running a successful blockchain, the WEYCOIN development team have decided to introduce a 5% treasury fee in perpetuity. We intend to ensure that the new currency is competitive and successful. To be able to deliver on that vision, we need to ensure that the currency is well-funded throughout its lifecycle.
+
+At 5%, approximately 72 blocks per day are mined for treasury (720 STAK).  In the spirit
+of transparency, the following 2-of-3 multisig addresses are the official
+treasury addresses:
+
+```
+[0] 3K3bPrW5h7DYEMp2RcXawTCXajcm4ZU9Zh
+[1] 33Ssxmn3ehVMgyxgegXhpLGSBpubPjLZQ6
+[2] 3HFPNAjesiBY5sSVUmuBFnMEGut69R49ca
+[3] 37jLjjfUXQU4bdqVzvpUXyzAqPQSmxyByi
+
+```
+
+#### Masternodes (and ZSMR)
+
+Masternodes will be supported with a collateral requirement of **15,000 STAK**.  
+
+The collateral requirement is a dynamic target value and will be updated for future
+releases based on the market price of WEYCOIN and return on investment relative to
+its peer group.
+
+Masternode payments do not start until after approximately 5 weeks post launch. More
+specifically, after **block height 50400**.  This is an active promotion of Masternode
+decentralization via the Zero Start Masternode Reward policy.  This delayed reward
+mechanism seeks to provide sufficient time for swap holders and investors alike to set
+up nodes.
+
+Once the exact collateral requirement is accumulated inside an applicable wallet, the
+associated configured Masternode can be activated.  Note that the node will only start
+receiving payments after the aforementioned ZSMR block height.
+
+
+#### Masternode Payment Rebalancing: **NEW** Reactive Equilibria (REV1)
+
+Unique to WEYCOIN is the use of a new continous activation function based algorithm,
+labelled Reactive Equilibria (REV1), that seeks to rebalance the payments made
+to miners versus Masternodes.  There is a hard limit of 60% of the block reward that
+can be appropriated for Masternode payments; this limit defines the boundary at which
+total supply locked by Masternodes versus total circulation remains below ~13%.
+As the Masternode count increases, the payment to Masternode holders will
+decline in favour of miners in order to support a decentralised ideology.  The
+new algorithm is simple in design but highly effective and lays the foundation for
+future advancements.  More information abut this feature will be posted on the
+[main site](https://weycoin.io).
+
+##### Reactive Equilibria Masternode Payment Rebalancing Profile
+![Alt text](doc/reactive_equilibria.png)
+
+
+#### **NEW** Segregated Witness 2x/4x
+
+![Alt text](doc/segwit.png)
+
+SegWit2x is a combination of both SegWit and a 2MB hardfork. WEYCOIN has further
+increased the non-SegWit block size to **4MB** from the outset to allow for greater
+scalability and utility.  The maximum serialised block size is **16MB** for WEYCOIN.
+
+WEYCOIN is both lightning network and atomic swap compatible. And unlike
+many other "compatible" altcoins, SegWit, SegWit2x and the larger blocksize are enabled from the outset.
+
+For further information about Segregated Witness please visit [bitcoincore.org](https://bitcoincore.org/en/2016/01/26/SegWit-benefits/)
+
+##### Segregated Witness Transaction on WEYCOIN Testnet, [block:6635, txid:3fc630ac1a4b91714d7c7150275b8be019152329e70d1f7a37240a7331b9fab6]
+![Alt text](doc/testnet_segwit.png)
+
+
+#### InstantTX and DarkSend Removal
+*(Reproduced here for information purposes only, not release related)*
+
+Dropped support for both InstantTX and DarkSend. With the SegWit upgrade these features are going to be superseeded by far superior technology. SegWit will enable the WEYCOIN to adopt the [Lightning Network](https://lightning.network/lightning-network-paper.pdf), cross-chain atomic swaps, advanced versions of [TumbleBit](https://eprint.iacr.org/2016/575.pdf) and more.
+
+
+#### Hierarchical Deterministic Key Generation
+*(Reproduced here for information purposes only, not release related)*
+
+Newly created wallets will use hierarchical deterministic key generation
+according to BIP32 (keypath m/0'/0'/k').
+Existing wallets will still use traditional key generation.
+
+Backups of HD wallets, regardless of when they have been created, can
+therefore be used to re-generate all possible private keys, even the
+ones which haven't already been generated during the time of the backup.
+**Attention:** Encrypting the wallet will create a new seed which requires
+a new backup!
+
+Wallet dumps (created using the `dumpwallet` RPC) will contain the deterministic
+seed. This is expected to allow future versions to import the seed and all
+associated funds, but this is not yet implemented.
+
+HD key generation for new wallets can be disabled by `-usehd=0`. Keep in
+mind that this flag only has affect on newly created wallets.
+You can't disable HD key generation once you have created a HD wallet.
+
+There is no distinction between internal (change) and external keys.
+
+HD wallets are incompatible with older versions of Bitcoin Core.
+
+[Pull request](https://github.com/bitcoin/bitcoin/pull/8035/files), [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
+
+
+#### Signature validation using libsecp256k1
+*(Reproduced here for information purposes only, not release related)*
+
+ECDSA signatures inside Bitcoin transactions now use validation using
+[libsecp256k1](https://github.com/bitcoin-core/secp256k1) instead of OpenSSL.
+
+Depending on the platform, this means a significant speedup for raw signature
+validation speed. The advantage is largest on x86_64, where validation is over
+five times faster. In practice, this translates to a raw reindexing and new
+block validation times that are less than half of what it was before.
+
+Libsecp256k1 has undergone very extensive testing and validation.
+
+A side effect of this change is that libconsensus no longer depends on OpenSSL.
+
+
+#### Direct headers announcement (BIP 130)
+*(Reproduced here for information purposes only, not release related)*
+
+Between compatible peers, [BIP 130](https://github.com/bitcoin/bips/blob/master/bip-0130.mediawiki)
+direct headers announcement is used. This means that blocks are advertised by
+announcing their headers directly, instead of just announcing the hash. In a
+reorganization, all new headers are sent, instead of just the new tip. This
+can often prevent an extra roundtrip before the actual block is downloaded.
+
+
+__________________________________________________________________________
+
+
+### Signatum Swap and Developers Premine Information
+
+**Please note:  You can no longer swap from Signatum to WEYCOIN.  The offer registration period has expired.**
+
+In the spirit of full transparency please read the following information carefully and ask questions on the WEYCOIN Discord server if you are unsure of anything.
+
+#### No Technical Association with Signatum
+
+This is a new digital currency and it shares no technical association to Signatum other than its superficial placeholder name and proposed “proof-of-burn” style swap mechanics.  The WEYCOIN team extended the Signatum community an offer to swap away from Signatum in the light of the scam perpetrated by the old Signatum developers.  The whole team was in agreement that this approach would preserve value for Signatum investors and help promote a clean, trustworthy and community orientated cryptocurrency sector.
+
+Prior to the launch of WEYCOIN, the Signatum community voted in favour of 4:1 swap to the coin under development (2017-11-04).  The process involved instantly burning the Signatum coins that was received in exchange for WEYCOIN to be paid over a specified period of time, as noted below.
+
+
+#### The Swap and Developers Funds
+
+Instead of premine, primarily due to the new REV1 payment rebalancing algorithm requiring tracking of supply information, an instamine was added to Block 1 for the total of **41,250,000 STAK**.  
+
+The calculation of the swap and developer funds buffer is as follows:
+
+```
+Swap Ratio: 4 SIGT : 1 STAK
+Signatum Circulation (approx): 137,000,000 SIGT
+Assumed Circulation for Swap (0.36% buffer): 137,500,000 SIGT
+*(Buffer covers 30 days swap period POS generation)*
+
+WEYCOIN Swap Allocation: 34,375,000 STAK
+WEYCOIN Swap Allocation (% of Max Supply): 22.9%
+
+WEYCOIN Developers Allocation: 6,875,000 STAK
+WEYCOIN Developers Allocation (% of Max Supply): 4.6%
+```
+
+Coins that remain unswapped of the initial dedicated swap supply: 60% will be dedicated towards the treasury fund and 40% will be used for air-drops (with minor requirements to increase exposure and awareness).  Full transparency will be provided and users are encouraged to track primary swap funds address.
+
+
+```
+Swap and Developer Funds Address(es)
+------------------------------------
+at the time of writing;
+
+Swap
+[0.0] SUUTsZhb7cpXNgZbieKFrE8gocAtL7EK1C
+[0.1] SPkVa5cB1kcgJk5rinL3p9w47qnjpej5gm
+[0.2] SPFTqzvx63YGt6U5GJ2WpbmsatTtZ8gsZr
+[0.3] SiUHsUD7BcHBwry2kZbQrm6YS7XkG8BvGG
+...
+[0.n] See https://weycoin.info/richlist for updated addresses
+
+Developers
+[1.0] SUUTsZhb7cpXNgZbieKFrE8gocAtL7EK1C
+[1.1] STnW6H7rFWmoXoriS5zjuqBQntnvD1tvhB
+[1.2] SZH7YJvMf4Wfxbf5ioZZgkasthebS9gZ4y
+[1.3] ShLgqYKRWrueCtbDXTPL9h64d1Kf73Sv86
+...
+[1.n] See https://weycoin.info/richlist for updated addresses
+
+
+Initial Mint to Swap Address:
+----------------------------
+Block Hash:
+
+[1] 00000b6321951f2ed170bbc9b7a360995176f2df418b0e275149bfce2fde3d6c
+
+{
+  "hash": "00000b6321951f2ed170bbc9b7a360995176f2df418b0e275149bfce2fde3d6c",
+  "confirmations": 82,
+  "strippedsize": 248,
+  "size": 248,
+  "weight": 992,
+  "height": 1,
+  "version": 805306387,
+  "versionHex": "30000013",
+  "merkleroot": "4f70027abe261ca60e37ede92a988594be405dca13bdcbab915872e79ee5ff46",
+  "tx": [
+    "4f70027abe261ca60e37ede92a988594be405dca13bdcbab915872e79ee5ff46"
+  ],
+  "time": 1510792676,
+  "mediantime": 1510792676,
+  "nonce": 3848,
+  "bits": "1e0fffff",
+  "difficulty": 0.0002441371325370145,
+  "chainwork": "0000000000000000000000000000000000000000000000000000000000200011",
+  "previousblockhash": "00000df14d859c4b3219d93978bcf02afc123d2344a2ed39033e1208948aa7c0",
+  "nextblockhash": "000001c4bb98a9d3863d26325d95d3ed774309a605c9b0b18746f14e50253a4c"
+}
+
+Coinbase Transaction:
+
+{
+  "txid": "4f70027abe261ca60e37ede92a988594be405dca13bdcbab915872e79ee5ff46",
+  "hash": "4f70027abe261ca60e37ede92a988594be405dca13bdcbab915872e79ee5ff46",
+  "size": 167,
+  "vsize": 167,
+  "version": 2,
+  "locktime": 0,
+  "vin": [
+    {
+      "coinbase": "510101",
+      "sequence": 4294967295
+    }
+  ],
+  "vout": [
+    {
+      "value": 41250000.00000000,
+      "n": 0,
+      "scriptPubKey": {
+        "asm": "OP_DUP OP_HASH160 4ec371eeab928ff421d09f9ed54ec1c98098ab50 OP_EQUALVERIFY OP_CHECKSIG",
+        "hex": "76a9144ec371eeab928ff421d09f9ed54ec1c98098ab5088ac",
+        "reqSigs": 1,
+        "type": "pubkeyhash",
+        "addresses": [
+          "SUUTsZhb7cpXNgZbieKFrE8gocAtL7EK1C"
+        ]
+      }
+    },
+    {
+      "value": 0.00000000,
+      "n": 1,
+      "scriptPubKey": {
+        "asm": "OP_HASH160 1343c8390c5f73d608f4b47e6959d8f3ae863605 OP_EQUAL",
+        "hex": "a9141343c8390c5f73d608f4b47e6959d8f3ae86360587",
+        "reqSigs": 1,
+        "type": "scripthash",
+        "addresses": [
+          "33Ssxmn3ehVMgyxgegXhpLGSBpubPjLZQ6"
+        ]
+      }
+    },
+    {
+      "value": 0.00000000,
+      "n": 2,
+      "scriptPubKey": {
+        "asm": "OP_RETURN aa21a9ede2f61c3f71d1defd3fa999dfa36953755c690689799962b48bebd836974e8cf9",
+        "hex": "6a24aa21a9ede2f61c3f71d1defd3fa999dfa36953755c690689799962b48bebd836974e8cf9",
+        "type": "nulldata"
+      }
+    }
+  ]
+}
+
+
+Transfer to Developers Address:
+-------------------------------
+Block:
+{
+  "hash": "00000091f8b8c6f80eed773988516b66a1f5b1c5f3d4f79b9a04dad2ac2d788c",
+  "confirmations": 47,
+  "strippedsize": 475,
+  "size": 511,
+  "weight": 1936,
+  "height": 4827,
+  "version": 536870912,
+  "versionHex": "20000000",
+  "merkleroot": "10a1dddf9e7de23eeada61dfa141214f781c7e79d4d128d156df3a0a73ce9eec",
+  "tx": [
+    "6efb7d32aa752c234f443eb1cd4c1d874f0d701df5f565e20497937ef3735154",
+    "244a50f42d5685998ef111435a0047f8fdee5c2cd500f6c14e5cba3a4a773672"
+  ],
+  "time": 1511115839,
+  "mediantime": 1511099961,
+  "nonce": 27792,
+  "bits": "1e00b2f4",
+  "difficulty": 0.005587970264341221,
+  "chainwork": "00000000000000000000000000000000000000000000000000000013c1e58d50",
+  "previousblockhash": "0000000f269e70087c382256eb88a9e81c5384a2fa2f43e22b03c368923c205f",
+  "nextblockhash": "0000007a7ec954fab0e3a42aa2b4a8dbec6bf2afaa8dfadcb7c242899c1ab17e"
+}
+
+Transaction:
+{
+  "account": "0",
+  "address": "Sh87ZGfyfQ1XmRKCESgRGVzgUqvqAd72YM",
+  "category": "receive",
+  "amount": 6875000.00000000,
+  "label": "0",
+  "vout": 1,
+  "confirmations": 33,
+  "bcconfirmations": 33,
+  "blockhash": "00000091f8b8c6f80eed773988516b66a1f5b1c5f3d4f79b9a04dad2ac2d788c",
+  "blockindex": 1,
+  "blocktime": 1511115839,
+  "txid": "244a50f42d5685998ef111435a0047f8fdee5c2cd500f6c14e5cba3a4a773672",
+  "walletconflicts": [
+  ],
+  "time": 1511100548,
+  "timereceived": 1511100548,
+  "bip125-replaceable": "no"
+}
+```
+
+#### The Swap Mechanics
+
+The swap process will be conducted in a manner such that it aligns WEYCOIN' investor/miner incentives, WEYCOIN' team long-term objectives, and SIGT's "investors" seeking to accrue value alongside the WEYCOIN' community.
+
+The distribution of swap funds will be managed to the extent that significant disruption of STAK circulation and market value can/will be minimised. It would be unreasonable to think that the development team have not extensively considered the detrimental impact of an instantaneous increase in the circulation of STAK coins post swap. To this consideration, the process defined, as follows, to an appreciable degree, prevents SIGT investors benefiting at the expense of WEYCOIN' miners/investors.
+
+
+##### The Swap Process
+
+Following the end of the swap registration period (**__04 January 2018 18:00 UTC__**), ~28 days post announcement of the start, the **swap payments are distributed on a weekly basis**, in-line with the rate at which supply is being generated for STAK through mining, i.e at 1440 blocks per day = 14,400 STAK per day.  With the minor adjustment of the swap supply distribution being accelerated by 5% each year.  
+
+All Signatum coins were **burnt instantly** upon receipt in a transparent manner, which the community were able to track via the Signatum explorer.  This was aligned with the WEYCOIN team's position to *NOT* be responsible for the maintenance of Signatum's chain, associated nodes and issues that would have arisen otherwise over the duration of the swap payback period.  The WEYCOIN team is *only* responsible for the swap allocated STAK and weekly distributions to swap participants on an ongoing basis.
+
+```
+Monthly total swap distribution for registered STAK swap addresses:
+
+Year 1 per Month: 432,000 STAK distributed; equivalent to 1,728,000 SIGT
+Year 2 per Month: 453,600 STAK distributed, equivalent to 1,814,400 SIGT
+Year 3 per Month: 475,200 STAK distributed, equivalent to 1,900,800 SIGT
+Year 4 for 7 Months: 496,800 STAK distributed, equivalent to 1,987,200 SIGT
+Year 4 for 1 Month: 389,503 STAK distributed, equivalent to 1,558,012 SIGT
+
+Total Swap Distribution: 20,196,703 STAK
+```
+
+##### Swap Supply Relative to Total Supply (+Mining)
+![Alt text](doc/swap_supply.png)
+
+
+By tracking POW generation, we have essentially **introduced a parallel POS system for SIGT "investors"**.  As such, SIGT investors are rewarded in-line with miners without having to "re-mine" coins -  having done so already.  **We the WEYCOIN team, presented this as an equitable approach for all parties concerned**.  
+
+We note, again however, that Signatum investors/miners were not compelled in any way shape or form to participate in this swap.  This was simply an offer with the goal of alleviating their distress from being scammed by Signatum's development team, and to **build trust for the crypto-currency sector**, from an external perspective.  Moreover, to promote a **zero tolerance policy for nefarious operators within the sector**.
+
+If you have any questions, or misunderstandings, please ask questions on the [WEYCOIN Discord](https://discord.gg/5gzvadZ).   
+
+##### Total Circulation Versus Swap Supply and Mining Supply (Monthly)
+![Alt text](doc/monthly_swap_supply_surve.png)
+
+
+__________________________________________________________________________
+
+
+### Acknowledgements
+
+Credit goes to Bitcoin Core, Dash and Bitsend for providing a basic platform for
+WEYCOIN to enhance and develop, in concert with a shared desire to support the
+adoption of a decentralised digital currency future for the masses.
+
+
+__________________________________________________________________________
+
+
+### License
+
+WEYCOIN Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+information or see https://opensource.org/licenses/MIT.
+
+
+__________________________________________________________________________
+
+
+### Development Process
+
+The `master` branch is meant to be stable. Development is normally done in separate branches.
+[Tags](https://github.com/weycoin/weycoin/tags) are created to indicate new official,
+stable release versions of WEYCOIN' Core.
+
+The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+
+__________________________________________________________________________
+
+
+### Building process
+
+**compiling WEYCOIN from git**
+
+Use the autogen script to prepare the build environment.
+
+    ./autogen.sh
+    ./configure
+    make
+
+**precompiled binaries**
+
+Precompiled binaries are available at GitHub, see
+https://github.com/weycoin/weycoin/releases
+
+Always verify the signatures and checksums.
+
+
+__________________________________________________________________________

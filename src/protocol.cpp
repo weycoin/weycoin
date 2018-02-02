@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers 
+// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +13,28 @@
 #ifndef WIN32
 # include <arpa/inet.h>
 #endif
+
+/** // TODO-- : NetMsgType::, allNetMessageTypes[]
+static const char* ppszTypeName[] =
+{
+    "ERROR", // Should never occur
+    NetMsgType::TX,
+    NetMsgType::BLOCK,
+    "filtered block" // Should never occur
+    "tx lock request",
+    "tx lock vote",
+    "spork",
+    "mn winner",
+    "mn scan error",
+    "mn budget vote",
+    "mn budget proposal",
+    "mn budget finalized",
+    "mn budget finalized vote",
+    "mn quorum",
+    "mn announce",
+    "mn ping",
+    "dstx"
+};*/
 
 namespace NetMsgType {
 const char *VERSION="version";
@@ -39,7 +63,9 @@ const char *SENDCMPCT="sendcmpct";
 const char *CMPCTBLOCK="cmpctblock";
 const char *GETBLOCKTXN="getblocktxn";
 const char *BLOCKTXN="blocktxn";
-} // namespace NetMsgType
+const char *MNWINNER="masternode winner";
+const char *SPORK="spork";
+};
 
 /** All known message types. Keep this in the same order as the list of
  * messages above and in protocol.h.
@@ -71,6 +97,8 @@ const static std::string allNetMessageTypes[] = {
     NetMsgType::CMPCTBLOCK,
     NetMsgType::GETBLOCKTXN,
     NetMsgType::BLOCKTXN,
+	NetMsgType::MNWINNER,
+	NetMsgType::SPORK,
 };
 const static std::vector<std::string> allNetMessageTypesVec(allNetMessageTypes, allNetMessageTypes+ARRAYLEN(allNetMessageTypes));
 
@@ -151,7 +179,11 @@ CInv::CInv()
     hash.SetNull();
 }
 
-CInv::CInv(int typeIn, const uint256& hashIn) : type(typeIn), hash(hashIn) {}
+CInv::CInv(int typeIn, const uint256& hashIn)
+{
+    type = typeIn;
+    hash = hashIn;
+}
 
 bool operator<(const CInv& a, const CInv& b)
 {
@@ -170,6 +202,8 @@ std::string CInv::GetCommand() const
     case MSG_BLOCK:          return cmd.append(NetMsgType::BLOCK);
     case MSG_FILTERED_BLOCK: return cmd.append(NetMsgType::MERKLEBLOCK);
     case MSG_CMPCT_BLOCK:    return cmd.append(NetMsgType::CMPCTBLOCK);
+	case MSG_MASTERNODE_WINNER: return cmd.append(NetMsgType::MNWINNER);
+	case MSG_SPORK: return cmd.append(NetMsgType::SPORK);
     default:
         throw std::out_of_range(strprintf("CInv::GetCommand(): type=%d unknown type", type));
     }

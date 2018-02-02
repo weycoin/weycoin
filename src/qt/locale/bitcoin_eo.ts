@@ -41,78 +41,10 @@
         <source>&amp;Delete</source>
         <translation>&amp;Forigi</translation>
     </message>
-    <message>
-        <source>Choose the address to send coins to</source>
-        <translation>Elekti la adreson por sendi monerojn</translation>
-    </message>
-    <message>
-        <source>Choose the address to receive coins with</source>
-        <translation>Elekti la adreson ricevi monerojn kun</translation>
-    </message>
-    <message>
-        <source>C&amp;hoose</source>
-        <translation>&amp;Elekti</translation>
-    </message>
-    <message>
-        <source>Sending addresses</source>
-        <translation>Sendaj adresoj</translation>
-    </message>
-    <message>
-        <source>Receiving addresses</source>
-        <translation>Ricevaj adresoj</translation>
-    </message>
-    <message>
-        <source>These are your WeyCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Jen viaj WeyCoin-adresoj por sendi pagojn. Zorge kontrolu la sumon kaj la alsendan adreson antaŭ ol sendi.</translation>
-    </message>
-    <message>
-        <source>These are your WeyCoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Jen viaj weycoinj adresoj por ricevi pagojn. Estas konsilinde uzi apartan ricevan adreson por ĉiu transakcio.</translation>
-    </message>
-    <message>
-        <source>&amp;Copy Address</source>
-        <translation>&amp;Kopii Adreson</translation>
-    </message>
-    <message>
-        <source>Copy &amp;Label</source>
-        <translation>Kopii &amp;Etikedon</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation>&amp;Redakti</translation>
-    </message>
-    <message>
-        <source>Export Address List</source>
-        <translation>Eksporti Adresliston</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Perkome disigita dosiero (*.csv)</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>ekspotado malsukcesinta</translation>
-    </message>
-    <message>
-        <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Okazis eraron dum konservo de adreslisto al %1. Bonvolu provi denove.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AddressTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etikedo</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adreso</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(neniu etikedo)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -136,7 +68,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>WEYCOINGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Subskribi &amp;mesaĝon...</translation>
@@ -214,8 +146,8 @@
         <translation>Reindeksado de blokoj sur disko...</translation>
     </message>
     <message>
-        <source>Send coins to a WeyCoin address</source>
-        <translation>Sendi monon al WeyCoin-adreso</translation>
+        <source>Send coins to a WEYCOIN address</source>
+        <translation>Sendi monon al Bitmon-adreso</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -238,8 +170,8 @@
         <translation>&amp;Kontroli mesaĝon...</translation>
     </message>
     <message>
-        <source>WeyCoin</source>
-        <translation>WeyCoin</translation>
+        <source>WEYCOIN</source>
+        <translation>Bitmono</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -266,12 +198,12 @@
         <translation>Ĉifri la privatajn ŝlosilojn de via monujo</translation>
     </message>
     <message>
-        <source>Sign messages with your WeyCoin addresses to prove you own them</source>
-        <translation>Subskribi mesaĝojn per via WeyCoin-adresoj por pravigi, ke vi estas la posedanto</translation>
+        <source>Sign messages with your WEYCOIN addresses to prove you own them</source>
+        <translation>Subskribi mesaĝojn per via Bitmon-adresoj por pravigi, ke vi estas la posedanto</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified WeyCoin addresses</source>
-        <translation>Kontroli mesaĝojn por kontroli ĉu ili estas subskribitaj per specifaj WeyCoin-adresoj</translation>
+        <source>Verify messages to ensure they were signed with specified WEYCOIN addresses</source>
+        <translation>Kontroli mesaĝojn por kontroli ĉu ili estas subskribitaj per specifaj Bitmon-adresoj</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -454,10 +386,6 @@
         <source>Confirmed</source>
         <translation>Konfirmita</translation>
     </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(neniu etikedo)</translation>
-    </message>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -628,8 +556,8 @@
         <translation>Fakulo</translation>
     </message>
     <message>
-        <source>Automatically open the WeyCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Aŭtomate malfermi la kursilan pordon por Litecoino. Tio funkcias nur se via kursilo havas la UPnP-funkcion, kaj se tiu ĉi estas ŝaltita.</translation>
+        <source>Automatically open the WEYCOIN client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Aŭtomate malfermi la kursilan pordon por Bitmono. Tio funkcias nur se via kursilo havas la UPnP-funkcion, kaj se tiu ĉi estas ŝaltita.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -685,7 +613,7 @@
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Elekti la defaŭltan manieron por montri weycoinjn sumojn en la interfaco, kaj kiam vi sendos bitmonon.</translation>
+        <translation>Elekti la defaŭltan manieron por montri bitmonajn sumojn en la interfaco, kaj kiam vi sendos bitmonon.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -723,8 +651,8 @@
         <translation>Formularo</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WeyCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Eblas, ke la informoj videblaj ĉi tie estas eksdataj. Via monujo aŭtomate sinkoniĝas kun la weycoin reto kiam ili konektiĝas, sed tiu procezo ankoraŭ ne finfariĝis.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WEYCOIN network after a connection is established, but this process has not completed yet.</source>
+        <translation>Eblas, ke la informoj videblaj ĉi tie estas eksdataj. Via monujo aŭtomate sinkoniĝas kun la bitmona reto kiam ili konektiĝas, sed tiu procezo ankoraŭ ne finfariĝis.</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
@@ -1006,31 +934,15 @@
         <source>&amp;Save Image...</source>
         <translation>&amp;Konservi Bildon...</translation>
     </message>
-    <message>
-        <source>Address</source>
-        <translation>Adreso</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etikedo</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etikedo</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(neniu etikedo)</translation>
-    </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Sendi Litecoinn</translation>
+        <translation>Sendi Bitmonon</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -1104,11 +1016,7 @@
         <source>S&amp;end</source>
         <translation>Ŝendi</translation>
     </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(neniu etikedo)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -1213,8 +1121,8 @@
         <translation>Kopii la aktualan subskribon al la tondejo</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this WeyCoin address</source>
-        <translation>Subskribi la mesaĝon por pravigi, ke vi estas la posedanto de tiu WeyCoin-adreso</translation>
+        <source>Sign the message to prove you own this WEYCOIN address</source>
+        <translation>Subskribi la mesaĝon por pravigi, ke vi estas la posedanto de tiu Bitmon-adreso</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1233,8 +1141,8 @@
         <translation>&amp;Kontroli Mesaĝon</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified WeyCoin address</source>
-        <translation>Kontroli la mesaĝon por pravigi, ke ĝi ja estas subskribita per la specifa WeyCoin-adreso</translation>
+        <source>Verify the message to ensure it was signed with the specified WEYCOIN address</source>
+        <translation>Kontroli la mesaĝon por pravigi, ke ĝi ja estas subskribita per la specifa Bitmon-adreso</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1271,33 +1179,9 @@
     </context>
 <context>
     <name>TransactionTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etikedo</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(neniu etikedo)</translation>
-    </message>
     </context>
 <context>
     <name>TransactionView</name>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Perkome disigita dosiero (*.csv)</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etikedo</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Adreso</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>ekspotado malsukcesinta</translation>
-    </message>
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
@@ -1312,7 +1196,7 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>weycoin-core</name>
     <message>
         <source>Options:</source>
         <translation>Agordoj:</translation>
@@ -1338,8 +1222,8 @@
         <translation>Ruli fone kiel demono kaj akcepti komandojn</translation>
     </message>
     <message>
-        <source>WeyCoin Core</source>
-        <translation>Kerno de Litecoino</translation>
+        <source>WEYCOIN Core</source>
+        <translation>Kerno de Bitmono</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

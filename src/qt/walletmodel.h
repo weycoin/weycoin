@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_WALLETMODEL_H
-#define BITCOIN_QT_WALLETMODEL_H
+#ifndef WEYCOIN_QT_WALLETMODEL_H
+#define WEYCOIN_QT_WALLETMODEL_H
 
 #include "paymentrequestplus.h"
 #include "walletmodeltransaction.h"
@@ -94,7 +94,7 @@ public:
     }
 };
 
-/** Interface to Bitcoin wallet from Qt view code. */
+/** Interface to WeyCoin wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT
@@ -129,7 +129,7 @@ public:
     TransactionTableModel *getTransactionTableModel();
     RecentRequestsTableModel *getRecentRequestsTableModel();
 
-    CAmount getBalance(const CCoinControl *coinControl = nullptr) const;
+    CAmount getBalance(const CCoinControl *coinControl = NULL) const;
     CAmount getUnconfirmedBalance() const;
     CAmount getImmatureBalance() const;
     bool haveWatchOnly() const;
@@ -154,7 +154,7 @@ public:
     };
 
     // prepare transaction for getting txfee before sending coins
-    SendCoinsReturn prepareTransaction(WalletModelTransaction &transaction, const CCoinControl& coinControl);
+    SendCoinsReturn prepareTransaction(WalletModelTransaction &transaction, const CCoinControl *coinControl = NULL);
 
     // Send coins to a list of recipients
     SendCoinsReturn sendCoins(WalletModelTransaction &transaction);
@@ -207,16 +207,11 @@ public:
     bool transactionCanBeAbandoned(uint256 hash) const;
     bool abandonTransaction(uint256 hash) const;
 
-    bool transactionCanBeBumped(uint256 hash) const;
-    bool bumpFee(uint256 hash);
-
     static bool isWalletEnabled();
 
     bool hdEnabled() const;
 
     int getDefaultConfirmTarget() const;
-
-    bool getDefaultWalletRbf() const;
 
 private:
     CWallet *wallet;
@@ -285,4 +280,4 @@ public Q_SLOTS:
     void pollBalanceChanged();
 };
 
-#endif // BITCOIN_QT_WALLETMODEL_H
+#endif // WEYCOIN_QT_WALLETMODEL_H

@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both bitcoind and bitcoin-core, to make it harder for attackers to
+ * for both weycoind and weycoin-core, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("WeyCoinCore");
+const std::string CLIENT_NAME("WeyCoin Core");
 
 /**
  * Client version number
@@ -42,11 +42,10 @@ const std::string CLIENT_NAME("WeyCoinCore");
 #include "build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives.
-#define GIT_ARCHIVE 1
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. $Format:%n#define GIT_ARCHIVE 1$
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "94adaf8468fa"
-#define GIT_COMMIT_DATE "Mon, 8 Jan 2018 18:18:45 -0800"
+#define GIT_COMMIT_ID "$Format:%h$"
+#define GIT_COMMIT_DATE "$Format:%cD$"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \
@@ -83,8 +82,8 @@ std::string FormatFullVersion()
     return CLIENT_BUILD;
 }
 
-/**
- * Format the subversion field according to BIP 14 spec (https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki)
+/** 
+ * Format the subversion field according to BIP 14 spec (https://github.com/weycoin/bips/blob/master/bip-0014.mediawiki) 
  */
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments)
 {

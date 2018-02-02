@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2015 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,31 +9,59 @@
 #include "uint256.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_bitcoin.h"
+#include "test/test_weycoin.h"
 
 #include <string>
 #include <vector>
 
 #include <boost/test/unit_test.hpp>
 
-static const std::string strSecret1     ("6uGFQ4DSW7zh1viHZi6iiVT17CncvoaV4MHvGvJKPDaLCdymj87");
-static const std::string strSecret2     ("6vVo7sPkeLTwVdAntrv4Gbnsyr75H8ChD3P5iyHziwaqe8mCYR5");
-static const std::string strSecret1C    ("T3gJYmBuZXsdd65E7NQF88ZmUP2MaUanqnZg9GFS94W7kND4Ebjq");
-static const std::string strSecret2C    ("T986ZKRRdnuuXLeDZuKBRrZW1ujotAncU9WTrFU1n7vMgRW75ZtF");
-static const CBitcoinAddress addr1 ("LiUo6Zn39joYJBzPUhssbDwAywhjFcoHE3");
-static const CBitcoinAddress addr2 ("LZJvLSP5SGKcFS13MHgdrVhpFUbEMB5XVC");
-static const CBitcoinAddress addr1C("Lh2G82Bi33RNuzz4UfSMZbh54jnWHVnmw8");
-static const CBitcoinAddress addr2C("LWegHWHB5rmaF5rgWYt1YN3StapRdnGJfU");
+static const std::string strSecret1     ("5HxWvvfubhXpYYpS3tJkw6fq9jE9j18THftkZjHHfmFiWtmAbrj");
+static const std::string strSecret2     ("5KC4ejrDjv152FGwP386VD1i2NYc5KkfSMyv1nGy1VGDxGHqVY3");
+static const std::string strSecret1C    ("Kwr371tjA9u2rFSMZjTNun2PXXP3WPZu2afRHTcta6KxEUdm1vEw");
+static const std::string strSecret2C    ("L3Hq7a8FEQwJkW1M2GNKDW28546Vp5miewcCzSqUD9kCAXrJdS3g");
+static const CWeyCoinAddress addr1 ("1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ");
+static const CWeyCoinAddress addr2 ("1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ");
+static const CWeyCoinAddress addr1C("1NoJrossxPBKfCHuJXT4HadJrXRE9Fxiqs");
+static const CWeyCoinAddress addr2C("1CRj2HyM1CXWzHAXLQtiGLyggNT9WQqsDs");
 
 
-static const std::string strAddressBad("Lbi6bpMhSwp2CXkivEeUK9wzyQEFzHDfSr");
+static const std::string strAddressBad("1HV9Lc3sNHZxwj4Zk6fB38tEmBryq2cBiF");
+
+
+#ifdef KEY_TESTS_DUMPINFO
+void dumpKeyInfo(uint256 privkey)
+{
+    CKey key;
+    key.resize(32);
+    memcpy(&secret[0], &privkey, 32);
+    std::vector<unsigned char> sec;
+    sec.resize(32);
+    memcpy(&sec[0], &secret[0], 32);
+    printf("  * secret (hex): %s\n", HexStr(sec).c_str());
+
+    for (int nCompressed=0; nCompressed<2; nCompressed++)
+    {
+        bool fCompressed = nCompressed == 1;
+        printf("  * %s:\n", fCompressed ? "compressed" : "uncompressed");
+        CWeyCoinSecret bsecret;
+        bsecret.SetSecret(secret, fCompressed);
+        printf("    * secret (base58): %s\n", bsecret.ToString().c_str());
+        CKey key;
+        key.SetSecret(secret, fCompressed);
+        std::vector<unsigned char> vchPubKey = key.GetPubKey();
+        printf("    * pubkey (hex): %s\n", HexStr(vchPubKey).c_str());
+        printf("    * address (base58): %s\n", CWeyCoinAddress(vchPubKey).ToString().c_str());
+    }
+}
+#endif
 
 
 BOOST_FIXTURE_TEST_SUITE(key_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
-    CBitcoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
+    CWeyCoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
     BOOST_CHECK( bsecret1.SetString (strSecret1));
     BOOST_CHECK( bsecret2.SetString (strSecret2));
     BOOST_CHECK( bsecret1C.SetString(strSecret1C));

@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 // This file contains the specification, but not the implementations,
@@ -128,16 +128,6 @@ extern bool Snappy_Uncompress(const char* input_data, size_t input_length,
 // Else repeatedly calls (*func)(arg, data, n) and then returns true.
 // The concatenation of all "data[0,n-1]" fragments is the heap profile.
 extern bool GetHeapProfile(void (*func)(void*, const char*, int), void* arg);
-
-// Determine whether a working accelerated crc32 implementation exists
-// Returns true if AcceleratedCRC32C is safe to call
-bool HasAcceleratedCRC32C();
-
-// Extend the CRC to include the first n bytes of buf.
-//
-// Returns zero if the CRC cannot be extended using acceleration, else returns
-// the newly extended CRC value (which may also be zero).
-uint32_t AcceleratedCRC32C(uint32_t crc, const char* buf, size_t size);
 
 }  // namespace port
 }  // namespace leveldb

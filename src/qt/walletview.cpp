@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,9 +6,11 @@
 
 #include "addressbookpage.h"
 #include "askpassphrasedialog.h"
-#include "bitcoingui.h"
+//#include "bip38tooldialog.h"
+#include "weycoingui.h"
 #include "clientmodel.h"
 #include "guiutil.h"
+#include "masternodeconfig.h"//kaali
 #include "optionsmodel.h"
 #include "overviewpage.h"
 #include "platformstyle.h"
@@ -63,6 +65,8 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
+	masternodeListPage = new MasternodeList();//kaali
+	addWidget(masternodeListPage);
 
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
@@ -84,7 +88,7 @@ WalletView::~WalletView()
 {
 }
 
-void WalletView::setBitcoinGUI(BitcoinGUI *gui)
+void WalletView::setWeyCoinGUI(WeyCoinGUI *gui)
 {
     if (gui)
     {
@@ -111,6 +115,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
 
     overviewPage->setClientModel(_clientModel);
     sendCoinsPage->setClientModel(_clientModel);
+	masternodeListPage->setClientModel(clientModel);
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -122,6 +127,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     overviewPage->setWalletModel(_walletModel);
     receiveCoinsPage->setModel(_walletModel);
     sendCoinsPage->setModel(_walletModel);
+	masternodeListPage->setWalletModel(walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
 
@@ -183,7 +189,10 @@ void WalletView::gotoReceiveCoinsPage()
 {
     setCurrentWidget(receiveCoinsPage);
 }
-
+void WalletView::gotoMasternodePage()
+{
+	setCurrentWidget(masternodeListPage);
+}
 void WalletView::gotoSendCoinsPage(QString addr)
 {
     setCurrentWidget(sendCoinsPage);
@@ -246,7 +255,7 @@ void WalletView::backupWallet()
 {
     QString filename = GUIUtil::getSaveFileName(this,
         tr("Backup Wallet"), QString(),
-        tr("Wallet Data (*.dat)"), nullptr);
+        tr("Wallet Data (*.dat)"), NULL);
 
     if (filename.isEmpty())
         return;
@@ -267,7 +276,13 @@ void WalletView::changePassphrase()
     dlg.setModel(walletModel);
     dlg.exec();
 }
-
+/* void WalletView::gotoBip38Tool()
+{
+    Bip38ToolDialog* bip38ToolDialog = new Bip38ToolDialog(this);
+    //bip38ToolDialog->setAttribute(Qt::WA_DeleteOnClose);
+    bip38ToolDialog->setModel(walletModel);
+    bip38ToolDialog->showTab_ENC(true);
+} */
 void WalletView::unlockWallet()
 {
     if(!walletModel)

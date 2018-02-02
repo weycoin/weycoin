@@ -1,9 +1,9 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_TRANSACTIONVIEW_H
-#define BITCOIN_QT_TRANSACTIONVIEW_H
+#ifndef WEYCOIN_QT_TRANSACTIONVIEW_H
+#define WEYCOIN_QT_TRANSACTIONVIEW_H
 
 #include "guiutil.h"
 
@@ -76,7 +76,6 @@ private:
     QDateTimeEdit *dateFrom;
     QDateTimeEdit *dateTo;
     QAction *abandonAction;
-    QAction *bumpFeeAction;
 
     QWidget *createDateRangeWidget();
 
@@ -100,7 +99,6 @@ private Q_SLOTS:
     void openThirdPartyTxUrl(QString url);
     void updateWatchOnlyColumn(bool fHaveWatchOnly);
     void abandonTx();
-    void bumpFee();
 
 Q_SIGNALS:
     void doubleClicked(const QModelIndex&);
@@ -119,4 +117,4 @@ public Q_SLOTS:
 
 };
 
-#endif // BITCOIN_QT_TRANSACTIONVIEW_H
+#endif // WEYCOIN_QT_TRANSACTIONVIEW_H

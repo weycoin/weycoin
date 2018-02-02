@@ -1,4 +1,4 @@
-// Copyright (c) 2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -126,7 +126,7 @@ void ModalOverlay::tipUpdate(int count, const QDateTime& blockDate, double nVeri
         return;
 
     // estimate the number of headers left based on nPowTargetSpacing
-    // and check if the gui is not aware of the best header (happens rarely)
+    // and check if the gui is not aware of the the best header (happens rarely)
     int estimateNumHeadersLeft = bestHeaderDate.secsTo(currentDate) / Params().GetConsensus().nPowTargetSpacing;
     bool hasBestHeader = bestHeaderHeight >= count;
 

@@ -1,10 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2017 The Dash developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_PRIMITIVES_BLOCK_H
-#define BITCOIN_PRIMITIVES_BLOCK_H
+#ifndef WEYCOIN_PRIMITIVES_BLOCK_H
+#define WEYCOIN_PRIMITIVES_BLOCK_H
 
 #include "primitives/transaction.h"
 #include "serialize.h"
@@ -62,8 +64,6 @@ public:
 
     uint256 GetHash() const;
 
-    uint256 GetPoWHash() const;
-
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;
@@ -78,6 +78,7 @@ public:
     std::vector<CTransactionRef> vtx;
 
     // memory only
+	mutable CScript payee;//TODO--
     mutable bool fChecked;
 
     CBlock()
@@ -103,6 +104,7 @@ public:
     {
         CBlockHeader::SetNull();
         vtx.clear();
+		payee = CScript();//TODO--
         fChecked = false;
     }
 
@@ -131,7 +133,10 @@ struct CBlockLocator
 
     CBlockLocator() {}
 
-    CBlockLocator(const std::vector<uint256>& vHaveIn) : vHave(vHaveIn) {}
+    CBlockLocator(const std::vector<uint256>& vHaveIn)
+    {
+        vHave = vHaveIn;
+    }
 
     ADD_SERIALIZE_METHODS;
 
@@ -154,4 +159,7 @@ struct CBlockLocator
     }
 };
 
-#endif // BITCOIN_PRIMITIVES_BLOCK_H
+/** Compute the consensus-critical block weight (see BIP 141). */
+int64_t GetBlockWeight(const CBlock& tx);
+
+#endif // WEYCOIN_PRIMITIVES_BLOCK_H

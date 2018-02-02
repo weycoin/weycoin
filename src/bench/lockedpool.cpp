@@ -1,4 +1,4 @@
-// Copyright (c) 2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,7 @@
 #define BITER 5000
 #define MSIZE 2048
 
-static void BenchLockedPool(benchmark::State& state)
+static void LockedPool(benchmark::State& state)
 {
     void *synth_base = reinterpret_cast<void*>(0x08000000);
     const size_t synth_size = 1024*1024;
@@ -43,5 +43,5 @@ static void BenchLockedPool(benchmark::State& state)
     addr.clear();
 }
 
-BENCHMARK(BenchLockedPool);
+BENCHMARK(LockedPool);
 

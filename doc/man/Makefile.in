@@ -87,9 +87,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@BUILD_BITCOIND_TRUE@am__append_1 = weycoind.1
+@BUILD_WEYCOIND_TRUE@am__append_1 = weycoind.1
 @ENABLE_QT_TRUE@am__append_2 = weycoin-qt.1
-@BUILD_BITCOIN_UTILS_TRUE@am__append_3 = weycoin-cli.1 weycoin-tx.1
+@BUILD_WEYCOIN_UTILS_TRUE@am__append_3 = weycoin-cli.1 weycoin-tx.1
 subdir = doc/man
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
@@ -105,21 +105,21 @@ am__aclocal_m4_deps = $(top_srcdir)/build-aux/m4/ax_boost_base.m4 \
 	$(top_srcdir)/build-aux/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/build-aux/m4/ax_gcc_func_attribute.m4 \
 	$(top_srcdir)/build-aux/m4/ax_pthread.m4 \
-	$(top_srcdir)/build-aux/m4/bitcoin_find_bdb48.m4 \
-	$(top_srcdir)/build-aux/m4/bitcoin_qt.m4 \
-	$(top_srcdir)/build-aux/m4/bitcoin_subdir_to_include.m4 \
 	$(top_srcdir)/build-aux/m4/l_atomic.m4 \
 	$(top_srcdir)/build-aux/m4/libtool.m4 \
 	$(top_srcdir)/build-aux/m4/ltoptions.m4 \
 	$(top_srcdir)/build-aux/m4/ltsugar.m4 \
 	$(top_srcdir)/build-aux/m4/ltversion.m4 \
 	$(top_srcdir)/build-aux/m4/lt~obsolete.m4 \
+	$(top_srcdir)/build-aux/m4/weycoin_find_bdb48.m4 \
+	$(top_srcdir)/build-aux/m4/weycoin_qt.m4 \
+	$(top_srcdir)/build-aux/m4/weycoin_subdir_to_include.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/src/config/bitcoin-config.h
+CONFIG_HEADER = $(top_builddir)/src/config/weycoin-config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 AM_V_P = $(am__v_P_@AM_V@)
@@ -179,7 +179,6 @@ ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
-ARFLAGS = @ARFLAGS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -187,10 +186,6 @@ AWK = @AWK@
 BDB_CFLAGS = @BDB_CFLAGS@
 BDB_CPPFLAGS = @BDB_CPPFLAGS@
 BDB_LIBS = @BDB_LIBS@
-BITCOIN_CLI_NAME = @BITCOIN_CLI_NAME@
-BITCOIN_DAEMON_NAME = @BITCOIN_DAEMON_NAME@
-BITCOIN_GUI_NAME = @BITCOIN_GUI_NAME@
-BITCOIN_TX_NAME = @BITCOIN_TX_NAME@
 BOOST_CHRONO_LIB = @BOOST_CHRONO_LIB@
 BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
 BOOST_FILESYSTEM_LIB = @BOOST_FILESYSTEM_LIB@
@@ -239,7 +234,7 @@ EVENT_LIBS = @EVENT_LIBS@
 EVENT_PTHREADS_CFLAGS = @EVENT_PTHREADS_CFLAGS@
 EVENT_PTHREADS_LIBS = @EVENT_PTHREADS_LIBS@
 EXEEXT = @EXEEXT@
-EXTENDED_FUNCTIONAL_TESTS = @EXTENDED_FUNCTIONAL_TESTS@
+EXTENDED_RPC_TESTS = @EXTENDED_RPC_TESTS@
 FGREP = @FGREP@
 GCOV = @GCOV@
 GENHTML = @GENHTML@
@@ -259,7 +254,6 @@ INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LCOV = @LCOV@
-LCOV_OPTS = @LCOV_OPTS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LEVELDB_CPPFLAGS = @LEVELDB_CPPFLAGS@
@@ -319,16 +313,13 @@ PYTHON = @PYTHON@
 PYTHONPATH = @PYTHONPATH@
 QR_CFLAGS = @QR_CFLAGS@
 QR_LIBS = @QR_LIBS@
-QT4_CFLAGS = @QT4_CFLAGS@
-QT4_LIBS = @QT4_LIBS@
-QT5_CFLAGS = @QT5_CFLAGS@
-QT5_LIBS = @QT5_LIBS@
 QTPLATFORM_CFLAGS = @QTPLATFORM_CFLAGS@
 QTPLATFORM_LIBS = @QTPLATFORM_LIBS@
 QTPRINT_CFLAGS = @QTPRINT_CFLAGS@
 QTPRINT_LIBS = @QTPRINT_LIBS@
 QTXCBQPA_CFLAGS = @QTXCBQPA_CFLAGS@
 QTXCBQPA_LIBS = @QTXCBQPA_LIBS@
+QT_CFLAGS = @QT_CFLAGS@
 QT_DBUS_CFLAGS = @QT_DBUS_CFLAGS@
 QT_DBUS_INCLUDES = @QT_DBUS_INCLUDES@
 QT_DBUS_LIBS = @QT_DBUS_LIBS@
@@ -349,7 +340,6 @@ RSVG_CONVERT = @RSVG_CONVERT@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
-SSE42_CXXFLAGS = @SSE42_CXXFLAGS@
 SSL_CFLAGS = @SSL_CFLAGS@
 SSL_LIBS = @SSL_LIBS@
 STRIP = @STRIP@
@@ -359,9 +349,12 @@ UIC = @UIC@
 UNIVALUE_CFLAGS = @UNIVALUE_CFLAGS@
 UNIVALUE_LIBS = @UNIVALUE_LIBS@
 USE_QRCODE = @USE_QRCODE@
-USE_SSE2 = @USE_SSE2@
 USE_UPNP = @USE_UPNP@
 VERSION = @VERSION@
+WEYCOIN_CLI_NAME = @WEYCOIN_CLI_NAME@
+WEYCOIN_DAEMON_NAME = @WEYCOIN_DAEMON_NAME@
+WEYCOIN_GUI_NAME = @WEYCOIN_GUI_NAME@
+WEYCOIN_TX_NAME = @WEYCOIN_TX_NAME@
 WINDOWS_BITS = @WINDOWS_BITS@
 WINDRES = @WINDRES@
 X11XCB_CFLAGS = @X11XCB_CFLAGS@

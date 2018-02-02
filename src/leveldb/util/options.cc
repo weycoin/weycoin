@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 #include "leveldb/options.h"
@@ -21,7 +21,6 @@ Options::Options()
       block_cache(NULL),
       block_size(4096),
       block_restart_interval(16),
-      max_file_size(2<<20),
       compression(kSnappyCompression),
       reuse_logs(false),
       filter_policy(NULL) {

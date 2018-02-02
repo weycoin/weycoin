@@ -1,12 +1,11 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_GUIUTIL_H
-#define BITCOIN_QT_GUIUTIL_H
+#ifndef WEYCOIN_QT_GUIUTIL_H
+#define WEYCOIN_QT_GUIUTIL_H
 
 #include "amount.h"
-#include "fs.h"
 
 #include <QEvent>
 #include <QHeaderView>
@@ -16,6 +15,8 @@
 #include <QString>
 #include <QTableView>
 #include <QLabel>
+
+#include <boost/filesystem.hpp>
 
 class QValidatedLineEdit;
 class SendCoinsRecipient;
@@ -29,7 +30,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Bitcoin Qt UI.
+/** Utility functions used by the WeyCoin Qt UI.
  */
 namespace GUIUtil
 {
@@ -44,10 +45,10 @@ namespace GUIUtil
     void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    // Parse "bitcoin:" URI into recipient object, return true on successful parsing
-    bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
-    QString formatBitcoinURI(const SendCoinsRecipient &info);
+    // Parse "weycoin:" URI into recipient object, return true on successful parsing
+    bool parseWeyCoinURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseWeyCoinURI(QString uri, SendCoinsRecipient *out);
+    QString formatWeyCoinURI(const SendCoinsRecipient &info);
 
     // Returns true if given address+amount meets "dust" definition
     bool isDust(const QString& address, const CAmount& amount);
@@ -113,8 +114,12 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 
-    // Open the config file
-    bool openBitcoinConf();
+	// Browse backup folder
+	void showBackups();
+
+	void showConf();
+
+	void showWeyCoinConf();
 
     // Replace invalid default fonts with known good ones
     void SubstituteFonts(const QString& language);
@@ -183,12 +188,13 @@ namespace GUIUtil
     void saveWindowGeometry(const QString& strSetting, QWidget *parent);
     /** Restore window size and position */
     void restoreWindowGeometry(const QString& strSetting, const QSize &defaultSizeIn, QWidget *parent);
-
+    /** Load global CSS theme */
+    QString loadStyleSheet();
     /* Convert QString to OS specific boost path through UTF-8 */
-    fs::path qstringToBoostPath(const QString &path);
+    boost::filesystem::path qstringToBoostPath(const QString &path);
 
     /* Convert OS specific boost path to QString through UTF-8 */
-    QString boostPathToQString(const fs::path &path);
+    QString boostPathToQString(const boost::filesystem::path &path);
 
     /* Convert seconds into a QString with days, hours, mins, secs */
     QString formatDurationStr(int secs);
@@ -216,11 +222,11 @@ namespace GUIUtil
     protected:
         void mouseReleaseEvent(QMouseEvent *event);
     };
-    
+
     class ClickableProgressBar : public QProgressBar
     {
         Q_OBJECT
-        
+
     Q_SIGNALS:
         /** Emitted when the progressbar is clicked. The relative mouse coordinates of the click are
          * passed to the signal.
@@ -246,4 +252,4 @@ namespace GUIUtil
 
 } // namespace GUIUtil
 
-#endif // BITCOIN_QT_GUIUTIL_H
+#endif // WEYCOIN_QT_GUIUTIL_H

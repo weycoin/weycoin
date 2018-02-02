@@ -1,5 +1,5 @@
 // Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 // See port_example.h for documentation for the following types/functions.
@@ -21,8 +21,8 @@
   #else
     #define PLATFORM_IS_LITTLE_ENDIAN false
   #endif
-#elif defined(OS_FREEBSD) || defined(OS_OPENBSD) ||\
-      defined(OS_NETBSD) || defined(OS_DRAGONFLYBSD)
+#elif defined(OS_FREESTAK) || defined(OS_OPENSTAK) ||\
+      defined(OS_NETSTAK) || defined(OS_DRAGONFLYSTAK)
   #include <sys/types.h>
   #include <sys/endian.h>
   #define PLATFORM_IS_LITTLE_ENDIAN (_BYTE_ORDER == _LITTLE_ENDIAN)
@@ -50,8 +50,8 @@
 #define PLATFORM_IS_LITTLE_ENDIAN (__BYTE_ORDER == __LITTLE_ENDIAN)
 #endif
 
-#if defined(OS_MACOSX) || defined(OS_SOLARIS) || defined(OS_FREEBSD) ||\
-    defined(OS_NETBSD) || defined(OS_OPENBSD) || defined(OS_DRAGONFLYBSD) ||\
+#if defined(OS_MACOSX) || defined(OS_SOLARIS) || defined(OS_FREESTAK) ||\
+    defined(OS_NETSTAK) || defined(OS_OPENSTAK) || defined(OS_DRAGONFLYSTAK) ||\
     defined(OS_ANDROID) || defined(OS_HPUX) || defined(CYGWIN)
 // Use fread/fwrite/fflush on platforms without _unlocked variants
 #define fread_unlocked fread
@@ -59,8 +59,8 @@
 #define fflush_unlocked fflush
 #endif
 
-#if defined(OS_FREEBSD) ||\
-    defined(OS_OPENBSD) || defined(OS_DRAGONFLYBSD)
+#if defined(OS_FREESTAK) ||\
+    defined(OS_OPENSTAK) || defined(OS_DRAGONFLYSTAK)
 // Use fsync() on platforms without fdatasync()
 #define fdatasync fsync
 #endif
@@ -151,9 +151,6 @@ inline bool Snappy_Uncompress(const char* input, size_t length,
 inline bool GetHeapProfile(void (*func)(void*, const char*, int), void* arg) {
   return false;
 }
-
-bool HasAcceleratedCRC32C();
-uint32_t AcceleratedCRC32C(uint32_t crc, const char* buf, size_t size);
 
 } // namespace port
 } // namespace leveldb

@@ -1,10 +1,10 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "walletframe.h"
 
-#include "bitcoingui.h"
+#include "weycoingui.h"
 #include "walletview.h"
 
 #include <cstdio>
@@ -12,7 +12,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, BitcoinGUI *_gui) :
+WalletFrame::WalletFrame(const PlatformStyle *_platformStyle, WeyCoinGUI *_gui) :
     QFrame(_gui),
     gui(_gui),
     platformStyle(_platformStyle)
@@ -44,7 +44,7 @@ bool WalletFrame::addWallet(const QString& name, WalletModel *walletModel)
         return false;
 
     WalletView *walletView = new WalletView(platformStyle, this);
-    walletView->setBitcoinGUI(gui);
+    walletView->setWeyCoinGUI(gui);
     walletView->setClientModel(clientModel);
     walletView->setWalletModel(walletModel);
     walletView->showOutOfSyncWarning(bOutOfSync);
@@ -113,6 +113,13 @@ void WalletFrame::gotoOverviewPage()
     QMap<QString, WalletView*>::const_iterator i;
     for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
         i.value()->gotoOverviewPage();
+}
+
+void WalletFrame::gotoMasternodePage()
+{
+    QMap<QString, WalletView*>::const_iterator i;
+    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+        i.value()->gotoMasternodePage();
 }
 
 void WalletFrame::gotoHistoryPage()
@@ -191,7 +198,12 @@ void WalletFrame::usedReceivingAddresses()
     if (walletView)
         walletView->usedReceivingAddresses();
 }
-
+/* void WalletFrame::gotoBip38Tool()
+{
+    WalletView* walletView = currentWalletView();
+    if (walletView)
+        walletView->gotoBip38Tool();
+} */
 WalletView *WalletFrame::currentWalletView()
 {
     return qobject_cast<WalletView*>(walletStack->currentWidget());

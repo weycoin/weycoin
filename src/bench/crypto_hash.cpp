@@ -1,4 +1,4 @@
-// Copyright (c) 2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,7 +7,6 @@
 #include "bench.h"
 #include "bloom.h"
 #include "hash.h"
-#include "random.h"
 #include "uint256.h"
 #include "utiltime.h"
 #include "crypto/ripemd160.h"
@@ -70,28 +69,6 @@ static void SipHash_32b(benchmark::State& state)
     }
 }
 
-static void FastRandom_32bit(benchmark::State& state)
-{
-    FastRandomContext rng(true);
-    uint32_t x = 0;
-    while (state.KeepRunning()) {
-        for (int i = 0; i < 1000000; i++) {
-            x += rng.rand32();
-        }
-    }
-}
-
-static void FastRandom_1bit(benchmark::State& state)
-{
-    FastRandomContext rng(true);
-    uint32_t x = 0;
-    while (state.KeepRunning()) {
-        for (int i = 0; i < 1000000; i++) {
-            x += rng.randbool();
-        }
-    }
-}
-
 BENCHMARK(RIPEMD160);
 BENCHMARK(SHA1);
 BENCHMARK(SHA256);
@@ -99,5 +76,3 @@ BENCHMARK(SHA512);
 
 BENCHMARK(SHA256_32b);
 BENCHMARK(SipHash_32b);
-BENCHMARK(FastRandom_32bit);
-BENCHMARK(FastRandom_1bit);

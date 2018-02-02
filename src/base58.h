@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,8 +11,8 @@
  * - E-mail usually won't line-break if there's no punctuation to break at.
  * - Double-clicking selects the whole string as one word if it's all alphanumeric.
  */
-#ifndef BITCOIN_BASE58_H
-#define BITCOIN_BASE58_H
+#ifndef WEYCOIN_BASE58_H
+#define WEYCOIN_BASE58_H
 
 #include "chainparams.h"
 #include "key.h"
@@ -26,7 +26,7 @@
 
 /**
  * Encode a byte sequence as a base58-encoded string.
- * pbegin and pend cannot be nullptr, unless both are.
+ * pbegin and pend cannot be NULL, unless both are.
  */
 std::string EncodeBase58(const unsigned char* pbegin, const unsigned char* pend);
 
@@ -38,7 +38,7 @@ std::string EncodeBase58(const std::vector<unsigned char>& vch);
 /**
  * Decode a base58-encoded string (psz) into a byte vector (vchRet).
  * return true if decoding is successful.
- * psz cannot be nullptr.
+ * psz cannot be NULL.
  */
 bool DecodeBase58(const char* psz, std::vector<unsigned char>& vchRet);
 
@@ -95,24 +95,24 @@ public:
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
 
-/** base58-encoded Bitcoin addresses.
+/** base58-encoded WeyCoin addresses.
  * Public-key-hash-addresses have version 0 (or 111 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 5 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CBitcoinAddress : public CBase58Data {
+class CWeyCoinAddress : public CBase58Data {
 public:
     bool Set(const CKeyID &id);
-    bool Set(const CScriptID &id, CChainParams::Base58Type type=CChainParams::SCRIPT_ADDRESS2);
-    bool Set(const CTxDestination &dest, CChainParams::Base58Type type=CChainParams::SCRIPT_ADDRESS2);
+    bool Set(const CScriptID &id);
+    bool Set(const CTxDestination &dest);
     bool IsValid() const;
     bool IsValid(const CChainParams &params) const;
 
-    CBitcoinAddress() {}
-    CBitcoinAddress(const CTxDestination &dest) { Set(dest); }
-    CBitcoinAddress(const std::string& strAddress) { SetString(strAddress); }
-    CBitcoinAddress(const char* pszAddress) { SetString(pszAddress); }
+    CWeyCoinAddress() {}
+    CWeyCoinAddress(const CTxDestination &dest) { Set(dest); }
+    CWeyCoinAddress(const std::string& strAddress) { SetString(strAddress); }
+    CWeyCoinAddress(const char* pszAddress) { SetString(pszAddress); }
 
     CTxDestination Get() const;
     bool GetKeyID(CKeyID &keyID) const;
@@ -122,7 +122,7 @@ public:
 /**
  * A base58-encoded secret key
  */
-class CBitcoinSecret : public CBase58Data
+class CWeyCoinSecret : public CBase58Data
 {
 public:
     void SetKey(const CKey& vchSecret);
@@ -131,11 +131,11 @@ public:
     bool SetString(const char* pszSecret);
     bool SetString(const std::string& strSecret);
 
-    CBitcoinSecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CBitcoinSecret() {}
+    CWeyCoinSecret(const CKey& vchSecret) { SetKey(vchSecret); }
+    CWeyCoinSecret() {}
 };
 
-template<typename K, int Size, CChainParams::Base58Type Type> class CBitcoinExtKeyBase : public CBase58Data
+template<typename K, int Size, CChainParams::Base58Type Type> class CWeyCoinExtKeyBase : public CBase58Data
 {
 public:
     void SetKey(const K &key) {
@@ -148,23 +148,23 @@ public:
         K ret;
         if (vchData.size() == Size) {
             // If base58 encoded data does not hold an ext key, return a !IsValid() key
-            ret.Decode(vchData.data());
+            ret.Decode(&vchData[0]);
         }
         return ret;
     }
 
-    CBitcoinExtKeyBase(const K &key) {
+    CWeyCoinExtKeyBase(const K &key) {
         SetKey(key);
     }
 
-    CBitcoinExtKeyBase(const std::string& strBase58c) {
+    CWeyCoinExtKeyBase(const std::string& strBase58c) {
         SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
     }
 
-    CBitcoinExtKeyBase() {}
+    CWeyCoinExtKeyBase() {}
 };
 
-typedef CBitcoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
-typedef CBitcoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
+typedef CWeyCoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CWeyCoinExtKey;
+typedef CWeyCoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CWeyCoinExtPubKey;
 
-#endif // BITCOIN_BASE58_H
+#endif // WEYCOIN_BASE58_H

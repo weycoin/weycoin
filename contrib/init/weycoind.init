@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  weycoind The weycoin core server.
+#
+#
+# chkconfig: 345 80 20
+# description: weycoind
+# processname: weycoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/weycoind, see below
+if [ -f /etc/sysconfig/weycoind ]; then
+        . /etc/sysconfig/weycoind
+fi
+
+RETVAL=0
+
+prog=weycoind
+# you can override the lockfile via WEYCOIND_LOCKFILE in /etc/sysconfig/weycoind
+lockfile=${WEYCOIND_LOCKFILE-/var/lock/subsys/weycoind}
+
+# weycoind defaults to /usr/bin/weycoind, override with WEYCOIND_BIN
+weycoind=${WEYCOIND_BIN-/usr/bin/weycoind}
+
+# weycoind opts default to -disablewallet, override with WEYCOIND_OPTS
+weycoind_opts=${WEYCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $weycoind $weycoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

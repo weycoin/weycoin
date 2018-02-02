@@ -1,103 +1,138 @@
 Mac OS X Build Instructions and Notes
 ====================================
-The commands in this guide should be executed in a Terminal application.
-The built-in one is located in `/Applications/Utilities/Terminal.app`.
+This guide will show you how to build weycoind(headless client) for OSX.
+
+Notes
+-----
+
+* Tested on OS X 10.6 through 10.9 on 64-bit Intel processors only.
+Older OSX releases or 32-bit processors are no longer supported.
+
+* All of the commands should be executed in a Terminal application. The
+built-in one is located in `/Applications/Utilities`.
 
 Preparation
 -----------
-Install the OS X command line tools:
 
-`xcode-select --install`
+You need to install XCode with all the options checked so that the compiler
+and everything is available in /usr not just /Developer. XCode should be
+available on your OS X installation media, but if not, you can get the
+current version from https://developer.apple.com/xcode/. If you install
+Xcode 4.3 or later, you'll need to install its command line tools. This can
+be done in `Xcode > Preferences > Downloads > Components` and generally must
+be re-done or updated every time Xcode is updated.
 
-When the popup appears, click `Install`.
+There's an assumption that you already have `git` installed, as well. If
+not, it's the path of least resistance to install [Github for Mac](https://mac.github.com/)
+(OS X 10.7+) or
+[Git for OS X](https://code.google.com/p/git-osx-installer/). It is also
+available via Homebrew.
 
-Then install [Homebrew](https://brew.sh).
+You will also need to install [Homebrew](http://brew.sh)
+in order to install library dependencies.
 
-Dependencies
+The installation of the actual dependencies is covered in the Instructions
+sections below.
+
+Instructions: Homebrew
 ----------------------
 
-    brew install automake berkeley-db4 libtool boost --c++11 miniupnpc openssl pkg-config protobuf qt libevent
+#### Install dependencies using Homebrew
 
-If you want to build the disk image with `make deploy` (.dmg / optional), you need RSVG
+        brew install autoconf automake libtool boost miniupnpc openssl pkg-config protobuf qt libqrencode
 
-    brew install librsvg
+Note: After you have installed the dependencies, you should check that the Homebrew installed version of OpenSSL is the one available for compilation. You can check this by typing
 
-If you want to build with ZeroMQ support
-    
-    brew install zeromq
+        openssl version
 
-NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
+into Terminal. You should see OpenSSL 1.0.1f 6 Jan 2014.
 
-Build Litecoin Core
-------------------------
+If not, you can ensure that the Homebrew OpenSSL is correctly linked by running
 
-1. Clone the litecoin source code and cd into `litecoin`
+        brew link openssl --force
 
-        git clone https://github.com/litecoin-project/litecoin
-        cd litecoin
+Rerunning "openssl version" should now return the correct version. If it
+doesn't, make sure `/usr/local/bin` comes before `/usr/bin` in your
+PATH.
 
-2.  Build litecoin-core:
+#### Installing berkeley-db4 using Homebrew
 
-    Configure and build the headless litecoin binaries as well as the GUI (if Qt is found).
+The homebrew package for berkeley-db4 has been broken for some time.  It will install without Java though.
 
-    You can disable the GUI build by passing `--without-gui` to configure.
+Running this command takes you into brew's interactive mode, which allows you to configure, make, and install by hand:
+```
+$ brew install https://raw.github.com/mxcl/homebrew/master/Library/Formula/berkeley-db4.rb -–without-java
+```
+
+These rest of these commands are run inside brew interactive mode:
+```
+/private/tmp/berkeley-db4-UGpd0O/db-4.8.30 $ cd ..
+/private/tmp/berkeley-db4-UGpd0O $ db-4.8.30/dist/configure --prefix=/usr/local/Cellar/berkeley-db4/4.8.30 --mandir=/usr/local/Cellar/berkeley-db4/4.8.30/share/man --enable-cxx
+/private/tmp/berkeley-db4-UGpd0O $ make
+/private/tmp/berkeley-db4-UGpd0O $ make install
+/private/tmp/berkeley-db4-UGpd0O $ exit
+```
+
+After exiting, you'll get a warning that the install is keg-only, which means it wasn't symlinked to `/usr/local`.  You don't need it to link it to build weycoin, but if you want to, here's how:
+
+    $ brew --force link berkeley-db4
+
+
+### Building `weycoind`
+
+1. Clone the github tree to get the source code and go into the directory.
+
+        git clone https://github.com/weycoin/weycoin.git
+        cd weycoin
+
+2.  Build weycoind:
 
         ./autogen.sh
         ./configure
         make
 
-3.  It is recommended to build and run the unit tests:
+3.  It is a good idea to build and run the unit tests, too:
 
         make check
 
-4.  You can also create a .dmg that contains the .app bundle (optional):
+Creating a release build
+------------------------
+You can ignore this section if you are building `weycoind` for your own use.
 
-        make deploy
+weycoind/weycoin-cli binaries are not included in the weycoin-Qt.app bundle.
+
+If you are building `weycoind` or `weycoin-Qt` for others, your build machine should be set up
+as follows for maximum compatibility:
+
+All dependencies should be compiled with these flags:
+
+ -mmacosx-version-min=10.6
+ -arch x86_64
+ -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.6.sdk
+
+Once dependencies are compiled, see release-process.md for how the weycoin-Qt.app
+bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running
 -------
 
-Litecoin Core is now available at `./src/litecoind`
+It's now available at `./weycoind`, provided that you are still in the `src`
+directory. We have to first create the RPC configuration file, though.
 
-Before running, it's recommended you create an RPC configuration file.
+Run `./weycoind` to get the filename where it should be put, or just try these
+commands:
 
-    echo -e "rpcuser=litecoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Litecoin/litecoin.conf"
+    echo -e "rpcuser=weycoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/WeyCoin/weycoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/WeyCoin/weycoin.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Litecoin/litecoin.conf"
+When next you run it, it will start downloading the blockchain, but it won't
+output anything while it's doing this. This process may take several hours;
+you can monitor its process by looking at the debug.log file, like this:
 
-The first time you run litecoind, it will start downloading the blockchain. This process could take several hours.
-
-You can monitor the download process by looking at the debug.log file:
-
-    tail -f $HOME/Library/Application\ Support/Litecoin/debug.log
+    tail -f $HOME/Library/Application\ Support/WeyCoin/debug.log
 
 Other commands:
--------
 
-    ./src/litecoind -daemon # Starts the litecoin daemon.
-    ./src/litecoin-cli --help # Outputs a list of command-line options.
-    ./src/litecoin-cli help # Outputs a list of RPC commands when the daemon is running.
-
-Using Qt Creator as IDE
-------------------------
-You can use Qt Creator as an IDE, for litecoin development.
-Download and install the community edition of [Qt Creator](https://www.qt.io/download/).
-Uncheck everything except Qt Creator during the installation process.
-
-1. Make sure you installed everything through Homebrew mentioned above
-2. Do a proper ./configure --enable-debug
-3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "litecoin-qt" as project name, enter src/qt as location
-5. Leave the file selection as it is
-6. Confirm the "summary page"
-7. In the "Projects" tab select "Manage Kits..."
-8. Select the default "Desktop" kit and select "Clang (x86 64bit in /usr/bin)" as compiler
-9. Select LLDB as debugger (you might need to set the path to your installation)
-10. Start debugging with Qt Creator
-
-Notes
------
-
-* Tested on OS X 10.8 through 10.12 on 64-bit Intel processors only.
-
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)
+    ./weycoind -daemon # to start the weycoin daemon.
+    ./weycoin-cli --help  # for a list of command-line options.
+    ./weycoin-cli help    # When the daemon is running, to get a list of RPC commands

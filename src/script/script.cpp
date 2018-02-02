@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers 
+// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,6 +9,19 @@
 
 #include "tinyformat.h"
 #include "utilstrencodings.h"
+
+namespace {
+inline std::string ValueString(const std::vector<unsigned char>& vch)
+{
+    if (vch.size() <= 4)
+        return strprintf("%d", CScriptNum(vch, false).getint());
+    else
+        return HexStr(vch);
+}
+} // anon namespace
+
+
+using namespace std;
 
 const char* GetOpName(opcodetype opcode)
 {
@@ -184,20 +199,45 @@ unsigned int CScript::GetSigOpCount(const CScript& scriptSig) const
     // get the last item that the scriptSig
     // pushes onto the stack:
     const_iterator pc = scriptSig.begin();
-    std::vector<unsigned char> vData;
+    vector<unsigned char> data;
     while (pc < scriptSig.end())
     {
         opcodetype opcode;
-        if (!scriptSig.GetOp(pc, opcode, vData))
+        if (!scriptSig.GetOp(pc, opcode, data))
             return 0;
         if (opcode > OP_16)
             return 0;
     }
 
     /// ... and return its opcount:
-    CScript subscript(vData.begin(), vData.end());
+    CScript subscript(data.begin(), data.end());
     return subscript.GetSigOpCount(true);
 }
+/**TODO-- */
+bool CScript::IsNormalPaymentScript() const
+{
+    if(this->size() != 25) return false;
+
+    std::string str;
+    opcodetype opcode;
+    const_iterator pc = begin();
+    int i = 0;
+    while (pc < end())
+    {
+        GetOp(pc, opcode);
+
+        if(     i == 0 && opcode != OP_DUP) return false;
+        else if(i == 1 && opcode != OP_HASH160) return false;
+        else if(i == 3 && opcode != OP_EQUALVERIFY) return false;
+        else if(i == 4 && opcode != OP_CHECKSIG) return false;
+        else if(i == 5) return false;
+
+        i++;
+    }
+
+    return true;
+}
+//TODO-- ends
 
 bool CScript::IsPayToScriptHash() const
 {
@@ -256,6 +296,30 @@ bool CScript::IsPushOnly() const
     return this->IsPushOnly(begin());
 }
 
+std::string CScript::ToString() const
+{
+    std::string str;
+    opcodetype opcode;
+    std::vector<unsigned char> vch;
+    const_iterator pc = begin();
+    while (pc < end())
+    {
+        if (!str.empty())
+            str += " ";
+        if (!GetOp(pc, opcode, vch))
+        {
+            str += "[error]";
+            return str;
+        }
+        if (0 <= opcode && opcode <= OP_PUSHDATA4)
+            str += ValueString(vch);
+        else
+            str += GetOpName(opcode);
+    }
+    return str;
+}
+
+
 std::string CScriptWitness::ToString() const
 {
     std::string ret = "CScriptWitness(";
@@ -266,17 +330,4 @@ std::string CScriptWitness::ToString() const
         ret += HexStr(stack[i]);
     }
     return ret + ")";
-}
-
-bool CScript::HasValidOps() const
-{
-    CScript::const_iterator it = begin();
-    while (it < end()) {
-        opcodetype opcode;
-        std::vector<unsigned char> item;
-        if (!GetOp(it, opcode, item) || opcode > MAX_OPCODE || item.size() > MAX_SCRIPT_ELEMENT_SIZE) {
-            return false;
-        }
-    }
-    return true;
 }

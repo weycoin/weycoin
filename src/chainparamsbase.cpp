@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,9 +32,10 @@ class CBaseMainParams : public CBaseChainParams
 public:
     CBaseMainParams()
     {
-        nRPCPort = 11527;
+        nRPCPort = 7574;
     }
 };
+static CBaseMainParams mainParams;
 
 /**
  * Testnet (v3)
@@ -44,10 +45,11 @@ class CBaseTestNetParams : public CBaseChainParams
 public:
     CBaseTestNetParams()
     {
-        nRPCPort = 19332;
-        strDataDir = "testnet4";
+        nRPCPort = 17564;
+        strDataDir = "testnet3";
     }
 };
+static CBaseTestNetParams testNetParams;
 
 /*
  * Regression test
@@ -57,40 +59,41 @@ class CBaseRegTestParams : public CBaseChainParams
 public:
     CBaseRegTestParams()
     {
-        nRPCPort = 19332;
+        nRPCPort = 18332;
         strDataDir = "regtest";
     }
 };
+static CBaseRegTestParams regTestParams;
 
-static std::unique_ptr<CBaseChainParams> globalChainBaseParams;
+static CBaseChainParams* pCurrentBaseParams = 0;
 
 const CBaseChainParams& BaseParams()
 {
-    assert(globalChainBaseParams);
-    return *globalChainBaseParams;
+    assert(pCurrentBaseParams);
+    return *pCurrentBaseParams;
 }
 
-std::unique_ptr<CBaseChainParams> CreateBaseChainParams(const std::string& chain)
+CBaseChainParams& BaseParams(const std::string& chain)
 {
     if (chain == CBaseChainParams::MAIN)
-        return std::unique_ptr<CBaseChainParams>(new CBaseMainParams());
+        return mainParams;
     else if (chain == CBaseChainParams::TESTNET)
-        return std::unique_ptr<CBaseChainParams>(new CBaseTestNetParams());
+        return testNetParams;
     else if (chain == CBaseChainParams::REGTEST)
-        return std::unique_ptr<CBaseChainParams>(new CBaseRegTestParams());
+        return regTestParams;
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }
 
 void SelectBaseParams(const std::string& chain)
 {
-    globalChainBaseParams = CreateBaseChainParams(chain);
+    pCurrentBaseParams = &BaseParams(chain);
 }
 
 std::string ChainNameFromCommandLine()
 {
-    bool fRegTest = gArgs.GetBoolArg("-regtest", false);
-    bool fTestNet = gArgs.GetBoolArg("-testnet", false);
+    bool fRegTest = GetBoolArg("-regtest", false);
+    bool fTestNet = GetBoolArg("-testnet", false);
 
     if (fTestNet && fRegTest)
         throw std::runtime_error("Invalid combination of -regtest and -testnet.");
@@ -99,4 +102,9 @@ std::string ChainNameFromCommandLine()
     if (fTestNet)
         return CBaseChainParams::TESTNET;
     return CBaseChainParams::MAIN;
+}
+
+bool AreBaseParamsConfigured()
+{
+    return pCurrentBaseParams != NULL;
 }

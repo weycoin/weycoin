@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2016 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,7 +48,8 @@ void MakeSingleColorImage(QImage& img, const QColor& colorbase)
 QIcon ColorizeIcon(const QIcon& ico, const QColor& colorbase)
 {
     QIcon new_ico;
-    for (const QSize sz : ico.availableSizes())
+    QSize sz;
+    Q_FOREACH(sz, ico.availableSizes())
     {
         QImage img(ico.pixmap(sz).toImage());
         MakeSingleColorImage(img, colorbase);
@@ -143,4 +144,3 @@ const PlatformStyle *PlatformStyle::instantiate(const QString &platformId)
     }
     return 0;
 }
-

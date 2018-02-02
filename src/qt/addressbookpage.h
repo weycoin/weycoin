@@ -1,13 +1,14 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
+// Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_ADDRESSBOOKPAGE_H
-#define BITCOIN_QT_ADDRESSBOOKPAGE_H
+#ifndef WEYCOIN_QT_ADDRESSBOOKPAGE_H
+#define WEYCOIN_QT_ADDRESSBOOKPAGE_H
 
 #include <QDialog>
 
 class AddressTableModel;
+class OptionsModel;
 class PlatformStyle;
 
 namespace Ui {
@@ -19,6 +20,7 @@ class QItemSelection;
 class QMenu;
 class QModelIndex;
 class QSortFilterProxyModel;
+class QTableView;
 QT_END_NAMESPACE
 
 /** Widget that shows a list of sending or receiving addresses.
@@ -83,4 +85,4 @@ Q_SIGNALS:
     void sendCoins(QString addr);
 };
 
-#endif // BITCOIN_QT_ADDRESSBOOKPAGE_H
+#endif // WEYCOIN_QT_ADDRESSBOOKPAGE_H

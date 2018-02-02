@@ -1,5 +1,5 @@
 // LevelDB Copyright (c) 2011 The LevelDB Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
+// Use of this source code is governed by a STAK-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
 // See port_example.h for documentation for the following types/functions.
@@ -167,9 +167,6 @@ inline bool Snappy_Uncompress(const char* input, size_t length,
 inline bool GetHeapProfile(void (*func)(void*, const char*, int), void* arg) {
   return false;
 }
-
-bool HasAcceleratedCRC32C();
-uint32_t AcceleratedCRC32C(uint32_t crc, const char* buf, size_t size);
 
 }
 }

@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Copyright (c) 2017 WEYCOIN developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,29 +18,29 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-BITCOIN_CONFIG_INCLUDES=-I$(builddir)/config
-BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+WEYCOIN_CONFIG_INCLUDES=-I$(builddir)/config
+WEYCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
-BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
+WEYCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+WEYCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBBITCOIN_SERVER=libbitcoin_server.a
-LIBBITCOIN_COMMON=libbitcoin_common.a
-LIBBITCOIN_CONSENSUS=libbitcoin_consensus.a
-LIBBITCOIN_CLI=libbitcoin_cli.a
-LIBBITCOIN_UTIL=libbitcoin_util.a
-LIBBITCOIN_CRYPTO=crypto/libbitcoin_crypto.a
-LIBBITCOINQT=qt/libbitcoinqt.a
+LIBWEYCOIN_SERVER=libweycoin_server.a
+LIBWEYCOIN_COMMON=libweycoin_common.a
+LIBWEYCOIN_CONSENSUS=libweycoin_consensus.a
+LIBWEYCOIN_CLI=libweycoin_cli.a
+LIBWEYCOIN_UTIL=libweycoin_util.a
+LIBWEYCOIN_CRYPTO=crypto/libweycoin_crypto.a
+LIBWEYCOINQT=qt/libweycoinqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libbitcoin_zmq.a
+LIBWEYCOIN_ZMQ=libweycoin_zmq.a
 endif
-if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libbitcoinconsensus.la
+if BUILD_WEYCOIN_LIBS
+LIBWEYCOINCONSENSUS=libweycoinconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libbitcoin_wallet.a
+LIBWEYCOIN_WALLET=libweycoin_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -49,33 +49,34 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ)
+  $(LIBWEYCOIN_CRYPTO) \
+  $(LIBWEYCOIN_UTIL) \
+  $(LIBWEYCOIN_COMMON) \
+  $(LIBWEYCOIN_CONSENSUS) \
+  $(LIBWEYCOIN_SERVER) \
+  $(LIBWEYCOIN_CLI) \
+  $(LIBWEYCOIN_WALLET) \
+  $(LIBWEYCOIN_ZMQ)
 
-lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBWEYCOINCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_BITCOIND
+if BUILD_WEYCOIND
   bin_PROGRAMS += weycoind
 endif
 
-if BUILD_BITCOIN_UTILS
+if BUILD_WEYCOIN_UTILS
   bin_PROGRAMS += weycoin-cli weycoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# bitcoin core #
-BITCOIN_CORE_H = \
+# weycoin core #
+WEYCOIN_CORE_H = \
+  activemasternode.h \
   addrdb.h \
   addrman.h \
   base58.h \
@@ -95,19 +96,22 @@ BITCOIN_CORE_H = \
   compat/sanity.h \
   compressor.h \
   consensus/consensus.h \
-  consensus/tx_verify.h \
   core_io.h \
   core_memusage.h \
   cuckoocache.h \
-  fs.h \
   httprpc.h \
   httpserver.h \
   indirectmap.h \
   init.h \
   key.h \
+  keepass.h \
   keystore.h \
   dbwrapper.h \
   limitedmap.h \
+  masternode.h \
+  masternode-pos.h \
+  masternodeman.h \
+  masternodeconfig.h \
   memusage.h \
   merkleblock.h \
   miner.h \
@@ -117,18 +121,14 @@ BITCOIN_CORE_H = \
   netbase.h \
   netmessagemaker.h \
   noui.h \
-  policy/feerate.h \
   policy/fees.h \
   policy/policy.h \
   policy/rbf.h \
   pow.h \
   protocol.h \
   random.h \
-  reverse_iterator.h \
   reverselock.h \
-  rpc/blockchain.h \
   rpc/client.h \
-  rpc/mining.h \
   rpc/protocol.h \
   rpc/server.h \
   rpc/register.h \
@@ -144,6 +144,7 @@ BITCOIN_CORE_H = \
   support/events.h \
   support/lockedpool.h \
   sync.h \
+  spork.h \
   threadsafety.h \
   threadinterrupt.h \
   timedata.h \
@@ -161,7 +162,6 @@ BITCOIN_CORE_H = \
   wallet/coincontrol.h \
   wallet/crypter.h \
   wallet/db.h \
-  wallet/feebumper.h \
   wallet/rpcwallet.h \
   wallet/wallet.h \
   wallet/walletdb.h \
@@ -174,21 +174,22 @@ BITCOIN_CORE_H = \
 
 obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
-	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
-	  "$(abs_top_srcdir)"
-libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
+	@$(top_srcdir)/share/genbuild.sh $(abs_top_builddir)/src/obj/build.h \
+	  $(abs_top_srcdir)
+libweycoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitcoind and bitcoin-qt
-libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_server_a_SOURCES = \
-  addrdb.cpp \
+# server: shared between weycoind and weycoin-qt
+libweycoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libweycoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_server_a_SOURCES = \
+  activemasternode.cpp \
   addrman.cpp \
+  addrdb.cpp \
   bloom.cpp \
   blockencodings.cpp \
+  bitpool.cpp \
   chain.cpp \
   checkpoints.cpp \
-  consensus/tx_verify.cpp \
   httprpc.cpp \
   httpserver.cpp \
   init.cpp \
@@ -200,7 +201,6 @@ libbitcoin_server_a_SOURCES = \
   noui.cpp \
   policy/fees.cpp \
   policy/policy.cpp \
-  policy/rbf.cpp \
   pow.cpp \
   rest.cpp \
   rpc/blockchain.cpp \
@@ -219,40 +219,39 @@ libbitcoin_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(BITCOIN_CORE_H)
+  $(WEYCOIN_CORE_H)
 
 if ENABLE_ZMQ
-libbitcoin_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libbitcoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_zmq_a_SOURCES = \
+libweycoin_zmq_a_CPPFLAGS = $(WEYCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libweycoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
 
 
-# wallet: shared between bitcoind and bitcoin-qt, but only linked
+# wallet: shared between weycoind and weycoin-qt, but only linked
 # when wallet enabled
-libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_wallet_a_SOURCES = \
+libweycoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
+libweycoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_wallet_a_SOURCES = \
+  activemasternode.cpp \
   wallet/crypter.cpp \
   wallet/db.cpp \
-  wallet/feebumper.cpp \
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
-  $(BITCOIN_CORE_H)
+  policy/rbf.cpp \
+  $(WEYCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libbitcoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_CONFIG_INCLUDES) $(SSL_CFLAGS)
-crypto_libbitcoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libbitcoin_crypto_a_SOURCES = \
+crypto_libweycoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_CONFIG_INCLUDES)
+crypto_libweycoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libweycoin_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
-  crypto/chacha20.h \
-  crypto/chacha20.cpp \
   crypto/common.h \
   crypto/hmac_sha256.cpp \
   crypto/hmac_sha256.h \
@@ -260,24 +259,32 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/hmac_sha512.h \
   crypto/ripemd160.cpp \
   crypto/ripemd160.h \
-  crypto/scrypt.cpp \
-  crypto/scrypt-sse2.cpp \
-  crypto/scrypt.h \
   crypto/sha1.cpp \
   crypto/sha1.h \
   crypto/sha256.cpp \
   crypto/sha256.h \
   crypto/sha512.cpp \
-  crypto/sha512.h
-
-if EXPERIMENTAL_ASM
-crypto_libbitcoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp
-endif
+  crypto/sha512.h \
+  crypto/aes_helper.c \
+  crypto/Lyra2RE/Sponge.h \
+  crypto/Lyra2RE/Sponge.c \
+  crypto/Lyra2RE/Lyra2.h \
+  crypto/Lyra2RE/Lyra2.c \
+  crypto/Lyra2RE/blake.c \
+  crypto/Lyra2RE/blake.h \
+  crypto/Lyra2RE/keccak.c \
+  crypto/Lyra2RE/keccak.h \
+  crypto/Lyra2RE/skein.c \
+  crypto/Lyra2RE/skein.h \
+  crypto/Lyra2RE/cubehash.c \
+  crypto/Lyra2RE/cubehash.h \
+  crypto/Lyra2RE/bmw.c \
+  crypto/Lyra2RE/bmw.h
 
 # consensus: shared between all executables that validate any consensus rules.
-libbitcoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_consensus_a_SOURCES = \
+libweycoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
+libweycoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -294,7 +301,7 @@ libbitcoin_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/bitcoinconsensus.cpp \
+  script/weycoinconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -309,10 +316,16 @@ libbitcoin_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h
 
-# common: shared between bitcoind, and bitcoin-qt and non-server tools
-libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_common_a_SOURCES = \
+# common: shared between weycoind, and weycoin-qt and non-server tools
+libweycoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
+libweycoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_common_a_SOURCES = \
+  activemasternode.cpp \
+  masternode.cpp \
+  masternode-pos.cpp \
+  masternodeconfig.cpp \
+  masternodeman.cpp \
+  amount.cpp \
   base58.cpp \
   chainparams.cpp \
   coins.cpp \
@@ -323,27 +336,26 @@ libbitcoin_common_a_SOURCES = \
   keystore.cpp \
   netaddress.cpp \
   netbase.cpp \
-  policy/feerate.cpp \
   protocol.cpp \
   scheduler.cpp \
   script/sign.cpp \
   script/standard.cpp \
+  spork.cpp \
   warnings.cpp \
-  $(BITCOIN_CORE_H)
+  $(WEYCOIN_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libbitcoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_util_a_SOURCES = \
+libweycoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
+libweycoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
   compat/glibc_sanity.cpp \
   compat/glibcxx_sanity.cpp \
   compat/strnlen.cpp \
-  fs.cpp \
   random.cpp \
   rpc/protocol.cpp \
   support/cleanse.cpp \
@@ -353,101 +365,100 @@ libbitcoin_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(BITCOIN_CORE_H)
+  $(WEYCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
+libweycoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between bitcoin-cli and bitcoin-qt
-libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libbitcoin_cli_a_SOURCES = \
+# cli: shared between weycoin-cli and weycoin-qt
+libweycoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
+libweycoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoin_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(BITCOIN_CORE_H)
+  $(WEYCOIN_CORE_H)
 
-nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libweycoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitcoind binary #
-weycoind_SOURCES = bitcoind.cpp
-weycoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+# weycoind binary #
+weycoind_SOURCES = weycoind.cpp
+weycoind_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
 weycoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 weycoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-weycoind_SOURCES += bitcoind-res.rc
+weycoind_SOURCES += weycoind-res.rc
 endif
 
 weycoind_LDADD = \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_COMMON) \
+  $(LIBWEYCOIN_SERVER) \
+  $(LIBWEYCOIN_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBWEYCOIN_UTIL) \
+  $(LIBWEYCOIN_WALLET) \
+  $(LIBWEYCOIN_ZMQ) \
+  $(LIBWEYCOIN_CONSENSUS) \
+  $(LIBWEYCOIN_CRYPTO) \
   $(LIBLEVELDB) \
-  $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
 weycoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# bitcoin-cli binary #
-weycoin_cli_SOURCES = bitcoin-cli.cpp
-weycoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+# weycoin-cli binary #
+weycoin_cli_SOURCES = weycoin-cli.cpp
+weycoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES) $(EVENT_CFLAGS)
 weycoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 weycoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-weycoin_cli_SOURCES += bitcoin-cli-res.rc
+weycoin_cli_SOURCES += weycoin-cli-res.rc
 endif
 
 weycoin_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
+  $(LIBWEYCOIN_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO)
+  $(LIBWEYCOIN_UTIL) \
+  $(LIBWEYCOIN_CRYPTO)
 
 weycoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# bitcoin-tx binary #
-weycoin_tx_SOURCES = bitcoin-tx.cpp
-weycoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+# weycoin-tx binary #
+weycoin_tx_SOURCES = weycoin-tx.cpp
+weycoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
 weycoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 weycoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-weycoin_tx_SOURCES += bitcoin-tx-res.rc
+weycoin_tx_SOURCES += weycoin-tx-res.rc
 endif
 
 weycoin_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBWEYCOIN_COMMON) \
+  $(LIBWEYCOIN_UTIL) \
+  $(LIBWEYCOIN_CONSENSUS) \
+  $(LIBWEYCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
 weycoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# bitcoinconsensus library #
-if BUILD_BITCOIN_LIBS
-include_HEADERS = script/bitcoinconsensus.h
-libbitcoinconsensus_la_SOURCES = $(crypto_libbitcoin_crypto_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
+# weycoinconsensus library #
+if BUILD_WEYCOIN_LIBS
+include_HEADERS = script/weycoinconsensus.h
+libweycoinconsensus_la_SOURCES = $(crypto_libweycoin_crypto_a_SOURCES) $(libweycoin_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libbitcoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libweycoinconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libbitcoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libbitcoinconsensus_la_LIBADD = $(LIBSECP256K1) $(CRYPTO_LIBS)
-libbitcoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL $(SSL_CFLAGS)
-libbitcoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libweycoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libweycoinconsensus_la_LIBADD = $(LIBSECP256K1)
+libweycoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_WEYCOIN_INTERNAL
+libweycoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -476,14 +487,6 @@ CLEANFILES += zmq/*.gcda zmq/*.gcno
 DISTCLEANFILES = obj/build.h
 
 EXTRA_DIST = $(CTAES_DIST)
-
-
-config/bitcoin-config.h: config/stamp-h1
-	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/bitcoin-config.h.in $(top_builddir)/config.status
-	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/bitcoin-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/bitcoin-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean
