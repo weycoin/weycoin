@@ -73,7 +73,7 @@ public:
 
         consensus.nSubsidyHalvingInterval = 200000;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x0");
+        consensus.BIP34Hash = uint256S("0x00000e173190d0d57bf3167bf7d42458be29cbe043960234482486b709188f64");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP102HeightDelta = 0;
@@ -126,10 +126,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000045b12bc5cb");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0");
+        consensus.defaultAssumeValid = uint256S("0x00000000fc901f7ab532a5eb7366f852591315c1b8d77141646ee9005a95c0ee");
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
@@ -152,6 +152,9 @@ public:
 
          assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
          assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
+
+         vSeeds.clear();
+         vFixedSeeds.clear();
 
         vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
         vSeeds.push_back(CDNSSeedData("seed2.weycoin.org", "seed2.weycoin.org"));
@@ -190,7 +193,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {     0, uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5")}
+                { 0, uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5")},
+                { 256, uint256S("0x00000000a334c739f1ae1f23f7d996fe6c95b247dc8de83cf92ae73f110d5317")}
             }
         };
 
