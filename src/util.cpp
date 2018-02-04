@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers 
-// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2017 The Dash developers
 // Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -526,7 +526,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Unix: ~/.weycoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "weycoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "waecoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -615,7 +615,7 @@ void ReadConfigFile(const std::string& confPath)
             //fclose(configFile);
         return; // Nothing to read, so just return //return; // No weycoin.conf file is OK
     }
-        
+
 
     {
         LOCK(cs_args);
