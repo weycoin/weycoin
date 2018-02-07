@@ -126,10 +126,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000045b12bc5cb");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000293e79764f323");
 
-        // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000fc901f7ab532a5eb7366f852591315c1b8d77141646ee9005a95c0ee");
+        // Assume the nMinimumChainWork hash - 1 as valid.
+        consensus.defaultAssumeValid = uint256S("0x000000000d6e8ec9979e8432168a4726f93a1478c93fb32ac24d8744039e85bc");
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
@@ -194,7 +194,9 @@ public:
         checkpointData = (CCheckpointData) {
             {
                 { 0, uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5")},
-                { 256, uint256S("0x00000000a334c739f1ae1f23f7d996fe6c95b247dc8de83cf92ae73f110d5317")}
+                { 256, uint256S("0x00000000a334c739f1ae1f23f7d996fe6c95b247dc8de83cf92ae73f110d5317")},
+                { 12500, uint256S("0x0000000003f5ad275187245b3c0eb1ffe5cfb26109d0939f1fade2c2f5c219fe")},
+                { 16000, uint256S("0x0000000011120f00c57a0df89cd2d3dc05b61f52243ab27d0a83b4acae2221ce")}
             }
         };
 
@@ -210,10 +212,10 @@ public:
         // [2] total number of transactions between genesis and that timestamp
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
-        chainTxData = ChainTxData{
-            0,
-            0,
-            0
+        chainTxData = ChainTxData {
+            1518024836,
+            19535,
+            1.0
         };
     }
 };
