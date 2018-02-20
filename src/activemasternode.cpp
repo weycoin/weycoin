@@ -10,7 +10,7 @@
 // Bootup the Masternode, look for a 5000 WAE input and register on the network
 //
 void CActiveMasternode::ManageStatus()
-{	
+{
     std::string errorMessage;
 
     if(!fMasterNode) return;
@@ -47,21 +47,21 @@ void CActiveMasternode::ManageStatus()
         LogPrintf("CActiveMasternode::ManageStatus() - Checking inbound connection to '%s'\n", service.ToString().c_str());
 
         if(Params().NetworkIDString() == "main"){
-            if(service.GetPort() != 7575) {
-                notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - only 7575 is supported on mainnet.";
+            if(service.GetPort() != 11526) {
+                notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - only 11526 is supported on mainnet.";
                 status = MASTERNODE_NOT_CAPABLE;
                 LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason.c_str());
                 return;
             }
-        } else if(service.GetPort() == 7575) {
-            notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - 7575 is only supported on mainnet.";
+        } else if(service.GetPort() == 11526) {
+            notCapableReason = "Invalid port: " + boost::lexical_cast<string>(service.GetPort()) + " - 11526 is only supported on mainnet.";
             status = MASTERNODE_NOT_CAPABLE;
             LogPrintf("CActiveMasternode::ManageStatus() - not capable: %s\n", notCapableReason.c_str());
             return;
         }
-		
+
 		(void) g_connman->OpenNetworkConnection((CAddress)service, false, NULL, service.ToString().c_str());
-		/**We try here to stablish a connection, 
+		/**We try here to stablish a connection,
 		* Since if we are running masternode, then client will connect to itself
 		* to avoid it , we try a connection, and leave
 		* This is the expected.
@@ -423,7 +423,7 @@ vector<COutput> CActiveMasternode::SelectCoinsMasternode()
     // Filter
     BOOST_FOREACH(const COutput& out, vCoins)
     {
-        if(out.tx->tx->vout[out.i].nValue == MASTERNODEAMOUNT*COIN) { 
+        if(out.tx->tx->vout[out.i].nValue == MASTERNODEAMOUNT*COIN) {
             filteredCoins.push_back(out);
         }
     }

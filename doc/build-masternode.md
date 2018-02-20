@@ -1,11 +1,11 @@
-MASTERNODE BUILD NOTES 
+MASTERNODE BUILD NOTES
 ======================
 Some notes on how to build a WeyCoin Masternode in Ubuntu server. Using Windows Qt Client to configure.
 
 
 System requirements
 --------------------
-An Ubuntu 16.04 64bit server is recommended with at least 768MB 
+An Ubuntu 16.04 64bit server is recommended with at least 768MB
 of memory and 10GB space available when running a Masternode.
 
 
@@ -32,7 +32,7 @@ Open your Windows WeyCoin-Qt Client and open the debug console.
     ---
 	Send 15000 WAE to "address 0" in a *single transaction*
     ```
-	
+
 
 Build Instructions: Ubuntu & Debian
 -----------------------------------
@@ -47,7 +47,7 @@ Build Instructions: Ubuntu & Debian
     $ sudo apt-get install -y libtool autotools-dev autoconf automake
     $ sudo apt-get install -y libssl-dev
     $ sudo apt-get install -y libboost-all-dev
-    $ sudo apt-get install -y pkg-config 
+    $ sudo apt-get install -y pkg-config
 
     $ sudo add-apt-repository -y ppa:bitcoin/bitcoin
     $ sudo apt-get -y update
@@ -70,13 +70,13 @@ Build Instructions: Ubuntu & Debian
 	$ sudo mkswap /swapfile
 	$ sudo swapon /swapfile
 
-	
+
 	FireWall:
 	---------
 	$ sudo apt-get install ufw
 	$ sudo ufw allow ssh/tcp
 	$ sudo ufw limit ssh/tcp
-	$ sudo ufw allow 7575/tcp
+	$ sudo ufw allow 11526/tcp
 	$ sudo ufw logging on
 	$ sudo ufw enable
 	$ sudo ufw status
@@ -92,12 +92,12 @@ Build Instructions: Ubuntu & Debian
 	$ cd ~/.weycoin
     $ wget https://github.com/weycoin/weycoin/releases/download/$WEYCOIN_VER/weycoin-$WEYCOIN_VER-linux-amd64.tar.gz
 	$ tar xvzf weycoin-$WEYCOIN_VER-linux-amd64.tar.gz
-	
+
     $ cd weycoin-$WEYCOIN_VER-linux-amd64/
 	$ sudo cp weycoin* /usr/bin
 	$ sudo chmod 775 /usr/bin/weycoin*
 
-	
+
 	Create a weycoin.conf in nano
 	-------------------------------
 	$ cd ~/.weycoin
@@ -114,7 +114,7 @@ Build Instructions: Ubuntu & Debian
     promode=1
 	masternode=1
 	masternodeprivkey=XXXXXX
-	externalip=xxx.xxx.xxx.xxx:7575
+	externalip=xxx.xxx.xxx.xxx:11526
 	---
 
 	save nano: Ctrl +  O
@@ -138,35 +138,35 @@ Build Instructions: Ubuntu & Debian
 	save nano: Ctrl +  O
 	exit nano: Ctrl +  X
 	$ cd
-	
-	
-	Manually start WEYCOIN daemon 
+
+
+	Manually start WEYCOIN daemon
 	----------------------------
-	$ weycoind	
-	
+	$ weycoind
+
 	weycoin-cli commands
 	------------------
     # confirm masternode eligible txn outputs
     $ weycoin-cli masternode outputs
-	$ weycoin-cli masternode start 
+	$ weycoin-cli masternode start
 	$ weycoin-cli masternode stop
     $ weycoin-cli masternode current
 	$ weycoin-cli help
-	
-	
+
+
 	Start Mining (optional, but supports network)
 	---------------------------------------------
 	./weycoin-cli generate 100
 	./weycoin-cli gethashespersec
-	
 
-Windows WeyCoin-Qt Client configuration 
+
+Windows WeyCoin-Qt Client configuration
 -----------------------------------------
 (if using a seperate wallet.dat, a seperate weycoin.conf is needed)
 
 	---
 	go to weycoin.conf in %appdata%
-	
+
 	---
 	rpcuser=<anything>
 	rpcpassword=<anything>
@@ -176,13 +176,13 @@ Windows WeyCoin-Qt Client configuration
 	masternode=1
     promode=1
 	masternodeprivkey=XXXXXX
-	externalip=xxx.xxx.xxx.xxx:7575
+	externalip=xxx.xxx.xxx.xxx:11526
 	---
 
-	
+
 	Windows WeyCoin-Qt Client console commands
 	--------------------------------------------
-	masternode start 
+	masternode start
 	masternode stop
     masternode current
 	getinfo

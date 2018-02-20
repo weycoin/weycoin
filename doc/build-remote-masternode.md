@@ -48,7 +48,7 @@ listen=1
 5.  Send exactly 15,000 WAE in a single transaction to the address generated from Step 4
 
 6.  After you have received the WAE from Step 5, go to Help --> Debug Window --> Console and enter: `masternode outputs`
-    
+
     You should see output similar to below indicating that the node has recognised coins as eligible to be used
     as collateral for a Masternode.
 
@@ -73,7 +73,7 @@ listen=1
 maxconnections=256
 masternode=1
 masternodeprivkey=<your_private_key_generated_in_step_5>
-externalip=<external_ip_of_your_remote_node>:7575
+externalip=<external_ip_of_your_remote_node>:11526
 promode=1
 ```
 
@@ -101,11 +101,11 @@ promode=1
     output index (matching the result of Local Machine Step 6)
 
 ```
-alias 127.0.0.1:7575 masternode_private_key collateral_output_txid collateral_output_index
+alias 127.0.0.1:11526 masternode_private_key collateral_output_txid collateral_output_index
 
 e.g.
 
-mn01 127.0.0.1:7575 92bHZcSpmT6UinHzR8VgaVZVgBVfbDRCh1WogXXXXXXtf9pyZ4Y d565175089b0f4dce2294dc003799ae0c9cb703cadd996a0a4224458f176eb6e 0
+mn01 127.0.0.1:11526 92bHZcSpmT6UinHzR8VgaVZVgBVfbDRCh1WogXXXXXXtf9pyZ4Y d565175089b0f4dce2294dc003799ae0c9cb703cadd996a0a4224458f176eb6e 0
 ```
 
 4.  Start WEYCOIN daemon using command `./weycoind`; you should get the following output:
