@@ -366,9 +366,9 @@ CMasternode* CMasternodeMan::FindOldestNotInVec(const std::vector<CTxIn> &vVins,
         mn.Check();
         if(!mn.IsEnabled()) continue;
 
-        
+
             if(mn.GetMasternodeInputAge() < nMinimumAge || mn.lastTimeSeen - mn.sigTime < nMinimumActiveSeconds) continue;
-        
+
 
         bool found = false;
         BOOST_FOREACH(const CTxIn& vin, vVins)
@@ -631,16 +631,16 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
             return;
         }
 
-        if(addr.GetPort() != 7575 && Params().NetworkIDString() == CBaseChainParams::MAIN) {
-            LogPrintf("dsee - Got bad mainnet Masternode port: Actual:%d => Expected:%d\n", addr.GetPort(), 7575);
+        if(addr.GetPort() != 11526 && Params().NetworkIDString() == CBaseChainParams::MAIN) {
+            LogPrintf("dsee - Got bad mainnet Masternode port: Actual:%d => Expected:%d\n", addr.GetPort(), 11526);
             return;
-        
+
         }
         else if(addr.GetPort() != 7565 && Params().NetworkIDString() == CBaseChainParams::TESTNET) {
             LogPrintf("dsee - Got bad testnet Masternode port: Actual:%d => Expected:%d\n", addr.GetPort(), 7565);
              return;
         }
-        
+
 
         //search existing Masternode list, this is where we update existing Masternodes with new dsee broadcasts
         CMasternode* pmn = this->Find(vin);
@@ -694,7 +694,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
         if(AcceptableInputs(mempool, state, MakeTransactionRef(mtx))){
 			//LogPrintf(" after passing AcceptToMemoryPool\n");
 			CTransactionRef txref(MakeTransactionRef(std::move(mtx)));
-			
+
             if(fDebug) LogPrintf("dsee - Accepted Masternode entry %i %i\n", count, current);
 
             if(GetInputAge(vin) < MASTERNODE_MIN_CONFIRMATIONS){
@@ -728,7 +728,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
 			//vAddr = CAddress(addr);
 			vAddr.push_back(CAddress(addr));
             connman.AddNewAddresses(vAddr, pfrom->addr, 2*60*60);
-            
+
              //doesn't support multisig addresses
             if(donationAddress.IsPayToScriptHash()){
               donationAddress = CScript();
