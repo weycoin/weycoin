@@ -1,12 +1,14 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build WeyCoin in Unix. 
+Some notes on how to build WeyCoin in Unix.
 
 To Build
 ---------------------
 
+If you're building for masternodes or general use, use the `--disable-tests` flag in order to speed up the process.
+
 	./autogen.sh
-	./configure
+	./configure --disable-tests --disable-gui tests
 
 	make
 
@@ -55,17 +57,15 @@ compilation will take much longer due to swap thrashing.
 
 Dependency Build Instructions: Ubuntu & Debian
 ----------------------------------------------
-Build requirements:
+Install off the following for Ubuntu 16.04:
 
 	sudo apt-get install build-essential
 	sudo apt-get install libtool autotools-dev autoconf automake
 	sudo apt-get install libssl-dev libevent-dev
-
-for Ubuntu 12.04 and later:
-
 	sudo apt-get install libboost-all-dev
-	sudo apt-get install pkg-config 
-	( http://packages.ubuntu.com/de/source/trusty/pkg-config)
+	sudo apt-get install pkg-config
+	sudo apt-get install libminiupnpc-dev
+
 
  db4.8 packages are available [here](https://launchpad.net/~bitcoin/+archive/bitcoin).
  You can add the repository using the following command:
@@ -92,10 +92,6 @@ for other Ubuntu & Debian:
 	sudo apt-get install libdb4.8-dev
 	sudo apt-get install libdb4.8++-dev
 
-Optional:
-
-	sudo apt-get install libminiupnpc-dev (see --with-miniupnpc and --enable-upnp-default)
-
 Dependencies for the GUI: Ubuntu & Debian
 -----------------------------------------
 
@@ -110,7 +106,7 @@ To build with Qt 4 you need the following:
 
 For Qt 5 you need the following:
 
-    sudo apt-get install libqt5gui5 libqt5core5 libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev
+    sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev
 
 libqrencode (optional) can be installed with:
 
@@ -232,4 +228,3 @@ In this case there is no dependency on Berkeley DB 4.8.
 
 Mining is also possible in disable-wallet mode, but only using the `getblocktemplate` RPC
 call not `getwork`.
-
