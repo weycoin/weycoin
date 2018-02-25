@@ -126,10 +126,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000a4febc7bea967");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000010a93a020d2f05");
 
         // Assume the nMinimumChainWork hash - 1 as valid.
-        consensus.defaultAssumeValid = uint256S("0x000000000468f03201a14458cda9e951007b2f788e68627835ed881990febecf");
+        consensus.defaultAssumeValid = uint256S("0x00000000056918ebfb256f150f276df1ec58ff988b0031a38658a5c1d82b7c21");
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
@@ -198,7 +198,8 @@ public:
                 { 12500, uint256S("0x0000000003f5ad275187245b3c0eb1ffe5cfb26109d0939f1fade2c2f5c219fe")},
                 { 16000, uint256S("0x0000000011120f00c57a0df89cd2d3dc05b61f52243ab27d0a83b4acae2221ce")},
                 { 55000, uint256S("0x000000007647c73e8731967b37a8e71358daeb16084a18781238a5b7e7483d16")},
-                { 71000, uint256S("0x000000000023c3537a29870ee5f64ca12fa60207732010dccc7a5283992c6259")}
+                { 71000, uint256S("0x000000000023c3537a29870ee5f64ca12fa60207732010dccc7a5283992c6259")},
+                { 82475, uint256S("0x00000000061523e6bc640284601307001ee74505399c4470bd943339c2157c05")}
             }
         };
 
