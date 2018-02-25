@@ -2259,7 +2259,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             //no registered nodes
             if(masternodeValue == 0)
                 missingMNPayment = false;
-            else if(tx.vout.size() <3) {
+            else if(tx.vout.size() < 3) {
                 LogPrintf("MPA: block coinbase transaction malformed: vouts=%d!\n", tx.vout.size());
                 missingMNPayment = true;
             }
@@ -2284,10 +2284,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                   missingMNPayment = true;
                 }
             }
-        }
-
-        if (missingMNPayment || incorrectMNPayment) {
-            return state.DoS(100, error("%s: missing(%d) and/or incorrect(%d) masternode payment", __func__, missingMNPayment, incorrectMNPayment), REJECT_INVALID, "cb-missing-mn-payment");
         }
     }
 
