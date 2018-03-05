@@ -126,13 +126,14 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000010a93a020d2f05");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000001ae322460ad273");
 
         // Assume the nMinimumChainWork hash - 1 as valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000056918ebfb256f150f276df1ec58ff988b0031a38658a5c1d82b7c21");
+        consensus.defaultAssumeValid = uint256S("0x0000000006ef204a49186929ace819f75c6a1d5c32cd506fe84608b10a4d8bf5");
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
+        consensus.mpaStartHeight = 150000;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -152,9 +153,6 @@ public:
 
          assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
          assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
-
-         vSeeds.clear();
-         vFixedSeeds.clear();
 
         vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
         vSeeds.push_back(CDNSSeedData("seed2.weycoin.org", "seed2.weycoin.org"));
@@ -199,7 +197,8 @@ public:
                 { 16000, uint256S("0x0000000011120f00c57a0df89cd2d3dc05b61f52243ab27d0a83b4acae2221ce")},
                 { 55000, uint256S("0x000000007647c73e8731967b37a8e71358daeb16084a18781238a5b7e7483d16")},
                 { 71000, uint256S("0x000000000023c3537a29870ee5f64ca12fa60207732010dccc7a5283992c6259")},
-                { 82475, uint256S("0x00000000061523e6bc640284601307001ee74505399c4470bd943339c2157c05")}
+                { 82475, uint256S("0x00000000061523e6bc640284601307001ee74505399c4470bd943339c2157c05")},
+                { 110000, uint256S("0x0000000011e05c495f94dc2a42df1448bdf9748bdc3410730b70026ce7d5ce03")}
             }
         };
 
@@ -216,8 +215,8 @@ public:
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
         chainTxData = ChainTxData {
-            1518024836,
-            19535,
+            1520178257,
+            131849,
             1.0
         };
     }

@@ -2199,7 +2199,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     }
 
     //Masternode Payment Assurance (MPA)
-    if(pindex->nHeight > chainparams.GetConsensus().MasternodePaymentStartHeight + 7475)
+    if(pindex->nHeight > chainparams.GetConsensus().mpaStartHeight)
     {
         bool missingMNPayment = true;
         bool incorrectMNPayment = false;
@@ -2284,6 +2284,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                   missingMNPayment = true;
                 }
             }
+        }
+        if (missingMNPayment || incorrectMNPayment) {
+            return state.DoS(100, error("%s: missing(%d) and/or incorrect(%d) masternode payment", __func__, missingMNPayment, incorrectMNPayment), REJECT_INVALID, "cb-missing-mn-payment");
         }
     }
 

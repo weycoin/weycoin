@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers 
-// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2017 The Dash developers
 // Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -97,7 +97,7 @@ enum WalletFeature
     FEATURE_COMPRPUBKEY = 60000, // compressed public keys
 
     FEATURE_HD = 130000, // Hierarchical key derivation after BIP32 (HD Wallet)
-    FEATURE_LATEST =  61000// HD is optional, use FEATURE_COMPRPUBKEY as latest version
+    FEATURE_LATEST =  61001// HD is optional, use FEATURE_COMPRPUBKEY as latest version
 };
 
 enum AvailableCoinsType
@@ -247,7 +247,7 @@ public:
      *  0  : in memory pool, waiting to be included in a block
      * >=1 : this many blocks deep in the main chain
      */
-    int GetDepthInMainChain(const CBlockIndex* &pindexRet, bool enableIX = true) const;//TODO-- 
+    int GetDepthInMainChain(const CBlockIndex* &pindexRet, bool enableIX = true) const;//TODO--
     int GetDepthInMainChain(bool enableIX = true) const { const CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet, enableIX); } //TODO--
     //int GetDepthInMainChain(/*bool enableIX = true*/) const { const CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet); }
 	bool IsInMainChain() const { const CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet) > 0; }
@@ -264,7 +264,7 @@ public:
     bool IsCoinBase() const { return tx->IsCoinBase(); }
 };
 
-/** 
+/**
  * A transaction with a bunch of additional info that only the owner cares about.
  * It includes any unrecorded transactions needed to link it back to the block chain.
  */
@@ -441,7 +441,7 @@ public:
     CAmount GetImmatureWatchOnlyCredit(const bool& fUseCache=true) const;
     CAmount GetAvailableWatchOnlyCredit(const bool& fUseCache=true) const;
     CAmount GetChange() const;
-	
+
 	CAmount GetAnonymizableCredit(bool fUseCache=true) const;
     CAmount GetAnonymizedCredit(bool fUseCache=true) const;
     CAmount GetDenominatedCredit(bool unconfirmed, bool fUseCache=true) const;
@@ -488,7 +488,7 @@ public:
     {
         tx = txIn; i = iIn; nDepth = nDepthIn; fSpendable = fSpendableIn; fSolvable = fSolvableIn;
     }
-	
+
 	//Used with Darksend. Will return largest nondenom, then denominations, then very small inputs
     int Priority() const;
 
@@ -608,7 +608,7 @@ private:
 };
 
 
-/** 
+/**
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
  * and provides the ability to create new transactions.
  */
@@ -790,7 +790,7 @@ public:
     bool IsDenominatedAmount(CAmount nInputAmount) const;
 
     bool IsSpent(const uint256& hash, unsigned int n) const;
-	
+
 	bool fWalletUnlockAnonymizeOnly;
 
     bool IsLockedCoin(uint256 hash, unsigned int n) const;
@@ -843,7 +843,7 @@ public:
 
     void GetKeyBirthTimes(std::map<CTxDestination, int64_t> &mapKeyBirth) const;
 
-    /** 
+    /**
      * Increment the next transaction order id
      * @return next transaction order id
      */
@@ -867,13 +867,13 @@ public:
     CAmount GetWatchOnlyBalance() const;
     CAmount GetUnconfirmedWatchOnlyBalance() const;
     CAmount GetImmatureWatchOnlyBalance() const;
-	
+
 	CAmount GetAnonymizableBalance() const;// TODO--
     CAmount GetAnonymizedBalance() const;
     double GetAverageAnonymizedRounds() const;
     CAmount GetNormalizedAnonymizedBalance() const;
     //CAmount GetDenominatedBalance(bool unconfirmed=false) const;//new
-	CAmount GetDenominatedBalance(bool onlyDenom=true, bool onlyUnconfirmed=false) const;//old 
+	CAmount GetDenominatedBalance(bool onlyDenom=true, bool onlyUnconfirmed=false) const;//old
 
    /* bool GetBudgetSystemCollateralTX(CTransaction& tx, uint256 hash, bool useIX);//New system but Chris disagree
     bool GetBudgetSystemCollateralTX(CWalletTx& tx, uint256 hash, bool useIX);*/ /**TODO-- */
@@ -894,7 +894,7 @@ public:
                            std::string& strFailReason, const CCoinControl *coinControl = NULL, bool sign = true, AvailableCoinsType coin_type=ALL_COINS, bool useIX=false);//TODO-- check
     bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CConnman* connman, CValidationState& state, std::string strCommand="tx"); //std::string strCommand="tx" need it , but CConnman* connman
 
-	
+
 	std::string PrepareDarksendDenominate(int minRounds, int maxRounds);
     int GenerateDarksendOutputs(int nTotalValue, std::vector<CTxOut>& vout); //TODO--declared but not used
     bool CreateCollateralTransaction(CMutableTransaction& txCollateral, std::string& strReason);
@@ -971,7 +971,7 @@ public:
     bool UpdatedTransaction(const uint256 &hashTx) override;//bool UpdatedTransaction(const uint256 &hashTx) override;//TODO--
 
 	//bool UpdatedTransaction(const uint256 &hashTx) override;//TODO-- remove
-	
+
     void Inventory(const uint256 &hash) override
     {
         {
@@ -988,7 +988,7 @@ public:
         LOCK(cs_wallet);
         mapRequestCount[hash] = 0;
     };
-    
+
     unsigned int GetKeyPoolSize()
     {
         AssertLockHeld(cs_wallet); // setKeyPool
@@ -1017,8 +1017,8 @@ public:
 
     //! Verify the wallet database and perform salvage if required
     static bool Verify();
-    
-    /** 
+
+    /**
      * Address book entry changed.
      * @note called with lock cs_wallet held.
      */
@@ -1027,7 +1027,7 @@ public:
             const std::string &purpose,
             ChangeType status)> NotifyAddressBookChanged;
 
-    /** 
+    /**
      * Wallet transaction added, removed or updated.
      * @note called with lock cs_wallet held.
      */
@@ -1078,7 +1078,7 @@ public:
 
     /* Generates a new HD master key (will not be activated) */
     CPubKey GenerateNewHDMasterKey();
-    
+
     /* Set the current HD master key (will reset the chain child index counters) */
     bool SetHDMasterKey(const CPubKey& key);
 };
@@ -1109,7 +1109,7 @@ public:
 };
 
 
-/** 
+/**
  * Account information.
  * Stored in wallet with key "acc"+string account name.
  */

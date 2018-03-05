@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers 
-// Copyright (c) 2017 The Dash developers 
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2017 The Dash developers
 // Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -34,7 +34,7 @@ struct BIP9Deployment {
     int64_t nStartTime;
     /** Timeout/expiry MedianTime for the deployment attempt. */
     int64_t nTimeout;
-	
+
 	int64_t nHeight; //maybe "int"
 
     /** Overriding the default threshold if not zero. */
@@ -62,6 +62,7 @@ struct Params {
 
     /** When to start masternode payments? */
     int64_t MasternodePaymentStartHeight;
+    int64_t mpaStartHeight;
 
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
