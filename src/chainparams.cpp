@@ -133,7 +133,7 @@ public:
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
-        consensus.mpaStartHeight = 150000;
+        consensus.mpaStartHeight = 82475;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
