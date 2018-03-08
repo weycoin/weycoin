@@ -2281,10 +2281,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
                 if(blockRewardTargetCount != 2) {
                   LogPrintf("MPA: block coinbase transaction invalid non-zero vouts: %d\n", blockRewardTargetCount);
-                  //missingMNPayment = true;
+                  missingMNPayment = true;
                 }
             }
         }
+
+         if (missingMNPayment || incorrectMNPayment) {
+             return state.DoS(100, error("%s: missing(%d) and/or incorrect(%d) masternode payment", __func__, missingMNPayment, incorrectMNPayment), REJECT_INVALID, "cb-missing-mn-payment");
+         }
     }
 
     int64_t nTime2 = GetTimeMicros();
