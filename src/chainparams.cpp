@@ -325,10 +325,6 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xea276c333d904af5bfb6ea126418719604211c95567475a32f2d38bcc8fd9552"));
 
         vSeeds.clear();
-        vFixedSeeds.clear();
-
-        // nodes with support for servicebits filtering should be at the top
-        //vSeeds.push_back(CDNSSeedData("st001.radixpi.com", "st001.radixpi.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);

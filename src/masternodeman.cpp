@@ -636,8 +636,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, const std::string& strCommand,
             return;
 
         }
-        else if(addr.GetPort() != 7565 && Params().NetworkIDString() == CBaseChainParams::TESTNET) {
-            LogPrintf("dsee - Got bad testnet Masternode port: Actual:%d => Expected:%d\n", addr.GetPort(), 7565);
+        else if(addr.GetPort() != 10526 && Params().NetworkIDString() == CBaseChainParams::TESTNET) {
+            LogPrintf("dsee - Got bad testnet Masternode port: Actual:%d => Expected:%d\n", addr.GetPort(), 10526);
              return;
         }
 
