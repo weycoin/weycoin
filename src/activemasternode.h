@@ -23,7 +23,7 @@ static const int MASTERNODEAMOUNT = 15000;
 // [squbs] Reactive Equilibria V1 - Payment Equilbrium Factor (PEF)
 // Value sensitivity is reasonably high. Make sure you understand
 // implications if you modify.
-static const double MASTERNODE_PEF = 0.55;
+static const double MASTERNODE_PEF = 0.20;
 
 // Responsible for activating the Masternode and pinging the network
 class CActiveMasternode

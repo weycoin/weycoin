@@ -232,7 +232,7 @@ public:
         strNetworkID = "test";
 
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0000013dcc24cb29b041d5c89763f3aa44340faf556101783818a6ca8eb59e59");
+        consensus.BIP34Hash = uint256S("0x0");
         consensus.BIP65Height = 0; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
         consensus.BIP66Height = 0; // 000000002104c8c45e99a8853285a3b592602a3ccde2b832481da85e9e4ba182
         consensus.BIP102HeightDelta = 0;
