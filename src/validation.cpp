@@ -1381,29 +1381,29 @@ CAmount GetMasternodePayment(int nHeight, CAmount blockValue, const Consensus::P
 
     // Reactive Equilibria V1 by Squbs (squbs@protonmail.com)
     CAmount hBlockValue = blockValue/2;
-    CAmount nMoneySupply = chainActive.Tip()->nMoneySupply;
+    CAmount nMoneySupply = chainActive.Tip()->nMoneySupply; // 69523771.3
 
     //LogPrintf("[re1] money supply: %u\n", nMoneySupply);
 
     // TODO: filter nodes by various characteristics
-    int tNodes = mnodeman.CountMasternodesAboveProtocol(MIN_MASTERNODE_POS_PROTO_VERSION);
+    int tNodes = mnodeman.CountMasternodesAboveProtocol(MIN_MASTERNODE_POS_PROTO_VERSION); //74
 
-    CAmount tCollateral = tNodes * MASTERNODEAMOUNT * COIN;
+    CAmount tCollateral = tNodes * MASTERNODEAMOUNT * COIN; //74 * 15000 * 100000000
     //LogPrintf("[re1] masternode collateral: %u\n", tCollateral);
 
     //no reward for masternodes if none exist!
     if (tNodes <= 0)
         return 0;
 
-    double sChokeRatio = nMoneySupply > 0 ? tCollateral / static_cast<double>(nMoneySupply) : 0;
+    double sChokeRatio = nMoneySupply > 0 ? tCollateral / static_cast<double>(nMoneySupply) : 0; //111000000000000 / 6952377100000000
     //LogPrintf("[REV1] supply choke ratio: %d\n", sChokeRatio);
 
-    double mnSDrift = 1 - sChokeRatio / MASTERNODE_PEF;
+    double mnSDrift = 1 - sChokeRatio / MASTERNODE_PEF; // 1 - 0.01596576227144 / 0.55
 
-    double activeS = std::tanh(mnSDrift);
+    double activeS = std::tanh(mnSDrift); // 0.749130824704893
     //LogPrintf("[re1] masternode payment activation weight %d\n", activeS);
 
-    CAmount ret = hBlockValue * (activeS + MASTERNODE_PEF);
+    CAmount ret = hBlockValue * (activeS + MASTERNODE_PEF); // 60 * (0.749130824704893 + 0.55)
 
     //LogPrintf("[re1] masternode payment blockValue %u\n", ret);
 

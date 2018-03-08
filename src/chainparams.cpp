@@ -291,32 +291,46 @@ public:
         consensus.defaultAssumeValid = uint256S("0x0");
 
         consensus.MasternodePaymentStartHeight = 1440;
+        consensus.mpaStartHeight = 1500;
 
         pchMessageStart[0] = 0x2a;
         pchMessageStart[1] = 0x1e;
         pchMessageStart[2] = 0xd5;
         pchMessageStart[3] = 0xd1;
-        nDefaultPort = 7565;
+        nDefaultPort = 10526;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1510791350, 1559747, 0x1e0ffff0, 1, 10 * COIN);//Time, Nonce,nBits, version, reward
+        genesis = CreateGenesisBlock(1520531492, 493300, 0x1e0ffff0, 1, 120 * COIN);//Time, Nonce,nBits, version, reward
         consensus.hashGenesisBlock = genesis.GetHash();
 
-/*
-CreateGenesisBlock(1510791350, 1093629, 0x1e0ffff0, 1, 10 * COIN)
-NEW **testnet** genesis nonce: 1559747
-NEW **testnet** genesis hash: 000000cd747bd0b653e1fe417b60c1d9e990600cf2ff193404ea12c3ecb348b4
-NEW **testnet** merkle root: 15343d9e3cfff44854ec63cc588d5a1ed6ea971085c2be97acb0ea22c0e94fc4
-*/
 
-        assert(consensus.hashGenesisBlock == uint256S("0xfefc1c645214a9a1fcd20aa6628a5c539b9212ddaaca5d6464392777b00a8f5d"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5049156b787bdb23585c85792a095814b4c2d729f81eee60f465ce2f95d089fe"));
+        /*
+        Testnet Genesis Merkle Root: ea276c333d904af5bfb6ea126418719604211c95567475a32f2d38bcc8fd9552
+        New testnet genesis nonce 493300
+        New testnet genesis hash: 00000ea86500f42394a938cecb035cdd6f58aec2680484211417d23ec18bb76e
+
+
+        printf("Starting Genesis Block Mining\n");
+
+        genesis.nNonce = 0;
+        consensus.hashGenesisBlock = uint256S("0x001");
+
+        for (genesis.nNonce == 0; UintToArith256(genesis.GetHash()) > UintToArith256(consensus.powLimit); genesis.nNonce++) {}
+
+        printf("Testnet Genesis Merkle Root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("New testnet genesis nonce %d\n", genesis.nNonce);
+        printf("New testnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());*/
+
+        assert(consensus.hashGenesisBlock == uint256S("0x00000ea86500f42394a938cecb035cdd6f58aec2680484211417d23ec18bb76e"));
+        assert(genesis.hashMerkleRoot == uint256S("0xea276c333d904af5bfb6ea126418719604211c95567475a32f2d38bcc8fd9552"));
+
+        vSeeds.clear();
+        vFixedSeeds.clear();
 
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("st001.radixpi.com", "st001.radixpi.com"));
-        vSeeds.push_back(CDNSSeedData("st002.radixpi.com", "st002.radixpi.com"));
+        //vSeeds.push_back(CDNSSeedData("st001.radixpi.com", "st001.radixpi.com"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,127);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0xA2)(0xAE)(0xC9)(0xA6).convert_to_container<std::vector<unsigned char> >();
@@ -331,24 +345,23 @@ NEW **testnet** merkle root: 15343d9e3cfff44854ec63cc588d5a1ed6ea971085c2be97acb
 
         checkpointData = (CCheckpointData) {
             {
-                {     0, uint256S("000000cd747bd0b653e1fe417b60c1d9e990600cf2ff193404ea12c3ecb348b4")},
-                {119692, uint256S("000004d943ed36053076a62b20cc7bec6a8a4c66ed1f6a6e88deeca015ff555a")},
-                {195182, uint256S("0000001cbc01c2d26da194f44fd63e35eb87e65642c8611c93e9c14a2f2c0a0d")},
+                {     0, uint256S("0x00000ea86500f42394a938cecb035cdd6f58aec2680484211417d23ec18bb76e")}
             }
         };
 
         vTreasuryRewardAddress = {
-            "KrUBYAjwM1nE5UQ5wGEHRmbNMCoD2sVGeJ"
+            "0"
         };
 
         chainTxData = ChainTxData{
-            1512085561,
-            119905,
-            6
+            0,
+            0,
+            0
         };
     }
 };
-//static CTestNetParams testNetParams;
+
+static CTestNetParams testNetParams;
 
 /**
  * Regression test
