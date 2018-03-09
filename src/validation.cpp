@@ -2262,9 +2262,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             else if(tx.vout.size() < 3) {
                 LogPrintf("MPA: block coinbase transaction malformed: vouts=%d!\n", tx.vout.size());
                 missingMNPayment = true;
-            }
-            else
-            {
+            } else {
                 unsigned int blockRewardTargetCount = 0;
 
                 BOOST_FOREACH(const CTxOut& output, tx.vout) {
@@ -2281,7 +2279,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
                 if(blockRewardTargetCount != 2) {
                   LogPrintf("MPA: block coinbase transaction invalid non-zero vouts: %d\n", blockRewardTargetCount);
-                  missingMNPayment = true;
+                  //missingMNPayment = true;
                 }
             }
         }

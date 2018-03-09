@@ -134,25 +134,30 @@ public:
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
         consensus.mpaStartHeight = 129000;
+        //
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-         pchMessageStart[0] = 0xda;
-         pchMessageStart[1] = 0x8e;
-         pchMessageStart[2] = 0xf1;
-         pchMessageStart[3] = 0x2d;
+        pchMessageStart[0] = 0xda;
+        pchMessageStart[1] = 0x8e;
+        pchMessageStart[2] = 0xf1;
+        pchMessageStart[3] = 0x2d;
 
-         nDefaultPort = 11526;
-         nPruneAfterHeight = 100000;
+        nDefaultPort = 11526;
+        nPruneAfterHeight = 100000;
 
-         genesis = CreateGenesisBlock(1516483599, 416520, 0x1e0ffff0, 1, 50 * COIN);
-         consensus.hashGenesisBlock = genesis.GetHash();
+        genesis = CreateGenesisBlock(1516483599, 416520, 0x1e0ffff0, 1, 50 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
 
-         assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
-         assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
+
+        // Clear out seeds for hardfork.
+        vSeeds.clear();
+        vFixedSeeds.clear();
 
         vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
         vSeeds.push_back(CDNSSeedData("seed2.weycoin.org", "seed2.weycoin.org"));
