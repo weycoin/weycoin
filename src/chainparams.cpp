@@ -73,7 +73,7 @@ public:
 
         consensus.nSubsidyHalvingInterval = 200000;
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x00000e173190d0d57bf3167bf7d42458be29cbe043960234482486b709188f64");
+        consensus.BIP34Hash = uint256S("00000e173190d0d57bf3167bf7d42458be29cbe043960234482486b709188f64");
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.BIP102HeightDelta = 0;
@@ -126,10 +126,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000002118ad5d0089c7");
+        consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000000002130adb1adf8af");
 
-        // Assume the nMinimumChainWork hash - 1 as valid.
-        consensus.defaultAssumeValid = uint256S("0x0000000008b4426a346fe72a593e2e5ac06e7d0bda6e0190104f80fb90c9dd89");
+        consensus.defaultAssumeValid = uint256S("0x0");
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
@@ -202,7 +201,8 @@ public:
                 { 71000, uint256S("0x000000000023c3537a29870ee5f64ca12fa60207732010dccc7a5283992c6259")},
                 { 82475, uint256S("0x00000000061523e6bc640284601307001ee74505399c4470bd943339c2157c05")},
                 { 110000, uint256S("0x0000000011e05c495f94dc2a42df1448bdf9748bdc3410730b70026ce7d5ce03")},
-                { 127150, uint256S("0x00000000099a151ec7e1b88be6b5ab2dea4da7a0d919e999e5d0eb31f207d996")}
+                { 127150, uint256S("0x00000000099a151ec7e1b88be6b5ab2dea4da7a0d919e999e5d0eb31f207d996")},
+                { 127357, uint256S("0x0000000008164fc4c0caf8e8a00e9937549989d993d4d997815d37cbab951a90")}
             }
         };
 
