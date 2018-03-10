@@ -2259,7 +2259,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             //no registered nodes
             if(masternodeValue == 0)
                 missingMNPayment = false;
-            else if(tx.vout.size() < 3) {
+            else if(tx.vout.size() < 2) {
                 LogPrintf("MPA: block coinbase transaction malformed: vouts=%d!\n", tx.vout.size());
                 missingMNPayment = true;
             } else {
