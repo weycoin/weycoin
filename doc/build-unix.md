@@ -64,7 +64,7 @@ Install off the following for Ubuntu 16.04:
 	sudo apt-get install libssl-dev libevent-dev
 	sudo apt-get install libboost-all-dev
 	sudo apt-get install pkg-config
-	sudo apt-get install libminiupnpc-dev
+	sudo apt-get install libminiupnpc-dev libzmq3-dev libevent-pthreads-2.0-5
 
 
  db4.8 packages are available [here](https://launchpad.net/~bitcoin/+archive/bitcoin).
