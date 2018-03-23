@@ -15,5 +15,5 @@ listen=1
 ####################
 #masternode=1
 #masternodeprivkey=
-#externalip=:7575
+#externalip=:11526
 #promode=1

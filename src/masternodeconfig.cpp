@@ -63,7 +63,7 @@ bool CMasternodeConfig::read(std::string& strErr) {
             return false;
         }
         else if(port != 10526 && Params().NetworkIDString() == CBaseChainParams::TESTNET) {
-            strErr = "Invalid port detected in masternode.conf: " + line + " (must be 21527 for testnet)";
+            strErr = "Invalid port detected in masternode.conf: " + line + " (must be 10526 for testnet)";
             streamConfig.close();
             return false;
         }

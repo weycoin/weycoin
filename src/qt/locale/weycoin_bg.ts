@@ -4071,8 +4071,8 @@ rpcpassword=%s
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Очаквай JSON-RPC входящи връзки на &lt;port&gt; (по подразбиране: 8800 или за тестовата мрежа: 8884)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Очаквай JSON-RPC входящи връзки на &lt;port&gt; (по подразбиране: 11530 или за тестовата мрежа: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="103"/>
@@ -4311,8 +4311,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Свързване към JSON-RPC през &lt;port&gt; (по подразбиране: 8800 или за тест мрежата: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Свързване към JSON-RPC през &lt;port&gt; (по подразбиране: 11530 или за тест мрежата: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4716,8 +4716,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Слушане за входящи връзки на  &lt;port&gt; (по подразбиране: 7575 или за тестовата мрежа: 7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Слушане за входящи връзки на  &lt;port&gt; (по подразбиране: 11526 или за тестовата мрежа: 10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>

@@ -4075,8 +4075,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s &quot;WEYCOIN Hälytys&quot; admin@f
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Kuuntele JSON-RPC yhteyksiä portista &lt;port&gt; (oletus: 8800 tai testiverkko: 8884)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Kuuntele JSON-RPC yhteyksiä portista &lt;port&gt; (oletus: 11530 tai testiverkko: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="103"/>
@@ -4314,8 +4314,8 @@ Jos tiedostoa ei ole, niin luo se ainoastaan omistajan kirjoitusoikeuksin.</tran
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Yhdistä JSON-RPC porttiin &lt;port&gt; (oletus: 8800 tai testiverkko: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Yhdistä JSON-RPC porttiin &lt;port&gt; (oletus: 11530 tai testiverkko: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4719,8 +4719,8 @@ Jos tiedostoa ei ole, niin luo se ainoastaan omistajan kirjoitusoikeuksin.</tran
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Kuuntele yhteyksiä portista &lt;port&gt; (oletus: 7575 tai testiverkko: 7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Kuuntele yhteyksiä portista &lt;port&gt; (oletus: 11526 tai testiverkko: 10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>

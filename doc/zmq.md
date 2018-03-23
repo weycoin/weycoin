@@ -65,8 +65,8 @@ The socket type is PUB and the address must be a valid ZeroMQ socket
 address. The same address can be used in more than one notification.
 
 For instance:
-
-    $ weycoind -zmqpubhashtx=tcp://127.0.0.1:28332 \
+# not sure what port
+    $ weycoind -zmqpubhashtx=tcp://127.0.0.1:11532 \
                -zmqpubrawtx=ipc:///tmp/weycoind.tx.raw
 
 Each PUB notification has a topic and body, where the header
