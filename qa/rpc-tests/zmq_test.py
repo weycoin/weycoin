@@ -17,8 +17,8 @@ class ZMQTest (WeyCoinTestFramework):
     def __init__(self):
         super().__init__()
         self.num_nodes = 4
-
-    port = 28332
+# not sure what port
+    port = 11532
 
     def setup_nodes(self):
         self.zmqContext = zmq.Context()

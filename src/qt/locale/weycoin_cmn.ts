@@ -4064,7 +4064,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WEYCOIN Alert&quot; admin@foo.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4301,7 +4301,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default:j 8800 or testnet: 8884)</source>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
         <translation>连接至JSON-RPC&lt;端口&gt;(默认：9998 或 测试网络：19998)</translation>
     </message>
     <message>
@@ -4706,8 +4706,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>

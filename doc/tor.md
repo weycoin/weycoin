@@ -57,11 +57,11 @@ reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equiv
 config file):
 
 	HiddenServiceDir /var/lib/tor/weycoin-service/
-	HiddenServicePort 7575 127.0.0.1:7575
-	HiddenServicePort 7565 127.0.0.1:7565
+	HiddenServicePort 11526 127.0.0.1:11526
+	HiddenServicePort 10526 127.0.0.1:10526
 
 The directory can be different of course, but (both) port numbers should be equal to
-your weycoind's P2P listen port (7575 by default).
+your weycoind's P2P listen port (11526 by default).
 
 	-externalip=X   You can tell weycoin about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -91,7 +91,7 @@ specify:
 
 	./weycoind ... -discover
 
-and open port 7575 on your firewall (or use -upnp).
+and open port 11526 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

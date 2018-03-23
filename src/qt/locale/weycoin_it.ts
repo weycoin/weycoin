@@ -4073,7 +4073,7 @@ ad esempio: alertnotify=echo %%s | mail -s &quot;WEYCOIN Alert&quot; admin@foo.c
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4313,8 +4313,8 @@ Se il file non esiste, crealo assegnando i permessi di lettura solamente al prop
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Connetti a JSON-RPC su &lt;port&gt; (predefinita: 8800j o testnet: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Connetti a JSON-RPC su &lt;port&gt; (predefinita: 11530j o testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4718,7 +4718,7 @@ Se il file non esiste, crealo assegnando i permessi di lettura solamente al prop
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
         <translation type="unfinished"/>
     </message>
     <message>

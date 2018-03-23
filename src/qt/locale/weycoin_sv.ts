@@ -4075,8 +4075,8 @@ admin@foo.com
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Avlyssna JSON-RPC-anslutningar på &lt;port&gt; (standardvärde: 8800 eller testnet: 8884)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Avlyssna JSON-RPC-anslutningar på &lt;port&gt; (standardvärde: 11530 eller testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="103"/>
@@ -4126,7 +4126,7 @@ admin@foo.com
     <message>
         <location filename="../weycoinstrings.cpp" line="127"/>
         <source>Show N confirmations for a successfully locked transaction (0-9999, default: 1)</source>
-        <translation>Visa N bekräftelser för en lyckad transaktionslåsning (0 - 7575, standardvärde: 1)</translation>
+        <translation>Visa N bekräftelser för en lyckad transaktionslåsning (0 - 11526, standardvärde: 1)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="130"/>
@@ -4314,8 +4314,8 @@ Om filen inte existerar, skapa den och ge inga andra än ägaren läsarrättighe
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Anslut till JSON-RPC på &lt;port&gt; (standardvärde: 8800 eller testnet: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Anslut till JSON-RPC på &lt;port&gt; (standardvärde: 11530 eller testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4719,8 +4719,8 @@ Om filen inte existerar, skapa den och ge inga andra än ägaren läsarrättighe
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Avlyssna anslutningar på &lt;port&gt;  (standardvärde: 7575 eller testnet: 7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Avlyssna anslutningar på &lt;port&gt;  (standardvärde: 11526 eller testnet: 10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>

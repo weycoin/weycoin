@@ -4071,8 +4071,8 @@ rpcpassword=%s
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Слушать JSON-RPC соединения на порту &lt;port&gt; (по умолчанию: 8800 или testnet: 8884)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Слушать JSON-RPC соединения на порту &lt;port&gt; (по умолчанию: 11530 или testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="103"/>
@@ -4310,8 +4310,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Соединяться к JSON-RPC по порту &lt;port&gt; (по умолчанию: 8800 или testnet: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Соединяться к JSON-RPC по порту &lt;port&gt; (по умолчанию: 11530 или testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4715,8 +4715,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Принимать входящие подключения на порт &lt;port&gt; (по умолчанию: 7575 или testnet:7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Принимать входящие подключения на порт &lt;port&gt; (по умолчанию: 11526 или testnet:10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>

@@ -4072,8 +4072,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s &quot;WEYCOIN Alert&quot; admin@foo.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Escuchar conexiones JSON-RPC en &lt;port&gt; (predeterminado: 8800 o testnet: 8884)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Escuchar conexiones JSON-RPC en &lt;port&gt; (predeterminado: 11530 o testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="103"/>
@@ -4313,8 +4313,8 @@ Si el archivo no existe, créelo con permiso de lectura solamente del propietari
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Conectar a JSON-RPC en &lt;port&gt; (predeterminado: 8800 o testnet: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Conectar a JSON-RPC en &lt;port&gt; (predeterminado: 11530 o testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4719,8 +4719,8 @@ Si el archivo no existe, créelo con permiso de lectura solamente del propietari
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Escuchar las conexiones en &lt;port&gt; (por defecto: 7575 o testnet: 7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Escuchar las conexiones en &lt;port&gt; (por defecto: 11526 o testnet: 10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>

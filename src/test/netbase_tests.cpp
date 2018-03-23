@@ -77,15 +77,15 @@ BOOST_AUTO_TEST_CASE(netbase_splithost)
     BOOST_CHECK(TestSplitHost("www.weycoin.org:80", "www.weycoin.org", 80));
     BOOST_CHECK(TestSplitHost("[www.weycoin.org]:80", "www.weycoin.org", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("127.0.0.1:7575", "127.0.0.1", 8333));
+    BOOST_CHECK(TestSplitHost("127.0.0.1:11526", "127.0.0.1", 11526));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[127.0.0.1]:7575", "127.0.0.1", 8333));
+    BOOST_CHECK(TestSplitHost("[127.0.0.1]:11526", "127.0.0.1", 11526));
     BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:7575", "::ffff:127.0.0.1", 8333));
-    BOOST_CHECK(TestSplitHost("[::]:7575", "::", 8333));
-    BOOST_CHECK(TestSplitHost("::7575", "::7575", -1));
-    BOOST_CHECK(TestSplitHost(":7575", "", 8333));
-    BOOST_CHECK(TestSplitHost("[]:7575", "", 8333));
+    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:11526", "::ffff:127.0.0.1", 11526));
+    BOOST_CHECK(TestSplitHost("[::]:11526", "::", 11526));
+    BOOST_CHECK(TestSplitHost("::11526", "::11526", -1));
+    BOOST_CHECK(TestSplitHost(":11526", "", 11526));
+    BOOST_CHECK(TestSplitHost("[]:11526", "", 11526));
     BOOST_CHECK(TestSplitHost("", "", -1));
 }
 
@@ -98,10 +98,10 @@ bool static TestParse(std::string src, std::string canon)
 BOOST_AUTO_TEST_CASE(netbase_lookupnumeric)
 {
     BOOST_CHECK(TestParse("127.0.0.1", "127.0.0.1:65535"));
-    BOOST_CHECK(TestParse("127.0.0.1:7575", "127.0.0.1:7575"));
+    BOOST_CHECK(TestParse("127.0.0.1:11526", "127.0.0.1:11526"));
     BOOST_CHECK(TestParse("::ffff:127.0.0.1", "127.0.0.1:65535"));
     BOOST_CHECK(TestParse("::", "[::]:65535"));
-    BOOST_CHECK(TestParse("[::]:7575", "[::]:7575"));
+    BOOST_CHECK(TestParse("[::]:11526", "[::]:11526"));
     BOOST_CHECK(TestParse("[127.0.0.1]", "127.0.0.1:65535"));
     BOOST_CHECK(TestParse(":::", "[::]:0"));
 }

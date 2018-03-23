@@ -4102,8 +4102,8 @@ for example: alertnotify=echo %%s | mail -s &quot;WEYCOIN Alert&quot; admin@foo.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="101"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Listen for JSON-RPC connections on &lt;port&gt; (default: 8800 or testnet: 8884)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Listen for JSON-RPC connections on &lt;port&gt; (default: 11530 or testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="103"/>
@@ -4341,8 +4341,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="195"/>
-        <source>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</source>
-        <translation>Connect to JSON-RPC on &lt;port&gt; (default: 8800 or testnet: 8884)</translation>
+        <source>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</source>
+        <translation>Connect to JSON-RPC on &lt;port&gt; (default: 11530 or testnet: 11531)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="196"/>
@@ -4746,8 +4746,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="276"/>
-        <source>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</source>
-        <translation>Listen for connections on &lt;port&gt; (default: 7575 or testnet: 7565)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</source>
+        <translation>Listen for connections on &lt;port&gt; (default: 11526 or testnet: 10526)</translation>
     </message>
     <message>
         <location filename="../weycoinstrings.cpp" line="277"/>
