@@ -133,7 +133,7 @@ public:
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
-        consensus.mpaStartHeight = 127150;
+        consensus.mpaStartHeight = 190635;
         //
 
         /**
