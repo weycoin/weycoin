@@ -18,12 +18,24 @@ this includes masternodes, SegWit 2X/4X, Lightning Network implementation and mu
 The full outline of our work can be found on our primary website - [WeyCoin.org](https://weycoin.org)
 
 
+Masternodes
+-----------
+
+We offer masternodes at a much cheaper price when contrasted to our overall supply. 15,000 WAE is all
+one needs to create a masternode. The tutorials for the setup can be found in our official discord.
+
+
+Proof-of-Meme
+-------------
+
+The main purpose behind WeyCoin is to allow a community of people to share, like, dislike and post memes,
+and in turn be rewarded with our currency. This integration will be implemented directly into our blockchain. More information about how this will be done is available in the upcoming whitepaper.
+
+
 Whitepaper
 ----------
 
-We are currently in the process of writing out a delicate whitepaper outlining
-all of the obstacles we must overcome in our duty. We are fully aware of the
-implications of creating a fully funcitonal side-platform to implement PoM.
+Whitepaper has been written out and is now being finalized and prepared for release.
 
 
 License

@@ -11,6 +11,7 @@
 #include "tinyformat.h"
 #include "util.h"
 #include "utilstrencodings.h"
+#include "hash.h"
 #include "base58.h"
 
 #include <assert.h>
@@ -126,7 +127,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000000002145d2768d82e1");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000051f6a65d1a2b4f");
 
         consensus.defaultAssumeValid = uint256S("0x0");
 
@@ -153,6 +154,30 @@ public:
 
         assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
         assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
+
+        //version 536870912
+        //nonce = 261130005
+
+        int32_t version = 536870912;
+        int32_t nonce = 1779392255;
+
+        uint256 hashTest = lyra2re2_hash(BEGIN(version), END(nonce));
+
+
+        printf("Hash Test: %s \n", hashTest.ToString().c_str());
+
+        int32_t versionTwo = 536870912;
+        uint32_t nonceTwo = 1779392255;
+
+        char* versionCharArray = BEGIN(versionTwo);
+        char* nonceCharArray = END(nonceTwo);
+
+        printf("versionCharArray: %x \n", versionCharArray);
+        printf("nonceCharArray: %x \n", nonceCharArray);
+
+        uint256 hashTestTwo = lyra2re2_hash(versionCharArray, nonceCharArray);
+
+        printf("Hash Test Two: %s \n", hashTestTwo.ToString().c_str());
 
         // Clear out seeds for hardfork
 
@@ -202,7 +227,9 @@ public:
                 { 82475, uint256S("0x00000000061523e6bc640284601307001ee74505399c4470bd943339c2157c05")},
                 { 110000, uint256S("0x0000000011e05c495f94dc2a42df1448bdf9748bdc3410730b70026ce7d5ce03")},
                 { 127150, uint256S("0x00000000099a151ec7e1b88be6b5ab2dea4da7a0d919e999e5d0eb31f207d996")},
-                { 127875, uint256S("0000000007417c8999a996c5c0c3b6429ad93468dfcc44f56bf90036d542a792")}
+                { 127875, uint256S("0x0000000007417c8999a996c5c0c3b6429ad93468dfcc44f56bf90036d542a792")},
+                { 150000, uint256S("0x000000000166e5747033e3680080c8954f4513a3257dfdc3d2e231c974794407")},
+                { 188340, uint256S("0x0000000005c13e1e9d00d4aaa750e885b78d55d7a634981ba6691d55d5e0e5d2")}
             }
         };
 
@@ -219,9 +246,9 @@ public:
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
         chainTxData = ChainTxData {
-            1520178257,
-            131849,
-            1.0
+            1521947285,
+            218154,
+            1.2
         };
     }
 };
