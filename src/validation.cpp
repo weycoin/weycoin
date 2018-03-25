@@ -1379,47 +1379,7 @@ CAmount GetMasternodePayment(int nHeight, CAmount blockValue, const Consensus::P
         return 0;
     }
 
-    // Reactive Equilibria V1 by Squbs (squbs@protonmail.com)
-    CAmount hBlockValue = blockValue/2;
-    CAmount nMoneySupply = chainActive.Tip()->nMoneySupply; // 69523771.3
-
-    //LogPrintf("[re1] money supply: %u\n", nMoneySupply);
-
-    // TODO: filter nodes by various characteristics
-    int tNodes = mnodeman.CountMasternodesAboveProtocol(MIN_MASTERNODE_POS_PROTO_VERSION); //74
-
-    CAmount tCollateral = tNodes * MASTERNODEAMOUNT * COIN; //74 * 15000 * 100000000
-    //LogPrintf("[re1] masternode collateral: %u\n", tCollateral);
-
-    //no reward for masternodes if none exist!
-    if (tNodes <= 0)
-        return 0;
-
-    double sChokeRatio = nMoneySupply > 0 ? tCollateral / static_cast<double>(nMoneySupply) : 0; //111000000000000 / 6952377100000000
-    //LogPrintf("[REV1] supply choke ratio: %d\n", sChokeRatio);
-
-    double mnSDrift = 1 - sChokeRatio / MASTERNODE_PEF; // 1 - 0.01596576227144 / 0.55
-
-    double activeS = std::tanh(mnSDrift); // 0.749130824704893
-    //LogPrintf("[re1] masternode payment activation weight %d\n", activeS);
-
-    CAmount ret = hBlockValue * (activeS + MASTERNODE_PEF); // 60 * (0.749130824704893 + 0.55)
-
-    //LogPrintf("[re1] masternode payment blockValue %u\n", ret);
-
-    //at extremes (supply choking point) payment to masternodes is negative!
-    ret = ret < 0 ? 0 : ret;
-
-    // Contextual modifications to approach:
-    // M1: set some hard limits (due to Signatum swap pre-allocation)
-    // As swap holders increasingly set up masternodes rewards will re-balance
-    // in favour of miners. But prevent early swap holders (i.e. MN owners)
-    // from appropriating more than 60% of block value.  Around a chokeRatio
-    // ~ 28%, rewards are in favour of miners, 51%. And declines steadily for MNs
-    // thereafter.  A greater than 90% chokeRatio, MN rewards are a big fat ZERO!
-    ret = ret > blockValue*0.6 ? blockValue*0.6: ret;
-
-    return ret;
+    return blockValue * 0.45;
 }
 
 

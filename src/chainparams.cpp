@@ -127,7 +127,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000051f6a65d1a2b4f");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000054463538146365");
 
         consensus.defaultAssumeValid = uint256S("0x0");
 
@@ -154,7 +154,7 @@ public:
 
         assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
         assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
-        
+
         // Clear out seeds for hardfork
 
         vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
@@ -205,7 +205,8 @@ public:
                 { 127150, uint256S("0x00000000099a151ec7e1b88be6b5ab2dea4da7a0d919e999e5d0eb31f207d996")},
                 { 127875, uint256S("0x0000000007417c8999a996c5c0c3b6429ad93468dfcc44f56bf90036d542a792")},
                 { 150000, uint256S("0x000000000166e5747033e3680080c8954f4513a3257dfdc3d2e231c974794407")},
-                { 188340, uint256S("0x0000000005c13e1e9d00d4aaa750e885b78d55d7a634981ba6691d55d5e0e5d2")}
+                { 188340, uint256S("0x0000000005c13e1e9d00d4aaa750e885b78d55d7a634981ba6691d55d5e0e5d2")},
+                { 190495, uint256S("0x0000000000e007b682f5ed54e8a96f0f36afca51d83c792eaa0440b0a0d93ce2")}
             }
         };
 
