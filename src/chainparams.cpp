@@ -154,31 +154,7 @@ public:
 
         assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
         assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
-
-        //version 536870912
-        //nonce = 261130005
-
-        int32_t version = 536870912;
-        int32_t nonce = 1779392255;
-
-        uint256 hashTest = lyra2re2_hash(BEGIN(version), END(nonce));
-
-
-        printf("Hash Test: %s \n", hashTest.ToString().c_str());
-
-        int32_t versionTwo = 536870912;
-        uint32_t nonceTwo = 1779392255;
-
-        char* versionCharArray = BEGIN(versionTwo);
-        char* nonceCharArray = END(nonceTwo);
-
-        printf("versionCharArray: %x \n", versionCharArray);
-        printf("nonceCharArray: %x \n", nonceCharArray);
-
-        uint256 hashTestTwo = lyra2re2_hash(versionCharArray, nonceCharArray);
-
-        printf("Hash Test Two: %s \n", hashTestTwo.ToString().c_str());
-
+        
         // Clear out seeds for hardfork
 
         vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
