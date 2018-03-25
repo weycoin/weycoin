@@ -2201,7 +2201,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     //Masternode Payment Assurance (MPA)
     if(pindex->nHeight > chainparams.GetConsensus().mpaStartHeight)
     {
-        bool missingMNPayment = true;
+        bool missingMNPayment = false;
         bool incorrectMNPayment = false;
         bool nonSpecific = false;
         CScript payee;
@@ -2220,7 +2220,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
             const CTransaction &tx = *(block.vtx[0]);
 
-            CAmount tVal =
+            /*CAmount tVal =
                 GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus()) * 0.05;
 
             CAmount nValue = block.vtx[0]->GetValueOut() - tVal;
@@ -2237,7 +2237,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                         break;
                     }
                 }
-            }
+            }*/
         }
 
         if(nonSpecific) {
