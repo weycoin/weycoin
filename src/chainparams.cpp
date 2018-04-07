@@ -127,13 +127,13 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000054463538146365");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000006cd4228b3c2bbd");
 
         consensus.defaultAssumeValid = uint256S("0x0");
 
         //5 weeks from launch, fair chance to buy/accumulate. 75000 blocks
         consensus.MasternodePaymentStartHeight = 75000;
-        consensus.mpaStartHeight = 190635;
+        consensus.mpaStartHeight = 127150;
         //
 
         /**
@@ -206,7 +206,8 @@ public:
                 { 127875, uint256S("0x0000000007417c8999a996c5c0c3b6429ad93468dfcc44f56bf90036d542a792")},
                 { 150000, uint256S("0x000000000166e5747033e3680080c8954f4513a3257dfdc3d2e231c974794407")},
                 { 188340, uint256S("0x0000000005c13e1e9d00d4aaa750e885b78d55d7a634981ba6691d55d5e0e5d2")},
-                { 190495, uint256S("0x0000000000e007b682f5ed54e8a96f0f36afca51d83c792eaa0440b0a0d93ce2")}
+                { 190495, uint256S("0x0000000000e007b682f5ed54e8a96f0f36afca51d83c792eaa0440b0a0d93ce2")},
+                { 244000, uint256S("0x0000000004cbb787c630b87ce651f889ee78b930f0ece1ddb95ef26a239dced2")}
             }
         };
 
@@ -223,9 +224,9 @@ public:
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
         chainTxData = ChainTxData {
-            1521947285,
-            218154,
-            1.2
+            1523137215,
+            276485,
+            1.1
         };
     }
 };
