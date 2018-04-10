@@ -526,7 +526,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Unix: ~/.weycoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "waecoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "WeyCoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
