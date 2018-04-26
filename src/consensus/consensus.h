@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers 
-// Copyright (c) 2015-2017 The Dash developers 
+// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2015-2017 The Dash developers
 // Copyright (c) 2017-2018 WEYCOIN developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -11,15 +11,15 @@
 #include <stdint.h>
 
 /** The maximum allowed weight for a block, see BIP 141 (network rule) */
-static const unsigned int MAX_BLOCK_SERIALIZED_SIZE = (16 * 1000 * 1000);
+static const unsigned int MAX_BLOCK_SERIALIZED_SIZE = (256 * 1000 * 1000);
 
 /** The maximum allowed size for a block excluding witness data, in bytes (network rule) */
 static inline bool BIP102active(bool fSegwitSeasoned) {
     return fSegwitSeasoned;
 }
 
-static const unsigned int MAX_LEGACY_BLOCK_SIZE = (1 * 1000 * 1000);
-static const unsigned int MAX_BASE_BLOCK_SIZE = (4 * 1000 * 1000);
+static const unsigned int MAX_LEGACY_BLOCK_SIZE = (16 * 1000 * 1000);
+static const unsigned int MAX_BASE_BLOCK_SIZE = (64 * 1000 * 1000);
 inline unsigned int MaxBlockBaseSize(bool fSegwitSeasoned)
 {
     if (!BIP102active(fSegwitSeasoned))
