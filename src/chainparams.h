@@ -88,9 +88,9 @@ public:
     std::string MasternodePaymentPubKey() const { return strMasternodePaymentsPubKey; }
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }//TODO-- ends
 
-    std::string GetTreasuryRewardAddressAtHeight(int height) const;
+    std::string GetPoMRewardAddressAtHeight(int height) const;
     CScript GetTreasuryRewardScriptAtHeight(int height) const;
-    std::string GetTreasuryRewardAddressAtIndex(int i) const;
+    std::string GetPoMRewardAddressAtIndex(int i) const;
 
 protected:
     CChainParams() {}
@@ -117,7 +117,7 @@ protected:
     std::string strDarksendPoolDummyAddress;
     int64_t nStartMasternodePayments;
 
-    std::vector<std::string> vTreasuryRewardAddress;
+    std::vector<std::string> pomAddresses;
 };
 
 /**

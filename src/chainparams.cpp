@@ -127,7 +127,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000007e950c10488a1b");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000007fce6d3cc13b27");
 
         consensus.defaultAssumeValid = uint256S("0x0");
 
@@ -208,12 +208,13 @@ public:
                 { 188340, uint256S("0x0000000005c13e1e9d00d4aaa750e885b78d55d7a634981ba6691d55d5e0e5d2")},
                 { 190495, uint256S("0x0000000000e007b682f5ed54e8a96f0f36afca51d83c792eaa0440b0a0d93ce2")},
                 { 244000, uint256S("0x0000000004cbb787c630b87ce651f889ee78b930f0ece1ddb95ef26a239dced2")},
-                { 317034, uint256S("0x0000000006f06aa60dff97dfb8a67f733801f992f8e2f44191d6cb5f84f7f310")}
+                { 317034, uint256S("0x0000000006f06aa60dff97dfb8a67f733801f992f8e2f44191d6cb5f84f7f310")},
+                { 325000, uint256S("0x000000000e4974957d71dd28c5204b4b591b296217535e3dcd2a7000e134e9b0")}
             }
         };
 
         // treasury payment adresses
-        vTreasuryRewardAddress = {
+        pomAddresses = {
             "3K3bPrW5h7DYEMp2RcXawTCXajcm4ZU9Zh",
             "33Ssxmn3ehVMgyxgegXhpLGSBpubPjLZQ6",
             "3HFPNAjesiBY5sSVUmuBFnMEGut69R49ca",
@@ -225,9 +226,9 @@ public:
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
         chainTxData = ChainTxData {
-            1523137215,
-            276485,
-            1.1
+            1524877519,
+            368493,
+            1.2
         };
     }
 };
@@ -355,7 +356,7 @@ public:
             }
         };
 
-        vTreasuryRewardAddress = {
+        pomAddresses = {
             "0"
         };
 
@@ -469,7 +470,7 @@ NEW **regtest** merkle root: 15343d9e3cfff44854ec63cc588d5a1ed6ea971085c2be97acb
             (  0, uint256S("000002db0642636c786f756062dd7a92f35a2be1665816f8bfa33111ae902b37") )
         };
 
-        vTreasuryRewardAddress = {
+        pomAddresses = {
             "2N6TJncxtMLSqEurFaEGtpLxdvq5wiVcR6S"
         };
 
@@ -518,13 +519,13 @@ void UpdateRegtestBIP9Parameters(Consensus::DeploymentPos d, int64_t nStartTime,
 }
 
 
-std::string CChainParams::GetTreasuryRewardAddressAtHeight(int nHeight) const {
-    size_t i = nHeight % vTreasuryRewardAddress.size();
-    return vTreasuryRewardAddress[i];
+std::string CChainParams::GetPoMRewardAddressAtHeight(int nHeight) const {
+    size_t i = nHeight % pomAddresses.size();
+    return pomAddresses[i];
 }
 
 CScript CChainParams::GetTreasuryRewardScriptAtHeight(int nHeight) const {
-    CWeyCoinAddress address(GetTreasuryRewardAddressAtHeight(nHeight).c_str());
+    CWeyCoinAddress address(GetPoMRewardAddressAtHeight(nHeight).c_str());
 
     printf("Searching for blocks.");
     assert(address.IsValid());
@@ -534,7 +535,7 @@ CScript CChainParams::GetTreasuryRewardScriptAtHeight(int nHeight) const {
     return script;
 }
 
-std::string CChainParams::GetTreasuryRewardAddressAtIndex(int i) const {
-    assert(i >= 0 && i < vTreasuryRewardAddress.size());
-    return vTreasuryRewardAddress[i];
+std::string CChainParams::GetPoMRewardAddressAtIndex(int i) const {
+    assert(i >= 0 && i < pomAddresses.size());
+    return pomAddresses[i];
 }
