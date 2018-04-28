@@ -527,7 +527,6 @@ std::string CChainParams::GetPoMRewardAddressAtHeight(int nHeight) const {
 CScript CChainParams::GetTreasuryRewardScriptAtHeight(int nHeight) const {
     CWeyCoinAddress address(GetPoMRewardAddressAtHeight(nHeight).c_str());
 
-    printf("Searching for blocks.");
     assert(address.IsValid());
     assert(address.IsScript());
     CScriptID scriptID = boost::get<CScriptID>(address.Get()); // Get() returns a boost variant

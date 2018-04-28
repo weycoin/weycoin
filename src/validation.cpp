@@ -2105,8 +2105,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         bool found = false;
         const CTransaction &tx = *(block.vtx[0]);
 
-        CAmount treasuryVal = GetBlockSubsidy(
-            pindex->nHeight, chainparams.GetConsensus()) * 0.05;
+        CAmount treasuryVal = GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus()) * 0.03;
 
         // slow start - instamine protection
         if(pindex->nHeight <= PRE_SUBSIDY_HEIGHT)
@@ -2124,8 +2123,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         }
 
         if (!found) {
-            if(fDebug) LogPrintf("[squbs] ** rejecting block - treasury funding missing! **\n");
-            return state.DoS(100, error("%s: treasury funding missing", __func__), REJECT_INVALID, "cb-no-treasury-funding");
+            if(fDebug) LogPrintf("[squbs] ** rejecting block - PoM funds missing! **\n");
+            return state.DoS(100, error("%s: PoM funds missing", __func__), REJECT_INVALID, "cb-no-treasury-funding");
         }
     }
 
