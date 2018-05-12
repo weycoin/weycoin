@@ -127,7 +127,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000867330a3b6bb45");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000089ad2b9d337276");
 
         consensus.defaultAssumeValid = uint256S("0x0");
 
@@ -210,7 +210,8 @@ public:
                 { 244000, uint256S("0x0000000004cbb787c630b87ce651f889ee78b930f0ece1ddb95ef26a239dced2")},
                 { 317034, uint256S("0x0000000006f06aa60dff97dfb8a67f733801f992f8e2f44191d6cb5f84f7f310")},
                 { 325000, uint256S("0x000000000e4974957d71dd28c5204b4b591b296217535e3dcd2a7000e134e9b0")},
-                { 360000, uint256S("0x0000000002c51299fc5a8c402ac05bf5036cf2fd0f4123d109bed3477c2d02b3")}
+                { 360000, uint256S("0x0000000002c51299fc5a8c402ac05bf5036cf2fd0f4123d109bed3477c2d02b3")},
+                { 380000, uint256S("0x00000000003f1117520c33e6646d73de67afd24179937e6fae2892f93a5387b2")}
             }
         };
 
