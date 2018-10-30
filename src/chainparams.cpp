@@ -155,28 +155,7 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x000006ed0805a3f7db7c1430e73d52bdc1c3bbc278f3534117d8a0e4c86b88a5"));
         assert(genesis.hashMerkleRoot == uint256S("0x1c414ca84fe73ee0a6fe5b07c8c129026e424baeb285fc81ddb019cfa67a7f0c"));
 
-        // Clear out seeds for hardfork
-
-        vSeeds.push_back(CDNSSeedData("seed.weycoin.org", "seed.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed2.weycoin.org", "seed2.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed3.weycoin.org", "seed3.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed4.weycoin.org", "seed4.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed5.weycoin.org", "seed5.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed6.weycoin.org", "seed6.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed7.weycoin.org", "seed7.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed8.weycoin.org", "seed8.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed9.weycoin.org", "seed9.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed10.weycoin.org", "seed10.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed11.weycoin.org", "seed11.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed12.weycoin.org", "seed12.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed13.weycoin.org", "seed13.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed14.weycoin.org", "seed14.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed15.weycoin.org", "seed15.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed16.weycoin.org", "seed16.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed17.weycoin.org", "seed17.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed18.weycoin.org", "seed18.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed19.weycoin.org", "seed19.weycoin.org"));
-        vSeeds.push_back(CDNSSeedData("seed20.weycoin.org", "seed20.weycoin.org"));
+        vSeeds.push_back(CDNSSeedData("dnsseed.weycoinproject.org", "dnsseed.weycoinproject.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,46);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
