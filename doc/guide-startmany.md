@@ -137,7 +137,7 @@ I usually confirm that remote is on the correct block by issuing:
 
 ```weycoind getinfo```
 
-And compare with the a explorer at https://weycoin.info
+And compare with the a explorer at https://weyblocks.com
 
 ### Local
 
