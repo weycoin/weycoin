@@ -115,4 +115,5 @@ src/script/*.lo
 
 libweycoinconsensus.pc
 
+depends/i686-w64-mingw32
 depends/x86_64-w64-mingw32
