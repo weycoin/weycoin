@@ -114,3 +114,5 @@ src/primitives/*.lo
 src/script/*.lo
 
 libweycoinconsensus.pc
+
+depends/x86_64-w64-mingw32
