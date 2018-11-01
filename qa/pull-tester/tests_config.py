@@ -3,9 +3,9 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-SRCDIR="/home/arubinofaux/Code/weycoin-project/Weycoin"
-BUILDDIR="/home/arubinofaux/Code/weycoin-project/Weycoin"
-EXEEXT=""
+SRCDIR="/home/kodamabit/code/weycoin"
+BUILDDIR="/home/kodamabit/code/weycoin"
+EXEEXT=".exe"
 
 # These will turn into comments if they were disabled when configuring.
 ENABLE_WALLET=1
