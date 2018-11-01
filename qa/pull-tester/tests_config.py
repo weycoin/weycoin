@@ -5,7 +5,7 @@
 
 SRCDIR="/home/kodamabit/code/weycoin"
 BUILDDIR="/home/kodamabit/code/weycoin"
-EXEEXT=".exe"
+EXEEXT=""
 
 # These will turn into comments if they were disabled when configuring.
 ENABLE_WALLET=1
