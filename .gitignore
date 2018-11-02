@@ -63,6 +63,7 @@ src/.libs
 Makefile
 weycoin-qt
 weycoin-Qt.app
+dist/WeyCoin-Qt.app
 
 # Unit-tests
 Makefile.test
@@ -118,3 +119,5 @@ libweycoinconsensus.pc
 depends/i686-w64-mingw32
 depends/x86_64-w64-mingw32
 depends/aarch64-linux-gnu
+depends/arm-linux-gnueabihf
+depends/x86_64-apple-darwin11
