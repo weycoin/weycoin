@@ -522,7 +522,7 @@ boost::filesystem::path GetDefaultDataDir()
     namespace fs = boost::filesystem;
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\weycoin
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\weycoin
-    // Mac: ~/Library/Application Support/weycoin
+    // Mac: ~/Library/Application Support/Weycoin
     // Unix: ~/.weycoin
 #ifdef WIN32
     // Windows
@@ -536,7 +536,7 @@ boost::filesystem::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/weycoin";
+    return pathRet / "Library/Application Support/WeyCoin";
 #else
     // Unix
     return pathRet / ".weycoin";
