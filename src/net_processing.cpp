@@ -15,14 +15,14 @@
 //#include "darksend.h"
 #include "hash.h"
 #include "init.h"
-//#include "instantx.h"  //
+//#include "instantx.h"  
 #include "signhelper_mn.h"
-#include "masternodeman.h"//
+#include "masternodeman.h"
 #include "validation.h"
-#include "masternode.h" //
-#include "masternode-pos.h" //
-#include "spork.h"//
-#include "activemasternode.h"//
+#include "masternode.h" 
+#include "masternode-pos.h" 
+#include "spork.h"
+#include "activemasternode.h"
 #include "merkleblock.h"
 #include "net.h"
 #include "netmessagemaker.h"
