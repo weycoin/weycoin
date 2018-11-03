@@ -121,3 +121,6 @@ depends/x86_64-w64-mingw32
 depends/aarch64-linux-gnu
 depends/arm-linux-gnueabihf
 depends/x86_64-apple-darwin11
+
+contrib/devtools/split-debug.sh
+qa/pull-tester/tests_config.py
