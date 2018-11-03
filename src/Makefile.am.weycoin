@@ -104,7 +104,6 @@ WEYCOIN_CORE_H = \
   indirectmap.h \
   init.h \
   key.h \
-  keepass.h \
   keystore.h \
   dbwrapper.h \
   limitedmap.h \
