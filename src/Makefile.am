@@ -266,6 +266,7 @@ crypto_libweycoin_crypto_a_SOURCES = \
   crypto/sha512.cpp \
   crypto/sha512.h \
   crypto/aes_helper.c \
+  crypto/sph_types.h \
   crypto/scrypt.h \
   crypto/Lyra2RE/Sponge.h \
   crypto/Lyra2RE/Sponge.c \
