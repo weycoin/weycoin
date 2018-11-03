@@ -77,6 +77,7 @@ endif
 # weycoin core #
 WEYCOIN_CORE_H = \
   activemasternode.h \
+  signhelper_mn.h \
   addrdb.h \
   addrman.h \
   base58.h \

@@ -1,4 +1,3 @@
-
 #include "signhelper_mn.h"
 #include "protocol.h"
 #include "activemasternode.h"
