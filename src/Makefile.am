@@ -271,6 +271,7 @@ crypto_libweycoin_crypto_a_SOURCES = \
   crypto/Lyra2RE/Lyra2.c \
   crypto/Lyra2RE/blake.c \
   crypto/Lyra2RE/sph_blake.h \
+  crypto/Lyra2RE/sph_types.h \
   crypto/Lyra2RE/keccak.c \
   crypto/Lyra2RE/sph_keccak.h \
   crypto/Lyra2RE/skein.c \
