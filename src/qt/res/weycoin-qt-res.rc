@@ -1,4 +1,4 @@
-IDI_ICON1 ICON DISCARDABLE "icons/weycoin.ico"
+IDI_ICON1 ICON DISCARDABLE "icons/weycoind.ico"
 IDI_ICON2 ICON DISCARDABLE "icons/weycoin_testnet.ico"
 
 #include <windows.h>             // needed for VERSIONINFO
