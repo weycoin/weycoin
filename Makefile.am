@@ -45,8 +45,7 @@ DIST_CONTRIB = $(top_srcdir)/contrib/weycoin-cli.bash-completion \
 	       $(top_srcdir)/contrib/init \
 	       $(top_srcdir)/contrib/rpm
 
-BIN_CHECKS=$(top_srcdir)/contrib/devtools/symbol-check.py \
-           $(top_srcdir)/contrib/devtools/security-check.py
+BIN_CHECKS= $(top_srcdir)/contrib/devtools/security-check.py
 
 WINDOWS_PACKAGING = $(top_srcdir)/share/pixmaps/weycoin.ico \
   $(top_srcdir)/share/pixmaps/nsis-header.bmp \
