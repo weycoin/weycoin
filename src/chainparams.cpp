@@ -195,10 +195,7 @@ public:
 
         // treasury payment adresses
         vTreasuryRewardAddress = {
-            "3K3bPrW5h7DYEMp2RcXawTCXajcm4ZU9Zh",
-            "33Ssxmn3ehVMgyxgegXhpLGSBpubPjLZQ6",
-            "3HFPNAjesiBY5sSVUmuBFnMEGut69R49ca",
-            "37jLjjfUXQU4bdqVzvpUXyzAqPQSmxyByi"
+            "Kd92ChPxQLCa2SmDUUiM5ZCofyVUyMtuok"
         };
 
         // [1] UNIX timestamp of last known number of transactions
