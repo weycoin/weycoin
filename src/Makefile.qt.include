@@ -243,6 +243,7 @@ RES_ICONS = \
   qt/res/icons/about.png \
   qt/res/icons/about_qt.png \
   qt/res/icons/weycoin_ic.ico \
+  qt/res/icons/weycoin.ico \
   qt/res/icons/weycoin_testnet.ico \
   qt/res/icons/weycoin.png \
   qt/res/icons/chevron.png \
