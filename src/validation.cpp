@@ -2108,7 +2108,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         const CTransaction &tx = *(block.vtx[0]);
 
         CAmount treasuryVal = GetBlockSubsidy(
-            pindex->nHeight, chainparams.GetConsensus()) * 0.01;
+            pindex->nHeight, chainparams.GetConsensus()) * 0.00;
 
         // slow start - instamine protection
         if(pindex->nHeight <= PRE_SUBSIDY_HEIGHT)
@@ -2183,7 +2183,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             const CTransaction &tx = *(block.vtx[0]);
 
             CAmount tVal =
-                GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus()) * 0.05;
+                GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus()) * 0.00;
 
             CAmount nValue = block.vtx[0]->GetValueOut() - tVal;
 
@@ -2206,7 +2206,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             const CTransaction &tx = *(block.vtx[0]);
 
             CAmount tVal =
-                GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus()) * 0.05;
+                GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus()) * 0.00;
 
             CAmount rBuffer = tVal/4;
 
