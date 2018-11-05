@@ -1,5 +1,4 @@
-
-#include "signhelper_mn.h"//
+#include "signhelper_mn.h"
 #include "protocol.h"
 #include "activemasternode.h"
 #include "masternodeman.h"

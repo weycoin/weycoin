@@ -24,7 +24,6 @@ HEADERS += \
 	../src/xevan.h \
     ../src/init.h \
     ../src/instantx.h \
-    ../src/keepass.h \
     ../src/key.h \
     ../src/keystore.h \
     ../src/leveldbwrapper.h \

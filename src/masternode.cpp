@@ -4,7 +4,8 @@
 
 #include "masternode.h"
 #include "masternodeman.h"
-#include "signhelper_mn.h"//todo++
+#include "signhelper_mn.h"
+//todo++
 //#include "core.h"
 #include "util.h"
 #include "sync.h"

@@ -71,7 +71,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        // TODO: update to 220000
+        // TODO-WEY: update to 220000
         consensus.nSubsidyHalvingInterval = 200000;
         consensus.BIP34Height = 1;
         consensus.BIP34Hash = uint256S("00000e173190d0d57bf3167bf7d42458be29cbe043960234482486b709188f64");
@@ -85,10 +85,10 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 31; // Zawy adjustment: (1 - 1/0.765)x100 (0.765 = v1b)
         consensus.nPowMaxAdjustUp = 23.7; // Zawy adjustment: 1- 1/(1+.31)x100 = 23.7
-        
-        // TODO: update to 10 minutes
+
+        // TODO-WEY: update to 10 minutes
         consensus.nPowTargetTimespan = 5 * 60; //5 minutes
-        // TODO: update to 46 seconds
+        // TODO-WEY: update to 46 seconds
         consensus.nPowTargetSpacing = 20; //20 seconds
 
         consensus.fPowD106SwitchHeight = consensus.DifficultyAdjustmentInterval();
@@ -129,7 +129,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT2X].nOverrideRuleChangeActivationThreshold = 1;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000007e950c10488a1b");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000a21bfe9dd6ef1b"); // 45629726610878235
 
         consensus.defaultAssumeValid = uint256S("0x0");
 

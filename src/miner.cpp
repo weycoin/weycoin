@@ -229,7 +229,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     //adjust for treasury payment in perpetuity
     if (nHeight > 0) {
-        CAmount vTreasuryReward = blockValue * 0.05;
+        CAmount vTreasuryReward = blockValue * 0.00;
 
         if (nHeight == 1)
             vTreasuryReward = 0.0;

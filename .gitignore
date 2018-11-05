@@ -45,7 +45,7 @@ src/.libs
 *.orig
 *.o
 *.o-*
-*.patch
+# *.patch
 .weycoin
 *.a
 *.pb.cc

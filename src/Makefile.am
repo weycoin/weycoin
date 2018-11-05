@@ -77,6 +77,7 @@ endif
 # weycoin core #
 WEYCOIN_CORE_H = \
   activemasternode.h \
+  signhelper_mn.h \
   addrdb.h \
   addrman.h \
   base58.h \
@@ -104,7 +105,6 @@ WEYCOIN_CORE_H = \
   indirectmap.h \
   init.h \
   key.h \
-  keepass.h \
   keystore.h \
   dbwrapper.h \
   limitedmap.h \
@@ -266,20 +266,22 @@ crypto_libweycoin_crypto_a_SOURCES = \
   crypto/sha512.cpp \
   crypto/sha512.h \
   crypto/aes_helper.c \
+  crypto/scrypt.h \
   crypto/Lyra2RE/Sponge.h \
   crypto/Lyra2RE/Sponge.c \
   crypto/Lyra2RE/Lyra2.h \
   crypto/Lyra2RE/Lyra2.c \
   crypto/Lyra2RE/blake.c \
-  crypto/Lyra2RE/blake.h \
+  crypto/Lyra2RE/sph_blake.h \
+  crypto/Lyra2RE/sph_types.h \
   crypto/Lyra2RE/keccak.c \
-  crypto/Lyra2RE/keccak.h \
+  crypto/Lyra2RE/sph_keccak.h \
   crypto/Lyra2RE/skein.c \
-  crypto/Lyra2RE/skein.h \
+  crypto/Lyra2RE/sph_skein.h \
   crypto/Lyra2RE/cubehash.c \
-  crypto/Lyra2RE/cubehash.h \
+  crypto/Lyra2RE/sph_cubehash.h \
   crypto/Lyra2RE/bmw.c \
-  crypto/Lyra2RE/bmw.h
+  crypto/Lyra2RE/sph_bmw.h
 
 # consensus: shared between all executables that validate any consensus rules.
 libweycoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(WEYCOIN_INCLUDES)
@@ -503,12 +505,6 @@ clean-local:
 .mm.o:
 	$(AM_V_CXX) $(OBJCXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	  $(CPPFLAGS) $(AM_CXXFLAGS) $(QT_INCLUDES) $(AM_CXXFLAGS) $(PIE_FLAGS) $(CXXFLAGS) -c -o $@ $<
-
-check-symbols: $(bin_PROGRAMS)
-if GLIBC_BACK_COMPAT
-	@echo "Checking glibc back compat..."
-	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(top_srcdir)/contrib/devtools/symbol-check.py < $(bin_PROGRAMS)
-endif
 
 check-security: $(bin_PROGRAMS)
 if HARDEN
