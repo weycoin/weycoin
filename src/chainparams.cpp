@@ -71,8 +71,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        // TODO-WEY: update to 220000
-        consensus.nSubsidyHalvingInterval = 200000;
+        consensus.nSubsidyHalvingInterval = 220000;
         consensus.BIP34Height = 1;
         consensus.BIP34Hash = uint256S("00000e173190d0d57bf3167bf7d42458be29cbe043960234482486b709188f64");
         consensus.BIP65Height = 0;
@@ -86,10 +85,8 @@ public:
         consensus.nPowMaxAdjustDown = 31; // Zawy adjustment: (1 - 1/0.765)x100 (0.765 = v1b)
         consensus.nPowMaxAdjustUp = 23.7; // Zawy adjustment: 1- 1/(1+.31)x100 = 23.7
 
-        // TODO-WEY: update to 10 minutes
-        consensus.nPowTargetTimespan = 5 * 60; //5 minutes
-        // TODO-WEY: update to 46 seconds
-        consensus.nPowTargetSpacing = 20; //20 seconds
+        consensus.nPowTargetTimespan = 10 * 60; //10 minutes
+        consensus.nPowTargetSpacing = 46; //46 seconds
 
         consensus.fPowD106SwitchHeight = consensus.DifficultyAdjustmentInterval();
 
