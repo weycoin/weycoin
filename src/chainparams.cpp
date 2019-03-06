@@ -205,10 +205,11 @@ public:
         // [2] total number of transactions between genesis and that timestamp
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
+        // run weycoin-cli getchaintxstats to grab the data needed to update
         chainTxData = ChainTxData {
-            1523137215,
-            276485,
-            1.1
+            1551844231,
+            1522669,
+            0.04094265808517953
         };
     }
 };
