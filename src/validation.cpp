@@ -1353,16 +1353,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings >= 64)
         return 0;
 
-    // TODO: this should just be CAmount nSubsidy = 50 * COIN;
-    // get rid of the if statements
-    CAmount nSubsidy;
-
-    if (nHeight < 10001)
-        nSubsidy = 5600 * COIN;
-    else
-        nSubsidy = 120 * COIN;
-
-    // Subsidy is cut in half every 200,000 blocks
+    CAmount nSubsidy = 50 * COIN;
 
     nSubsidy >>= halvings;
 
