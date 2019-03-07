@@ -206,7 +206,18 @@ public:
         // [2] total number of transactions between genesis and that timestamp
         //     (the tx=... number in the SetBestChain debug.log lines)
         // [3] estimated number of transactions per second after that timestamp
+        //
         // run weycoin-cli getchaintxstats to grab the data needed to update
+        // {
+        //     "time": 1551844231,
+        //     "txcount": 1522669,
+        //     "window_final_block_hash": "0000003cf5c7c945f713bc9b4890242285b0fcfb36e5863b7a219c3d218f435e",
+        //     "window_block_count": 129600,
+        //     "window_tx_count": 131719,
+        //     "window_interval": 3217158,
+        //     "txrate": 0.04094265808517953
+        // }
+
         chainTxData = ChainTxData {
             1551844231,
             1522669,
