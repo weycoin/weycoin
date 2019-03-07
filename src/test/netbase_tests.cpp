@@ -72,10 +72,10 @@ bool static TestSplitHost(std::string test, std::string host, int port)
 
 BOOST_AUTO_TEST_CASE(netbase_splithost)
 {
-    BOOST_CHECK(TestSplitHost("www.weycoin.org", "www.weycoin.org", -1));
-    BOOST_CHECK(TestSplitHost("[www.weycoin.org]", "www.weycoin.org", -1));
-    BOOST_CHECK(TestSplitHost("www.weycoin.org:80", "www.weycoin.org", 80));
-    BOOST_CHECK(TestSplitHost("[www.weycoin.org]:80", "www.weycoin.org", 80));
+    BOOST_CHECK(TestSplitHost("www.weycoinproject.org", "www.weycoinproject.org", -1));
+    BOOST_CHECK(TestSplitHost("[www.weycoinproject.org]", "www.weycoinproject.org", -1));
+    BOOST_CHECK(TestSplitHost("www.weycoinproject.org:80", "www.weycoinproject.org", 80));
+    BOOST_CHECK(TestSplitHost("[www.weycoinproject.org]:80", "www.weycoinproject.org", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
     BOOST_CHECK(TestSplitHost("127.0.0.1:7575", "127.0.0.1", 8333));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));

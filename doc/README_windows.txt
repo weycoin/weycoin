@@ -19,5 +19,5 @@ depending on the speed of your computer and network connection, the synchronizat
 process should take only a few hours.
 
 See the official website:
-  http://www.weycoin.io/
+  http://www.weycoinproject.org/
 for more iormation and help.

@@ -67,7 +67,7 @@ WEYCOIN will be capped at a maxium supply of **150 million coins**.  This target
 
 The constant block reward prevents event cliffs related to expected "halvings" and will support a more consistent and stable participation rate over a long time horizon.
 
-More information will be available on the WEYCOIN' [website](http://weycoin.io)
+More information will be available on the WEYCOIN' [website](http://weycoinproject.org)
 
 ##### The Monetary Curve Based on a 10 WAE Block Reward
 ![Alt text](mcurve.png)
@@ -150,7 +150,7 @@ As the Masternode count increases, the payment to Masternode holders will
 decline in favour of miners in order to support a decentralised ideology.  The
 new algorithm is simple in design but highly effective and lays the foundation for
 future advancements.  More information abut this feature will be posted on the
-[main site](http://weycoin.io). 
+[main site](http://weycoinproject.org). 
 
 ##### Reactive Equilibria Masternode Payment Rebalancing Profile 
 ![Alt text](reactive_equilibria.png)

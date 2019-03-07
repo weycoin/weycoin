@@ -2,7 +2,7 @@
 
 #****************************************************
 # Dumb Install ALL Script For Debian Based Systems  *
-# squbs@weycoin.io                                   *
+# squbs@weycoinproject.org                                   *
 #****************************************************
 sudo apt-get update
 sudo apt-get install -y build-essential

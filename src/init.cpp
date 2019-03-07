@@ -605,12 +605,12 @@ std::string HelpMessage(HelpMessageMode mode)
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/weycoin/weycoin>";
-    const std::string URL_WEBSITE = "<https://weycoin.io>";
+    const std::string URL_WEBSITE = "<https://weycoinproject.org>";
 
 	//TODO-- add weycoin license
     return FormatParagraph(strprintf(_("Copyright (C) 2009 -%i The Bitcoin Core developers"), COPYRIGHT_YEAR)) + "\n" +
 		   FormatParagraph(strprintf(_("Copyright (C) 2014 -%i The Dash Developers"), COPYRIGHT_YEAR)) + "\n" +
-           FormatParagraph(strprintf(_("Copyright (C) %i The WEYCOIN Core Developers"), COPYRIGHT_YEAR)) + "\n" + "\n" +
+           FormatParagraph(strprintf(_("Copyright (C) 2018 -%i The WEYCOIN Core Developers"), COPYRIGHT_YEAR)) + "\n" + "\n" +
            strprintf(_("Please contribute if you find %s useful. "
                        "Visit %s for further information about the software."),
                PACKAGE_NAME, URL_WEBSITE) +

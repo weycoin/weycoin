@@ -166,9 +166,9 @@ Hash: SHA256
 ...
 ```
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the weycoin.io server
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the weycoinproject.org server
 
-- Update weycoin.io version
+- Update weycoinproject.org version
 
   - Make a pull request to add a file named `YYYY-MM-DD-vX.Y.Z.md` with the release notes
   to https://github.com/bitcoin/bitcoin.io/tree/master/_releases
