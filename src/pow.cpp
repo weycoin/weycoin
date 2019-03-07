@@ -17,7 +17,7 @@
 
 /***************************************
  * Bitcoin Cash D106 Algorithm Adapted *
- * squbs@weycoin.io                     *
+ * squbs@weycoinproject.org                     *
  ***************************************/
 
 /**
