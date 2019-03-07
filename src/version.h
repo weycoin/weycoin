@@ -8,7 +8,7 @@
 /**
  * network protocol versioning
  */
-static const int PROTOCOL_VERSION = 70106;
+static const int PROTOCOL_VERSION = 70107;
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;
@@ -32,8 +32,8 @@ static const int MIN_MNW_PEER_PROTO_VERSION = 70103;
 //! minimum peer version that can receive masternode payments
 // V1 - Last protocol version before update
 // V2 - Newest protocol version
-static const int MIN_MASTERNODE_PAYMENT_PROTO_VERSION_1 = 70105;
-static const int MIN_MASTERNODE_PAYMENT_PROTO_VERSION_2 = 70106;
+static const int MIN_MASTERNODE_PAYMENT_PROTO_VERSION_1 = 70106;
+static const int MIN_MASTERNODE_PAYMENT_PROTO_VERSION_2 = 70107;
 //TODO-- ends
 
 //! nTime field added to CAddress, starting with this version;
